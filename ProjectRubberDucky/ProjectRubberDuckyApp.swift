@@ -1,17 +1,27 @@
-//
-//  ProjectRubberDuckyApp.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/06/23.
-//
-
 import SwiftUI
 
 @main
 struct ProjectRubberDuckyApp: App {
+    let rootComponent: RootComponent
+
+    init() {
+        registerProviderFactories()
+        self.rootComponent = DependencyContainer.shared.rootComponent
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            rootComponent.view
         }
+    }
+}
+
+class DependencyContainer {
+    static let shared = DependencyContainer()
+
+    let rootComponent: RootComponent
+
+    init() {
+        self.rootComponent = RootComponent()
     }
 }
