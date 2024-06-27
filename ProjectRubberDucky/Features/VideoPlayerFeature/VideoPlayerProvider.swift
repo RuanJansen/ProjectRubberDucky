@@ -12,7 +12,7 @@ class VideoPlayerProvider: FeatureProvider {
 
     @Published public var viewState: ViewState<DataModel>
 
-    let repository: VideoRepository
+    private let repository: VideoRepository
 
     init(repository: VideoRepository) {
         self.repository = repository

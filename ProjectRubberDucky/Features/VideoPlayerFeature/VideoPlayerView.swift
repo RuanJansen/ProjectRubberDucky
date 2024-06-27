@@ -4,13 +4,15 @@ import AVKit
 
 struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [VideoPlayerDataModel] {
     @StateObject var provider: Provider
-    @State var avPlayer: AVPlayer = AVPlayer()
+    @State var isPresentingVideoPlayer = false
+    @Environment(\.dismiss) private var dismiss
 
     init(provider: Provider) {
         self._provider = StateObject(wrappedValue: provider)
     }
 
     var body: some View {
+        let _ = Self._printChanges()
         VStack {
             switch provider.viewState {
             case .loading:
@@ -31,24 +33,40 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     @ViewBuilder
     private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
         NavigationStack {
-            VStack {
-                List(dataModel, id: \.id) { video in
-                    NavigationLink(value: video) {
-                        HStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(dataModel, id: \.id) { video in
+                        Button {
+                            isPresentingVideoPlayer = true
+                        } label: {
                             AsyncImage(url: video.thumbnail) { image in
                                 image
                                     .resizable()
-                                    .frame(width: 50)
                                     .scaledToFit()
                             } placeholder: {
                                 Image(systemName: "wifi.slash")
                             }
-                            Text(video.title)
-                            Spacer()
+                            .overlay {
+                                LinearGradient(gradient: Gradient(colors: [.white.opacity(0), .white.opacity(0), .black]), startPoint: .top, endPoint: .bottom)
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Text(video.title ?? "Video title")
+                                        Spacer()
+                                        if let quality = video.quality {
+                                            Text(quality.uppercased())
+                                        }
+                                    }
+                                }
+                                .foregroundColor(.white)
+                                .padding()
+                            }
                         }
-                    }
-                    .navigationDestination(for: VideoPlayerDataModel.self) { video in
-                        createVideoPlayerView(for: video)
+                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                        .frame(width: 200)
+                        .fullScreenCover(isPresented: $isPresentingVideoPlayer, content: {
+                            createVideoPlayerView(with: video)
+                        })
                     }
                 }
             }
@@ -57,12 +75,11 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     }
 
     @ViewBuilder
-    private func createVideoPlayerView(for video: VideoPlayerDataModel) -> some View {
-        VideoPlayer(player: avPlayer)
-            .ignoresSafeArea()
-            .onAppear {
-                avPlayer = AVPlayer(url: video.url)
-                avPlayer.play()
-            }
+    private func createVideoPlayerView(with video: VideoPlayerDataModel) -> some View {
+        VideoPlayer(playerController: PlayerController(link: video.url,
+                                                       title: video.title!,
+                                                       publisher: video.id.uuidString,
+                                                       thumbnail: video.thumbnail!))
+        .ignoresSafeArea()
     }
 }

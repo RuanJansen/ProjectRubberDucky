@@ -32,6 +32,12 @@
 		F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */; };
 		F3DB67AE2C28B7AA00F53642 /* MockFilms.json in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67AC2C28B7AA00F53642 /* MockFilms.json */; };
 		F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67AF2C28B7FC00F53642 /* MockFilmsCodableModel.swift */; };
+		F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B22C294F9600F53642 /* PexelCodableModel.swift */; };
+		F3DB67B52C294FC600F53642 /* PexelCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B42C294FC600F53642 /* PexelCaller.swift */; };
+		F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */; };
+		F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B82C2958A700F53642 /* PexelContent.json */; };
+		F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */; };
+		F3DB67BD2C2DF46100F53642 /* AVPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +66,13 @@
 		F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		F3DB67AD2C28B7AA00F53642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/MockFilms.json; sourceTree = "<group>"; };
 		F3DB67AF2C28B7FC00F53642 /* MockFilmsCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilmsCodableModel.swift; sourceTree = "<group>"; };
+		F3DB67B22C294F9600F53642 /* PexelCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelCodableModel.swift; sourceTree = "<group>"; };
+		F3DB67B42C294FC600F53642 /* PexelCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelCaller.swift; sourceTree = "<group>"; };
+		F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFetcher.swift; sourceTree = "<group>"; };
+		F3DB67B82C2958A700F53642 /* PexelContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PexelContent.json; sourceTree = "<group>"; };
+		F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilmsCaller.swift; sourceTree = "<group>"; };
+		F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerManager.swift; sourceTree = "<group>"; };
+		F3DB67BE2C2E0ABF00F53642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +106,8 @@
 		F3DB676F2C28A32F00F53642 /* ProjectRubberDucky */ = {
 			isa = PBXGroup;
 			children = (
+				F3DB67BE2C2E0ABF00F53642 /* Info.plist */,
+				F3DB67B12C294F5F00F53642 /* Services */,
 				F3DB67AB2C28B6DC00F53642 /* MockContent */,
 				F3DB67812C28A37B00F53642 /* NeedleGenerated.swift */,
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
@@ -155,6 +170,7 @@
 				F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */,
 				F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */,
 				F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */,
+				F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */,
 			);
 			path = VideoPlayerFeature;
 			sourceTree = "<group>";
@@ -164,6 +180,7 @@
 			children = (
 				F3DB67A72C28B6A200F53642 /* APIFetcher.swift */,
 				F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */,
+				F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,8 +190,19 @@
 			children = (
 				F3DB67AC2C28B7AA00F53642 /* MockFilms.json */,
 				F3DB67AF2C28B7FC00F53642 /* MockFilmsCodableModel.swift */,
+				F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */,
 			);
 			path = MockContent;
+			sourceTree = "<group>";
+		};
+		F3DB67B12C294F5F00F53642 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67B22C294F9600F53642 /* PexelCodableModel.swift */,
+				F3DB67B42C294FC600F53642 /* PexelCaller.swift */,
+				F3DB67B82C2958A700F53642 /* PexelContent.json */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,16 +304,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */,
+				F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
 				F3DB679B2C28A86E00F53642 /* VideoPlayerDependencies.swift in Sources */,
 				F3DB67A52C28A9BF00F53642 /* VideoRepository.swift in Sources */,
 				F3DB67732C28A32F00F53642 /* ContentView.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
+				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
 				F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */,
+				F3DB67B52C294FC600F53642 /* PexelCaller.swift in Sources */,
+				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependencies.swift in Sources */,
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
+				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F3DB679F2C28A8D700F53642 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
@@ -295,6 +328,7 @@
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
 				F3DB67A12C28A8E100F53642 /* VideoPlayerView.swift in Sources */,
+				F3DB67BD2C2DF46100F53642 /* AVPlayerManager.swift in Sources */,
 				F3DB67A32C28A97800F53642 /* VideoPlayerDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +477,7 @@
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectRubberDucky/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,6 +507,7 @@
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectRubberDucky/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
