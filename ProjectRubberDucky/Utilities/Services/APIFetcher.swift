@@ -18,18 +18,7 @@ class APIFetcher {
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             defer { semaphore.signal() }
 
-            if let error = error {
-                print("Error: \(error)")
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                print("Invalid response")
-                return
-            }
-
             guard let data else {
-                print("No data received")
                 return
             }
 

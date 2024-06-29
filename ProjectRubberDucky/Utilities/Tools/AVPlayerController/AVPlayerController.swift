@@ -1,5 +1,5 @@
 //
-//  AVPlayerManager.swift
+//  PlayerController.swift
 //  ProjectRubberDucky
 //
 //  Created by Ruan Jansen on 2024/06/27.
@@ -9,7 +9,7 @@ import Foundation
 import AVKit
 import SwiftUI
 
-class PlayerController: ObservableObject {
+class AVPlayerController: ObservableObject {
     @Published var link: URL
     @Published var title: String
     @Published var publisher: String
@@ -29,6 +29,7 @@ class PlayerController: ObservableObject {
         self.avPlayerViewController = AVPlayerViewController()
         setupPlayer()
         setupAVPlayerViewController()
+        playPlayer()
     }
 
     // MARK: - AVPlayer Setup
@@ -43,7 +44,9 @@ class PlayerController: ObservableObject {
         // Assign AVPlayer to AVPlayerViewController
         avPlayerViewController.player = player
         avPlayerViewController.allowsPictureInPicturePlayback = true
+        #if os(iOS)
         avPlayerViewController.canStartPictureInPictureAutomaticallyFromInline = true
+        #endif
     }
 
     // MARK: - Playback Control
@@ -62,19 +65,13 @@ class PlayerController: ObservableObject {
 // A SwiftUI view wrapper for an AVPlayerViewController
 struct VideoPlayer: UIViewControllerRepresentable {
     // MARK: - Observed Object
-
-    // ObservedObject that manages the underlying AVPlayer and its playback state
-    @ObservedObject var playerController: PlayerController
+    @ObservedObject var playerController: AVPlayerController
 
     // MARK: - UIViewControllerRepresentable Protocol Methods
-
-    // Update the AVPlayerViewController when SwiftUI view updates
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-        // Update the view controller if needed
-        // (e.g., handle updates when the underlying AVPlayer changes)
+
     }
 
-    // Create and configure the AVPlayerViewController
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         return playerController.avPlayerViewController
     }

@@ -1,10 +1,3 @@
-//
-//  ServiceFetcher.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/06/24.
-//
-
 import Foundation
 
 class ServiceFetcher {
@@ -13,10 +6,8 @@ class ServiceFetcher {
         guard let data = APIFetcher.fetchData(from: url, where: key) else { return nil }
         do {
             let decodedData = try await DataDecoder.decode(data, to: type)
-            dump(decodedData)
             return decodedData
         } catch {
-            print("Error decoding data: \(error)")
             return nil
         }
     }

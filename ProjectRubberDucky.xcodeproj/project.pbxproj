@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
 		F3DB67732C28A32F00F53642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67722C28A32F00F53642 /* ContentView.swift */; };
 		F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67742C28A33100F53642 /* Assets.xcassets */; };
@@ -37,10 +38,11 @@
 		F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */; };
 		F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B82C2958A700F53642 /* PexelContent.json */; };
 		F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */; };
-		F3DB67BD2C2DF46100F53642 /* AVPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */; };
+		F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67DB2C2EAB7400F53642 /* AVPlayerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRubberDuckyApp.swift; sourceTree = "<group>"; };
 		F3DB67722C28A32F00F53642 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,8 +73,8 @@
 		F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFetcher.swift; sourceTree = "<group>"; };
 		F3DB67B82C2958A700F53642 /* PexelContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PexelContent.json; sourceTree = "<group>"; };
 		F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilmsCaller.swift; sourceTree = "<group>"; };
-		F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerManager.swift; sourceTree = "<group>"; };
 		F3DB67BE2C2E0ABF00F53642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F3DB67DB2C2EAB7400F53642 /* AVPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerController.swift; path = ProjectRubberDucky/Utilities/Tools/AVPlayerController/AVPlayerController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3A115802C2EADEB000EF645 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */,
+				F3A115822C2EADFC000EF645 /* tvOS */,
+				F3A115812C2EADF8000EF645 /* iOS */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F3A115812C2EADF8000EF645 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		F3A115822C2EADFC000EF645 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		F3A115832C2EAE1E000EF645 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB679E2C28A8D700F53642 /* VideoPlayerProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		F3A115842C2EAE2C000EF645 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F3A115852C2EAE80000EF645 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F3A115862C2EB19C000EF645 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				F3A115872C2EB1A1000EF645 /* AVPlayerController */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		F3A115872C2EB1A1000EF645 /* AVPlayerController */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67DB2C2EAB7400F53642 /* AVPlayerController.swift */,
+			);
+			path = AVPlayerController;
+			sourceTree = "<group>";
+		};
+		F3A115882C2ED9B9000EF645 /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */,
+			);
+			path = ButtonStyles;
+			sourceTree = "<group>";
+		};
 		F3DB67642C28A32F00F53642 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +215,8 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F3A115882C2ED9B9000EF645 /* ButtonStyles */,
+				F3A115862C2EB19C000EF645 /* Tools */,
 				F3DB67A62C28B68700F53642 /* Services */,
 				F3DB67882C28A4F200F53642 /* Architecture.swift */,
 			);
@@ -164,13 +240,12 @@
 			isa = PBXGroup;
 			children = (
 				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
-				F3DB679A2C28A86E00F53642 /* VideoPlayerDependencies.swift */,
 				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
-				F3DB679E2C28A8D700F53642 /* VideoPlayerProvider.swift */,
-				F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */,
-				F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */,
-				F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */,
-				F3DB67BC2C2DF46100F53642 /* AVPlayerManager.swift */,
+				F3DB679A2C28A86E00F53642 /* VideoPlayerDependencies.swift */,
+				F3A115842C2EAE2C000EF645 /* Models */,
+				F3A115832C2EAE1E000EF645 /* Providers */,
+				F3A115802C2EADEB000EF645 /* Views */,
+				F3A115852C2EAE80000EF645 /* Services */,
 			);
 			path = VideoPlayerFeature;
 			sourceTree = "<group>";
@@ -321,6 +396,7 @@
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F3DB679F2C28A8D700F53642 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
+				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
@@ -328,7 +404,7 @@
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
 				F3DB67A12C28A8E100F53642 /* VideoPlayerView.swift in Sources */,
-				F3DB67BD2C2DF46100F53642 /* AVPlayerManager.swift in Sources */,
+				F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */,
 				F3DB67A32C28A97800F53642 /* VideoPlayerDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,9 +566,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruan.jansen.ProjectRubberDucky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -520,9 +598,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruan.jansen.ProjectRubberDucky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};
