@@ -18,7 +18,9 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             case .loading:
                 ProgressView()
             case .presentContent(let dataModel):
-                createContentView(using: dataModel)
+                NavigationStack {
+                    createContentView(using: dataModel)
+                }
             case .error:
                 ProgressView()
             case .none:
@@ -33,7 +35,66 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 #if os(iOS)
     @ViewBuilder
     private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
-        NavigationStack {
+        VStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(dataModel, id: \.id) { video in
+                        VStack {
+                            Button {
+                                selectedVideo = video
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        if let quality = video.quality {
+                                            Text(quality.uppercased())
+                                                .font(.callout)
+                                        }
+                                    }
+                                }
+                                .padding()
+                                .foregroundColor(.white)
+                            }
+                            .background {
+                                AsyncImage(url: video.thumbnail) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                } placeholder: {
+                                    Image(systemName: "wifi.slash")
+                                }
+                                LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
+                            }
+                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                            .frame(width: 300, height: 175)
+
+                            Text(video.title ?? "Video title")
+                                .font(.title2)
+                        }
+                        .fullScreenCover(item: $selectedVideo) { video in
+                            createVideoPlayerView(with: video)
+                        }
+                    }
+                }
+                .scrollTargetLayout()
+            }
+            .contentMargins(16, for: .scrollContent)
+            .scrollTargetBehavior(.viewAligned)
+
+            Spacer()
+        }
+        .background() {
+            createBackgroundView()
+        }
+        .navigationTitle("Video Player")
+    }
+#endif
+
+#if os(tvOS)
+    @ViewBuilder
+    private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
+        VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(dataModel, id: \.id) { video in
@@ -50,18 +111,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                                     }
                                 }
                             }
-                            .padding()
-                            .foregroundColor(.white)
-                        }
-                        .background {
-                            AsyncImage(url: video.thumbnail) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Image(systemName: "wifi.slash")
-                            }
-                            LinearGradient(colors: [.black, .clear, .black], startPoint: .top, endPoint: .bottom)
+                            .foregroundColor(.primary)
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 25.0))
                         .frame(width: 350, height: 175)
@@ -71,52 +121,15 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                     }
                 }
             }
-            .navigationTitle("Video Player")
-        }
-    }
-#endif
-
-#if os(tvOS)
-    @ViewBuilder
-    private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
-        NavigationStack {
-            VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(dataModel, id: \.id) { video in
-                            Button {
-                                selectedVideo = video
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    Text(video.title ?? "Video title")
-                                    Spacer()
-                                    HStack {
-                                        Spacer()
-                                        if let quality = video.quality {
-                                            Text(quality.uppercased())
-                                        }
-                                    }
-                                }
-                                .foregroundColor(.primary)
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                            .frame(width: 350, height: 175)
-                            .fullScreenCover(item: $selectedVideo) { video in
-                                createVideoPlayerView(with: video)
-                            }
-                        }
-                    }
-                }
-                Spacer()
-                HStack {
-                    createVideoDetailView()
-                }
+            Spacer()
+            HStack {
+                createVideoDetailView()
             }
-            .background() {
-                createBackgroundView()
-            }
-            .navigationTitle("Video Player")
         }
+        .background() {
+            createBackgroundView()
+        }
+        .navigationTitle("Video Player")
     }
 
     @ViewBuilder
@@ -145,6 +158,12 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     private func createBackgroundView() -> some View {
         ZStack {
             Circle()
+                .fill(.purple)
+                .blur(radius: 120.0)
+                .frame(width: 750)
+                .offset(x: -500, y: -100)
+
+            Circle()
                 .fill(.cyan)
                 .blur(radius: 120.0)
                 .frame(width: 750)
@@ -161,9 +180,9 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoPlayerDataModel) -> some View {
         VideoPlayer(playerController: AVPlayerController(link: video.url,
-                                                       title: video.title!,
-                                                       publisher: video.id.uuidString,
-                                                       thumbnail: video.thumbnail!))
+                                                         title: video.title!,
+                                                         publisher: video.id.uuidString,
+                                                         thumbnail: video.thumbnail!))
         .ignoresSafeArea()
     }
 }
