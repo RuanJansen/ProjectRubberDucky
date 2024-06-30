@@ -6,6 +6,8 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     @StateObject var provider: Provider
     @State var isPresentingVideoPlayer = false
     @State var selectedVideo: VideoPlayerDataModel? = nil
+    @State var focusVideo: VideoPlayerDataModel? = nil
+
     @Environment(\.dismiss) private var dismiss
 
     init(provider: Provider) {
@@ -29,6 +31,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
         }
         .task {
             await provider.fetchContent()
+            await PlexRepository().fetch()
         }
     }
 
@@ -54,20 +57,18 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                                     }
                                 }
                                 .padding()
-                                .foregroundColor(.white)
-                            }
-                            .background {
-                                AsyncImage(url: video.thumbnail) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    Image(systemName: "wifi.slash")
+                                .background {
+                                    AsyncImage(url: video.thumbnail) { image in
+                                        image
+                                            .resizable()
+                                            .scaledToFill()
+                                    } placeholder: {
+                                        Image(systemName: "wifi.slash")
+                                    }
+                                    LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
                                 }
-                                LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                            .frame(width: 300, height: 175)
+                            .modifier(CarouselButtonModifier())
 
                             Text(video.title ?? "Video title")
                                 .font(.title2)
@@ -84,10 +85,6 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 
             Spacer()
         }
-        .background() {
-            createBackgroundView()
-        }
-        .navigationTitle("Video Player")
     }
 #endif
 
@@ -111,10 +108,8 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                                     }
                                 }
                             }
-                            .foregroundColor(.primary)
                         }
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                        .frame(width: 350, height: 175)
+                        .modifier(CarouselButtonModifier())
                         .fullScreenCover(item: $selectedVideo) { video in
                             createVideoPlayerView(with: video)
                         }
@@ -126,16 +121,12 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                 createVideoDetailView()
             }
         }
-        .background() {
-            createBackgroundView()
-        }
-        .navigationTitle("Video Player")
     }
 
     @ViewBuilder
     private func createVideoDetailView() -> some View {
-        if let selectedVideo {
-            AsyncImage(url: selectedVideo.thumbnail) { image in
+        if let focusVideo {
+            AsyncImage(url: focusVideo.thumbnail) { image in
                 image
                     .resizable()
                     .scaledToFit()
@@ -145,9 +136,9 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             }
 
             VStack(alignment: .leading) {
-                Text((selectedVideo.title)!)
+                Text((focusVideo.title)!)
                     .font(.title)
-                Text((selectedVideo.quality?.uppercased())!)
+                Text((focusVideo.quality?.uppercased())!)
                 Spacer()
             }
         }

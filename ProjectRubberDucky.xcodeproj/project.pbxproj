@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */; };
+		F32D3F2D2C317A230084CC79 /* PlexCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexCaller.swift */; };
+		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
+		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
 		F3DB67732C28A32F00F53642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67722C28A32F00F53642 /* ContentView.swift */; };
 		F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67742C28A33100F53642 /* Assets.xcassets */; };
@@ -42,7 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselButtonModifier.swift; sourceTree = "<group>"; };
+		F32D3F2C2C317A230084CC79 /* PlexCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexCaller.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
+		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRubberDuckyApp.swift; sourceTree = "<group>"; };
 		F3DB67722C28A32F00F53642 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */,
 				F3DB67802C28A36B00F53642 /* NeedleFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,28 +97,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F32D3F272C31747F0084CC79 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F3A115882C2ED9B9000EF645 /* ButtonStyles */,
+				F32D3F282C3174860084CC79 /* ViewModifiers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F32D3F282C3174860084CC79 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		F32D3F2B2C317A170084CC79 /* Plex */ = {
+			isa = PBXGroup;
+			children = (
+				F32D3F2C2C317A230084CC79 /* PlexCaller.swift */,
+				F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */,
+			);
+			path = Plex;
+			sourceTree = "<group>";
+		};
+		F32D3F312C31A3DA0084CC79 /* Pexel */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67B22C294F9600F53642 /* PexelCodableModel.swift */,
+				F3DB67B42C294FC600F53642 /* PexelCaller.swift */,
+				F3DB67B82C2958A700F53642 /* PexelContent.json */,
+			);
+			path = Pexel;
+			sourceTree = "<group>";
+		};
 		F3A115802C2EADEB000EF645 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */,
-				F3A115822C2EADFC000EF645 /* tvOS */,
-				F3A115812C2EADF8000EF645 /* iOS */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F3A115812C2EADF8000EF645 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		F3A115822C2EADFC000EF645 /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tvOS;
 			sourceTree = "<group>";
 		};
 		F3A115832C2EAE1E000EF645 /* Providers */ = {
@@ -215,7 +243,7 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F3A115882C2ED9B9000EF645 /* ButtonStyles */,
+				F32D3F272C31747F0084CC79 /* UI */,
 				F3A115862C2EB19C000EF645 /* Tools */,
 				F3DB67A62C28B68700F53642 /* Services */,
 				F3DB67882C28A4F200F53642 /* Architecture.swift */,
@@ -273,9 +301,8 @@
 		F3DB67B12C294F5F00F53642 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F3DB67B22C294F9600F53642 /* PexelCodableModel.swift */,
-				F3DB67B42C294FC600F53642 /* PexelCaller.swift */,
-				F3DB67B82C2958A700F53642 /* PexelContent.json */,
+				F32D3F312C31A3DA0084CC79 /* Pexel */,
+				F32D3F2B2C317A170084CC79 /* Plex */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -299,6 +326,7 @@
 			name = ProjectRubberDucky;
 			packageProductDependencies = (
 				F3DB677F2C28A36B00F53642 /* NeedleFoundation */,
+				F32D3F2F2C317A4E0084CC79 /* PlexKit */,
 			);
 			productName = ProjectRubberDucky;
 			productReference = F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */;
@@ -330,6 +358,7 @@
 			mainGroup = F3DB67642C28A32F00F53642;
 			packageReferences = (
 				F3DB677E2C28A36B00F53642 /* XCRemoteSwiftPackageReference "needle" */,
+				F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */,
 			);
 			productRefGroup = F3DB676E2C28A32F00F53642 /* Products */;
 			projectDirPath = "";
@@ -391,9 +420,12 @@
 				F3DB67B52C294FC600F53642 /* PexelCaller.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependencies.swift in Sources */,
+				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
+				F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */,
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
+				F32D3F2D2C317A230084CC79 /* PlexCaller.swift in Sources */,
 				F3DB679F2C28A8D700F53642 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
@@ -630,6 +662,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lcharlick/PlexKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
 		F3DB677E2C28A36B00F53642 /* XCRemoteSwiftPackageReference "needle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uber/needle.git";
@@ -641,6 +681,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F32D3F2F2C317A4E0084CC79 /* PlexKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */;
+			productName = PlexKit;
+		};
 		F3DB677F2C28A36B00F53642 /* NeedleFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F3DB677E2C28A36B00F53642 /* XCRemoteSwiftPackageReference "needle" */;
