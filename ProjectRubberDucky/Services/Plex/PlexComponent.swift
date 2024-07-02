@@ -6,11 +6,15 @@ extension RootComponent {
     }
 
     public var username: String {
-        "darthjansen@gmail.com"
+        PlexAuthentication.ruan.username
     }
 
     public var password: String {
-        "Ruan0209"
+        PlexAuthentication.ruan.password
+    }
+
+    public var token: String {
+        PlexAuthentication.primaryToken
     }
 }
 

@@ -13,8 +13,6 @@ class VideoPlayerProvider: FeatureProvider {
     }
 
     public func fetchContent() async {
-//        await DependencyContainer.shared.rootComponent.plexComponent.plexRepository.fetch()
-
         if let repository,
            let fetchedDataModel = await repository.fetchRemoteData() {
             let dataModel = fetchedDataModel

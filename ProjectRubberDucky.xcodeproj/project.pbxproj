@@ -240,11 +240,11 @@
 			children = (
 				F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */,
 				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
+				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
 				F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */,
 				F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */,
 				F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */,
 				F3B4DD412C32F758001176F8 /* VideoRepository.swift */,
-				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
 			);
 			path = VideoPlayerFeature;
 			sourceTree = "<group>";
