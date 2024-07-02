@@ -5,15 +5,18 @@ class VideoPlayerProvider: FeatureProvider {
 
     @Published public var viewState: ViewState<DataModel>
 
-    private let repository: VideoRepository
+    private let repository: VideoRepository?
 
-    init(repository: VideoRepository) {
+    init(repository: VideoRepository? = nil) {
         self.repository = repository
         self.viewState = .loading
     }
 
     public func fetchContent() async {
-        if let fetchedDataModel = await repository.fetchRemoteData() {
+//        await DependencyContainer.shared.rootComponent.plexComponent.plexRepository.fetch()
+
+        if let repository,
+           let fetchedDataModel = await repository.fetchRemoteData() {
             let dataModel = fetchedDataModel
             await MainActor.run {
                 self.viewState = .presentContent(using: dataModel)

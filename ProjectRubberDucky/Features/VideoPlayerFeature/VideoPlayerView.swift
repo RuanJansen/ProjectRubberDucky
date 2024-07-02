@@ -31,7 +31,6 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
         }
         .task {
             await provider.fetchContent()
-            await PlexRepository().fetch()
         }
     }
 

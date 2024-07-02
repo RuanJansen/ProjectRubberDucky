@@ -1,13 +1,5 @@
-//
-//  VideoPlayerComponent.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/06/23.
-//
-
 import Foundation
 import NeedleFoundation
-import SwiftUI
 
 extension RootComponent {
     public var videoPlayerComponent: VideoPlayerComponent {

@@ -12,27 +12,28 @@
 		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
+		F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE02C32D223001176F8 /* PlexComponent.swift */; };
+		F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */; };
+		F3B4DD452C32F758001176F8 /* VideoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD412C32F758001176F8 /* VideoRepository.swift */; };
+		F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */; };
+		F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */; };
+		F3B4DD482C32F758001176F8 /* VideoPlayerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
-		F3DB67732C28A32F00F53642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67722C28A32F00F53642 /* ContentView.swift */; };
 		F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67742C28A33100F53642 /* Assets.xcassets */; };
 		F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67772C28A33100F53642 /* Preview Assets.xcassets */; };
 		F3DB67802C28A36B00F53642 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = F3DB677F2C28A36B00F53642 /* NeedleFoundation */; };
 		F3DB67822C28A37B00F53642 /* NeedleGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67812C28A37B00F53642 /* NeedleGenerated.swift */; };
 		F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67862C28A44500F53642 /* RootComponent.swift */; };
 		F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67882C28A4F200F53642 /* Architecture.swift */; };
-		F3DB678C2C28A5F000F53642 /* TabViewContainerDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB678B2C28A5F000F53642 /* TabViewContainerDependencies.swift */; };
+		F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB678B2C28A5F000F53642 /* TabViewContainerDependency.swift */; };
 		F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */; };
 		F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB678F2C28A62C00F53642 /* TabViewContainerProvider.swift */; };
 		F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */; };
 		F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67932C28A68000F53642 /* TabViewContainerView.swift */; };
 		F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67952C28A69B00F53642 /* TabViewContainerFeature.swift */; };
 		F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */; };
-		F3DB679B2C28A86E00F53642 /* VideoPlayerDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679A2C28A86E00F53642 /* VideoPlayerDependencies.swift */; };
+		F3DB679B2C28A86E00F53642 /* VideoPlayerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */; };
 		F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */; };
-		F3DB679F2C28A8D700F53642 /* VideoPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679E2C28A8D700F53642 /* VideoPlayerProvider.swift */; };
-		F3DB67A12C28A8E100F53642 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */; };
-		F3DB67A32C28A97800F53642 /* VideoPlayerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */; };
-		F3DB67A52C28A9BF00F53642 /* VideoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */; };
 		F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A72C28B6A200F53642 /* APIFetcher.swift */; };
 		F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */; };
 		F3DB67AE2C28B7AA00F53642 /* MockFilms.json in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67AC2C28B7AA00F53642 /* MockFilms.json */; };
@@ -50,27 +51,28 @@
 		F32D3F2C2C317A230084CC79 /* PlexCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexCaller.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
 		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
+		F3B4DCE02C32D223001176F8 /* PlexComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexComponent.swift; sourceTree = "<group>"; };
+		F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexDependency.swift; sourceTree = "<group>"; };
+		F3B4DD412C32F758001176F8 /* VideoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRepository.swift; sourceTree = "<group>"; };
+		F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerProvider.swift; sourceTree = "<group>"; };
+		F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerDataModel.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRubberDuckyApp.swift; sourceTree = "<group>"; };
-		F3DB67722C28A32F00F53642 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3DB67742C28A33100F53642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3DB67772C28A33100F53642 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3DB67812C28A37B00F53642 /* NeedleGenerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleGenerated.swift; sourceTree = "<group>"; };
 		F3DB67862C28A44500F53642 /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
 		F3DB67882C28A4F200F53642 /* Architecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Architecture.swift; sourceTree = "<group>"; };
-		F3DB678B2C28A5F000F53642 /* TabViewContainerDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerDependencies.swift; sourceTree = "<group>"; };
+		F3DB678B2C28A5F000F53642 /* TabViewContainerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerDependency.swift; sourceTree = "<group>"; };
 		F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerComponent.swift; sourceTree = "<group>"; };
 		F3DB678F2C28A62C00F53642 /* TabViewContainerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerProvider.swift; sourceTree = "<group>"; };
 		F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerDataModel.swift; sourceTree = "<group>"; };
 		F3DB67932C28A68000F53642 /* TabViewContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerView.swift; sourceTree = "<group>"; };
 		F3DB67952C28A69B00F53642 /* TabViewContainerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerFeature.swift; sourceTree = "<group>"; };
 		F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerComponent.swift; sourceTree = "<group>"; };
-		F3DB679A2C28A86E00F53642 /* VideoPlayerDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerDependencies.swift; sourceTree = "<group>"; };
+		F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerDependency.swift; sourceTree = "<group>"; };
 		F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFeature.swift; sourceTree = "<group>"; };
-		F3DB679E2C28A8D700F53642 /* VideoPlayerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerProvider.swift; sourceTree = "<group>"; };
-		F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerDataModel.swift; sourceTree = "<group>"; };
-		F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRepository.swift; sourceTree = "<group>"; };
 		F3DB67A72C28B6A200F53642 /* APIFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcher.swift; sourceTree = "<group>"; };
 		F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		F3DB67AD2C28B7AA00F53642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/MockFilms.json; sourceTree = "<group>"; };
@@ -117,8 +119,10 @@
 		F32D3F2B2C317A170084CC79 /* Plex */ = {
 			isa = PBXGroup;
 			children = (
-				F32D3F2C2C317A230084CC79 /* PlexCaller.swift */,
+				F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */,
+				F3B4DCE02C32D223001176F8 /* PlexComponent.swift */,
 				F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */,
+				F32D3F2C2C317A230084CC79 /* PlexCaller.swift */,
 			);
 			path = Plex;
 			sourceTree = "<group>";
@@ -131,38 +135,6 @@
 				F3DB67B82C2958A700F53642 /* PexelContent.json */,
 			);
 			path = Pexel;
-			sourceTree = "<group>";
-		};
-		F3A115802C2EADEB000EF645 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB67A02C28A8E100F53642 /* VideoPlayerView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F3A115832C2EAE1E000EF645 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB679E2C28A8D700F53642 /* VideoPlayerProvider.swift */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		F3A115842C2EAE2C000EF645 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB67A22C28A97800F53642 /* VideoPlayerDataModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F3A115852C2EAE80000EF645 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB67A42C28A9BF00F53642 /* VideoRepository.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		F3A115862C2EB19C000EF645 /* Tools */ = {
@@ -217,7 +189,6 @@
 				F3DB678A2C28A5C900F53642 /* TabViewContainer */,
 				F3DB67842C28A38500F53642 /* Utilities */,
 				F3DB67832C28A38100F53642 /* Features */,
-				F3DB67722C28A32F00F53642 /* ContentView.swift */,
 				F3DB67742C28A33100F53642 /* Assets.xcassets */,
 				F3DB67762C28A33100F53642 /* Preview Content */,
 			);
@@ -254,7 +225,7 @@
 		F3DB678A2C28A5C900F53642 /* TabViewContainer */ = {
 			isa = PBXGroup;
 			children = (
-				F3DB678B2C28A5F000F53642 /* TabViewContainerDependencies.swift */,
+				F3DB678B2C28A5F000F53642 /* TabViewContainerDependency.swift */,
 				F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */,
 				F3DB678F2C28A62C00F53642 /* TabViewContainerProvider.swift */,
 				F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */,
@@ -267,13 +238,13 @@
 		F3DB67972C28A7E300F53642 /* VideoPlayerFeature */ = {
 			isa = PBXGroup;
 			children = (
+				F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */,
 				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
+				F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */,
+				F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */,
+				F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */,
+				F3B4DD412C32F758001176F8 /* VideoRepository.swift */,
 				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
-				F3DB679A2C28A86E00F53642 /* VideoPlayerDependencies.swift */,
-				F3A115842C2EAE2C000EF645 /* Models */,
-				F3A115832C2EAE1E000EF645 /* Providers */,
-				F3A115802C2EADEB000EF645 /* Views */,
-				F3A115852C2EAE80000EF645 /* Services */,
 			);
 			path = VideoPlayerFeature;
 			sourceTree = "<group>";
@@ -314,10 +285,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3DB677B2C28A33100F53642 /* Build configuration list for PBXNativeTarget "ProjectRubberDucky" */;
 			buildPhases = (
+				F3DB67852C28A39D00F53642 /* ShellScript */,
 				F3DB67692C28A32F00F53642 /* Sources */,
 				F3DB676A2C28A32F00F53642 /* Frameworks */,
 				F3DB676B2C28A32F00F53642 /* Resources */,
-				F3DB67852C28A39D00F53642 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -398,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ $CONFIGURATION == 'Debug' ]]; then\n    #For M1 Mac compatibility: sudo ln -s /opt/homebrew/bin/needle /usr/local/bin/needle\n    /opt/homebrew/bin/needle generate ProjectRubberDucky/NeedleGenerated.swift ProjectRubberDucky/\n    echo \" ✅ Dependency Injection file updated successfully\"\nelse\n    echo \" ❌ Non Debug build detected\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ $CONFIGURATION == 'Debug' ]]; then\n    #For M1 Mac compatibility: sudo ln -s /opt/homebrew/bin/needle /usr/local/bin/needle\n    /opt/homebrew/bin/needle generate NeedleGenerated.swift ProjectRubberDucky/\n    echo \" ✅ Dependency Injection file updated successfully\"\nelse\n    echo \" ❌ Non Debug build detected\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -411,33 +382,34 @@
 				F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
-				F3DB679B2C28A86E00F53642 /* VideoPlayerDependencies.swift in Sources */,
-				F3DB67A52C28A9BF00F53642 /* VideoRepository.swift in Sources */,
-				F3DB67732C28A32F00F53642 /* ContentView.swift in Sources */,
+				F3B4DD482C32F758001176F8 /* VideoPlayerDataModel.swift in Sources */,
+				F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */,
+				F3DB679B2C28A86E00F53642 /* VideoPlayerDependency.swift in Sources */,
+				F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */,
+				F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
+				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
 				F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */,
 				F3DB67B52C294FC600F53642 /* PexelCaller.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
-				F3DB678C2C28A5F000F53642 /* TabViewContainerDependencies.swift in Sources */,
+				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
 				F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */,
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexCaller.swift in Sources */,
-				F3DB679F2C28A8D700F53642 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
+				F3B4DD452C32F758001176F8 /* VideoRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
 				F3DB67822C28A37B00F53642 /* NeedleGenerated.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
-				F3DB67A12C28A8E100F53642 /* VideoPlayerView.swift in Sources */,
 				F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */,
-				F3DB67A32C28A97800F53642 /* VideoPlayerDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

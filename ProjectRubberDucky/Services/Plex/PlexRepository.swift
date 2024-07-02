@@ -11,9 +11,8 @@ import PlexKit
 class PlexRepository {
     let plexCaller: PlexCaller
 
-    init() {
-        self.plexCaller = PlexCaller(username: PlexAuthentication.ruan.username,
-                                     password: PlexAuthentication.ruan.password)
+    init(plexCaller: PlexCaller) {
+        self.plexCaller = plexCaller
     }
 
     func fetch() async {

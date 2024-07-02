@@ -1,5 +1,6 @@
 import SwiftUI
 import AVKit
+import NeedleFoundation
 
 @main
 struct ProjectRubberDuckyApp: App {
