@@ -9,9 +9,9 @@ import Foundation
 import PlexKit
 
 class PlexRepository {
-    let plexCaller: PlexCaller
+    let plexCaller: PlexGateway
 
-    init(plexCaller: PlexCaller) {
+    init(plexCaller: PlexGateway) {
         self.plexCaller = plexCaller
     }
 

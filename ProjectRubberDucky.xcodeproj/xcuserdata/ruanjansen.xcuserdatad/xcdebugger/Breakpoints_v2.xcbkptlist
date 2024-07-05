@@ -7,85 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "82D31678-DB32-4FF4-9EA3-33F352D2EE2E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "fetch()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "82D31678-DB32-4FF4-9EA3-33F352D2EE2E - 16ecef07587ed487"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for ProjectRubberDucky.PlexRepository.fetch() async -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19">
-               </Location>
-               <Location
-                  uuid = "82D31678-DB32-4FF4-9EA3-33F352D2EE2E - 6e547cc53a227a65"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;PlexKit.PlexLibrary&gt;&gt;) -&gt; () in ProjectRubberDucky.PlexRepository.fetch() async -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "437D8675-2E1F-482B-BE2A-C4820FC97209"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "addSubscribers()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "673E6BBC-53BC-4A72-B185-DCB6FE20B3EC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "addSubscribers()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "966B85E5-1F94-4DEA-9EA7-3FF3DDA3E8A9"
+            uuid = "418AB272-DB69-4EAD-9851-35EAE06CF761"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -101,48 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "265CBADB-3449-41C7-AC10-8B2D94310079"
+            uuid = "FA42E0CF-5D1E-4F30-9B10-7CF1A460786B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexCaller.swift"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "authenticateUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "04C4374C-9F2C-4EAC-8CF7-F2F4A69E2AF0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "authenticateUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "05AC9D19-C8CD-4021-BDD8-A6D150355FA6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexCaller.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "authenticateUser()"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetch()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

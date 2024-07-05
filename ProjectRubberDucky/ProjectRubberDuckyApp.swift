@@ -10,23 +10,13 @@ struct ProjectRubberDuckyApp: App {
 
     init() {
         registerProviderFactories()
-        self.rootComponent = DependencyContainer.shared.rootComponent
+        self.rootComponent = DependencyManager.shared.rootComponent
     }
 
     var body: some Scene {
         WindowGroup {
             rootComponent.view
         }
-    }
-}
-
-class DependencyContainer {
-    static let shared = DependencyContainer()
-
-    let rootComponent: RootComponent
-
-    init() {
-        self.rootComponent = RootComponent()
     }
 }
 

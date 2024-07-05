@@ -1,23 +1,18 @@
-//
-//  PlexCaller.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/06/30.
-//
-
 import Foundation
 import PlexKit
 import Combine
 
 struct PlexAuthentication {
-    static let ruan = (username: "darthjansen@gmail.com", password: "Ruan0209")
-    static let rikus = (username: "rikus102@gmail.com", password: "Acid3471")
+    static let ruan = (username: "darthjansen@gmail.com", 
+                       password: "Ruan0209")
+    static let rikus = (username: "rikus102@gmail.com",
+                        password: "Acid3471")
     static let primaryToken = "-szo-akRdn4CDHkY3VpJ"
 }
 
-class PlexCaller {
+class PlexGateway {
     private let client = Plex(sessionConfiguration: .default, 
-                              clientInfo: Plex.ClientInfo(clientIdentifier: "ProjectRubberDucky"))
+                              clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
 
     private let username: String
     private let password: String
@@ -121,7 +116,7 @@ class PlexCaller {
 
 }
 
-extension PlexCaller {
+extension PlexGateway {
 
 //    func fetch(_ url: String) -> URL? {
 //        guard let safeUrl = URL(string: url) else { return nil }
@@ -138,7 +133,7 @@ extension PlexCaller {
 //    }
 }
 
-extension PlexCaller {
+extension PlexGateway {
     private func fetchAuthenticatedUserDetails(username: String, password: String, completion: @escaping (Plex.ServiceRequest.SimpleAuthentication.Response?)->()) {
         client.request(
             Plex.ServiceRequest.SimpleAuthentication(

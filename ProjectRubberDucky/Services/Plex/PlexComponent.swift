@@ -19,8 +19,8 @@ extension RootComponent {
 }
 
 class PlexComponent: Component<PlexDependency> {
-    private var plexCaller: PlexCaller {
-        PlexCaller(username: dependency.username,
+    private var plexCaller: PlexGateway {
+        PlexGateway(username: dependency.username,
                    password: dependency.password)
     }
 

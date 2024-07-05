@@ -18,6 +18,7 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
 
     private var tabs: [any Tabable]? {
         return [
+            videoPlayerTab,
             videoPlayerTab
         ]
     }
