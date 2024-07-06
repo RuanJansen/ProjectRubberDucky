@@ -28,7 +28,7 @@ class PlexGateway {
         self.username = username
         self.password = password
         self.cancelables = Set<AnyCancellable>()
-        authenticateUser()
+//        authenticateUser()
     }
 
     private func addSubscribers() {
@@ -191,18 +191,22 @@ extension PlexGateway {
                 self.fetchLibraries(with: PlexAuthentication.primaryToken,
                                     from: uri) { [self] libraries in
                     let mediaContainer = libraries?.mediaContainer
-                    let movieLibraries = mediaContainer?.directory.filter { $0.type == .show }
+                    let movieLibraries = mediaContainer?.directory.filter { $0.type == .movie }
 
-                    guard let art = movieLibraries?.first?.art else { return }
+                    let moviesOld = movieLibraries?.filter({ movies in
+                        movies.title == Empire2.moviesNew.rawValue
+                    })
 
-                    let endpoint = String(describing: uri)
 
-                    guard let urlEndpoint = URL(string: endpoint) else { return }
 
-                    let key = movieLibraries?.first?.key
-                    client.request(Plex.Request.Collections(libraryKey: key!, mediaType: .show), from: urlEndpoint, token: PlexAuthentication.primaryToken) { response in
-                        dump(response)
-                    }
+//                    client.request(Plex.Request.ItemMetadata(ratingKey: "27186"), token: PlexAuthentication.primaryToken) { response in
+//                        switch response {
+//                        case .success(let success):
+//                            success.mediaContainer.metadata.first?.media.first.
+//                        case .failure(let failure):
+//                            <#code#>
+//                        }
+//                    }
                 }
             }
         }

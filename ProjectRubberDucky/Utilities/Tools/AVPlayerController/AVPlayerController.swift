@@ -33,10 +33,37 @@ class AVPlayerController: ObservableObject {
     }
 
     // MARK: - AVPlayer Setup
+//    private func setupPlayer() {
+//        // Initialize AVPlayer with the provided video link
+//        let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
+//        let options = ["AVURLAssetHTTPHeaderFieldsKey": headers]
+//
+//        let asset = AVURLAsset(url: link, options: options)
+//
+//        // Check if the asset is playable
+//        asset.loadValuesAsynchronously(forKeys: ["playable"]) {
+//            var error: NSError? = nil
+//            let status = asset.statusOfValue(forKey: "playable", error: &error)
+//            if status == .loaded {
+//                DispatchQueue.main.async {
+//                    let playerItem = AVPlayerItem(asset: asset)
+//                    self.player = AVPlayer(playerItem: playerItem)
+//                }
+//            } else {
+//                print("Error: \(String(describing: error?.localizedDescription))")
+//            }
+//        }
+//    }
 
     private func setupPlayer() {
         // Initialize AVPlayer with the provided video link
-        player = AVPlayer(url: link)
+        let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
+
+        let asset = AVURLAsset(url: link, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
+
+        let playerItem = AVPlayerItem(asset: asset)
+
+        player = AVPlayer(playerItem: playerItem)
     }
     // MARK: - AVPlayerViewController Setup
 
@@ -59,20 +86,5 @@ class AVPlayerController: ObservableObject {
     // Play the AVPlayer
     func playPlayer() {
         player?.play()
-    }
-}
-
-// A SwiftUI view wrapper for an AVPlayerViewController
-struct VideoPlayer: UIViewControllerRepresentable {
-    // MARK: - Observed Object
-    @ObservedObject var playerController: AVPlayerController
-
-    // MARK: - UIViewControllerRepresentable Protocol Methods
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-
-    }
-
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
-        return playerController.avPlayerViewController
     }
 }

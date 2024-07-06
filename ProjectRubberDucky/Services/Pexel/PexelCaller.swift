@@ -13,8 +13,10 @@ class PexelCaller {
         let domain = "https://api.pexels.com/"
         let path = "videos/search?query=\(searchQuery)&per_page=10&orientation=landscape"
         let key = "MpDL9W0pRkqO2xmRSVO3Nt9WiH7Zvp0Jbzl7cStQ9dprUe1BRsjhjktq"
+
+        let headers: [String: String] = ["Authorization": key]
         let type = PexelCodableModel.self
-        let result = await ServiceFetcher.fetch(type, using: domain, form: path, where: key)
+        let result = await ServiceFetcher.fetch(type, using: domain, form: path, using: headers)
         return result?.videos
     }
 

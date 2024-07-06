@@ -15,6 +15,10 @@ class PlexRepository {
         self.plexCaller = plexCaller
     }
 
+    func fetchTest() async {
+        plexCaller.fetchMovies(for: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password)
+    }
+
     func fetch() async {
         plexCaller.fetchLibraries { libraries in
             guard let libraryKey = libraries?.first?.key else { return }

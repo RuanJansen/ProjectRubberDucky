@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559232C3952E900B2C9F6 /* Empire2.swift */; };
+		F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559402C399DF500B2C9F6 /* VideoPlayer.swift */; };
+		F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559432C39B04800B2C9F6 /* Image+Extension.swift */; };
 		F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */; };
 		F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexGateway.swift */; };
 		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F30559232C3952E900B2C9F6 /* Empire2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empire2.swift; sourceTree = "<group>"; };
+		F30559402C399DF500B2C9F6 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		F30559432C39B04800B2C9F6 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselButtonModifier.swift; sourceTree = "<group>"; };
 		F32D3F2C2C317A230084CC79 /* PlexGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexGateway.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
@@ -101,9 +107,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F305593F2C399DE900B2C9F6 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				F30559402C399DF500B2C9F6 /* VideoPlayer.swift */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		F30559422C39B03700B2C9F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F30559432C39B04800B2C9F6 /* Image+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F32D3F272C31747F0084CC79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F305593F2C399DE900B2C9F6 /* VideoPlayer */,
 				F3A115882C2ED9B9000EF645 /* ButtonStyles */,
 				F32D3F282C3174860084CC79 /* ViewModifiers */,
 			);
@@ -125,6 +148,7 @@
 				F3B4DCE02C32D223001176F8 /* PlexComponent.swift */,
 				F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */,
 				F32D3F2C2C317A230084CC79 /* PlexGateway.swift */,
+				F30559232C3952E900B2C9F6 /* Empire2.swift */,
 			);
 			path = Plex;
 			sourceTree = "<group>";
@@ -291,6 +315,7 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F30559422C39B03700B2C9F6 /* Extensions */,
 				F32D3F272C31747F0084CC79 /* UI */,
 				F3A115862C2EB19C000EF645 /* Tools */,
 				F3DB67A62C28B68700F53642 /* Services */,
@@ -464,15 +489,18 @@
 				F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
+				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
 				F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */,
 				F3DB67B52C294FC600F53642 /* PexelCaller.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
+				F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
 				F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */,
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
+				F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,

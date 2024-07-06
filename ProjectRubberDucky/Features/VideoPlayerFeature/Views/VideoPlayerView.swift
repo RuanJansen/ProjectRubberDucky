@@ -45,27 +45,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                             Button {
                                 selectedVideo = video
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Spacer()
-                                    HStack {
-                                        Spacer()
-                                        if let quality = video.quality {
-                                            Text(quality.uppercased())
-                                                .font(.callout)
-                                        }
-                                    }
-                                }
-                                .padding()
-                                .background {
-                                    AsyncImage(url: video.thumbnail) { image in
-                                        image
-                                            .resizable()
-                                            .scaledToFill()
-                                    } placeholder: {
-                                        Image(systemName: "wifi.slash")
-                                    }
-                                    LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
-                                }
+                                CardView(video: video)
                             }
                             .modifier(CarouselButtonModifier())
 
@@ -174,5 +154,70 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                                                          publisher: video.id.uuidString,
                                                          thumbnail: video.thumbnail!))
         .ignoresSafeArea()
+    }
+}
+
+struct CardView: View {
+    private let video: VideoPlayerDataModel
+    @State private var image: UIImage?
+    init(video: VideoPlayerDataModel) {
+        self.video = video
+    }
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Spacer()
+            HStack {
+                Spacer()
+                if let quality = video.quality {
+                    Text(quality.uppercased())
+                        .font(.callout)
+                }
+            }
+        }
+        .padding()
+        .background {
+            if let image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+
+//                Image(url: video.thumbnail,
+//                      headers: ["X-Plex-Token": PlexAuthentication.primaryToken],
+//                      placeholderImage: Image(systemName: "wifi.slash"))
+            } else {
+                Image(systemName: "wifi.slash")
+            }
+            LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
+        }
+        .onAppear {
+            let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
+
+            // Create a custom URLSessionConfiguration
+            let config = URLSessionConfiguration.default
+            config.httpAdditionalHeaders = headers
+            
+            // Create a custom URLSession with the configuration
+            let session = URLSession(configuration: config)
+
+            // Create a URLRequest with the custom session
+            if let imageUrl = video.thumbnail {
+                var request = URLRequest(url: imageUrl)
+                request.httpMethod = "GET"
+
+                // Load the image with the URLRequest
+                session.dataTask(with: request) { data, response, error in
+                    // Handle response if needed
+                    if let data {
+                        if let image = UIImage(data: data) {
+                            self.image = image
+                        } else {
+                            dump(data)
+                        }
+                    }
+                }
+                .resume()
+            }
+        }
     }
 }
