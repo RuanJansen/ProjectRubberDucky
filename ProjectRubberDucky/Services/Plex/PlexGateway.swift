@@ -3,8 +3,9 @@ import PlexKit
 import Combine
 
 protocol PlexAuthenticatable {
-    func authenticateUser(with username: String?,
-                          and password: String?)
+    func authenticateUser(with username: String,
+                          and password: String,
+                          userIsAuthenticated: @escaping (Bool) -> ())
 }
 
 protocol PlexContentFetchable {
@@ -40,18 +41,21 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         .store(in: &cancelables)
     }
 
-    func authenticateUser(with username: String? = nil,
-                                  and password: String? = nil) {
+    func authenticateUser(with username: String,
+                          and password: String,
+                          userIsAuthenticated: @escaping (Bool) -> ()) {
         client.request(
             Plex.ServiceRequest.SimpleAuthentication(
-                username: username ?? PlexAuthentication.ruan.username,
-                password: password ?? PlexAuthentication.ruan.password
+                username: username,
+                password: password
             )
         ) { result in
             switch result {
             case .success(let response):
                 self.user = response.user
+                userIsAuthenticated(true)
             case .failure(let error):
+                userIsAuthenticated(false)
                 print("An error occurred: \(error)")
             }
         }

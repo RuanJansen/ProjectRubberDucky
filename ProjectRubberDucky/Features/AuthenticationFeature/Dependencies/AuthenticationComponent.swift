@@ -1,4 +1,5 @@
 import NeedleFoundation
+import SwiftUI
 
 extension RootComponent {
     public var authenticationComponent: AuthenticationComponent {
@@ -14,7 +15,7 @@ extension RootComponent {
     }
 
     public var authenticationUsecase: AuthenticationUsecase {
-        AuthenticationUsecase()
+        AuthenticationUsecase(authenticationManager: authenticationManager)
     }
 }
 

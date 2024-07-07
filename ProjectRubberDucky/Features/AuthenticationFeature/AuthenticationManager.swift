@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum AuthenticationStatus {
     case userAuthenticated
@@ -14,27 +15,31 @@ enum AuthenticationStatus {
     case userNotFound
 }
 
-class AuthenticationManager {
+class AuthenticationManager: ObservableObject {
     private var plexAthenticator: PlexAuthenticatable
     
+    @Published var userIsAuthenticated: Bool
+
     init(plexAthenticator: PlexAuthenticatable) {
         self.plexAthenticator = plexAthenticator
+        self.userIsAuthenticated = false
     }
 
-    private func getAuthenticationStatus() -> AuthenticationStatus {
-        return .userAuthenticated
-    }
-
-    public func getIsUserAuthenticated(with username: String? = nil, and password: String? = nil) -> Bool {
-        switch getAuthenticationStatus() {
-        case .userAuthenticated:
-            return true
-        case .userNotAuthenticated:
-            return false
-        case .userBanned:
-            return false
-        case .userNotFound:
-            return false
+    public func authenticatedUser(with username: String? = nil, and password: String? = nil) {
+        if let username,
+           let password,
+           !username.isEmpty || !password.isEmpty {
+            plexAthenticator.authenticateUser(with: username, and: password) { isAuthenticated in
+                self.userIsAuthenticated = isAuthenticated
+            }
+        } else {
+            plexAthenticator.authenticateUser(with: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password) { isAuthenticated in
+                self.userIsAuthenticated = isAuthenticated
+            }
         }
+    }
+
+    public func getUserAuthenticated() -> AnyPublisher<Bool, Never> {
+        $userIsAuthenticated.eraseToAnyPublisher()
     }
 }

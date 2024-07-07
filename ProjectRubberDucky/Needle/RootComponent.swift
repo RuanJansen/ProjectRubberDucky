@@ -1,8 +1,23 @@
 import SwiftUI
 import NeedleFoundation
+import Combine
 
 class RootComponent: BootstrapComponent {
-    @State var isAuthenticated: Bool = false
+
+    @State var isAuthenticated = false
+    private var anyCancelables = Set<AnyCancellable>()
+
+    override init() {
+        super.init()
+        addSubscribers()
+    }
+
+    private func addSubscribers() {
+        authenticationManager.$userIsAuthenticated.sink { result in
+            self.isAuthenticated = result
+        }
+        .store(in: &anyCancelables)
+    }
 
     public var view: some View {
         if isAuthenticated {

@@ -13,6 +13,6 @@ class AuthenticationUsecase: ObservableObject {
     }
 
     public func authenticate() {
-        authenticationManager?.getIsUserAuthenticated()
+        authenticationManager?.authenticatedUser(with: username.lowercased(), and: password)
     }
 }

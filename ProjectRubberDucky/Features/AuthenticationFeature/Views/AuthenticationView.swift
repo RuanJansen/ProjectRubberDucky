@@ -55,7 +55,7 @@ extension AuthenticationView {
             Spacer()
 
             Button {
-
+                authenticationUsecase.authenticate()
             } label: {
                 Text("Login")
                     .font(.title2)
@@ -70,44 +70,44 @@ extension AuthenticationView {
         .padding()
         .navigationTitle("Login")
         .navigationDestination(isPresented: $isPresentingRegisterView) {
-            createRegisterView()
+//            createRegisterView()
         }
     }
 
-    @ViewBuilder
-    private func createRegisterView() -> some View {
-        VStack(spacing: 30) {
-            VStack(spacing: 15) {
-                TextField("Username", text: $authenticationUsecase.username)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .stroke(lineWidth: 1.0)
-                    }
-                SecureField("Password", text: $authenticationUsecase.password)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .stroke(lineWidth: 1.0)
-                    }
-            }
-
-            Spacer()
-
-            Button {
-
-            } label: {
-                Text("Register")
-                    .font(.title2)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .stroke(lineWidth: 1.0)
-                    }
-            }
-        }
-        .padding()
-        .navigationTitle("Create Account")
-    }
+//    @ViewBuilder
+//    private func createRegisterView() -> some View {
+//        VStack(spacing: 30) {
+//            VStack(spacing: 15) {
+//                TextField("Username", text: $authenticationUsecase.username)
+//                    .padding()
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 25.0)
+//                            .stroke(lineWidth: 1.0)
+//                    }
+//                SecureField("Password", text: $authenticationUsecase.password)
+//                    .padding()
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 25.0)
+//                            .stroke(lineWidth: 1.0)
+//                    }
+//            }
+//
+//            Spacer()
+//
+//            Button {
+//
+//            } label: {
+//                Text("Register")
+//                    .font(.title2)
+//                    .padding()
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 25.0)
+//                            .stroke(lineWidth: 1.0)
+//                    }
+//            }
+//        }
+//        .padding()
+//        .navigationTitle("Create Account")
+//    }
 }
 #endif
