@@ -13,8 +13,6 @@ class AuthenticationProvider: FeatureProvider {
     }
 
     func fetchContent() async {
-        authenticationManager?.getIsUserAuthenticated()
-
         self.viewState = .none
     }
 }

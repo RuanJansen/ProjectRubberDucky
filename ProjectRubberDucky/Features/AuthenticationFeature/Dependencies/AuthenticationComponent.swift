@@ -12,11 +12,16 @@ extension RootComponent {
     public var authenticationManager: AuthenticationManager {
         AuthenticationManager(plexAthenticator: plexGateway)
     }
+
+    public var authenticationUsecase: AuthenticationUsecase {
+        AuthenticationUsecase()
+    }
 }
 
 class AuthenticationComponent: Component<AuthenticationDependency> {
     public var feature: Feature {
-        AuthenticationFeature(featureProvider: featureProvider)
+        AuthenticationFeature(featureProvider: featureProvider,
+                              authenticationUsecase: dependency.authenticationUsecase)
     }
 
     public var featureProvider: any FeatureProvider {

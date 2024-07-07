@@ -34,6 +34,9 @@ private class AuthenticationDependencyc2b4de2bfc19a7d065eeProvider: Authenticati
     var authenticationFeatureProvider: any FeatureProvider {
         return rootComponent.authenticationFeatureProvider
     }
+    var authenticationUsecase: AuthenticationUsecase {
+        return rootComponent.authenticationUsecase
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -81,6 +84,7 @@ extension RootComponent: Registration {
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
+        localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
         localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
         localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
         localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
@@ -94,6 +98,7 @@ extension VideoPlayerComponent: Registration {
 extension AuthenticationComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationDependency.authenticationFeatureProvider] = "authenticationFeatureProvider-any FeatureProvider"
+        keyPathToName[\AuthenticationDependency.authenticationUsecase] = "authenticationUsecase-AuthenticationUsecase"
     }
 }
 extension TabViewContainerComponent: Registration {

@@ -9,9 +9,16 @@ import SwiftUI
 
 struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == AuthenticationDataModel{
     @StateObject var provider: Provider
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var isPresentingRegisterView: Bool = false
+    @StateObject var authenticationUsecase: AuthenticationUsecase
+
+    @State private var isPresentingRegisterView: Bool
+
+    init(provider: Provider, authenticationUsecase: AuthenticationUsecase) {
+        self._provider = StateObject(wrappedValue: provider)
+        self._authenticationUsecase = StateObject(wrappedValue: authenticationUsecase)
+        self.isPresentingRegisterView = false
+    }
+
     var body: some View {
         NavigationStack {
             createContentView()
@@ -25,13 +32,13 @@ extension AuthenticationView {
     private func createContentView() -> some View {
         VStack(spacing: 30) {
             VStack(spacing: 15) {
-                TextField("Username", text: $username)
+                TextField("Username", text: $authenticationUsecase.username)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 25.0)
                             .stroke(lineWidth: 1.0)
                     }
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $authenticationUsecase.password)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 25.0)
@@ -71,13 +78,13 @@ extension AuthenticationView {
     private func createRegisterView() -> some View {
         VStack(spacing: 30) {
             VStack(spacing: 15) {
-                TextField("Username", text: $username)
+                TextField("Username", text: $authenticationUsecase.username)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 25.0)
                             .stroke(lineWidth: 1.0)
                     }
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $authenticationUsecase.password)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 25.0)

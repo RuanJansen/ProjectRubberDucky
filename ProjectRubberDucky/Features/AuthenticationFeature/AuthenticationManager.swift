@@ -15,9 +15,8 @@ enum AuthenticationStatus {
 }
 
 class AuthenticationManager {
-//    static let shared = AuthenticationManager()
-
     private var plexAthenticator: PlexAuthenticatable
+    
     init(plexAthenticator: PlexAuthenticatable) {
         self.plexAthenticator = plexAthenticator
     }
