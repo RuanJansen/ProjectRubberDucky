@@ -9,35 +9,17 @@ import Foundation
 import PlexKit
 
 class PlexRepository {
-    let plexCaller: PlexGateway
+    let plexContent: PlexContentFetchable
 
-    init(plexCaller: PlexGateway) {
-        self.plexCaller = plexCaller
+    init(plexContent: PlexContentFetchable) {
+        self.plexContent = plexContent
     }
 
-    func fetchTest() async {
-        plexCaller.fetchMovies(for: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password)
-    }
-
-    func fetch() async {
-        plexCaller.fetchLibraries { libraries in
-            guard let libraryKey = libraries?.first?.key else { return }
-            let moviesLibrary = self.plexCaller.fetch(.movie, for: libraryKey)
+    func fetch(key: String) async -> [VideoPlayerDataModel]? {
+        plexContent.fetchLibraries { libraries in
+            let moviesLibrary = self.plexContent.fetch(.movie, for: key)
             dump(moviesLibrary)
         }
-    }
-}
-
-struct PlexContainer {
-    public let art: String?
-    public let content: String?
-    public let thumb: String?
-    public let title1: String?
-
-    init(art: String?, content: String?, thumb: String?, title1: String?) {
-        self.art = art
-        self.content = content
-        self.thumb = thumb
-        self.title1 = title1
+        return nil
     }
 }

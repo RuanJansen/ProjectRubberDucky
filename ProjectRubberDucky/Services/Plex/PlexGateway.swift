@@ -2,20 +2,19 @@ import Foundation
 import PlexKit
 import Combine
 
-struct PlexAuthentication {
-    static let ruan = (username: "darthjansen@gmail.com", 
-                       password: "Ruan0209")
-    static let rikus = (username: "rikus102@gmail.com",
-                        password: "Acid3471")
-    static let primaryToken = "-szo-akRdn4CDHkY3VpJ"
+protocol PlexAuthenticatable {
+    func authenticateUser(with username: String?,
+                          and password: String?)
 }
 
-class PlexGateway {
-    private let client = Plex(sessionConfiguration: .default, 
-                              clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
+protocol PlexContentFetchable {
+    func fetchLibraries(completion: @escaping ([PlexLibrary]?)->())
+    func fetch(_ mediaType: PlexMediaType, for key: String) -> Plex.Request.Collections.Response?
+}
 
-    private let username: String
-    private let password: String
+class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
+    private let client = Plex(sessionConfiguration: .default,
+                              clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
 
     @Published private var user: PlexUser?
     @Published private var servers: [PlexResource]?
@@ -24,11 +23,9 @@ class PlexGateway {
 
     var cancelables: Set<AnyCancellable>
 
-    init(username: String, password: String) {
-        self.username = username
-        self.password = password
+    init() {
         self.cancelables = Set<AnyCancellable>()
-//        authenticateUser()
+        addSubscribers()
     }
 
     private func addSubscribers() {
@@ -43,11 +40,12 @@ class PlexGateway {
         .store(in: &cancelables)
     }
 
-    private func authenticateUser() {
+    func authenticateUser(with username: String? = nil,
+                                  and password: String? = nil) {
         client.request(
             Plex.ServiceRequest.SimpleAuthentication(
-                username: username,
-                password: password
+                username: username ?? PlexAuthentication.ruan.username,
+                password: password ?? PlexAuthentication.ruan.password
             )
         ) { result in
             switch result {
@@ -62,7 +60,7 @@ class PlexGateway {
     private func populateServers() {
         client.request(
             Plex.ServiceRequest.Resources(),
-            token: user?.authenticationToken
+            token: PlexAuthentication.primaryToken
         ) { result in
             switch result {
             case .success(let response):

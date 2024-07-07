@@ -1,10 +1,15 @@
-import Foundation
 import SwiftUI
 import NeedleFoundation
 
 class RootComponent: BootstrapComponent {
+    @State var isAuthenticated: Bool = false
+
     public var view: some View {
-        RootView(feature: tabViewContainerComponent.feature)
+        if isAuthenticated {
+            RootView(feature: tabViewContainerComponent.feature)
+        } else {
+            RootView(feature: authenticationComponent.feature)
+        }
     }
 }
 

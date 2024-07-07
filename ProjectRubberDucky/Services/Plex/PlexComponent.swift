@@ -5,26 +5,13 @@ extension RootComponent {
         PlexComponent(parent: self)
     }
 
-    public var username: String {
-        PlexAuthentication.ruan.username
-    }
-
-    public var password: String {
-        PlexAuthentication.ruan.password
-    }
-
-    public var token: String {
-        PlexAuthentication.primaryToken
+    public var plexGateway: PlexGateway {
+        PlexGateway()
     }
 }
 
 class PlexComponent: Component<PlexDependency> {
-    private var plexCaller: PlexGateway {
-        PlexGateway(username: dependency.username,
-                   password: dependency.password)
-    }
-
     public var plexRepository: PlexRepository {
-        PlexRepository(plexCaller: plexCaller)
+        PlexRepository(plexContent: dependency.plexGateway)
     }
 }

@@ -7,7 +7,7 @@ extension RootComponent {
     }
 
     public var videoPlayerFeatureProvider: any FeatureProvider {
-        VideoPlayerProvider(repository: videoRepository)
+        VideoPlayerProvider(repository: plexComponent.plexRepository)
     }
 
     public var videoRepository: VideoRepository {

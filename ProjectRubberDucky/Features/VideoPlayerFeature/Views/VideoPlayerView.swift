@@ -26,7 +26,13 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             case .error:
                 ProgressView()
             case .none:
-                EmptyView()
+                Button {
+                    Task {
+                        await provider.fetchContent()
+                    }
+                } label: {
+                    Text("Reload")
+                }
             }
         }
         .task {

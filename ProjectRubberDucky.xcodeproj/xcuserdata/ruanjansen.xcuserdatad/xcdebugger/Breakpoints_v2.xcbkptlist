@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FA42E0CF-5D1E-4F30-9B10-7CF1A460786B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Services/Plex/PlexRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "fetch()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "03C7B2F3-740E-4C59-B229-70D0F8E04EA2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -82,6 +66,36 @@
             endingLineNumber = "38"
             landmarkName = "init?(url:headers:placeholderImage:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 78c5bf1f41d34694"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38">
+               </Location>
+               <Location
+                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 6f2d2f4485a00fe1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,6 +112,266 @@
             endingLineNumber = "40"
             landmarkName = "init?(url:headers:placeholderImage:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6DEFA495-8D62-4656-8FBE-6C0B439F0E31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "setUrl()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6DEFA495-8D62-4656-8FBE-6C0B439F0E31 - 80ccbdc62f44e3bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProjectRubberDucky.PlexGateway.fetchLibraries(completion: (Swift.Optional&lt;Swift.Array&lt;PlexKit.PlexLibrary&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78">
+               </Location>
+               <Location
+                  uuid = "6DEFA495-8D62-4656-8FBE-6C0B439F0E31 - a698a48e4a283ffd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProjectRubberDucky.PlexGateway.setUrl() -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "fetchContent()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - 357c64d7ce9dca16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+               <Location
+                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - b9c1ee669dd04a2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+               <Location
+                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - ff03298e75730a28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4AC4DC2-5271-439C-AB4A-E8073D809D68"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "fetchLibraries(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C04E74F9-7FCA-4485-BA66-C3EC60015ADD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetch(key:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C04E74F9-7FCA-4485-BA66-C3EC60015ADD - 3adef5034dce2745"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ProjectRubberDucky.PlexRepository.fetchTest() async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20">
+               </Location>
+               <Location
+                  uuid = "C04E74F9-7FCA-4485-BA66-C3EC60015ADD - 88b9db1bf9908ce8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;PlexKit.PlexLibrary&gt;&gt;) -&gt; () in ProjectRubberDucky.PlexRepository.fetch(key: Swift.String) async -&gt; Swift.Optional&lt;Swift.Array&lt;ProjectRubberDucky.VideoPlayerDataModel&gt;&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E73F62C-D313-46E8-A62D-FA1E179939CF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "fetch(_:for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2E73F62C-D313-46E8-A62D-FA1E179939CF - 7cdd3c9aa8ee6f49"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;PlexKit.Plex.Request.Collections.Response, PlexKit.PlexError&gt;) -&gt; () in ProjectRubberDucky.PlexGateway.fetch(_: PlexKit.PlexMediaType, for: Swift.String) -&gt; Swift.Optional&lt;PlexKit.Plex.Request.Collections.Response&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106">
+               </Location>
+               <Location
+                  uuid = "2E73F62C-D313-46E8-A62D-FA1E179939CF - 7cdd3c9aa8ee6f68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;PlexKit.Plex.Request.Collections.Response, PlexKit.PlexError&gt;) -&gt; () in ProjectRubberDucky.PlexGateway.fetch(_: PlexKit.PlexMediaType, for: Swift.String) -&gt; Swift.Optional&lt;PlexKit.Plex.Request.Collections.Response&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05140722-FC45-4D8A-AEB9-BF8C3C716828"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "fetch(_:for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "05140722-FC45-4D8A-AEB9-BF8C3C716828 - ba9d00eb0718b3be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProjectRubberDucky.PlexGateway.fetch(_: PlexKit.PlexMediaType, for: Swift.String) -&gt; Swift.Optional&lt;PlexKit.Plex.Request.Collections.Response&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107">
+               </Location>
+               <Location
+                  uuid = "05140722-FC45-4D8A-AEB9-BF8C3C716828 - 7cdd3c9aa8ee6cae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;PlexKit.Plex.Request.Collections.Response, PlexKit.PlexError&gt;) -&gt; () in ProjectRubberDucky.PlexGateway.fetch(_: PlexKit.PlexMediaType, for: Swift.String) -&gt; Swift.Optional&lt;PlexKit.Plex.Request.Collections.Response&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -7,7 +7,19 @@
 
 import Foundation
 
+struct PlexAuthentication {
+    static let ruan = (username: "darthjansen@gmail.com",
+                       password: "Ruan0209")
+    static let rikus = (username: "rikus102@gmail.com",
+                        password: "Acid3471")
+    static let primaryToken = "-szo-akRdn4CDHkY3VpJ"
+}
+
 enum Empire2: String {
+    /// Base URL
+    case base = "https://172-29-6-20.6ff3f28836a64e218c04da392a2c3365.plex.direct:32400"
+
+    /// Libraries
     case tvActive = "01 - TV Active"
     case tvEnded = "02 - TV Ended"
     case tvAnimated = "03 - TV Animated"

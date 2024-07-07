@@ -1,0 +1,1 @@
+needle generate ProjectRubberDucky/NeedleGenerated.swift ProjectRubberDucky/
