@@ -197,7 +197,7 @@ struct CardView: View {
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
         }
         .onAppear {
-            let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
+            let headers = ["X-Plex-Token": PlexAuthentication.primaryTokenRuanPc]
 
             // Create a custom URLSessionConfiguration
             let config = URLSessionConfiguration.default

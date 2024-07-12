@@ -57,7 +57,7 @@ class AVPlayerController: ObservableObject {
 
     private func setupPlayer() {
         // Initialize AVPlayer with the provided video link
-        let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
+        let headers = ["X-Plex-Token": PlexAuthentication.token]
 
         let asset = AVURLAsset(url: link, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
 

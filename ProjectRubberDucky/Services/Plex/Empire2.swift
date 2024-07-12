@@ -12,12 +12,22 @@ struct PlexAuthentication {
                        password: "Ruan0209")
     static let rikus = (username: "rikus102@gmail.com",
                         password: "Acid3471")
-    static let primaryToken = "-szo-akRdn4CDHkY3VpJ"
+    static let primaryTokenEmpire2 = "-szo-akRdn4CDHkY3VpJ"
+    static let primaryTokenRuanPc = "9FQu6cNybsn8VbCAmsAn"
+    static let primaryTokenRuanMacbookAir = "mQQtyrRXzdHC6_yvaPMA"
+
+    static let token = primaryTokenRuanMacbookAir
+
+}
+
+enum RuanPC: String {
+    case local = "https://192-168-1-115.e5942820c9a94dd5b440032361510038.plex.direct:32400"
 }
 
 enum Empire2: String {
     /// Base URL
-    case base = "https://172-29-6-20.6ff3f28836a64e218c04da392a2c3365.plex.direct:32400"
+    case local = "https://172-29-6-20.6ff3f28836a64e218c04da392a2c3365.plex.direct:32400"
+    case remote = "http://midrand.ddns.net:32400"
 
     /// Libraries
     case tvActive = "01 - TV Active"

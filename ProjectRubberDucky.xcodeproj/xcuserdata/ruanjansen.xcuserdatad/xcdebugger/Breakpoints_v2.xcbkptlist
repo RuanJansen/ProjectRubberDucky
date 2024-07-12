@@ -66,36 +66,6 @@
             endingLineNumber = "38"
             landmarkName = "init?(url:headers:placeholderImage:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 78c5bf1f41d34694"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-               <Location
-                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 6f2d2f4485a00fe1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -117,66 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "fetchContent()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - 357c64d7ce9dca16"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16">
-               </Location>
-               <Location
-                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - b9c1ee669dd04a2a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16">
-               </Location>
-               <Location
-                  uuid = "092A9534-76E8-479E-8316-9CA99FCE9FF6 - ff03298e75730a28"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for ProjectRubberDucky.VideoPlayerProvider.fetchContent() async -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/VideoPlayerFeature/Providers/VideoPlayerProvider.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C04E74F9-7FCA-4485-BA66-C3EC60015ADD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -193,39 +103,39 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2E73F62C-D313-46E8-A62D-FA1E179939CF"
+            uuid = "F688868B-A091-469E-BC29-1B84BE29A2C9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "fetch(_:for:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "populateServers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "05140722-FC45-4D8A-AEB9-BF8C3C716828"
+            uuid = "1C304214-0F41-42BC-B68F-D9922ACF7816"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectRubberDucky/Services/Plex/PlexGateway.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "fetch(_:for:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "addSubscribers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9236F045-7B29-434E-8055-9410B8AA5B2C"
+            uuid = "544E5B9C-B76A-4672-A242-7880379E9886"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -235,146 +145,6 @@
             startingLineNumber = "16"
             endingLineNumber = "16"
             landmarkName = "authenticate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7AE06B1D-78AF-4DE2-9E25-0BB2F7820F56"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "authenticatedUser(with:and:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7AE06B1D-78AF-4DE2-9E25-0BB2F7820F56 - 9de37d1c9647fa9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ProjectRubberDucky.AuthenticationManager.authenticatedUser(with: Swift.Optional&lt;Swift.String&gt;, and: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32">
-               </Location>
-               <Location
-                  uuid = "7AE06B1D-78AF-4DE2-9E25-0BB2F7820F56 - d1e0ce1a73c309be"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in ProjectRubberDucky.AuthenticationManager.authenticatedUser(with: Swift.Optional&lt;Swift.String&gt;, and: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "27CC492C-419B-40E1-B98F-C591ACB5BD60"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "authenticatedUser(with:and:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "27CC492C-419B-40E1-B98F-C591ACB5BD60 - 9de37d1c9647f562"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ProjectRubberDucky.AuthenticationManager.authenticatedUser(with: Swift.Optional&lt;Swift.String&gt;, and: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36">
-               </Location>
-               <Location
-                  uuid = "27CC492C-419B-40E1-B98F-C591ACB5BD60 - 745a518a59a0ad03"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Bool) -&gt; () in ProjectRubberDucky.AuthenticationManager.authenticatedUser(with: Swift.Optional&lt;Swift.String&gt;, and: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
-                  moduleName = "ProjectRubberDucky"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "84F9F757-FFB5-4D08-93E5-AD4D97B225B8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "authenticatedUser(with:and:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AEEAD050-6ED6-4A03-A98A-4D0ACBE596A8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "authenticatedUser(with:and:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67C2D441-AA10-468F-8F8E-5B8C27D80EE1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Needle/RootComponent.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "addSubscribers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

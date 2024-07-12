@@ -11,7 +11,6 @@ import Combine
 enum AuthenticationStatus {
     case userAuthenticated
     case userNotAuthenticated
-    case userBanned
     case userNotFound
 }
 

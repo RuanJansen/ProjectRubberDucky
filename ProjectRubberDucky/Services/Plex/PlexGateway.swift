@@ -64,7 +64,7 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
     private func populateServers() {
         client.request(
             Plex.ServiceRequest.Resources(),
-            token: PlexAuthentication.primaryToken
+            token: PlexAuthentication.primaryTokenEmpire2
         ) { result in
             switch result {
             case .success(let response):
@@ -88,7 +88,7 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         client.request(
             Plex.Request.Libraries(),
             from: url,
-            token: PlexAuthentication.primaryToken
+            token: PlexAuthentication.primaryTokenEmpire2
         ) { result in
             switch result {
             case .success(let response):
@@ -105,7 +105,7 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         guard let url else { return nil }
         client.request(Plex.Request.Collections(libraryKey: key, mediaType: mediaType),
                        from: url,
-                       token: PlexAuthentication.primaryToken) { result in
+                       token: PlexAuthentication.primaryTokenEmpire2) { result in
             switch result {
             case .success(let response):
                 collectionsResponse = response
@@ -172,7 +172,7 @@ extension PlexGateway {
         client.request(
             Plex.Request.Libraries(),
             from: url,
-            token: PlexAuthentication.primaryToken
+            token: PlexAuthentication.primaryTokenEmpire2
         ) { result in
             switch result {
             case .success(let response):
@@ -190,7 +190,7 @@ extension PlexGateway {
             guard let token = userDetails?.user.authenticationToken else { return }
             self.findPlexResources(with: token) { plexResources in
                 guard let uri = plexResources?.first?.connections.first?.uri else { return }
-                self.fetchLibraries(with: PlexAuthentication.primaryToken,
+                self.fetchLibraries(with: PlexAuthentication.primaryTokenEmpire2,
                                     from: uri) { [self] libraries in
                     let mediaContainer = libraries?.mediaContainer
                     let movieLibraries = mediaContainer?.directory.filter { $0.type == .movie }

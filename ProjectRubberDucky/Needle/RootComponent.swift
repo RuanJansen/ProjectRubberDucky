@@ -4,7 +4,7 @@ import Combine
 
 class RootComponent: BootstrapComponent {
 
-    @State var isAuthenticated = false
+    @State var isAuthenticated = true
     private var anyCancelables = Set<AnyCancellable>()
 
     override init() {
@@ -13,17 +13,23 @@ class RootComponent: BootstrapComponent {
     }
 
     private func addSubscribers() {
-        authenticationManager.$userIsAuthenticated.sink { result in
+
+        ///mimic authentication
+        authenticationManager.getUserAuthenticated().sink { result in
             self.isAuthenticated = result
         }
         .store(in: &anyCancelables)
     }
 
     public var view: some View {
+        RootView(feature: displayFeature())
+    }
+
+    private func displayFeature() -> Feature {
         if isAuthenticated {
-            RootView(feature: tabViewContainerComponent.feature)
+            return tabViewContainerComponent.feature
         } else {
-            RootView(feature: authenticationComponent.feature)
+            return authenticationComponent.feature
         }
     }
 }
