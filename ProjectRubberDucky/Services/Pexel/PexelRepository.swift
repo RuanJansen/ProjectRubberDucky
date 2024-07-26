@@ -7,10 +7,10 @@
 
 import Foundation
 
-class VideoRepository {
-    func fetchRemoteData() async -> [VideoPlayerDataModel]? {
+class PexelRepository {
+    func fetchRemoteData(prompt: String? = nil) async -> [VideoPlayerDataModel]? {
         do {
-            guard let pexelVideos = try await PexelCaller().fetchCodableDataModel() else { return nil }
+            guard let pexelVideos = try await PexelGateway().fetchCodableDataModel(prompt: prompt) else { return nil }
 
             let pexelDataModel = pexelVideos.map { 
                 VideoPlayerDataModel(id: UUID(),

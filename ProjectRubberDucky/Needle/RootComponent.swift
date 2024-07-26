@@ -15,7 +15,7 @@ class RootComponent: BootstrapComponent {
     private func addSubscribers() {
 
         ///mimic authentication
-        authenticationManager.getUserAuthenticated().sink { result in
+        authenticationManager.$userIsAuthenticated.sink { result in
             self.isAuthenticated = result
         }
         .store(in: &anyCancelables)
@@ -23,6 +23,12 @@ class RootComponent: BootstrapComponent {
 
     public var view: some View {
         RootView(feature: displayFeature())
+            .if(isAuthenticated) { rootView in
+                rootView
+                    .sheet(isPresented: onboardingUsecase.$isShowingOnboarding) {
+                        AnyView(self.onboardingComponent.feature.featureView)
+                    }
+            }
     }
 
     private func displayFeature() -> Feature {

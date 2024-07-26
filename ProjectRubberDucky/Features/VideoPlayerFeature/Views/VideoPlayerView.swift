@@ -4,14 +4,13 @@ import AVKit
 
 struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [VideoPlayerDataModel] {
     @StateObject var provider: Provider
-    @State var isPresentingVideoPlayer = false
-    @State var selectedVideo: VideoPlayerDataModel? = nil
-    @State var focusVideo: VideoPlayerDataModel? = nil
+    @StateObject var searchUsecase: SearchUsecase
+    @State var selectedVideo: VideoPlayerDataModel?
 
-    @Environment(\.dismiss) private var dismiss
-
-    init(provider: Provider) {
+    init(provider: Provider,
+         searchUsecase: SearchUsecase) {
         self._provider = StateObject(wrappedValue: provider)
+        self._searchUsecase = StateObject(wrappedValue: searchUsecase)
     }
 
     var body: some View {
@@ -22,6 +21,10 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
+                        .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
+                        .onSubmit(of: .search) {
+                            searchUsecase.search()
+                        }
                 }
             case .error:
                 ProgressView()
@@ -67,7 +70,6 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             }
             .contentMargins(16, for: .scrollContent)
             .scrollTargetBehavior(.viewAligned)
-
             Spacer()
         }
     }
@@ -102,32 +104,32 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                 }
             }
             Spacer()
-            HStack {
-                createVideoDetailView()
-            }
+//            HStack {
+//                createVideoDetailView()
+//            }
         }
     }
 
-    @ViewBuilder
-    private func createVideoDetailView() -> some View {
-        if let focusVideo {
-            AsyncImage(url: focusVideo.thumbnail) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            } placeholder: {
-                Image(systemName: "wifi.slash")
-            }
-
-            VStack(alignment: .leading) {
-                Text((focusVideo.title)!)
-                    .font(.title)
-                Text((focusVideo.quality?.uppercased())!)
-                Spacer()
-            }
-        }
-    }
+//    @ViewBuilder
+//    private func createVideoDetailView() -> some View {
+//        if let focusVideo {
+//            AsyncImage(url: focusVideo.thumbnail) { image in
+//                image
+//                    .resizable()
+//                    .scaledToFit()
+//                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
+//            } placeholder: {
+//                Image(systemName: "wifi.slash")
+//            }
+//
+//            VStack(alignment: .leading) {
+//                Text((focusVideo.title)!)
+//                    .font(.title)
+//                Text((focusVideo.quality?.uppercased())!)
+//                Spacer()
+//            }
+//        }
+//    }
 #endif
 
     @ViewBuilder
@@ -155,11 +157,15 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoPlayerDataModel) -> some View {
-        VideoPlayer(playerController: AVPlayerController(link: video.url,
-                                                         title: video.title!,
-                                                         publisher: video.id.uuidString,
-                                                         thumbnail: video.thumbnail!))
-        .ignoresSafeArea()
+        if let url = video.url {
+            VideoPlayer(playerController: AVPlayerController(link: url,
+                                                             title: video.title!,
+                                                             publisher: video.id.uuidString,
+                                                             thumbnail: video.thumbnail!))
+            .ignoresSafeArea()
+        } else {
+            Image(systemName: "wifi.slash")
+        }
     }
 }
 

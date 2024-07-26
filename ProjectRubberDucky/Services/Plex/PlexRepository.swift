@@ -16,10 +16,26 @@ class PlexRepository {
     }
 
     func fetch(key: String) async -> [VideoPlayerDataModel]? {
-        plexContent.fetchLibraries { libraries in
-            let moviesLibrary = self.plexContent.fetch(.movie, for: key)
+        var dataModel: [VideoPlayerDataModel] = []
+//        plexContent.fetchLibraries { libraries in
+            guard let moviesLibrary = self.plexContent.fetch(.movie, for: key) else { return nil }
             dump(moviesLibrary)
-        }
-        return nil
+            for movie in moviesLibrary.mediaContainer.directory {
+                if let ratingKey = movie.ratingKey,
+                let addedAt = movie.addedAt{
+                    guard let fileUrl = URL(string: "\(RuanMacbookAir.remote.rawValue)/library/parts/\(ratingKey)/\(addedAt)/file.mp4") else { continue }
+                    guard let thumbUrl =  URL(string: "\(RuanMacbookAir.remote.rawValue)/library/metadata/\(ratingKey)/thumb/\(addedAt)") else { continue }
+                    let title = movie.title
+                    let description = movie.summary
+                    let newModel = VideoPlayerDataModel(id: UUID(),
+                                         title: title,
+                                         description: description,
+                                         url: fileUrl,
+                                         thumbnail: thumbUrl)
+                    dataModel.append(newModel)
+                }
+            }
+//        }
+        return dataModel
     }
 }

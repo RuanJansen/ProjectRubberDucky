@@ -5,7 +5,7 @@ import Combine
 protocol PlexAuthenticatable {
     func authenticateUser(with username: String,
                           and password: String,
-                          userIsAuthenticated: @escaping (Bool) -> ())
+                          completion: @escaping (_ isAuthenticated: Bool, _ token: String) -> ()) async
 }
 
 protocol PlexContentFetchable {
@@ -14,6 +14,59 @@ protocol PlexContentFetchable {
 }
 
 class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
+
+    private var serverEndpoint: String
+
+    init() {
+        self.serverEndpoint = RuanMacbookAir.staticRemote.rawValue
+    }
+
+    func authenticateUser(with username: String, 
+                          and password: String,
+                          completion: @escaping (_ isAuthenticated: Bool, _ token: String) -> ()) async {
+
+        let httpMethod = "POST"
+
+        let body: [String: Any] = [
+            "user": [
+                "login": username,
+                "password": password
+            ]
+        ]
+
+        let headers = ["Content-Type" : "application/json",
+                       "X-Plex-Client-Identifier" : UUID().uuidString]
+
+        let endpoint = "https://plex.tv/users/sign_in.json"
+
+        guard let data = APIFetcher.fetchData(httpMethod: httpMethod,
+                                           body: body,
+                                           headers: headers,
+                                              from: endpoint) else { return }
+
+        var result: UserCodableModel?
+
+        do {
+            result = try await DataDecoder.decode(data, to: UserCodableModel.self)
+        } catch {
+            result = nil
+        }
+
+        guard let user = result?.user else { return }
+
+        completion(true, user.authToken)
+    }
+
+    func fetchLibraries(completion: @escaping ([PlexKit.PlexLibrary]?) -> ()) {
+        completion(nil)
+    }
+    
+    func fetch(_ mediaType: PlexKit.PlexMediaType, for key: String) -> PlexKit.Plex.Request.Collections.Response? {
+        nil
+    }
+}
+
+class PlexKitGateway: PlexAuthenticatable, PlexContentFetchable {
     private let client = Plex(sessionConfiguration: .default,
                               clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
 
@@ -35,15 +88,17 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         }
         .store(in: &cancelables)
 
-        $servers.sink { servers in
-            self.setUrl()
+        $servers.sink { fetchedServers in
+            if let fetchedServers {
+                self.setUrl(with: fetchedServers)
+            }
         }
         .store(in: &cancelables)
     }
 
     func authenticateUser(with username: String,
                           and password: String,
-                          userIsAuthenticated: @escaping (Bool) -> ()) {
+                          completion: @escaping (_ isAuthenticated: Bool, _ token: String) -> ()) {
         client.request(
             Plex.ServiceRequest.SimpleAuthentication(
                 username: username,
@@ -53,9 +108,9 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
             switch result {
             case .success(let response):
                 self.user = response.user
-                userIsAuthenticated(true)
+                guard let token = self.user?.authToken else { return }
+                completion(true, token)
             case .failure(let error):
-                userIsAuthenticated(false)
                 print("An error occurred: \(error)")
             }
         }
@@ -77,9 +132,14 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
 
     }
 
-    private func setUrl() {
-        guard let uri = servers?.first?.connections.first?.uri else { return }
-        url = URL(string: uri)
+    private func setUrl(with fetchedServers: [PlexResource]) {
+        guard let uri = fetchedServers.first(where: { resource in
+            resource.name == "RubberDucky"
+        })?.connections.first(where: { connection in
+            connection.port == 32400
+        })?.uri else { return }
+
+        self.url = URL(string: uri)
     }
 
     func fetchLibraries(completion: @escaping ([PlexLibrary]?)->()) {
@@ -88,7 +148,7 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         client.request(
             Plex.Request.Libraries(),
             from: url,
-            token: PlexAuthentication.primaryTokenEmpire2
+            token: PlexAuthentication.primaryTokenRuanMacbookAir
         ) { result in
             switch result {
             case .success(let response):
@@ -105,7 +165,7 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         guard let url else { return nil }
         client.request(Plex.Request.Collections(libraryKey: key, mediaType: mediaType),
                        from: url,
-                       token: PlexAuthentication.primaryTokenEmpire2) { result in
+                       token: PlexAuthentication.primaryTokenRuanMacbookAir) { result in
             switch result {
             case .success(let response):
                 collectionsResponse = response
@@ -115,27 +175,9 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         }
         return collectionsResponse
     }
-
 }
 
-extension PlexGateway {
-
-//    func fetch(_ url: String) -> URL? {
-//        guard let safeUrl = URL(string: url) else { return nil }
-//        client.request(Plex.Request.Image(path: url),
-//                       from: safeUrl,
-//                       token: PlexAuthentication.primaryToken) { result in
-//            switch result {
-//            case .success(let response):
-//                response.self
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
-}
-
-extension PlexGateway {
+extension PlexKitGateway {
     private func fetchAuthenticatedUserDetails(username: String, password: String, completion: @escaping (Plex.ServiceRequest.SimpleAuthentication.Response?)->()) {
         client.request(
             Plex.ServiceRequest.SimpleAuthentication(

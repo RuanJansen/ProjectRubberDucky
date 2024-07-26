@@ -12,7 +12,7 @@ class AuthenticationUsecase: ObservableObject {
         self.password = String()
     }
 
-    public func authenticate() {
-        authenticationManager?.authenticatedUser(with: username.lowercased(), and: password)
+    public func authenticate() async {
+        await authenticationManager?.authenticatedUser(with: username, and: password)
     }
 }

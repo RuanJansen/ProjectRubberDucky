@@ -26,13 +26,14 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     }
 }
 
-#if os(iOS)
 extension AuthenticationView {
     @ViewBuilder
     private func createContentView() -> some View {
         VStack(spacing: 30) {
             VStack(spacing: 15) {
                 TextField("Username", text: $authenticationUsecase.username)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 25.0)
@@ -55,7 +56,9 @@ extension AuthenticationView {
             Spacer()
 
             Button {
-                authenticationUsecase.authenticate()
+                Task {
+                    await authenticationUsecase.authenticate()
+                }
             } label: {
                 Text("Login")
                     .font(.title2)
@@ -70,44 +73,6 @@ extension AuthenticationView {
         .padding()
         .navigationTitle("Login")
         .navigationDestination(isPresented: $isPresentingRegisterView) {
-//            createRegisterView()
         }
     }
-
-//    @ViewBuilder
-//    private func createRegisterView() -> some View {
-//        VStack(spacing: 30) {
-//            VStack(spacing: 15) {
-//                TextField("Username", text: $authenticationUsecase.username)
-//                    .padding()
-//                    .background {
-//                        RoundedRectangle(cornerRadius: 25.0)
-//                            .stroke(lineWidth: 1.0)
-//                    }
-//                SecureField("Password", text: $authenticationUsecase.password)
-//                    .padding()
-//                    .background {
-//                        RoundedRectangle(cornerRadius: 25.0)
-//                            .stroke(lineWidth: 1.0)
-//                    }
-//            }
-//
-//            Spacer()
-//
-//            Button {
-//
-//            } label: {
-//                Text("Register")
-//                    .font(.title2)
-//                    .padding()
-//                    .background {
-//                        RoundedRectangle(cornerRadius: 25.0)
-//                            .stroke(lineWidth: 1.0)
-//                    }
-//            }
-//        }
-//        .padding()
-//        .navigationTitle("Create Account")
-//    }
 }
-#endif

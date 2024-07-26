@@ -1,10 +1,3 @@
-//
-//  AuthenticationManager.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/07/07.
-//
-
 import Foundation
 import Combine
 
@@ -17,28 +10,24 @@ enum AuthenticationStatus {
 class AuthenticationManager: ObservableObject {
     private var plexAthenticator: PlexAuthenticatable
     
-    @Published var userIsAuthenticated: Bool
+    @Published public var userIsAuthenticated: Bool
 
     init(plexAthenticator: PlexAuthenticatable) {
         self.plexAthenticator = plexAthenticator
         self.userIsAuthenticated = false
     }
 
-    public func authenticatedUser(with username: String? = nil, and password: String? = nil) {
+    public func authenticatedUser(with username: String? = nil, and password: String? = nil) async {
         if let username,
            let password,
            !username.isEmpty || !password.isEmpty {
-            plexAthenticator.authenticateUser(with: username, and: password) { isAuthenticated in
+            await plexAthenticator.authenticateUser(with: username, and: password) { isAuthenticated, token  in
                 self.userIsAuthenticated = isAuthenticated
             }
         } else {
-            plexAthenticator.authenticateUser(with: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password) { isAuthenticated in
+            await plexAthenticator.authenticateUser(with: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password) { isAuthenticated, token in
                 self.userIsAuthenticated = isAuthenticated
             }
         }
-    }
-
-    public func getUserAuthenticated() -> AnyPublisher<Bool, Never> {
-        $userIsAuthenticated.eraseToAnyPublisher()
     }
 }

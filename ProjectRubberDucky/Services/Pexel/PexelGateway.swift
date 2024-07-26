@@ -7,9 +7,14 @@
 
 import Foundation
 
-class PexelCaller {
-    func fetchCodableDataModel() async throws -> [Video]? {
-        let searchQuery = "ocean"
+class PexelGateway {
+    func fetchCodableDataModel(prompt: String? = nil) async throws -> [Video]? {
+        var searchQuery = "ocean"
+
+        if let prompt, !prompt.isEmpty {
+            searchQuery = prompt
+        }
+        
         let domain = "https://api.pexels.com/"
         let path = "videos/search?query=\(searchQuery)&per_page=10&orientation=landscape"
         let key = "MpDL9W0pRkqO2xmRSVO3Nt9WiH7Zvp0Jbzl7cStQ9dprUe1BRsjhjktq"

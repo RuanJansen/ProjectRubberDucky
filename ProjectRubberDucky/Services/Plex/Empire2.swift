@@ -10,14 +10,19 @@ import Foundation
 struct PlexAuthentication {
     static let ruan = (username: "darthjansen@gmail.com",
                        password: "Ruan0209")
-    static let rikus = (username: "rikus102@gmail.com",
-                        password: "Acid3471")
     static let primaryTokenEmpire2 = "-szo-akRdn4CDHkY3VpJ"
     static let primaryTokenRuanPc = "9FQu6cNybsn8VbCAmsAn"
-    static let primaryTokenRuanMacbookAir = "mQQtyrRXzdHC6_yvaPMA"
+    static let primaryTokenRuanMacbookAir = "qEbvrV-JXzXks671gQJC"
 
     static let token = primaryTokenRuanMacbookAir
 
+
+}
+
+enum RuanMacbookAir: String {
+    case local = "http://192.168.0.5:32400"
+    case remote = "http://rubberducky.ddns.net:32400"
+    case staticRemote = "https://192-168-0-5.ba66d5c0e8484eafb995744dc4cd2e2a.plex.direct:32400"
 }
 
 enum RuanPC: String {
