@@ -1,10 +1,12 @@
 import SwiftUI
+import Observation
 
-class AuthenticationUsecase: ObservableObject {
+@Observable
+class AuthenticationUsecase {
     private let authenticationManager: AuthenticationManager?
 
-    @Published var username: String
-    @Published var password: String
+    var username: String
+    var password: String
 
     init(authenticationManager: AuthenticationManager? = nil) {
         self.authenticationManager = authenticationManager

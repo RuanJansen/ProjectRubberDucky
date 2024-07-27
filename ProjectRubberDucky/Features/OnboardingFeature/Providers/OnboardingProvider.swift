@@ -7,10 +7,11 @@
 
 import Foundation
 
+@Observable
 class OnboardingProvider: FeatureProvider {
     typealias DataModel = [OnboardingDataModel]
 
-    @Published var viewState: ViewState<DataModel>
+    public var viewState: ViewState<DataModel>
 
     private var onboardingUsecase: OnboardingUsecase
 

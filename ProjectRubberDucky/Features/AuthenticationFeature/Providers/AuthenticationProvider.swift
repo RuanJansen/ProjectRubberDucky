@@ -1,9 +1,10 @@
 import Foundation
 
+@Observable
 class AuthenticationProvider: FeatureProvider {
     typealias DataModel = AuthenticationDataModel
 
-    @Published public var viewState: ViewState<DataModel>
+    public var viewState: ViewState<DataModel>
 
     private let authenticationManager: AuthenticationManager?
 

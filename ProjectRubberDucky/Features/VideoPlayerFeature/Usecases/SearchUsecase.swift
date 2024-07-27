@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
-import Combine
+import Observation
 
-class SearchUsecase: ObservableObject {
-    @Published var searchText: String
-    @Published var searchActionHit: Bool
+@Observable
+class SearchUsecase {
+    var searchText: String
+    var searchActionHit: Bool
 
     init() {
         self.searchText = String()

@@ -26,7 +26,7 @@ public protocol FeatureView: View {
     var provider: Provider { get }
 }
 
-public protocol FeatureProvider: ObservableObject, AnyObject {
+public protocol FeatureProvider: AnyObject {
     associatedtype DataModel
 
     var viewState: ViewState<DataModel> { get set }

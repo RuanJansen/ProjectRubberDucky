@@ -67,6 +67,7 @@
 		F3F13AFC2C537D7C008D6841 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13AFB2C537D7C008D6841 /* OnboardingDataModel.swift */; };
 		F3F13B032C537F45008D6841 /* OnboardingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13B022C537F45008D6841 /* OnboardingUsecase.swift */; };
 		F3F13B052C53844E008D6841 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13B042C53844E008D6841 /* View+Extension.swift */; };
+		F3F13B072C552684008D6841 /* MockUser.json in Sources */ = {isa = PBXBuildFile; fileRef = F3F13B062C552684008D6841 /* MockUser.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		F3F13AFB2C537D7C008D6841 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
 		F3F13B022C537F45008D6841 /* OnboardingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUsecase.swift; sourceTree = "<group>"; };
 		F3F13B042C53844E008D6841 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		F3F13B062C552684008D6841 /* MockUser.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockUser.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +474,7 @@
 				F3DB67AC2C28B7AA00F53642 /* MockFilms.json */,
 				F3DB67AF2C28B7FC00F53642 /* MockFilmsCodableModel.swift */,
 				F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */,
+				F3F13B062C552684008D6841 /* MockUser.json */,
 			);
 			path = MockContent;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				F3DB67B52C294FC600F53642 /* PexelGateway.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
 				F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */,
+				F3F13B072C552684008D6841 /* MockUser.json in Sources */,
 				F306A41A2C3A64CA00246390 /* AuthenticationManager.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F3F13AF82C537CE7008D6841 /* OnboardingProvider.swift in Sources */,

@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == AuthenticationDataModel{
-    @StateObject var provider: Provider
-    @StateObject var authenticationUsecase: AuthenticationUsecase
-
+    @State var provider: Provider
+    @State var authenticationUsecase: AuthenticationUsecase
     @State private var isPresentingRegisterView: Bool
 
     init(provider: Provider, authenticationUsecase: AuthenticationUsecase) {
-        self._provider = StateObject(wrappedValue: provider)
-        self._authenticationUsecase = StateObject(wrappedValue: authenticationUsecase)
+        self.provider = provider
+        self.authenticationUsecase = authenticationUsecase
         self.isPresentingRegisterView = false
     }
 

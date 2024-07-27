@@ -52,7 +52,21 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
             result = nil
         }
 
-        guard let user = result?.user else { return }
+//        do { //mock local json
+//            let type = UserCodableModel.self
+//            let fileName = "MockUser"
+//            if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+//                let data = try Data(contentsOf: url)
+//                result = try await DataDecoder.decode(data, to: type)
+//            }
+//        } catch {
+//
+//        }
+
+        guard let user = result?.user else {
+            print("User nil")
+            return
+        }
 
         completion(true, user.authToken)
     }

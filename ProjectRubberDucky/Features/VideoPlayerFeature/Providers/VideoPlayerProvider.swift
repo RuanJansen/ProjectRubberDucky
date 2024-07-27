@@ -1,10 +1,11 @@
 import Foundation
 import Combine
 
+@Observable
 class VideoPlayerProvider: FeatureProvider {
     public typealias DataModel = [VideoPlayerDataModel]
 
-    @Published public var viewState: ViewState<DataModel>
+   public var viewState: ViewState<DataModel>
     
     private var cancelables: Set<AnyCancellable> = []
 
@@ -16,22 +17,12 @@ class VideoPlayerProvider: FeatureProvider {
         self.repository = repository
         self.searchUsecase = searchUsecase
         self.viewState = .loading
-//        self.addSubscribers()
     }
 
     public func fetchContent() async {
 //        await populateWithPexel()
         await populateWithPlexStatic()
 //        await populateWithPlex()
-    }
-
-    private func addSubscribers() {
-        searchUsecase.$searchActionHit.sink { isSearching in
-            Task {
-                await self.populateWithPexel(prompt: self.searchUsecase.searchText)
-            }
-        }
-        .store(in: &cancelables)
     }
 
     private func populateWithPlex() async {

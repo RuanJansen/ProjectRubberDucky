@@ -1,10 +1,11 @@
 import NeedleFoundation
 import SwiftUI
 
+@Observable
 class TabViewContainerProvider: FeatureProvider {
     public typealias DataModel = [any Tabable]
 
-    @Published public var viewState: ViewState<DataModel>
+    public var viewState: ViewState<DataModel>
 
     private let tabs: [any Tabable]?
 

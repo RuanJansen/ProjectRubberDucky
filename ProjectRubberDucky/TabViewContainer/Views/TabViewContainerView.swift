@@ -1,12 +1,11 @@
 import SwiftUI
 
 struct TabViewContainerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [any Tabable] {
-    @StateObject var provider: Provider
-
+    @State var provider: Provider
     @State private var showErrorAlert: Bool
 
     init(provider: Provider) {
-        self._provider = StateObject(wrappedValue: provider)
+        self.provider = provider
         self.showErrorAlert = false
     }
 

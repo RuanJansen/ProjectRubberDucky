@@ -3,14 +3,14 @@ import SwiftUI
 import AVKit
 
 struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [VideoPlayerDataModel] {
-    @StateObject var provider: Provider
-    @StateObject var searchUsecase: SearchUsecase
+    @State var provider: Provider
+    @State var searchUsecase: SearchUsecase
     @State var selectedVideo: VideoPlayerDataModel?
 
     init(provider: Provider,
          searchUsecase: SearchUsecase) {
-        self._provider = StateObject(wrappedValue: provider)
-        self._searchUsecase = StateObject(wrappedValue: searchUsecase)
+        self.provider = provider
+        self.searchUsecase = searchUsecase
     }
 
     var body: some View {

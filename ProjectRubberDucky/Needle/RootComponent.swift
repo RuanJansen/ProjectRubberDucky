@@ -7,6 +7,8 @@ class RootComponent: BootstrapComponent {
     @State var isAuthenticated = true
     private var anyCancelables = Set<AnyCancellable>()
 
+    @State public var onboardingUsecase: OnboardingUsecase = OnboardingUsecase()
+
     override init() {
         super.init()
         addSubscribers()
@@ -22,21 +24,13 @@ class RootComponent: BootstrapComponent {
     }
 
     public var view: some View {
-        RootView(feature: displayFeature())
+        RootView(feature: isAuthenticated ? tabViewContainerComponent.feature : authenticationComponent.feature)
             .if(isAuthenticated) { rootView in
                 rootView
                     .sheet(isPresented: onboardingUsecase.$isShowingOnboarding) {
                         AnyView(self.onboardingComponent.feature.featureView)
                     }
             }
-    }
-
-    private func displayFeature() -> Feature {
-        if isAuthenticated {
-            return tabViewContainerComponent.feature
-        } else {
-            return authenticationComponent.feature
-        }
     }
 }
 

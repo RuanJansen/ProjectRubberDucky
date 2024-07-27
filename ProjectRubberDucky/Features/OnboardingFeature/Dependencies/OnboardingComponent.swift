@@ -16,9 +16,9 @@ extension RootComponent {
         OnboardingProvider(onboardingUsecase: onboardingUsecase)
     }
 
-    public var onboardingUsecase: OnboardingUsecase {
-        OnboardingUsecase()
-    }
+//    public var onboardingUsecase: OnboardingUsecase {
+//        OnboardingUsecase()
+//    }
 }
 
 class OnboardingComponent: Component<OnboardingDependency> {

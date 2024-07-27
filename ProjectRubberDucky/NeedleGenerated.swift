@@ -97,9 +97,9 @@ private func factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e(_ component: Needle
 extension RootComponent: Registration {
     public func registerItems() {
 
+        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
-        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }

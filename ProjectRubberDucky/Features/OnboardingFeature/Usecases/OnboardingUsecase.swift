@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class OnboardingUsecase: ObservableObject {
-    @AppStorage("isShowingOnboarding") var isShowingOnboarding: Bool = true
 
+class OnboardingUsecase {
+    @AppStorage("isShowingOnboarding") var isShowingOnboarding: Bool = true
 }

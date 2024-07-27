@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [OnboardingDataModel]{
-    @StateObject var provider: Provider
-    @StateObject private var onboardingUsecase: OnboardingUsecase
+    @State var provider: Provider
+    @State private var onboardingUsecase: OnboardingUsecase
 
     @Environment(\.dismiss) private var dismiss
 
@@ -17,8 +17,8 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
 
     init(provider: Provider,
          onboardingUsecase: OnboardingUsecase) {
-        self._provider = StateObject(wrappedValue: provider)
-        self._onboardingUsecase = StateObject(wrappedValue: onboardingUsecase)
+        self.provider =  provider
+        self.onboardingUsecase = onboardingUsecase
 
     }
 
