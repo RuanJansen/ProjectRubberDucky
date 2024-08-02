@@ -30,6 +30,7 @@ class AVPlayerController: ObservableObject {
         setupPlayer()
         setupAVPlayerViewController()
         playPlayer()
+        print(UUID().uuidString)
     }
 
     // MARK: - AVPlayer Setup

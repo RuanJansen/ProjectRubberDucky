@@ -51,4 +51,37 @@ extension Image {
 
         self = displayImage
     }
+
+    func fetchPlexImage(url: URL?) -> Image {
+        var result: Image?
+        let headers = ["X-Plex-Token": PlexAuthentication.primaryTokenRuanPc]
+
+        // Create a custom URLSessionConfiguration
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = headers
+
+        // Create a custom URLSession with the configuration
+        let session = URLSession(configuration: config)
+
+        // Create a URLRequest with the custom session
+        if let imageUrl = url {
+            var request = URLRequest(url: imageUrl)
+            request.httpMethod = "GET"
+
+            // Load the image with the URLRequest
+            session.dataTask(with: request) { data, response, error in
+                // Handle response if needed
+                if let data {
+                    if let image = UIImage(data: data) {
+                        result = Image(uiImage: image)
+                    } else {
+                        dump(data)
+                    }
+                }
+            }
+            .resume()
+        }
+
+        return result ?? Image(systemName: "wifi.slash")
+    }
 }

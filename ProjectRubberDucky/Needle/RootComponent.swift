@@ -2,6 +2,22 @@ import SwiftUI
 import NeedleFoundation
 import Combine
 
+@Observable
+class ToolbarManager {
+    var state: ToolbarState = .none
+
+    func set(to state: ToolbarState) -> any ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Image(systemName: "person")
+        }
+    }
+}
+
+enum ToolbarState {
+    case none
+    case home
+}
+
 class RootComponent: BootstrapComponent {
 
     @State var isAuthenticated = true
@@ -31,6 +47,7 @@ class RootComponent: BootstrapComponent {
                         AnyView(self.onboardingComponent.feature.featureView)
                     }
             }
+            .environment(ToolbarManager())
     }
 }
 

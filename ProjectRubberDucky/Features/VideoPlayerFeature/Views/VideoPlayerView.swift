@@ -7,6 +7,8 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     @State var searchUsecase: SearchUsecase
     @State var selectedVideo: VideoPlayerDataModel?
 
+    @Environment(ToolbarManager.self) private var toolbarManager
+
     init(provider: Provider,
          searchUsecase: SearchUsecase) {
         self.provider = provider
@@ -24,6 +26,11 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                         .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
                         .onSubmit(of: .search) {
                             searchUsecase.search()
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Image(systemName: "person")
+                            }
                         }
                 }
             case .error:
@@ -46,32 +53,50 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 #if os(iOS)
     @ViewBuilder
     private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(dataModel, id: \.id) { video in
-                        VStack {
-                            Button {
-                                selectedVideo = video
-                            } label: {
-                                CardView(video: video)
-                            }
-                            .modifier(CarouselButtonModifier())
+        ScrollView(.vertical, showsIndicators: true) {
+            VStack {
+                createCarouselView(using: dataModel)
+                createCarouselView(using: dataModel)
+                createCarouselView(using: dataModel)
+                createCarouselView(using: dataModel)
+                Spacer()
+            }
+        }
+    }
 
-                            Text(video.title ?? "Video title")
-                                .font(.title2)
+    @ViewBuilder
+    private func createCarouselView(using dataModel: [VideoPlayerDataModel]) -> some View {
+        NavigationLink {
+            EmptyView()
+        } label: {
+            Text("Title")
+                .font(.title3)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .padding(.horizontal)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(dataModel, id: \.id) { video in
+                    VStack {
+                        Button {
+                            selectedVideo = video
+                        } label: {
+                            CardView(video: video)
                         }
-                        .fullScreenCover(item: $selectedVideo) { video in
-                            createVideoPlayerView(with: video)
-                        }
+                        .modifier(CarouselButtonModifier())
+
+                        Text(video.title ?? "Video title")
+                            .font(.title3)
+                    }
+                    .fullScreenCover(item: $selectedVideo) { video in
+                        createVideoPlayerView(with: video)
                     }
                 }
-                .scrollTargetLayout()
             }
-            .contentMargins(16, for: .scrollContent)
-            .scrollTargetBehavior(.viewAligned)
-            Spacer()
+            .scrollTargetLayout()
         }
+        .contentMargins(16, for: .scrollContent)
+        .scrollTargetBehavior(.viewAligned)
     }
 #endif
 
@@ -193,10 +218,6 @@ struct CardView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-
-//                Image(url: video.thumbnail,
-//                      headers: ["X-Plex-Token": PlexAuthentication.primaryToken],
-//                      placeholderImage: Image(systemName: "wifi.slash"))
             } else {
                 Image(systemName: "wifi.slash")
             }

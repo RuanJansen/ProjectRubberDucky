@@ -4,12 +4,14 @@ import SwiftUI
     let mockProvider = MockVideoPlayerProvider()
     return VideoPlayerView(provider: mockProvider,
                     searchUsecase: SearchUsecase())
+    .environment(ToolbarManager())
 }
 
+@Observable
 fileprivate class MockVideoPlayerProvider: FeatureProvider {
     typealias DataModel = [VideoPlayerDataModel]
 
-    @Published var viewState: ViewState<[VideoPlayerDataModel]>
+    var viewState: ViewState<[VideoPlayerDataModel]>
 
     init() {
         self.viewState = .loading
