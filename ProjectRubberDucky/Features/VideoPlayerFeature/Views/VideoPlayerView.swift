@@ -2,17 +2,12 @@ import Foundation
 import SwiftUI
 import AVKit
 
-struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [VideoPlayerDataModel] {
+struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [VideoDataModel] {
     @State var provider: Provider
-    @State var searchUsecase: SearchUsecase
-    @State var selectedVideo: VideoPlayerDataModel?
+    @State var selectedVideo: VideoDataModel?
 
-    @Environment(ToolbarManager.self) private var toolbarManager
-
-    init(provider: Provider,
-         searchUsecase: SearchUsecase) {
+    init(provider: Provider) {
         self.provider = provider
-        self.searchUsecase = searchUsecase
     }
 
     var body: some View {
@@ -23,15 +18,6 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
-                        .onSubmit(of: .search) {
-                            searchUsecase.search()
-                        }
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Image(systemName: "person")
-                            }
-                        }
                 }
             case .error:
                 ProgressView()
@@ -52,7 +38,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 
 #if os(iOS)
     @ViewBuilder
-    private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
+    private func createContentView(using dataModel: [VideoDataModel]) -> some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 createCarouselView(using: dataModel)
@@ -65,7 +51,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     }
 
     @ViewBuilder
-    private func createCarouselView(using dataModel: [VideoPlayerDataModel]) -> some View {
+    private func createCarouselView(using dataModel: [VideoDataModel]) -> some View {
         NavigationLink {
             EmptyView()
         } label: {
@@ -102,7 +88,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 
 #if os(tvOS)
     @ViewBuilder
-    private func createContentView(using dataModel: [VideoPlayerDataModel]) -> some View {
+    private func createContentView(using dataModel: [VideoDataModel]) -> some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -181,10 +167,10 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     }
 
     @ViewBuilder
-    private func createVideoPlayerView(with video: VideoPlayerDataModel) -> some View {
+    private func createVideoPlayerView(with video: VideoDataModel) -> some View {
         if let url = video.url {
             VideoPlayer(playerController: AVPlayerController(link: url,
-                                                             title: video.title!,
+                                                             title: video.title,
                                                              publisher: video.id.uuidString,
                                                              thumbnail: video.thumbnail!))
             .ignoresSafeArea()
@@ -194,63 +180,3 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     }
 }
 
-struct CardView: View {
-    private let video: VideoPlayerDataModel
-    @State private var image: UIImage?
-    init(video: VideoPlayerDataModel) {
-        self.video = video
-    }
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            HStack {
-                Spacer()
-                if let quality = video.quality {
-                    Text(quality.uppercased())
-                        .font(.callout)
-                }
-            }
-        }
-        .padding()
-        .background {
-            if let image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-            } else {
-                Image(systemName: "wifi.slash")
-            }
-            LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
-        }
-        .onAppear {
-            let headers = ["X-Plex-Token": PlexAuthentication.primaryTokenRuanPc]
-
-            // Create a custom URLSessionConfiguration
-            let config = URLSessionConfiguration.default
-            config.httpAdditionalHeaders = headers
-            
-            // Create a custom URLSession with the configuration
-            let session = URLSession(configuration: config)
-
-            // Create a URLRequest with the custom session
-            if let imageUrl = video.thumbnail {
-                var request = URLRequest(url: imageUrl)
-                request.httpMethod = "GET"
-
-                // Load the image with the URLRequest
-                session.dataTask(with: request) { data, response, error in
-                    // Handle response if needed
-                    if let data {
-                        if let image = UIImage(data: data) {
-                            self.image = image
-                        } else {
-                            dump(data)
-                        }
-                    }
-                }
-                .resume()
-            }
-        }
-    }
-}

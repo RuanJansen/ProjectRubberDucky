@@ -1,42 +1,26 @@
-import Foundation
-import Combine
+import SwiftUI
+
+#Preview {
+    let mockProvider = MockHomeProvider()
+    return HomeView(provider: mockProvider, searchUsecase: SearchUsecase(provider: mockProvider))
+    .environment(ToolbarManager())
+}
 
 @Observable
-class VideoPlayerProvider: FeatureProvider {
-    public typealias DataModel = [VideoDataModel]
+fileprivate class MockHomeProvider: FeatureProvider, SearchableProvider {
+    typealias DataModel = HomeDataModel
 
-   public var viewState: ViewState<DataModel>
-    
-    private var cancelables: Set<AnyCancellable> = []
+    var viewState: ViewState<HomeDataModel>
 
-    private let repository: PlexRepository?
-
-    init(repository: PlexRepository? = nil) {
-        self.repository = repository
+    init() {
         self.viewState = .loading
     }
 
-    public func fetchContent() async {
-//        await populateWithPexel()
-        await populateWithPlexStatic()
-//        await populateWithPlex()
+    func fetchContent() async {
+        self.viewState = .presentContent(using: HomeDataModel(carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
     }
 
-    private func populateWithPlex() async {
-        if let repository {
-            if let dataModel = await repository.fetch(key: "1") {
-                await MainActor.run {
-                    self.viewState = .presentContent(using: dataModel)
-                }
-            } else {
-                await MainActor.run {
-                    self.viewState = .none
-                }
-            }
-        }
-    }
-
-    private func populateWithPlexStatic() async {
+    private func setupContent() -> [VideoDataModel] {
         let item1 = VideoDataModel(id: UUID(),
                                          title: "Jan Blomqvist",
                                          description: "Canopee Des Cimes Cercle Stories",
@@ -65,22 +49,11 @@ class VideoPlayerProvider: FeatureProvider {
             item3
         ]
 
-        await MainActor.run {
-            self.viewState = .presentContent(using: dataModel)
-        }
+        return dataModel
     }
 
-    private func populateWithPexel(prompt: String? = nil) async {
-        let repository = PexelRepository()
-           if let fetchedDataModel = await repository.fetchRemoteData(prompt: prompt) {
-            let dataModel = fetchedDataModel
-            await MainActor.run {
-                self.viewState = .presentContent(using: dataModel)
-            }
-        } else {
-            await MainActor.run {
-                self.viewState = .error
-            }
-        }
+    func searchContent(prompt: String) async {
+        self.viewState = .presentContent(using: HomeDataModel(searchResults: setupContent()))
     }
+
 }

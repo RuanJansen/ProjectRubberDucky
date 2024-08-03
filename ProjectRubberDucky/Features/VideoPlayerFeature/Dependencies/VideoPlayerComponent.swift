@@ -7,30 +7,17 @@ extension RootComponent {
     }
 
     public var videoPlayerFeatureProvider: any FeatureProvider {
-        VideoPlayerProvider(repository: plexComponent.plexRepository,
-                            searchUsecase: searchUsecase)
-    }
-
-    public var videoRepository: PexelRepository {
-        PexelRepository()
-    }
-
-    public var searchUsecase: SearchUsecase {
-        SearchUsecase()
+        VideoPlayerProvider(repository: plexComponent.plexRepository)
     }
 }
 
 class VideoPlayerComponent: Component<VideoPlayerDependency> {
     public var feature: Feature {
-        VideoPlayerFeature(featureProvider: featureProvider, searchUsecase: searchUsecase)
+        VideoPlayerFeature(featureProvider: featureProvider)
     }
 
     public var featureProvider: any FeatureProvider {
         dependency.videoPlayerFeatureProvider
-    }
-
-    public var searchUsecase: SearchUsecase {
-        dependency.searchUsecase
     }
 }
 

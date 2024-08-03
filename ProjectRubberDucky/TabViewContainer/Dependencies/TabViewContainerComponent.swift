@@ -18,7 +18,7 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
 
     private var tabs: [any Tabable]? {
         return [
-            videoPlayerTab
+            homeTab
         ]
     }
 
@@ -26,5 +26,11 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
         TabViewContainerDataModel(name: "Video Player",
                                   systemImage: "video.fill",
                                   feature: dependency.videoPlayerComponent.feature)
+    }
+
+    private var homeTab: any Tabable {
+        TabViewContainerDataModel(name: "Home",
+                                  systemImage: "video.fill",
+                                  feature: dependency.homeComponent.feature)
     }
 }

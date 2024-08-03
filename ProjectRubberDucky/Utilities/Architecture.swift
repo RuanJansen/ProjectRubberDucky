@@ -40,3 +40,7 @@ public enum ViewState<DataModel> {
     case error
     case none
 }
+
+protocol SearchableProvider {
+    func searchContent(prompt: String) async
+}

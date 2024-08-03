@@ -38,9 +38,6 @@ private class VideoPlayerDependency3bd39f7301b443c46ea0Provider: VideoPlayerDepe
     var videoPlayerFeatureProvider: any FeatureProvider {
         return rootComponent.videoPlayerFeatureProvider
     }
-    var searchUsecase: SearchUsecase {
-        return rootComponent.searchUsecase
-    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -49,6 +46,22 @@ private class VideoPlayerDependency3bd39f7301b443c46ea0Provider: VideoPlayerDepe
 /// ^->RootComponent->VideoPlayerComponent
 private func factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return VideoPlayerDependency3bd39f7301b443c46ea0Provider(rootComponent: parent1(component) as! RootComponent)
+}
+private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
+    var homeFeatureProvider: any FeatureProvider {
+        return rootComponent.homeFeatureProvider
+    }
+    var searchUsecase: SearchUsecase {
+        return rootComponent.searchUsecase
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->HomeComponent
+private func factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return HomeDependencycad225e9266b3c9a56ddProvider(rootComponent: parent1(component) as! RootComponent)
 }
 private class AuthenticationDependencyc2b4de2bfc19a7d065eeProvider: AuthenticationDependency {
     var authenticationFeatureProvider: any FeatureProvider {
@@ -69,6 +82,9 @@ private func factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e(_ component: Needle
 private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewContainerDependency {
     var videoPlayerComponent: VideoPlayerComponent {
         return rootComponent.videoPlayerComponent
+    }
+    var homeComponent: HomeComponent {
+        return rootComponent.homeComponent
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -102,8 +118,9 @@ extension RootComponent: Registration {
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
-        localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
+        localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
         localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
+        localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
@@ -122,7 +139,12 @@ extension OnboardingComponent: Registration {
 extension VideoPlayerComponent: Registration {
     public func registerItems() {
         keyPathToName[\VideoPlayerDependency.videoPlayerFeatureProvider] = "videoPlayerFeatureProvider-any FeatureProvider"
-        keyPathToName[\VideoPlayerDependency.searchUsecase] = "searchUsecase-SearchUsecase"
+    }
+}
+extension HomeComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\HomeDependency.homeFeatureProvider] = "homeFeatureProvider-any FeatureProvider"
+        keyPathToName[\HomeDependency.searchUsecase] = "searchUsecase-SearchUsecase"
     }
 }
 extension AuthenticationComponent: Registration {
@@ -134,6 +156,7 @@ extension AuthenticationComponent: Registration {
 extension TabViewContainerComponent: Registration {
     public func registerItems() {
         keyPathToName[\TabViewContainerDependency.videoPlayerComponent] = "videoPlayerComponent-VideoPlayerComponent"
+        keyPathToName[\TabViewContainerDependency.homeComponent] = "homeComponent-HomeComponent"
     }
 }
 extension PlexComponent: Registration {
@@ -160,6 +183,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->OnboardingComponent", factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AuthenticationComponent", factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->TabViewContainerComponent", factoryf4fcb82992c91b07199cb3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->PlexComponent", factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e)

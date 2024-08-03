@@ -12,14 +12,14 @@ import Observation
 @Observable
 class SearchUsecase {
     var searchText: String
-    var searchActionHit: Bool
+    private var provider: SearchableProvider
 
-    init() {
+    init(provider: SearchableProvider) {
+        self.provider = provider
         self.searchText = String()
-        self.searchActionHit = false
     }
 
-    public func search() {
-        searchActionHit.toggle()
+    public func search() async {
+        await provider.searchContent(prompt: searchText)
     }
 }

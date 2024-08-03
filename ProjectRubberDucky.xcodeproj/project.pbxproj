@@ -22,6 +22,13 @@
 		F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */; };
 		F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexGateway.swift */; };
 		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
+		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
+		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
+		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
+		F33B7E0D2C5D6D4300F1F49F /* HomeDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0C2C5D6D4300F1F49F /* HomeDependency.swift */; };
+		F33B7E0F2C5D6D5100F1F49F /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0E2C5D6D5100F1F49F /* HomeComponent.swift */; };
+		F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */; };
+		F33B7E132C5D7A2900F1F49F /* HomePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E122C5D7A2900F1F49F /* HomePreview.swift */; };
 		F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B7D8E2C3834F000587031 /* DependencyManager.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
@@ -30,7 +37,7 @@
 		F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD412C32F758001176F8 /* PexelRepository.swift */; };
 		F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */; };
 		F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */; };
-		F3B4DD482C32F758001176F8 /* VideoPlayerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */; };
+		F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD442C32F758001176F8 /* VideoDataModel.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
 		F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67742C28A33100F53642 /* Assets.xcassets */; };
 		F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67772C28A33100F53642 /* Preview Assets.xcassets */; };
@@ -85,6 +92,13 @@
 		F306A4202C416EB100246390 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
 		F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselButtonModifier.swift; sourceTree = "<group>"; };
 		F32D3F2C2C317A230084CC79 /* PlexGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexGateway.swift; sourceTree = "<group>"; };
+		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
+		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
+		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F33B7E0C2C5D6D4300F1F49F /* HomeDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDependency.swift; sourceTree = "<group>"; };
+		F33B7E0E2C5D6D5100F1F49F /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
+		F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
+		F33B7E122C5D7A2900F1F49F /* HomePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePreview.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
 		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
@@ -93,7 +107,7 @@
 		F3B4DD412C32F758001176F8 /* PexelRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PexelRepository.swift; sourceTree = "<group>"; };
 		F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerProvider.swift; sourceTree = "<group>"; };
 		F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerDataModel.swift; sourceTree = "<group>"; };
+		F3B4DD442C32F758001176F8 /* VideoDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDataModel.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRubberDuckyApp.swift; sourceTree = "<group>"; };
 		F3DB67742C28A33100F53642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +254,7 @@
 		F32D3F272C31747F0084CC79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F33B7E142C5D7D1E00F1F49F /* Templates */,
 				F305593F2C399DE900B2C9F6 /* VideoPlayer */,
 				F3A115882C2ED9B9000EF645 /* ButtonStyles */,
 				F32D3F282C3174860084CC79 /* ViewModifiers */,
@@ -278,6 +293,28 @@
 			path = Pexel;
 			sourceTree = "<group>";
 		};
+		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
+			isa = PBXGroup;
+			children = (
+				F306A41F2C416E9B00246390 /* Usecases */,
+				F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */,
+				F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */,
+				F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */,
+				F33B7E0C2C5D6D4300F1F49F /* HomeDependency.swift */,
+				F33B7E0E2C5D6D5100F1F49F /* HomeComponent.swift */,
+				F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */,
+				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
+			);
+			path = HomeFeature;
+			sourceTree = "<group>";
+		};
+		F33B7E142C5D7D1E00F1F49F /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		F34B7D852C382C1400587031 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +343,7 @@
 		F34B7D882C382C7100587031 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F3B4DD442C32F758001176F8 /* VideoPlayerDataModel.swift */,
+				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,6 +450,7 @@
 		F3DB67832C28A38100F53642 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F33B7E052C5D6CD600F1F49F /* HomeFeature */,
 				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
 				F306A4052C3A5B7D00246390 /* AuthenticationFeature */,
 				F3DB67972C28A7E300F53642 /* VideoPlayerFeature */,
@@ -449,7 +487,6 @@
 			children = (
 				F3F13AEC2C48E5AE008D6841 /* VideoPlayerPreview.swift */,
 				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
-				F306A41F2C416E9B00246390 /* Usecases */,
 				F34B7D852C382C1400587031 /* Dependencies */,
 				F34B7D882C382C7100587031 /* Models */,
 				F34B7D862C382C4600587031 /* Providers */,
@@ -648,7 +685,8 @@
 				F306A4122C3A5FDE00246390 /* AuthenticationComponent.swift in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
-				F3B4DD482C32F758001176F8 /* VideoPlayerDataModel.swift in Sources */,
+				F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */,
+				F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */,
 				F3F13B052C53844E008D6841 /* View+Extension.swift in Sources */,
 				F3F13AFA2C537D1B008D6841 /* OnboardingDependency.swift in Sources */,
 				F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */,
@@ -676,6 +714,8 @@
 				F306A4182C3A60D000246390 /* AuthenticationDataModel.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
 				F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */,
+				F33B7E0D2C5D6D4300F1F49F /* HomeDependency.swift in Sources */,
+				F33B7E132C5D7A2900F1F49F /* HomePreview.swift in Sources */,
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
 				F3F13AFC2C537D7C008D6841 /* OnboardingDataModel.swift in Sources */,
 				F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */,
@@ -690,14 +730,18 @@
 				F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */,
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
 				F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */,
+				F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */,
 				F3DB67822C28A37B00F53642 /* NeedleGenerated.swift in Sources */,
 				F306A41D2C3A713E00246390 /* AuthenticationUsecase.swift in Sources */,
 				F306A40D2C3A5FC300246390 /* AuthenticationProvider.swift in Sources */,
+				F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */,
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,
+				F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */,
 				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
 				F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */,
+				F33B7E0F2C5D6D5100F1F49F /* HomeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
