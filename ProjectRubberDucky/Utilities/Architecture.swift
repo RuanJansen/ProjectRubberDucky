@@ -34,7 +34,11 @@ public protocol FeatureProvider: AnyObject {
     func fetchContent() async
 }
 
-public enum ViewState<DataModel> {
+public enum ViewState<DataModel>: Identifiable {
+    public var id: UUID {
+        UUID()
+    }
+
     case loading
     case presentContent(using: DataModel)
     case error

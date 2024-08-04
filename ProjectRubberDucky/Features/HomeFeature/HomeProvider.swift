@@ -78,8 +78,12 @@ extension HomeProvider: SearchableProvider {
 
         let videos = await videoManager.getVideos()
 
+//        await MainActor.run {
+//            self.viewState = .presentContent(using: HomeDataModel(searchResults: videos, carousels: [CarouselDataModel(title: prompt, videos: videos)]))
+//        }
+
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(searchResults: videos, carousels: [CarouselDataModel(title: prompt, videos: videos)]))
+            self.viewState = .loading
         }
     }
 

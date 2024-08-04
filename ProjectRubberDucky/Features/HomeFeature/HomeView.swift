@@ -21,7 +21,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     }
 
     var body: some View {
-        VStack {
+        Group {
             switch provider.viewState {
             case .loading:
                 ProgressView()
@@ -41,19 +41,12 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                             }
                         }
                 }
-                .background {
-                    createBackgroundView()
-                }
             case .error:
-                ProgressView()
+                ErrorView(errorModel: ErrorDataModel(title: "Whoops!",
+                                                     description: "It looks like we ran into an issue...",
+                                                     image: Image(systemName: "exclamationmark.circle.fill")))
             case .none:
-                Button {
-                    Task {
-                        await provider.fetchContent()
-                    }
-                } label: {
-                    Text("Reload")
-                }
+                EmptyView()
             }
         }
         .task {
@@ -302,6 +295,42 @@ struct GridContainerView: View {
                 }
             }
             .padding()
+        }
+    }
+}
+
+struct ErrorDataModel: Identifiable {
+    let id: UUID
+    let title: String
+    let description: String
+    let image: Image
+
+    init(title: String, description: String, image: Image) {
+        self.id = UUID()
+        self.title = title
+        self.description = description
+        self.image = image
+    }
+}
+
+struct ErrorView: View {
+    let errorModel: ErrorDataModel
+
+    init(errorModel: ErrorDataModel) {
+        self.errorModel = errorModel
+    }
+
+    var body: some View {
+        VStack {
+            Text(errorModel.title)
+                .font(.title3)
+                .padding()
+            Text(errorModel.description)
+                .font(.body)
+            errorModel.image
+                .font(.title3)
+                .foregroundStyle(.red)
+                .padding()
         }
     }
 }

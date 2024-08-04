@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct HomeDataModel {
+struct HomeDataModel: Identifiable {
+    let id: UUID
     let searchResults: [VideoDataModel]?
     let carousels: [CarouselDataModel]?
 
     init(searchResults: [VideoDataModel]? = nil,
          carousels: [CarouselDataModel]? = nil ) {
+        self.id = UUID()
         self.searchResults = searchResults
         self.carousels = carousels
     }

@@ -298,12 +298,12 @@
 			children = (
 				F306A41F2C416E9B00246390 /* Usecases */,
 				F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */,
+				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
 				F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */,
 				F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */,
 				F33B7E0C2C5D6D4300F1F49F /* HomeDependency.swift */,
 				F33B7E0E2C5D6D5100F1F49F /* HomeComponent.swift */,
 				F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */,
-				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
 			);
 			path = HomeFeature;
 			sourceTree = "<group>";
