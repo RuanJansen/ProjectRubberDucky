@@ -100,6 +100,7 @@
 		F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
 		F33B7E122C5D7A2900F1F49F /* HomePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePreview.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
+		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
 		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
 		F3B4DCE02C32D223001176F8 /* PlexComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexComponent.swift; sourceTree = "<group>"; };
@@ -435,6 +436,7 @@
 				F3DB67762C28A33100F53642 /* Preview Content */,
 				F3DB67BE2C2E0ABF00F53642 /* Info.plist */,
 				F3DB67742C28A33100F53642 /* Assets.xcassets */,
+				F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */,
 			);
 			path = ProjectRubberDucky;
 			sourceTree = "<group>";
