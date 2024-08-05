@@ -63,6 +63,19 @@ private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
 private func factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependencycad225e9266b3c9a56ddProvider(rootComponent: parent1(component) as! RootComponent)
 }
+private class SubscribedDependencyace226668fff7e031d51Provider: SubscribedDependency {
+    var subscribedFeatureProvider: any FeatureProvider {
+        return rootComponent.subscribedFeatureProvider
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->SubscribedComponent
+private func factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SubscribedDependencyace226668fff7e031d51Provider(rootComponent: parent1(component) as! RootComponent)
+}
 private class AuthenticationDependencyc2b4de2bfc19a7d065eeProvider: AuthenticationDependency {
     var authenticationFeatureProvider: any FeatureProvider {
         return rootComponent.authenticationFeatureProvider
@@ -85,6 +98,9 @@ private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewCon
     }
     var homeComponent: HomeComponent {
         return rootComponent.homeComponent
+    }
+    var subscribedComponent: SubscribedComponent {
+        return rootComponent.subscribedComponent
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -110,26 +126,6 @@ private func factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e(_ component: Needle
 }
 
 #else
-extension RootComponent: Registration {
-    public func registerItems() {
-
-        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
-        localTable["view-some View"] = { [unowned self] in self.view as Any }
-        localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
-        localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
-        localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
-        localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
-        localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
-        localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
-        localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
-        localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
-        localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
-        localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
-        localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
-        localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
-        localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
-    }
-}
 extension OnboardingComponent: Registration {
     public func registerItems() {
         keyPathToName[\OnboardingDependency.onboardingProvider] = "onboardingProvider-any FeatureProvider"
@@ -147,6 +143,11 @@ extension HomeComponent: Registration {
         keyPathToName[\HomeDependency.searchUsecase] = "searchUsecase-SearchUsecase"
     }
 }
+extension SubscribedComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SubscribedDependency.subscribedFeatureProvider] = "subscribedFeatureProvider-any FeatureProvider"
+    }
+}
 extension AuthenticationComponent: Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationDependency.authenticationFeatureProvider] = "authenticationFeatureProvider-any FeatureProvider"
@@ -157,6 +158,30 @@ extension TabViewContainerComponent: Registration {
     public func registerItems() {
         keyPathToName[\TabViewContainerDependency.videoPlayerComponent] = "videoPlayerComponent-VideoPlayerComponent"
         keyPathToName[\TabViewContainerDependency.homeComponent] = "homeComponent-HomeComponent"
+        keyPathToName[\TabViewContainerDependency.subscribedComponent] = "subscribedComponent-SubscribedComponent"
+    }
+}
+extension RootComponent: Registration {
+    public func registerItems() {
+
+        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
+        localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
+        localTable["view-some View"] = { [unowned self] in self.view as Any }
+        localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
+        localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
+        localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
+        localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
+        localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
+        localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
+        localTable["subscribedComponent-SubscribedComponent"] = { [unowned self] in self.subscribedComponent as Any }
+        localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
+        localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
+        localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
+        localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
+        localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
+        localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
+        localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
+        localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
     }
 }
 extension PlexComponent: Registration {
@@ -180,12 +205,13 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 #if !NEEDLE_DYNAMIC
 
 @inline(never) private func register1() {
-    registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->OnboardingComponent", factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->SubscribedComponent", factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AuthenticationComponent", factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->TabViewContainerComponent", factoryf4fcb82992c91b07199cb3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->PlexComponent", factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e)
 }
 #endif
