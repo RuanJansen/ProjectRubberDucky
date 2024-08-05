@@ -19,8 +19,11 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let using):
-                EmptyView()
+            case .presentContent(let dataModel):
+                NavigationStack {
+                    createContentView(using: dataModel)
+                        .navigationTitle("Settings")
+                }
             case .error:
                 EmptyView()
             case .none:
@@ -29,6 +32,34 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
         }
         .task {
             await provider.fetchContent()
+        }
+    }
+
+    @ViewBuilder
+    private func createContentView(using dataModel: SettingsDataModel) -> some View {
+        VStack {
+            Form {
+                ForEach(dataModel.sections, id: \.id) { section in
+                    Section {
+                        ForEach(section.items, id: \.id) { item in
+                            NavigationLink {
+                                ConstructionView()
+                            } label: {
+                                Text(item.title)
+                            }
+                        }
+                    } header: {
+                        if let header = section.header{
+                            Text(header)
+                        }
+
+                    }
+                }
+            }
+            Spacer()
+            Text(dataModel.build)
+                .font(.footnote)
+                .padding()
         }
     }
 }

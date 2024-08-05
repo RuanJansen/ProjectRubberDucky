@@ -6,6 +6,7 @@
 //
 
 import Observation
+import SwiftUI
 
 @Observable
 class SettingsProvider: FeatureProvider {
@@ -13,12 +14,34 @@ class SettingsProvider: FeatureProvider {
 
     var viewState: ViewState<SettingsDataModel>
 
-    init() {
+    private var appMetaData: AppMetaData
+
+    init(appMetaData: AppMetaData) {
+        self.appMetaData = appMetaData
         self.viewState = .loading
     }
 
     func fetchContent() async {
-        viewState = .none
+        viewState = .presentContent(using: setupSettingsDataModel())
+    }
+
+    private func setupSettingsDataModel() -> SettingsDataModel {
+        SettingsDataModel(sections: setupSettingsSections(),
+                          build: fetchAppBuildVersion())
+    }
+
+    private func setupSettingsSections() -> [SettingsSection] {
+        [SettingsSection(header: "Header",
+                         items: [
+                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
+                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
+                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView())))
+                         ])
+        ]
+    }
+    
+    private func fetchAppBuildVersion() -> String {
+        "Build: \(appMetaData.appVersion) \(appMetaData.appBuild)"
     }
 }
 

@@ -13,7 +13,7 @@ extension RootComponent {
     }
 
     public var settingsFeatureProvider: any FeatureProvider {
-        SettingsProvider()
+        SettingsProvider(appMetaData: appMetaData)
     }
 }
 
