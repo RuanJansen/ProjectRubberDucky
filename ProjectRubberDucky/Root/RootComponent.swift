@@ -22,6 +22,7 @@ class RootComponent: BootstrapComponent {
                 rootView
                     .sheet(isPresented: onboardingUsecase.$isShowingOnboarding) {
                         AnyView(self.onboardingComponent.feature.featureView)
+                            .environment(self.appStyling)
                     }
             }
     }

@@ -12,6 +12,7 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
     @State private var onboardingUsecase: OnboardingUsecase
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppStyling.self) var appStyling
 
     @State var pageIndex: Int = 0
 
@@ -38,26 +39,47 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
         .task {
             await provider.fetchContent()
         }
+        .tint(appStyling.tintColor)
     }
 
     private func createContentView(using dataModel: [OnboardingDataModel]) -> some View {
         TabView(selection: $pageIndex) {
             ForEach(dataModel, id: \.id) { page in
-                createOnboardingPage(page: page, isLastPage: page.id == dataModel.last?.id)
+                createOnboardingPage(using: dataModel, page: page, isLastPage: page.id == dataModel.last?.id)
                     .tag(page.tag)
+
             }
         }
     }
 
-    private func createOnboardingPage(page: OnboardingDataModel, isLastPage: Bool) -> some View {
+    private func createOnboardingPage(using dataModel: [OnboardingDataModel], page: OnboardingDataModel, isLastPage: Bool) -> some View {
         VStack(alignment: .center) {
-            if let image = page.image {
-                image
+            HStack {
+                ForEach(dataModel, id: \.id) { pageCounter in
+                    Circle()
+                        .fill(pageCounter.id == page.id ? appStyling.tintColor : Color.white)
+                        .frame(width: 5, height: 5)
+                }
             }
 
+            Spacer()
+
             Text(page.title)
+                .font(.title2)
+
+            if let image = page.image {
+                image
+                    .resizable()
+                    .frame(width: 50, height: 50, alignment: .center)
+                    .foregroundStyle(appStyling.tintColor)
+                    .padding()
+
+            }
 
             Text(page.description)
+                .multilineTextAlignment(.center)
+
+            Spacer()
 
             Button {
                 if isLastPage {
@@ -70,5 +92,6 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
                 Text(page.buttonTitle)
             }
         }
+        .padding()
     }
 }
