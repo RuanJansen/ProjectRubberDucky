@@ -42,9 +42,6 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 createCarouselView(using: dataModel)
-                createCarouselView(using: dataModel)
-                createCarouselView(using: dataModel)
-                createCarouselView(using: dataModel)
                 Spacer()
             }
         }
@@ -55,7 +52,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
         NavigationLink {
             EmptyView()
         } label: {
-            Text("Title")
+            Text("Plex Content")
                 .font(.title3)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

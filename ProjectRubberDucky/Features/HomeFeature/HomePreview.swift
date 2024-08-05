@@ -3,7 +3,6 @@ import SwiftUI
 #Preview {
     let mockProvider = MockHomeProvider()
     return HomeView(provider: mockProvider, searchUsecase: SearchUsecase(provider: mockProvider))
-    .environment(ToolbarManager())
 }
 
 @Observable

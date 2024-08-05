@@ -7,10 +7,11 @@ enum AuthenticationStatus {
     case userNotFound
 }
 
-class AuthenticationManager: ObservableObject {
+@Observable
+class AuthenticationManager {
     private var plexAthenticator: PlexAuthenticatable
     
-    @Published public var userIsAuthenticated: Bool
+    public var userIsAuthenticated: Bool
 
     init(plexAthenticator: PlexAuthenticatable) {
         self.plexAthenticator = plexAthenticator

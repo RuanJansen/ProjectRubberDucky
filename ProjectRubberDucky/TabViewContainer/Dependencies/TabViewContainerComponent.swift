@@ -30,7 +30,7 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
 
     private var homeTab: any Tabable {
         TabViewContainerDataModel(name: "Home",
-                                  systemImage: "video.fill",
+                                  systemImage: "house.fill",
                                   feature: dependency.homeComponent.feature)
     }
 }

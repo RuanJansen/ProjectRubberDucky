@@ -9,11 +9,12 @@ import Foundation
 import AVKit
 import SwiftUI
 
-class AVPlayerController: ObservableObject {
-    @Published var link: URL
-    @Published var title: String
-    @Published var publisher: String
-    @Published var thumbnail: URL
+@Observable
+class AVPlayerController {
+    var link: URL
+    var title: String
+    var publisher: String
+    var thumbnail: URL
 
     var player: AVPlayer?
     var avPlayerViewController: AVPlayerViewController

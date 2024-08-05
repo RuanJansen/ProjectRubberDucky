@@ -68,16 +68,16 @@ class HomeProvider: FeatureProvider {
 
 extension HomeProvider: SearchableProvider {
     func searchContent(prompt: String) async {
-        let videoManager = VideoManager()
-
-        if let repository = self.repository {
-            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-                await videoManager.addVideos(fetchedContent)
-            }
-        }
-
-        let videos = await videoManager.getVideos()
-
+//        let videoManager = VideoManager()
+//
+//        if let repository = self.repository {
+//            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
+//                await videoManager.addVideos(fetchedContent)
+//            }
+//        }
+//
+//        let videos = await videoManager.getVideos()
+//
 //        await MainActor.run {
 //            self.viewState = .presentContent(using: HomeDataModel(searchResults: videos, carousels: [CarouselDataModel(title: prompt, videos: videos)]))
 //        }

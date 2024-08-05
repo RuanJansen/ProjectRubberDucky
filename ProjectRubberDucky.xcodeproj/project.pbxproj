@@ -30,6 +30,8 @@
 		F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */; };
 		F33B7E132C5D7A2900F1F49F /* HomePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E122C5D7A2900F1F49F /* HomePreview.swift */; };
 		F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B7D8E2C3834F000587031 /* DependencyManager.swift */; };
+		F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4D62C6117F600774C49 /* AppStyling.swift */; };
+		F392CCB02C610D2C00843540 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392CCAF2C610D2C00843540 /* RootView.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
 		F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE02C32D223001176F8 /* PlexComponent.swift */; };
@@ -100,7 +102,9 @@
 		F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
 		F33B7E122C5D7A2900F1F49F /* HomePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePreview.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
+		F36AD4D62C6117F600774C49 /* AppStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyling.swift; sourceTree = "<group>"; };
 		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F392CCAF2C610D2C00843540 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
 		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
 		F3B4DCE02C32D223001176F8 /* PlexComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexComponent.swift; sourceTree = "<group>"; };
@@ -231,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				F3DB67812C28A37B00F53642 /* NeedleGenerated.swift */,
-				F3DB67862C28A44500F53642 /* RootComponent.swift */,
 			);
 			path = Needle;
 			sourceTree = "<group>";
@@ -382,6 +385,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F36AD4D52C6117D800774C49 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				F36AD4D62C6117F600774C49 /* AppStyling.swift */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
+		F392CCAE2C610CF500843540 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB67862C28A44500F53642 /* RootComponent.swift */,
+				F392CCAF2C610D2C00843540 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		F3A115862C2EB19C000EF645 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +448,7 @@
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
 				F34B7D8E2C3834F000587031 /* DependencyManager.swift */,
 				F306A41B2C3A671200246390 /* Needle */,
+				F392CCAE2C610CF500843540 /* Root */,
 				F3DB678A2C28A5C900F53642 /* TabViewContainer */,
 				F3DB67832C28A38100F53642 /* Features */,
 				F3DB67842C28A38500F53642 /* Utilities */,
@@ -463,6 +484,7 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F36AD4D52C6117D800774C49 /* Styling */,
 				F30559422C39B03700B2C9F6 /* Extensions */,
 				F32D3F272C31747F0084CC79 /* UI */,
 				F3A115862C2EB19C000EF645 /* Tools */,
@@ -721,11 +743,13 @@
 				F3DB67B02C28B7FC00F53642 /* MockFilmsCodableModel.swift in Sources */,
 				F3F13AFC2C537D7C008D6841 /* OnboardingDataModel.swift in Sources */,
 				F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */,
+				F392CCB02C610D2C00843540 /* RootView.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
+				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
@@ -897,6 +921,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -929,6 +954,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

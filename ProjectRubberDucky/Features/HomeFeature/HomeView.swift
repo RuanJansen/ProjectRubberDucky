@@ -9,10 +9,8 @@ import SwiftUI
 
 struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == HomeDataModel {
     @State var provider: Provider
-    @State var searchUsecase: SearchUsecase
-    @State var selectedVideo: VideoDataModel?
-
-    @Environment(ToolbarManager.self) private var toolbarManager
+    @Bindable var searchUsecase: SearchUsecase
+    @Environment(AppStyling.self) var appStyling
 
     init(provider: Provider,
          searchUsecase: SearchUsecase) {
@@ -28,11 +26,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Image(systemName: "person")
-                            }
-                        }
+                        .navigationTitle("Home")
                         .searchPresentationToolbarBehavior(.avoidHidingContent)
                         .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
                         .onSubmit(of: .search) {
@@ -80,7 +74,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     @ViewBuilder
     private func createCarouselView(using carousel: CarouselDataModel) -> some View {
         NavigationLink {
-            GridContainerView(videos: carousel.videos)
+            GridContainerView(title: carousel.title, videos: carousel.videos)
         } label: {
             Label(carousel.title, systemImage: "chevron.right")
                 .environment(\.layoutDirection, .rightToLeft)
@@ -100,7 +94,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                         .modifier(CarouselButtonModifier())
 
                         Text(video.title)
-                            .font(.title3)
+                            .font(.subheadline)
                     }
                 }
             }
@@ -155,14 +149,6 @@ struct CardView: View {
         }
         .padding()
         .background {
-//            if let image {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .scaledToFill()
-//            } else {
-//                Image(systemName: "wifi.slash")
-//            }
-
             if let imageURL = video.thumbnail {
                 AsyncImage(url: imageURL, content: { image in
                     image
@@ -215,31 +201,45 @@ struct VideoDetailView: View {
 
     var body: some View {
         VStack {
-            Button {
-                presentVideoPlayer = true
-            } label: {
-                if let imageURL = video.thumbnail {
-                    AsyncImage(url: imageURL, content: { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    }, placeholder: {
-                        Image(systemName: "wifi.slash")
-                    })
-                    .overlay {
-                        LinearGradient(colors: [.black.opacity(1), .black.opacity(0.75), .black.opacity(0.5), .clear, .clear, .clear, .black.opacity(0.5), .black.opacity(0.75), .black.opacity(1)], startPoint: .top, endPoint: .bottom)
-                        Image(systemName: "play.circle.fill")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundStyle(Color.white.opacity(0.5))
+            ScrollView {
+                Button {
+                    presentVideoPlayer = true
+                } label: {
+                    if let imageURL = video.thumbnail {
+                        AsyncImage(url: imageURL, content: { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                        }, placeholder: {
+                            Image(systemName: "wifi.slash")
+                        })
+                        .overlay {
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(Color.white.opacity(0.5))
+                        }
                     }
                 }
+                .padding(.horizontal)
+
+                HStack {
+                    Button {
+                        presentVideoPlayer.toggle()
+                    } label: {
+                        Label("Watch Trailer", systemImage: "popcorn.fill")
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal)
+
+                VStack {
+                    Text(video.description ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+                }
+                .padding()
+                Spacer()
             }
-            VStack {
-                Text(video.description ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-            }
-            .padding()
-            Spacer()
 
         }
         .navigationTitle(video.title)
@@ -264,6 +264,7 @@ struct VideoDetailView: View {
 }
 
 struct GridContainerView: View {
+    var title: String
     var videos: [VideoDataModel]
 
     let columns: [GridItem] = [
@@ -276,26 +277,35 @@ struct GridContainerView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(videos, id: \.id) { video in
-                    NavigationLink {
-                        VideoDetailView(video: video)
-                    } label: {
-                        if let imageURL = video.thumbnail {
-                            AsyncImage(url: imageURL, content: { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 110, height: 200)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    VStack {
+                        NavigationLink {
+                            VideoDetailView(video: video)
+                        } label: {
+                            if let imageURL = video.thumbnail {
+                                AsyncImage(url: imageURL, content: { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 110, height: 200)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
 
-                            }, placeholder: {
-                                Image(systemName: "wifi.slash")
-                            })
+                                }, placeholder: {
+                                    Image(systemName: "wifi.slash")
+                                })
+                            }
                         }
+                        Text(video.title)
+                            .multilineTextAlignment(.center)
+                            .font(.subheadline)
+
+                        Spacer()
+
                     }
                 }
             }
             .padding()
         }
+        .navigationTitle(title)
     }
 }
 

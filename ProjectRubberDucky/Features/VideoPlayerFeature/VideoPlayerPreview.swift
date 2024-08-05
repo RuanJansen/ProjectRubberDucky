@@ -3,7 +3,6 @@ import SwiftUI
 #Preview {
     let mockProvider = MockVideoPlayerProvider()
     return VideoPlayerView(provider: mockProvider)
-    .environment(ToolbarManager())
 }
 
 @Observable

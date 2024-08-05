@@ -11,7 +11,7 @@ struct PlexAuthentication {
     static let ruan = (username: "darthjansen@gmail.com",
                        password: "Ruan0209")
     static let primaryTokenEmpire2 = "-szo-akRdn4CDHkY3VpJ"
-    static let primaryTokenRuanPc = "9FQu6cNybsn8VbCAmsAn"
+    static let primaryTokenRuanPc = "mQQtyrRXzdHC6_yvaPMA"
     static let primaryTokenRuanMacbookAir = "qEbvrV-JXzXks671gQJC"
 
     static let token = primaryTokenRuanMacbookAir
@@ -26,7 +26,7 @@ enum RuanMacbookAir: String {
 }
 
 enum RuanPC: String {
-    case local = "https://192-168-1-115.e5942820c9a94dd5b440032361510038.plex.direct:32400"
+    case local = "https://192.168.0.117:32400"
 }
 
 enum Empire2: String {

@@ -17,7 +17,6 @@ class VideoPlayerProvider: FeatureProvider {
     }
 
     public func fetchContent() async {
-//        await populateWithPexel()
         await populateWithPlexStatic()
 //        await populateWithPlex()
     }
@@ -60,9 +59,7 @@ class VideoPlayerProvider: FeatureProvider {
 
 
         let dataModel = [
-            item1,
-            item2,
-            item3
+            item1
         ]
 
         await MainActor.run {
