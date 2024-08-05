@@ -19,7 +19,9 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
     private var tabs: [any Tabable]? {
         return [
             homeTab,
-            subscribedTab
+            subscribedTab,
+            libraryTab,
+            settingsTab
         ]
     }
 
@@ -39,5 +41,17 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
         TabViewContainerDataModel(name: "Subscribed",
                                   systemImage: "tv.badge.wifi",
                                   feature: dependency.subscribedComponent.feature)
+    }
+
+    private var libraryTab: any Tabable {
+        TabViewContainerDataModel(name: "Library",
+                                  systemImage: "books.vertical.fill",
+                                  feature: dependency.libraryComponent.feature)
+    }
+
+    private var settingsTab: any Tabable {
+        TabViewContainerDataModel(name: "Settings",
+                                  systemImage: "gear",
+                                  feature: dependency.settingsComponent.feature)
     }
 }

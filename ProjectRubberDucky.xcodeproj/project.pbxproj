@@ -37,6 +37,20 @@
 		F36AD4E22C61336000774C49 /* SubscribedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E12C61336000774C49 /* SubscribedProvider.swift */; };
 		F36AD4E42C61336800774C49 /* SubscribedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E32C61336800774C49 /* SubscribedView.swift */; };
 		F36AD4E62C6133A700774C49 /* SubscribedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */; };
+		F36AD4E82C61379900774C49 /* LibraryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E72C61379900774C49 /* LibraryDependency.swift */; };
+		F36AD4EA2C6137CE00774C49 /* LibraryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E92C6137CE00774C49 /* LibraryComponent.swift */; };
+		F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4EB2C61385500774C49 /* LibraryFeature.swift */; };
+		F36AD4EE2C61389200774C49 /* LibraryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4ED2C61389200774C49 /* LibraryProvider.swift */; };
+		F36AD4F02C6138F100774C49 /* LibraryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4EF2C6138F100774C49 /* LibraryDataModel.swift */; };
+		F36AD4F22C61395300774C49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4F12C61395300774C49 /* LibraryView.swift */; };
+		F36AD4F42C613A6A00774C49 /* SettingsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4F32C613A6A00774C49 /* SettingsDependency.swift */; };
+		F36AD4F62C613AA000774C49 /* SettingsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4F52C613AA000774C49 /* SettingsComponent.swift */; };
+		F36AD4F82C613B3100774C49 /* SettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4F72C613B3100774C49 /* SettingsProvider.swift */; };
+		F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4F92C613B5400774C49 /* SettingsDataModel.swift */; };
+		F36AD4FC2C613B9C00774C49 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4FB2C613B9C00774C49 /* SettingsFeature.swift */; };
+		F36AD4FE2C613BFB00774C49 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4FD2C613BFB00774C49 /* SettingsView.swift */; };
+		F36AD5002C613DC700774C49 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4FF2C613DC700774C49 /* ErrorView.swift */; };
+		F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5012C613E1400774C49 /* ConstructionView.swift */; };
 		F392CCB02C610D2C00843540 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392CCAF2C610D2C00843540 /* RootView.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
@@ -115,6 +129,20 @@
 		F36AD4E12C61336000774C49 /* SubscribedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedProvider.swift; sourceTree = "<group>"; };
 		F36AD4E32C61336800774C49 /* SubscribedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedView.swift; sourceTree = "<group>"; };
 		F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedDataModel.swift; sourceTree = "<group>"; };
+		F36AD4E72C61379900774C49 /* LibraryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDependency.swift; sourceTree = "<group>"; };
+		F36AD4E92C6137CE00774C49 /* LibraryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryComponent.swift; sourceTree = "<group>"; };
+		F36AD4EB2C61385500774C49 /* LibraryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFeature.swift; sourceTree = "<group>"; };
+		F36AD4ED2C61389200774C49 /* LibraryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryProvider.swift; sourceTree = "<group>"; };
+		F36AD4EF2C6138F100774C49 /* LibraryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDataModel.swift; sourceTree = "<group>"; };
+		F36AD4F12C61395300774C49 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		F36AD4F32C613A6A00774C49 /* SettingsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDependency.swift; sourceTree = "<group>"; };
+		F36AD4F52C613AA000774C49 /* SettingsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsComponent.swift; sourceTree = "<group>"; };
+		F36AD4F72C613B3100774C49 /* SettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProvider.swift; sourceTree = "<group>"; };
+		F36AD4F92C613B5400774C49 /* SettingsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataModel.swift; sourceTree = "<group>"; };
+		F36AD4FB2C613B9C00774C49 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
+		F36AD4FD2C613BFB00774C49 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F36AD4FF2C613DC700774C49 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		F36AD5012C613E1400774C49 /* ConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructionView.swift; sourceTree = "<group>"; };
 		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F392CCAF2C610D2C00843540 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
@@ -327,6 +355,8 @@
 		F33B7E142C5D7D1E00F1F49F /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				F36AD4FF2C613DC700774C49 /* ErrorView.swift */,
+				F36AD5012C613E1400774C49 /* ConstructionView.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -408,6 +438,12 @@
 		F36AD4D82C61315400774C49 /* LibraryFeature */ = {
 			isa = PBXGroup;
 			children = (
+				F36AD4E72C61379900774C49 /* LibraryDependency.swift */,
+				F36AD4E92C6137CE00774C49 /* LibraryComponent.swift */,
+				F36AD4EB2C61385500774C49 /* LibraryFeature.swift */,
+				F36AD4ED2C61389200774C49 /* LibraryProvider.swift */,
+				F36AD4EF2C6138F100774C49 /* LibraryDataModel.swift */,
+				F36AD4F12C61395300774C49 /* LibraryView.swift */,
 			);
 			path = LibraryFeature;
 			sourceTree = "<group>";
@@ -415,6 +451,12 @@
 		F36AD4D92C61316100774C49 /* SettingsFeature */ = {
 			isa = PBXGroup;
 			children = (
+				F36AD4F32C613A6A00774C49 /* SettingsDependency.swift */,
+				F36AD4F52C613AA000774C49 /* SettingsComponent.swift */,
+				F36AD4F72C613B3100774C49 /* SettingsProvider.swift */,
+				F36AD4F92C613B5400774C49 /* SettingsDataModel.swift */,
+				F36AD4FB2C613B9C00774C49 /* SettingsFeature.swift */,
+				F36AD4FD2C613BFB00774C49 /* SettingsView.swift */,
 			);
 			path = SettingsFeature;
 			sourceTree = "<group>";
@@ -426,8 +468,8 @@
 				F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */,
 				F36AD4DF2C61335300774C49 /* SubscribedFeature.swift */,
 				F36AD4E12C61336000774C49 /* SubscribedProvider.swift */,
-				F36AD4E32C61336800774C49 /* SubscribedView.swift */,
 				F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */,
+				F36AD4E32C61336800774C49 /* SubscribedView.swift */,
 			);
 			path = SubscribedFeature;
 			sourceTree = "<group>";
@@ -512,12 +554,12 @@
 		F3DB67832C28A38100F53642 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				F36AD4DA2C61319400774C49 /* SubscribedFeature */,
-				F36AD4D92C61316100774C49 /* SettingsFeature */,
-				F36AD4D82C61315400774C49 /* LibraryFeature */,
-				F33B7E052C5D6CD600F1F49F /* HomeFeature */,
-				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
 				F306A4052C3A5B7D00246390 /* AuthenticationFeature */,
+				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
+				F33B7E052C5D6CD600F1F49F /* HomeFeature */,
+				F36AD4DA2C61319400774C49 /* SubscribedFeature */,
+				F36AD4D82C61315400774C49 /* LibraryFeature */,
+				F36AD4D92C61316100774C49 /* SettingsFeature */,
 				F3DB67972C28A7E300F53642 /* VideoPlayerFeature */,
 			);
 			path = Features;
@@ -745,14 +787,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36AD4F82C613B3100774C49 /* SettingsProvider.swift in Sources */,
 				F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */,
 				F36AD4DE2C61331800774C49 /* SubscribedComponent.swift in Sources */,
 				F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */,
 				F36AD4E62C6133A700774C49 /* SubscribedDataModel.swift in Sources */,
 				F306A40F2C3A5FCE00246390 /* AuthenticationFeature.swift in Sources */,
+				F36AD4EE2C61389200774C49 /* LibraryProvider.swift in Sources */,
 				F306A4122C3A5FDE00246390 /* AuthenticationComponent.swift in Sources */,
+				F36AD4F22C61395300774C49 /* LibraryView.swift in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
+				F36AD4FC2C613B9C00774C49 /* SettingsFeature.swift in Sources */,
 				F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */,
 				F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */,
 				F3F13B052C53844E008D6841 /* View+Extension.swift in Sources */,
@@ -763,6 +809,7 @@
 				F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */,
 				F36AD4E22C61336000774C49 /* SubscribedProvider.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
+				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
 				F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */,
 				F3F13B032C537F45008D6841 /* OnboardingUsecase.swift in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
@@ -776,8 +823,11 @@
 				F3DB67B52C294FC600F53642 /* PexelGateway.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
 				F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */,
+				F36AD4FE2C613BFB00774C49 /* SettingsView.swift in Sources */,
 				F3F13B072C552684008D6841 /* MockUser.json in Sources */,
+				F36AD4F62C613AA000774C49 /* SettingsComponent.swift in Sources */,
 				F306A41A2C3A64CA00246390 /* AuthenticationManager.swift in Sources */,
+				F36AD4EA2C6137CE00774C49 /* LibraryComponent.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F3F13AF82C537CE7008D6841 /* OnboardingProvider.swift in Sources */,
 				F306A4142C3A5FE500246390 /* AuthenticationDependency.swift in Sources */,
@@ -795,6 +845,7 @@
 				F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
+				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
@@ -804,17 +855,22 @@
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
 				F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */,
 				F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */,
+				F36AD5002C613DC700774C49 /* ErrorView.swift in Sources */,
 				F3DB67822C28A37B00F53642 /* NeedleGenerated.swift in Sources */,
 				F306A41D2C3A713E00246390 /* AuthenticationUsecase.swift in Sources */,
 				F306A40D2C3A5FC300246390 /* AuthenticationProvider.swift in Sources */,
 				F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */,
+				F36AD4F42C613A6A00774C49 /* SettingsDependency.swift in Sources */,
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,
+				F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,
 				F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */,
 				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
 				F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */,
+				F36AD4F02C6138F100774C49 /* LibraryDataModel.swift in Sources */,
+				F36AD4E82C61379900774C49 /* LibraryDependency.swift in Sources */,
 				F33B7E0F2C5D6D5100F1F49F /* HomeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

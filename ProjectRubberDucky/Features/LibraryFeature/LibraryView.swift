@@ -1,5 +1,5 @@
 //
-//  SubscribedView.swift
+//  LibraryView.swift
 //  ProjectRubberDucky
 //
 //  Created by Ruan Jansen on 2024/08/05.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SubscribedView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == SubscribedDataModel {
+struct LibraryView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == LibraryDataModel {
     @State var provider: Provider
 
     init(provider: Provider) {
