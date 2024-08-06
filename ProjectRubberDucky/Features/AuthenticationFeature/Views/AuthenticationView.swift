@@ -44,11 +44,11 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
         VStack {
             Form {
                 Section {
-                    TextField("Username", text: $authenticationUsecase.email)
+                    TextField("Email", text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 } header: {
-                    Text("Username/Email")
+                    Text("Email")
                 }
 
                 Section {
@@ -60,20 +60,19 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .frame(maxHeight: 200)
             .scrollDisabled(true)
 
-            Spacer()
 
             Button {
                 Task {
-                    await authenticationUsecase.authenticate()
+                    await authenticationUsecase.register()
                 }
             } label: {
-                Text("Login")
+                Text("Sign in with Email")
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(.primary)
                     .font(.title2)
                     .background {
-                        RoundedRectangle(cornerRadius: 17.5)
+                        RoundedRectangle(cornerRadius: 25)
                             .stroke(lineWidth: 1.0)
                     }
             }
@@ -84,40 +83,16 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             } onCompletion: { result in
                 authenticationUsecase.signInWithApple(onCompletion: result)
             }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: 50)
+            .background {
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(lineWidth: 1.0)
+            }
+            .padding()
 
-
+            Spacer()
         }
         .navigationTitle(dataModel.title)
-        .navigationDestination(isPresented: $isPresentingRegisterView) {
-            createRegistrationView()
-        }
-    }
-
-    @ViewBuilder
-    private func createRegistrationView() -> some View {
-        NavigationStack {
-            VStack {
-                Form {
-                    Section {
-                        TextField("Username", text: $authenticationUsecase.username)
-                            .autocorrectionDisabled()
-                            .textInputAutocapitalization(.never)
-                    } header: {
-                        Text("Username/Email")
-                    }
-
-                    Section {
-                        SecureField("Password", text: $authenticationUsecase.password)
-                        SecureField("Password", text: $authenticationUsecase.password)
-                    } header: {
-                        Text("Password")
-                    } footer: {
-                        Text("Re-enter password")
-                    }
-                }
-                .scrollDisabled(false)
-            }
-            .navigationTitle("Register")
-        }
     }
 }

@@ -20,7 +20,7 @@ class AuthenticationUsecase {
     }
 
     public func authenticate() async {
-        
+        authenticationManager.login()
     }
 
     public func register() async {
@@ -117,6 +117,4 @@ extension AuthenticationUsecase {
 
         return hashString
     }
-
-
 }

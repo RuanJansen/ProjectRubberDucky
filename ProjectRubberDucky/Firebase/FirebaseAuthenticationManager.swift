@@ -20,9 +20,18 @@ struct FirebaseUserDataModel {
 }
 
 class FirebaseAuthenticationManager {
-    
+
     func createUser(email: String, password: String) async throws -> FirebaseUserDataModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         return FirebaseUserDataModel(user: authDataResult.user)
+    }
+
+    func getAuthenticatedUser() throws -> FirebaseUserDataModel {
+        guard let user = Auth.auth().currentUser else {
+            // handle error
+            throw URLError(.unknown)
+        }
+
+        return FirebaseUserDataModel(user: user)
     }
 }

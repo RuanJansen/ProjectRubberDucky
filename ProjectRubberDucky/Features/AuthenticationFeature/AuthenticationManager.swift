@@ -23,7 +23,13 @@ class AuthenticationManager {
     }
 
     public func login() {
+        let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
 
+        if let authUser {
+            isAuthenticated = true
+        } else {
+            isAuthenticated = false
+        }
     }
 
     
