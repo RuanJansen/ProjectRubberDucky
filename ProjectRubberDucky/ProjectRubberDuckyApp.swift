@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseCore
 import AVKit
 import NeedleFoundation
 
@@ -22,8 +23,18 @@ struct ProjectRubberDuckyApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, 
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        setupFirebase()
+        setupAVAudioSession()
+        return true
+    }
 
+    private func setupFirebase() {
+        FirebaseApp.configure()
+    }
+
+    private func setupAVAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
 
         do {
@@ -32,7 +43,5 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
         }
-
-        return true
     }
 }

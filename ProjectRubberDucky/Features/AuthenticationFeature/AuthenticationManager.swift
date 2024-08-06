@@ -9,26 +9,22 @@ enum AuthenticationStatus {
 
 @Observable
 class AuthenticationManager {
-    private var plexAthenticator: PlexAuthenticatable
     private var isAuthenticated: Bool
+    private let firebaseAuthenticationManager: FirebaseAuthenticationManager
 
     init(isAuthenticated: Bool,
-         plexAthenticator: PlexAuthenticatable) {
+         firebaseAuthenticationManager: FirebaseAuthenticationManager) {
         self.isAuthenticated = isAuthenticated
-        self.plexAthenticator = plexAthenticator
+        self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }
 
-    public func authenticatedUser(with username: String? = nil, and password: String? = nil) async {
-        if let username,
-           let password,
-           !username.isEmpty || !password.isEmpty {
-            await plexAthenticator.authenticateUser(with: username, and: password) { isAuthenticated, token  in
-                self.isAuthenticated = isAuthenticated
-            }
-        } else {
-            await plexAthenticator.authenticateUser(with: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password) { isAuthenticated, token in
-                self.isAuthenticated = isAuthenticated
-            }
-        }
+    public func createUser(email: String, password: String) async throws -> FirebaseUserDataModel {
+        return try await firebaseAuthenticationManager.createUser(email: email, password: password)
     }
+
+    public func login() {
+
+    }
+
+    
 }

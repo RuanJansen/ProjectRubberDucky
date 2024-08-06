@@ -21,9 +21,12 @@
 		F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4202C416EB100246390 /* SearchUsecase.swift */; };
 		F32045A62C616DD400A2DFA7 /* RDButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A52C616DD400A2DFA7 /* RDButtonView.swift */; };
 		F32045A82C6203E200A2DFA7 /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A72C6203E200A2DFA7 /* LaunchingView.swift */; };
+		F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */; };
+		F32045AE2C6271BE00A2DFA7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F32045AD2C6271BE00A2DFA7 /* FirebaseAuth */; };
+		F32045B02C6272E500A2DFA7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F32045AF2C6272E500A2DFA7 /* FirebaseFirestore */; };
+		F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */; };
 		F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */; };
 		F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexGateway.swift */; };
-		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -117,6 +120,9 @@
 		F306A4202C416EB100246390 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
 		F32045A52C616DD400A2DFA7 /* RDButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDButtonView.swift; sourceTree = "<group>"; };
 		F32045A72C6203E200A2DFA7 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
+		F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRubberDucky.entitlements; sourceTree = "<group>"; };
+		F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselButtonModifier.swift; sourceTree = "<group>"; };
 		F32D3F2C2C317A230084CC79 /* PlexGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexGateway.swift; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
@@ -204,8 +210,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */,
+				F32045AE2C6271BE00A2DFA7 /* FirebaseAuth in Frameworks */,
 				F3DB67802C28A36B00F53642 /* NeedleFoundation in Frameworks */,
+				F32045B02C6272E500A2DFA7 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +306,21 @@
 				F306A4202C416EB100246390 /* SearchUsecase.swift */,
 			);
 			path = Usecases;
+			sourceTree = "<group>";
+		};
+		F32045AC2C6271BE00A2DFA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F32045B22C6276D400A2DFA7 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		F32D3F272C31747F0084CC79 /* UI */ = {
@@ -528,6 +550,7 @@
 			children = (
 				F3DB676F2C28A32F00F53642 /* ProjectRubberDucky */,
 				F3DB676E2C28A32F00F53642 /* Products */,
+				F32045AC2C6271BE00A2DFA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -542,6 +565,9 @@
 		F3DB676F2C28A32F00F53642 /* ProjectRubberDucky */ = {
 			isa = PBXGroup;
 			children = (
+				F32045B22C6276D400A2DFA7 /* Firebase */,
+				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
+				F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */,
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
 				F34B7D8E2C3834F000587031 /* DependencyManager.swift */,
 				F306A41B2C3A671200246390 /* Needle */,
@@ -723,7 +749,8 @@
 			name = ProjectRubberDucky;
 			packageProductDependencies = (
 				F3DB677F2C28A36B00F53642 /* NeedleFoundation */,
-				F32D3F2F2C317A4E0084CC79 /* PlexKit */,
+				F32045AD2C6271BE00A2DFA7 /* FirebaseAuth */,
+				F32045AF2C6272E500A2DFA7 /* FirebaseFirestore */,
 			);
 			productName = ProjectRubberDucky;
 			productReference = F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */;
@@ -756,6 +783,7 @@
 			packageReferences = (
 				F3DB677E2C28A36B00F53642 /* XCRemoteSwiftPackageReference "needle" */,
 				F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */,
+				F32045A92C626FE700A2DFA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F3DB676E2C28A32F00F53642 /* Products */;
 			projectDirPath = "";
@@ -772,6 +800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */,
+				F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */,
 				F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */,
 				F3DB67AE2C28B7AA00F53642 /* MockFilms.json in Resources */,
 			);
@@ -867,6 +896,7 @@
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
+				F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
 				F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */,
@@ -1033,6 +1063,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
@@ -1066,6 +1097,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
@@ -1118,6 +1150,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F32045A92C626FE700A2DFA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
 		F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lcharlick/PlexKit.git";
@@ -1137,10 +1177,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F32D3F2F2C317A4E0084CC79 /* PlexKit */ = {
+		F32045AD2C6271BE00A2DFA7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F32D3F2E2C317A4E0084CC79 /* XCRemoteSwiftPackageReference "PlexKit" */;
-			productName = PlexKit;
+			package = F32045A92C626FE700A2DFA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F32045AF2C6272E500A2DFA7 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32045A92C626FE700A2DFA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		F3DB677F2C28A36B00F53642 /* NeedleFoundation */ = {
 			isa = XCSwiftPackageProductDependency;

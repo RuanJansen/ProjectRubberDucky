@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import _AuthenticationServices_SwiftUI
 
 struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == AuthenticationDataModel{
     @State var provider: Provider
@@ -43,7 +44,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
         VStack {
             Form {
                 Section {
-                    TextField("Username", text: $authenticationUsecase.username)
+                    TextField("Username", text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 } header: {
@@ -58,12 +59,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }
             .frame(maxHeight: 200)
             .scrollDisabled(true)
-
-            Button {
-                isPresentingRegisterView = true
-            } label: {
-                Text("Not a member yet?")
-            }
 
             Spacer()
 
@@ -83,6 +78,14 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     }
             }
             .padding(.horizontal)
+
+            SignInWithAppleButton { request in
+                authenticationUsecase.signInWithApple(onRequest: request)
+            } onCompletion: { result in
+                authenticationUsecase.signInWithApple(onCompletion: result)
+            }
+
+
         }
         .navigationTitle(dataModel.title)
         .navigationDestination(isPresented: $isPresentingRegisterView) {
