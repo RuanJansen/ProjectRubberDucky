@@ -19,32 +19,45 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     }
 
     var body: some View {
-        NavigationStack {
-            createContentView()
+        Group {
+            switch provider.viewState {
+            case .loading:
+                ProgressView()
+            case .presentContent(let dataModel):
+                NavigationStack {
+                    createContentView(using: dataModel)
+                }
+            case .error:
+                EmptyView()
+            case .none:
+                EmptyView()
+            }
+        }
+        .task {
+            await provider.fetchContent()
         }
     }
-}
 
-extension AuthenticationView {
     @ViewBuilder
-    private func createContentView() -> some View {
-        VStack(spacing: 30) {
-            VStack(spacing: 15) {
-                TextField("Username", text: $authenticationUsecase.username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .stroke(lineWidth: 1.0)
-                    }
-                SecureField("Password", text: $authenticationUsecase.password)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 25.0)
-                            .stroke(lineWidth: 1.0)
-                    }
+    private func createContentView(using dataModel: AuthenticationDataModel) -> some View {
+        VStack {
+            Form {
+                Section {
+                    TextField("Username", text: $authenticationUsecase.username)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                } header: {
+                    Text("Username/Email")
+                }
+
+                Section {
+                    SecureField("Password", text: $authenticationUsecase.password)
+                } header: {
+                    Text("Password")
+                }
             }
+            .frame(maxHeight: 200)
+            .scrollDisabled(true)
 
             Button {
                 isPresentingRegisterView = true
@@ -60,18 +73,48 @@ extension AuthenticationView {
                 }
             } label: {
                 Text("Login")
+                    .padding(.vertical)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.primary)
                     .font(.title2)
-                    .padding()
                     .background {
-                        RoundedRectangle(cornerRadius: 25.0)
+                        RoundedRectangle(cornerRadius: 17.5)
                             .stroke(lineWidth: 1.0)
                     }
             }
-
+            .padding(.horizontal)
         }
-        .padding()
-        .navigationTitle("Login")
+        .navigationTitle(dataModel.title)
         .navigationDestination(isPresented: $isPresentingRegisterView) {
+            createRegistrationView()
+        }
+    }
+
+    @ViewBuilder
+    private func createRegistrationView() -> some View {
+        NavigationStack {
+            VStack {
+                Form {
+                    Section {
+                        TextField("Username", text: $authenticationUsecase.username)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                    } header: {
+                        Text("Username/Email")
+                    }
+
+                    Section {
+                        SecureField("Password", text: $authenticationUsecase.password)
+                        SecureField("Password", text: $authenticationUsecase.password)
+                    } header: {
+                        Text("Password")
+                    } footer: {
+                        Text("Re-enter password")
+                    }
+                }
+                .scrollDisabled(false)
+            }
+            .navigationTitle("Register")
         }
     }
 }

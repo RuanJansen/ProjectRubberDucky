@@ -10,12 +10,12 @@ enum AuthenticationStatus {
 @Observable
 class AuthenticationManager {
     private var plexAthenticator: PlexAuthenticatable
-    
-    public var userIsAuthenticated: Bool
+    private var isAuthenticated: Bool
 
-    init(plexAthenticator: PlexAuthenticatable) {
+    init(isAuthenticated: Bool,
+         plexAthenticator: PlexAuthenticatable) {
+        self.isAuthenticated = isAuthenticated
         self.plexAthenticator = plexAthenticator
-        self.userIsAuthenticated = false
     }
 
     public func authenticatedUser(with username: String? = nil, and password: String? = nil) async {
@@ -23,11 +23,11 @@ class AuthenticationManager {
            let password,
            !username.isEmpty || !password.isEmpty {
             await plexAthenticator.authenticateUser(with: username, and: password) { isAuthenticated, token  in
-                self.userIsAuthenticated = isAuthenticated
+                self.isAuthenticated = isAuthenticated
             }
         } else {
             await plexAthenticator.authenticateUser(with: PlexAuthentication.ruan.username, and: PlexAuthentication.ruan.password) { isAuthenticated, token in
-                self.userIsAuthenticated = isAuthenticated
+                self.isAuthenticated = isAuthenticated
             }
         }
     }

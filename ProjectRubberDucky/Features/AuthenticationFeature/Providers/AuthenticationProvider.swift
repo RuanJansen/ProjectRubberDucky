@@ -14,6 +14,10 @@ class AuthenticationProvider: FeatureProvider {
     }
 
     func fetchContent() async {
-        self.viewState = .none
+        self.viewState = .presentContent(using: setupAuthenticationDataModel())
+    }
+
+    private func setupAuthenticationDataModel() -> AuthenticationDataModel {
+        AuthenticationDataModel(title: "Log in")
     }
 }

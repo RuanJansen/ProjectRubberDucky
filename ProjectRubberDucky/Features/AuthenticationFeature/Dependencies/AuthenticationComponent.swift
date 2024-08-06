@@ -11,7 +11,8 @@ extension RootComponent {
     }
 
     public var authenticationManager: AuthenticationManager {
-        AuthenticationManager(plexAthenticator: plexGateway)
+        AuthenticationManager(isAuthenticated: isAuthenticated,
+                              plexAthenticator: plexGateway)
     }
 
     public var authenticationUsecase: AuthenticationUsecase {

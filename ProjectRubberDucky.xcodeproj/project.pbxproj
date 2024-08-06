@@ -20,6 +20,7 @@
 		F306A41D2C3A713E00246390 /* AuthenticationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */; };
 		F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4202C416EB100246390 /* SearchUsecase.swift */; };
 		F32045A62C616DD400A2DFA7 /* RDButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A52C616DD400A2DFA7 /* RDButtonView.swift */; };
+		F32045A82C6203E200A2DFA7 /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A72C6203E200A2DFA7 /* LaunchingView.swift */; };
 		F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */; };
 		F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexGateway.swift */; };
 		F32D3F302C317A4E0084CC79 /* PlexKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32D3F2F2C317A4E0084CC79 /* PlexKit */; };
@@ -115,6 +116,7 @@
 		F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUsecase.swift; sourceTree = "<group>"; };
 		F306A4202C416EB100246390 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
 		F32045A52C616DD400A2DFA7 /* RDButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDButtonView.swift; sourceTree = "<group>"; };
+		F32045A72C6203E200A2DFA7 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
 		F32D3F292C3175060084CC79 /* CarouselButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselButtonModifier.swift; sourceTree = "<group>"; };
 		F32D3F2C2C317A230084CC79 /* PlexGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexGateway.swift; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				F36AD4FF2C613DC700774C49 /* ErrorView.swift */,
 				F36AD5012C613E1400774C49 /* ConstructionView.swift */,
 				F32045A52C616DD400A2DFA7 /* RDButtonView.swift */,
+				F32045A72C6203E200A2DFA7 /* LaunchingView.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
+				F32045A82C6203E200A2DFA7 /* LaunchingView.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
