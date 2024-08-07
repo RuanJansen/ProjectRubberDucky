@@ -9,12 +9,15 @@ import Foundation
 
 struct SettingsFeature<Provider>: Feature where Provider: SettingsProvider {
     var featureProvider: any FeatureProvider
-
-    init(featureProvider: any FeatureProvider) {
+    var logoutUsecase: LogoutUsecase
+    
+    init(featureProvider: any FeatureProvider,
+         logoutUsecase: LogoutUsecase) {
         self.featureProvider = featureProvider
+        self.logoutUsecase = logoutUsecase
     }
 
     var featureView: any FeatureView {
-        SettingsView(provider: featureProvider as! Provider)
+        SettingsView(provider: featureProvider as! Provider, logoutUsecase: logoutUsecase)
     }
 }

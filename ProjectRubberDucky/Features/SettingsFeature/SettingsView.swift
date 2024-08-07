@@ -9,9 +9,12 @@ import SwiftUI
 
 struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == SettingsDataModel {
     @State var provider: Provider
+    @State var logoutUsecase: LogoutUsecase
 
-    init(provider: Provider) {
-        self.provider = provider
+    init(provider: Provider,
+         logoutUsecase: LogoutUsecase) {
+        self._provider = State(wrappedValue: provider)
+        self._logoutUsecase = State(wrappedValue: logoutUsecase)
     }
 
     var body: some View {
@@ -57,6 +60,24 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                 }
             }
             Spacer()
+
+            Button {
+                Task {
+                    await logoutUsecase.LogOut()
+                }
+            } label: {
+                Text("Log out")
+                    .padding(.vertical, 8)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.primary)
+                    .font(.title2)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                    }
+            }
+            .tint(.red)
+            .padding(.horizontal)
 
             if let build = dataModel.build {
                 Text(build)

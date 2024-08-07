@@ -80,6 +80,9 @@ private class SettingsDependency1ba9e199f1bddeac9850Provider: SettingsDependency
     var settingsFeatureProvider: any FeatureProvider {
         return rootComponent.settingsFeatureProvider
     }
+    var logoutUsecase: LogoutUsecase {
+        return rootComponent.logoutUsecase
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -183,6 +186,7 @@ extension SubscribedComponent: Registration {
 extension SettingsComponent: Registration {
     public func registerItems() {
         keyPathToName[\SettingsDependency.settingsFeatureProvider] = "settingsFeatureProvider-any FeatureProvider"
+        keyPathToName[\SettingsDependency.logoutUsecase] = "logoutUsecase-LogoutUsecase"
     }
 }
 extension AuthenticationComponent: Registration {
@@ -210,10 +214,10 @@ extension RootComponent: Registration {
 
         localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
         localTable["appMetaData-AppMetaData"] = { [unowned self] in self.appMetaData as Any }
+        localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
-        localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
@@ -223,6 +227,7 @@ extension RootComponent: Registration {
         localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
         localTable["settingsFeatureProvider-any FeatureProvider"] = { [unowned self] in self.settingsFeatureProvider as Any }
+        localTable["logoutUsecase-LogoutUsecase"] = { [unowned self] in self.logoutUsecase as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }

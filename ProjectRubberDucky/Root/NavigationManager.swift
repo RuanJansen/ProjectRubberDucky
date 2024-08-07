@@ -58,6 +58,8 @@ class NavigationManager {
                         self.showOnboardingSheet = true
                     }
                 }
+            } else {
+                self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
             }
         }
         .store(in: &cancellables)

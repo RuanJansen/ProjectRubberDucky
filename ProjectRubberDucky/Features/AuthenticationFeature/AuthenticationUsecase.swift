@@ -30,7 +30,9 @@ class AuthenticationUsecase {
         }
 
         do {
-            let returnedUserData = try await authenticationManager.createUser(email: email, password: password)
+            let returnedUserData: () = try await authenticationManager.createUser(email: email, password: password)
+            email = ""
+            password = ""
         } catch {
             // error
         }

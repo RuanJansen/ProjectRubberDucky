@@ -9,4 +9,5 @@ import NeedleFoundation
 
 protocol SettingsDependency: Dependency {
     var settingsFeatureProvider: any FeatureProvider { get }
+    var logoutUsecase: LogoutUsecase { get }
 }

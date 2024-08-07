@@ -49,3 +49,7 @@ protocol SearchableProvider {
     func searchContent(prompt: String) async
     func clearSearch() async
 }
+
+protocol LogoutProvider {
+    func logOut() async
+}

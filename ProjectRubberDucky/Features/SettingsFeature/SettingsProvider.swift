@@ -15,9 +15,11 @@ class SettingsProvider: FeatureProvider {
     var viewState: ViewState<SettingsDataModel>
 
     private var appMetaData: AppMetaData
-
-    init(appMetaData: AppMetaData) {
+    private var authenticationManager: AuthenticationManager
+    init(appMetaData: AppMetaData,
+         authenticationManager: AuthenticationManager) {
         self.appMetaData = appMetaData
+        self.authenticationManager = authenticationManager
         self.viewState = .loading
     }
 
@@ -50,3 +52,8 @@ class SettingsProvider: FeatureProvider {
     }
 }
 
+extension SettingsProvider: LogoutProvider {
+    func logOut() async {
+        authenticationManager.logOut()
+    }
+}

@@ -29,7 +29,7 @@ class AuthenticationManager: ObservableObject {
             let newUser = try await firebaseAuthenticationManager.createUser(email: email, password: password)
             isAuthenticated = true
         } catch {
-            isAuthenticated = false
+            login()
         }
         
         userDefaultsManager.isAuthenticated = isAuthenticated
@@ -44,6 +44,11 @@ class AuthenticationManager: ObservableObject {
             isAuthenticated = false
         }
 
+        userDefaultsManager.isAuthenticated = isAuthenticated
+    }
+
+    public func logOut() {
+        isAuthenticated = false
         userDefaultsManager.isAuthenticated = isAuthenticated
     }
 }
