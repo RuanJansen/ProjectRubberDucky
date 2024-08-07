@@ -57,9 +57,12 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                 }
             }
             Spacer()
-            Text(dataModel.build)
-                .font(.footnote)
-                .padding()
+
+            if let build = dataModel.build {
+                Text(build)
+                    .font(.footnote)
+                    .padding()
+            }
         }
     }
 }

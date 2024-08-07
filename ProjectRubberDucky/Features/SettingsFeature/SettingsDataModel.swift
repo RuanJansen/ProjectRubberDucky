@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SettingsDataModel {
     let sections: [SettingsSection]
-    let build: String
+    let build: String?
 
-    init(sections: [SettingsSection], build: String) {
+    init(sections: [SettingsSection], build: String? = nil) {
         self.sections = sections
         self.build = build
     }

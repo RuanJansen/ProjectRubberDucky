@@ -40,8 +40,13 @@ class SettingsProvider: FeatureProvider {
         ]
     }
     
-    private func fetchAppBuildVersion() -> String {
-        "Build: \(appMetaData.appVersion) \(appMetaData.appBuild)"
+    private func fetchAppBuildVersion() -> String? {
+        if let appVersion = appMetaData.appVersion,
+           let appBuild = appMetaData.appBuild {
+            return "Build: \(appVersion) (\(appBuild))"
+        } else {
+            return nil
+        }
     }
 }
 
