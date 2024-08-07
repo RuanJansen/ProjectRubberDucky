@@ -10,5 +10,5 @@ import Observation
 @Observable
 class AppMetaData {
     let appVersion: String = "1.0"
-    let appBuild: String = "(2)"
+    let appBuild: String = "(3)"
 }
