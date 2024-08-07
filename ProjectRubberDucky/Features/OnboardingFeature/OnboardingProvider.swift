@@ -13,15 +13,15 @@ class OnboardingProvider: FeatureProvider {
 
     public var viewState: ViewState<DataModel>
 
-    private var onboardingUsecase: OnboardingUsecase
+    private var userDefaultsManager: UserDefaultsManager
 
-    init(onboardingUsecase: OnboardingUsecase) {
-        self.onboardingUsecase = onboardingUsecase
+    init(userDefaultsManager: UserDefaultsManager) {
+        self.userDefaultsManager = userDefaultsManager
         viewState = .loading
     }
 
     func fetchContent() async {
-        if onboardingUsecase.isShowingOnboarding {
+        if userDefaultsManager.shouldShowOnboarding {
             let dataModel: DataModel = [
                 OnboardingDataModel(title: "Home",
                                     description: "This is where you can find your recommended content.",

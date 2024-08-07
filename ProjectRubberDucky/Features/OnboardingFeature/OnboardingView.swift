@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [OnboardingDataModel]{
     @State var provider: Provider
-    @State private var onboardingUsecase: OnboardingUsecase
+    @State private var userDefaultsManager: UserDefaultsManager
 
     @Environment(\.dismiss) private var dismiss
     @Environment(AppStyling.self) var appStyling
@@ -17,9 +17,9 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
     @State var pageIndex: Int = 0
 
     init(provider: Provider,
-         onboardingUsecase: OnboardingUsecase) {
+         userDefaultsManager: UserDefaultsManager) {
         self.provider =  provider
-        self.onboardingUsecase = onboardingUsecase
+        self.userDefaultsManager = userDefaultsManager
 
     }
 
@@ -82,7 +82,7 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
 
             Button {
                 if isLastPage {
-                    onboardingUsecase.isShowingOnboarding.toggle()
+                    userDefaultsManager.shouldShowOnboarding.toggle()
                     dismiss()
                 } else {
                     pageIndex += 1

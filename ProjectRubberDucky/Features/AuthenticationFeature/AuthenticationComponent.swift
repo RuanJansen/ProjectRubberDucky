@@ -14,7 +14,8 @@ extension RootComponent {
 
     public var authenticationManager: AuthenticationManager {
         shared {
-            AuthenticationManager(firebaseAuthenticationManager: firebaseAuthenticationManager)
+            AuthenticationManager(firebaseAuthenticationManager: firebaseAuthenticationManager, 
+                                  userDefaultsManager: userDefaultsManager)
         }
     }
 

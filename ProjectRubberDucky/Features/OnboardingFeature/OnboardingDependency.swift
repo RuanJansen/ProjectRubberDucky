@@ -9,5 +9,5 @@ import NeedleFoundation
 
 protocol OnboardingDependency: Dependency {
     var onboardingProvider: any FeatureProvider { get }
-    var onboardingUsecase: OnboardingUsecase { get }
+    var userDefaultsManager: UserDefaultsManager { get }
 }

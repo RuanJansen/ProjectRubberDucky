@@ -14,28 +14,21 @@ extension RootComponent {
 
     var onboardingProvider: any FeatureProvider {
         shared {
-            OnboardingProvider(onboardingUsecase: onboardingUsecase)
-        }
-    }
-
-    public var onboardingUsecase: OnboardingUsecase {
-        shared {
-            OnboardingUsecase()
+            OnboardingProvider(userDefaultsManager: userDefaultsManager)
         }
     }
 }
 
 class OnboardingComponent: Component<OnboardingDependency> {
     public var feature: Feature {
-        OnboardingFeature(featureProvider: featureProvider,
-                          onboardingUsecase: onboardingUsecase)
+        OnboardingFeature(featureProvider: featureProvider, userDefaultsManager: userDefaultsManager)
     }
 
     public var featureProvider: any FeatureProvider {
         dependency.onboardingProvider
     }
 
-    public var onboardingUsecase: OnboardingUsecase {
-        dependency.onboardingUsecase
+    public var userDefaultsManager: UserDefaultsManager {
+        dependency.userDefaultsManager
     }
 }

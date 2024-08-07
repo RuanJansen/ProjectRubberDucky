@@ -22,8 +22,9 @@ class NavigationManager {
     private let authenticationFeature: any Feature
     private let authenticationManager: AuthenticationManager
 
-    public let onboardingUsecase: OnboardingUsecase
+    public let userDefaultsManager: UserDefaultsManager
     public var navigationState: NavigationState
+    public var showOnboardingSheet: Bool
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -31,12 +32,13 @@ class NavigationManager {
          onboardingFeature: any Feature,
          authenticationFeature: any Feature,
          authenticationManager: AuthenticationManager,
-         onboardingUsecase: OnboardingUsecase) {
+         userDefaultsManager: UserDefaultsManager) {
         self.mainFeature = mainFeature
         self.onboardingFeature = onboardingFeature
         self.authenticationFeature = authenticationFeature
         self.authenticationManager = authenticationManager
-        self.onboardingUsecase = onboardingUsecase
+        self.userDefaultsManager = userDefaultsManager
+        self.showOnboardingSheet = false
         self.navigationState = .launchingView
         self.addListeners()
     }
@@ -49,21 +51,22 @@ class NavigationManager {
 
     private func addListeners() {
         authenticationManager.$isAuthenticated.sink { [self] result in
-            print("NavigationManager/addListeners() - authenticationManager.id:\(authenticationManager.id)")
-
             if result {
                 self.navigationState = .mainView(AnyView(self.mainFeature.featureView), onboardingFeature: AnyView(self.onboardingFeature.featureView))
+                if userDefaultsManager.shouldShowOnboarding {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
+                        self.showOnboardingSheet = true
+                    }
+                }
             }
         }
         .store(in: &cancellables)
     }
 
     private func startAppFlow()  {
-        if authenticationManager.isAuthenticated {
-            print("NavigationManager/startAppFlow() - authenticationManager.id:\(authenticationManager.id)")
+        if userDefaultsManager.isAuthenticated {
             self.navigationState = .mainView(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
-            print("NavigationManager/startAppFlow() - authenticationManager.id:\(authenticationManager.id)")
             self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
         }
     }

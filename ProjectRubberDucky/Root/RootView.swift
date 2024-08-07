@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct RootView: View {
-    @State var navigationManager: NavigationManager
+    @Bindable var navigationManager: NavigationManager
 
     @Environment(AppStyling.self) var appStyling
 
     init(navigationManager: NavigationManager) {
-        self._navigationManager = State(wrappedValue: navigationManager)
+        self._navigationManager = Bindable(wrappedValue: navigationManager)
     }
 
     var body: some View {
@@ -21,10 +21,11 @@ struct RootView: View {
             switch navigationManager.navigationState {
             case .mainView(let mainView, let onboardingView):
                 mainView
-                    .sheet(isPresented: navigationManager.onboardingUsecase.$isShowingOnboarding) {
+                    .sheet(isPresented: $navigationManager.showOnboardingSheet) {
                         onboardingView
                             .environment(self.appStyling)
                     }
+
             case .authenticationView(let authenticationView):
                 authenticationView
             case .launchingView:

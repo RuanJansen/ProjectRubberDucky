@@ -24,19 +24,16 @@ class AuthenticationUsecase {
     }
 
     public func register() async {
-        authenticationManager.isAuthenticated = true
-        print("\(authenticationManager.id) - \(authenticationManager.isAuthenticated)")
+        guard !email.isEmpty, !password.isEmpty else {
+            // validate
+            return
+        }
 
-//        guard !email.isEmpty, !password.isEmpty else {
-//            // validate
-//            return
-//        }
-//
-//        do {
-//            let returnedUserData = try await authenticationManager.createUser(email: email, password: password)
-//        } catch {
-//            // error
-//        }
+        do {
+            let returnedUserData = try await authenticationManager.createUser(email: email, password: password)
+        } catch {
+            // error
+        }
     }
 
     public func signInWithApple(onRequest request: ASAuthorizationAppleIDRequest) {

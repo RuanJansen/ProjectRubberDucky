@@ -270,8 +270,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
-            landmarkName = "PlexGateway"
-            landmarkType = "3">
+            landmarkName = "authenticateUser(with:and:completion:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "57FB160D-C0D2-4D40-8336-6EFF730DA6A3 - c82148d46c80125d"
@@ -316,8 +316,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
             endingLineNumber = "83"
-            landmarkName = "PlexGateway"
-            landmarkType = "3">
+            landmarkName = "authenticateUser(with:and:completion:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "5A8A213E-6AB6-409E-9B5C-22C46C864CCC - c82148d46c8012e6"
@@ -353,16 +353,62 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C606103-D94F-4CD4-9D01-4B6A872B2C5B"
+            uuid = "10C5E01D-9442-48EF-A8F7-75C32F63A80C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Firebase/FirebaseAuthenticationManager.swift"
+            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "createUser(email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "10C5E01D-9442-48EF-A8F7-75C32F63A80C - 5a51515f0d32f31a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ProjectRubberDucky.AuthenticationManager.createUser(email: Swift.String, password: Swift.String) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35">
+               </Location>
+               <Location
+                  uuid = "10C5E01D-9442-48EF-A8F7-75C32F63A80C - 4191e0177e15911b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for ProjectRubberDucky.AuthenticationManager.createUser(email: Swift.String, password: Swift.String) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "471C6338-4781-4E4F-8DB1-47FF6E04D445"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "login()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

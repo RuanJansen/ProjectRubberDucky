@@ -22,8 +22,8 @@ private class OnboardingDependencyc2e150944dc3c9e77b26Provider: OnboardingDepend
     var onboardingProvider: any FeatureProvider {
         return rootComponent.onboardingProvider
     }
-    var onboardingUsecase: OnboardingUsecase {
-        return rootComponent.onboardingUsecase
+    var userDefaultsManager: UserDefaultsManager {
+        return rootComponent.userDefaultsManager
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -161,7 +161,7 @@ private func factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e(_ component: Needle
 extension OnboardingComponent: Registration {
     public func registerItems() {
         keyPathToName[\OnboardingDependency.onboardingProvider] = "onboardingProvider-any FeatureProvider"
-        keyPathToName[\OnboardingDependency.onboardingUsecase] = "onboardingUsecase-OnboardingUsecase"
+        keyPathToName[\OnboardingDependency.userDefaultsManager] = "userDefaultsManager-UserDefaultsManager"
     }
 }
 extension VideoPlayerComponent: Registration {
@@ -213,7 +213,7 @@ extension RootComponent: Registration {
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
-        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
+        localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }

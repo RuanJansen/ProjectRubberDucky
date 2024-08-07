@@ -9,18 +9,17 @@ import Foundation
 
 class OnboardingFeature<Provider>: Feature where Provider: OnboardingProvider {
     var featureProvider: any FeatureProvider
-    var onboardingUsecase: OnboardingUsecase
+    var userDefaultsManager: UserDefaultsManager
 
     init(featureProvider: any FeatureProvider, 
-         onboardingUsecase: OnboardingUsecase) {
+         userDefaultsManager: UserDefaultsManager) {
         self.featureProvider = featureProvider
-        self.onboardingUsecase = onboardingUsecase
+        self.userDefaultsManager = userDefaultsManager
     }
 
     var featureView: any FeatureView {
         OnboardingView(provider: featureProvider as! Provider,
-                       onboardingUsecase: onboardingUsecase)
+                       userDefaultsManager: userDefaultsManager)
     }
 
-    
 }
