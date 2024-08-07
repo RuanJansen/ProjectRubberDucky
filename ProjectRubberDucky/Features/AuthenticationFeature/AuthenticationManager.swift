@@ -7,14 +7,21 @@ enum AuthenticationStatus {
     case userNotFound
 }
 
-@Observable
-class AuthenticationManager {
-    public var isAuthenticated: Bool 
+//@Observable
+class AuthenticationManager: ObservableObject {
+    public var id: UUID
+
+    @Published public var isAuthenticated: Bool {
+        didSet {
+            print("\(id) - \(isAuthenticated)")
+        }
+    }
 
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
 
     init(firebaseAuthenticationManager: FirebaseAuthenticationManager) {
-        self.isAuthenticated = true
+        self.id = UUID()
+        self.isAuthenticated = false
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }
 

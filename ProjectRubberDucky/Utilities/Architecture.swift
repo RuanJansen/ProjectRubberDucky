@@ -47,4 +47,5 @@ public enum ViewState<DataModel>: Identifiable {
 
 protocol SearchableProvider {
     func searchContent(prompt: String) async
+    func clearSearch() async
 }

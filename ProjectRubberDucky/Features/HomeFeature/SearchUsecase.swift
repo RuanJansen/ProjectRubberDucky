@@ -22,4 +22,10 @@ class SearchUsecase {
     public func search() async {
         await provider.searchContent(prompt: searchText)
     }
+
+    public func clearSearch() async {
+        if searchText.isEmpty {
+            await provider.clearSearch()
+        }
+    }
 }

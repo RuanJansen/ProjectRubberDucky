@@ -14,11 +14,15 @@ extension RootComponent {
     }
 
     var homeFeatureProvider: any FeatureProvider {
-        HomeProvider(repository: videoRepository)
+        shared {
+            HomeProvider(repository: videoRepository)
+        }
     }
 
     public var searchUsecase: SearchUsecase {
-        SearchUsecase(provider: homeFeatureProvider as! SearchableProvider)
+        shared {
+            SearchUsecase(provider: homeFeatureProvider as! SearchableProvider)
+        }
     }
 
     public var videoRepository: PexelRepository {

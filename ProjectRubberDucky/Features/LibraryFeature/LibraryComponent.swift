@@ -13,7 +13,9 @@ extension RootComponent {
     }
     
     public var libraryFeatureProvider: any FeatureProvider {
-        LibraryProvider()
+        shared {
+            LibraryProvider()
+        }
     }
 }
 

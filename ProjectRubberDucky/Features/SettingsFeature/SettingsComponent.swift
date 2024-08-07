@@ -13,7 +13,9 @@ extension RootComponent {
     }
 
     public var settingsFeatureProvider: any FeatureProvider {
-        SettingsProvider(appMetaData: appMetaData)
+        shared {
+            SettingsProvider(appMetaData: appMetaData)
+        }
     }
 }
 

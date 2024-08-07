@@ -13,7 +13,9 @@ extension RootComponent {
     }
 
     public var subscribedFeatureProvider: any FeatureProvider {
-        SubscribedProvider()
+        shared {
+            SubscribedProvider()
+        }
     }
 }
 

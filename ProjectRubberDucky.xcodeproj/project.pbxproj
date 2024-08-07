@@ -243,47 +243,15 @@
 			children = (
 				F306A40E2C3A5FCE00246390 /* AuthenticationFeature.swift */,
 				F306A4192C3A64CA00246390 /* AuthenticationManager.swift */,
-				F306A41E2C416E8700246390 /* Usecases */,
-				F306A4102C3A5FD100246390 /* Dependencies */,
-				F306A4152C3A607000246390 /* Models */,
-				F306A40B2C3A5FB100246390 /* Providers */,
-				F306A4062C3A5B8700246390 /* Views */,
-			);
-			path = AuthenticationFeature;
-			sourceTree = "<group>";
-		};
-		F306A4062C3A5B8700246390 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F306A4092C3A5BAA00246390 /* AuthenticationView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F306A40B2C3A5FB100246390 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				F306A40C2C3A5FC300246390 /* AuthenticationProvider.swift */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		F306A4102C3A5FD100246390 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
+				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
 				F306A4132C3A5FE500246390 /* AuthenticationDependency.swift */,
 				F306A4112C3A5FDE00246390 /* AuthenticationComponent.swift */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		F306A4152C3A607000246390 /* Models */ = {
-			isa = PBXGroup;
-			children = (
 				F306A4172C3A60D000246390 /* AuthenticationDataModel.swift */,
 				F3F13AEE2C4979CB008D6841 /* UserCodableModel.swift */,
+				F306A40C2C3A5FC300246390 /* AuthenticationProvider.swift */,
+				F306A4092C3A5BAA00246390 /* AuthenticationView.swift */,
 			);
-			path = Models;
+			path = AuthenticationFeature;
 			sourceTree = "<group>";
 		};
 		F306A41B2C3A671200246390 /* Needle */ = {
@@ -292,22 +260,6 @@
 				F3DB67812C28A37B00F53642 /* NeedleGenerated.swift */,
 			);
 			path = Needle;
-			sourceTree = "<group>";
-		};
-		F306A41E2C416E8700246390 /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
-			);
-			path = Usecases;
-			sourceTree = "<group>";
-		};
-		F306A41F2C416E9B00246390 /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-				F306A4202C416EB100246390 /* SearchUsecase.swift */,
-			);
-			path = Usecases;
 			sourceTree = "<group>";
 		};
 		F32045AC2C6271BE00A2DFA7 /* Frameworks */ = {
@@ -377,7 +329,8 @@
 		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
 			isa = PBXGroup;
 			children = (
-				F306A41F2C416E9B00246390 /* Usecases */,
+				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
+				F306A4202C416EB100246390 /* SearchUsecase.swift */,
 				F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */,
 				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
 				F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */,
@@ -398,39 +351,6 @@
 				F32045A72C6203E200A2DFA7 /* LaunchingView.swift */,
 			);
 			path = Templates;
-			sourceTree = "<group>";
-		};
-		F34B7D852C382C1400587031 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */,
-				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		F34B7D862C382C4600587031 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		F34B7D872C382C5300587031 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F34B7D882C382C7100587031 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F34B7D8A2C382CA100587031 /* Dependencies */ = {
@@ -649,10 +569,10 @@
 			children = (
 				F3F13AEC2C48E5AE008D6841 /* VideoPlayerPreview.swift */,
 				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
-				F34B7D852C382C1400587031 /* Dependencies */,
-				F34B7D882C382C7100587031 /* Models */,
-				F34B7D862C382C4600587031 /* Providers */,
-				F34B7D872C382C5300587031 /* Views */,
+				F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */,
+				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
+				F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */,
+				F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */,
 			);
 			path = VideoPlayerFeature;
 			sourceTree = "<group>";
@@ -691,54 +611,14 @@
 			isa = PBXGroup;
 			children = (
 				F3F13AF52C537CDB008D6841 /* OnboardingFeature.swift */,
-				F3F13B012C537F35008D6841 /* Usecases */,
-				F3F13B002C537F0D008D6841 /* Dependencies */,
-				F3F13AFF2C537F04008D6841 /* Models */,
-				F3F13AFE2C537EF9008D6841 /* Providers */,
-				F3F13AFD2C537EEF008D6841 /* Views */,
-			);
-			path = OnboardingFeature;
-			sourceTree = "<group>";
-		};
-		F3F13AFD2C537EEF008D6841 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F3F13AF12C537BE0008D6841 /* OnboardingView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F3F13AFE2C537EF9008D6841 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				F3F13AF72C537CE7008D6841 /* OnboardingProvider.swift */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		F3F13AFF2C537F04008D6841 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3F13AFB2C537D7C008D6841 /* OnboardingDataModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F3F13B002C537F0D008D6841 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
+				F3F13B022C537F45008D6841 /* OnboardingUsecase.swift */,
 				F3F13AF32C537CD1008D6841 /* OnboardingComponent.swift */,
 				F3F13AF92C537D1B008D6841 /* OnboardingDependency.swift */,
+				F3F13AFB2C537D7C008D6841 /* OnboardingDataModel.swift */,
+				F3F13AF72C537CE7008D6841 /* OnboardingProvider.swift */,
+				F3F13AF12C537BE0008D6841 /* OnboardingView.swift */,
 			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		F3F13B012C537F35008D6841 /* Usecases */ = {
-			isa = PBXGroup;
-			children = (
-				F3F13B022C537F45008D6841 /* OnboardingUsecase.swift */,
-			);
-			path = Usecases;
+			path = OnboardingFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

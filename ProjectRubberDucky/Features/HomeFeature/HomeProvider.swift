@@ -38,6 +38,14 @@ class HomeProvider: FeatureProvider {
     }
 
     private func setupHomeDataModel() async {
+        let carousels = await fetchDefaultVideoCarousels()
+
+        await MainActor.run {
+            self.viewState = .presentContent(using: HomeDataModel(carousels: carousels))
+        }
+    }
+
+    private func fetchDefaultVideoCarousels() async -> [CarouselDataModel] {
         let prompts: [String] = ["Ocean", "Galaxy", "Mountains", "Nature", "Africa wild life", "Ocean wild life", "Insect wild life"]
         let carouselManager = CarouselManager()
 
@@ -62,31 +70,36 @@ class HomeProvider: FeatureProvider {
 
         let carousels = await carouselManager.getCarousels().sorted(by: {$0.title > $1.title})
 
-        await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(carousels: carousels))
-        }
+        return carousels
     }
 }
 
 extension HomeProvider: SearchableProvider {
+    func clearSearch() async {
+        await setupHomeDataModel()
+    }
+    
     func searchContent(prompt: String) async {
-//        let videoManager = VideoManager()
-//
-//        if let repository = self.repository {
-//            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-//                await videoManager.addVideos(fetchedContent)
-//            }
-//        }
-//
-//        let videos = await videoManager.getVideos()
-//
-//        await MainActor.run {
-//            self.viewState = .presentContent(using: HomeDataModel(searchResults: videos, carousels: [CarouselDataModel(title: prompt, videos: videos)]))
-//        }
-
+        let defaultCarousels = await fetchDefaultVideoCarousels()
+        let searchVideos = await fetchSearchVideoCarousel(prompt: prompt)
+        
         await MainActor.run {
-            self.viewState = .loading
+            self.viewState = .presentContent(using: HomeDataModel(searchResults: searchVideos, carousels: defaultCarousels))
         }
+    }
+
+    private func fetchSearchVideoCarousel(prompt: String) async -> [VideoDataModel] {
+        let videoManager = VideoManager()
+
+        if let repository = self.repository {
+            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
+                await videoManager.addVideos(fetchedContent)
+            }
+        }
+
+        let videos = await videoManager.getVideos()
+
+        return videos
     }
 
     actor VideoManager {

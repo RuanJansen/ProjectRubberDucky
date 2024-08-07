@@ -7,6 +7,10 @@ import SwiftUI
 
 @Observable
 fileprivate class MockHomeProvider: FeatureProvider, SearchableProvider {
+    func clearSearch() async {
+        self.viewState = .presentContent(using: HomeDataModel(carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
+    }
+    
     typealias DataModel = HomeDataModel
 
     var viewState: ViewState<HomeDataModel>

@@ -208,11 +208,12 @@ extension TabViewContainerComponent: Registration {
 extension RootComponent: Registration {
     public func registerItems() {
 
-        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
         localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
         localTable["appMetaData-AppMetaData"] = { [unowned self] in self.appMetaData as Any }
+        localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
+        localTable["onboardingUsecase-OnboardingUsecase"] = { [unowned self] in self.onboardingUsecase as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
@@ -225,6 +226,7 @@ extension RootComponent: Registration {
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
+        localTable["firebaseAuthenticationManager-FirebaseAuthenticationManager"] = { [unowned self] in self.firebaseAuthenticationManager as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }

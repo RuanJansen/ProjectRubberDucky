@@ -7,6 +7,7 @@
 
 import Observation
 import SwiftUI
+import Combine
 
 enum NavigationState {
     case mainView(AnyView, onboardingFeature: AnyView?)
@@ -24,6 +25,8 @@ class NavigationManager {
     public let onboardingUsecase: OnboardingUsecase
     public var navigationState: NavigationState
 
+    private var cancellables = Set<AnyCancellable>()
+
     init(mainFeature: any Feature, 
          onboardingFeature: any Feature,
          authenticationFeature: any Feature,
@@ -35,6 +38,7 @@ class NavigationManager {
         self.authenticationManager = authenticationManager
         self.onboardingUsecase = onboardingUsecase
         self.navigationState = .launchingView
+        self.addListeners()
     }
 
     func fetchContent() async {
@@ -43,10 +47,23 @@ class NavigationManager {
         }
     }
 
+    private func addListeners() {
+        authenticationManager.$isAuthenticated.sink { [self] result in
+            print("NavigationManager/addListeners() - authenticationManager.id:\(authenticationManager.id)")
+
+            if result {
+                self.navigationState = .mainView(AnyView(self.mainFeature.featureView), onboardingFeature: AnyView(self.onboardingFeature.featureView))
+            }
+        }
+        .store(in: &cancellables)
+    }
+
     private func startAppFlow()  {
         if authenticationManager.isAuthenticated {
+            print("NavigationManager/startAppFlow() - authenticationManager.id:\(authenticationManager.id)")
             self.navigationState = .mainView(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
+            print("NavigationManager/startAppFlow() - authenticationManager.id:\(authenticationManager.id)")
             self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
         }
     }

@@ -34,6 +34,11 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                 await searchUsecase.search()
                             }
                         }
+                        .onChange(of: searchUsecase.searchText) {
+                            Task {
+                                await searchUsecase.clearSearch()
+                            }
+                        }
                 }
             case .error:
                 ErrorView(errorModel: ErrorDataModel(title: "Whoops!",
@@ -52,12 +57,6 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     @ViewBuilder
     private func createContentView(using dataModel: HomeDataModel) -> some View {
         VStack {
-            if let searchResults = dataModel.searchResults {
-                List(searchResults, id: \.id) { video in
-                    Text(video.title)
-                }
-            }
-
             if let carousels = dataModel.carousels {
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
@@ -65,6 +64,17 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                             createCarouselView(using: carousel)
                         }
                         Spacer()
+                    }
+                }
+            }
+        }
+        .overlay {
+            if let searchResults = dataModel.searchResults {
+                List(searchResults, id: \.id) { video in
+                    NavigationLink {
+                        VideoDetailView(video: video)
+                    } label: {
+                        Text(video.title)
                     }
                 }
             }

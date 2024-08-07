@@ -7,19 +7,27 @@ extension RootComponent {
     }
 
     public var authenticationFeatureProvider: any FeatureProvider {
-        AuthenticationProvider()
+        shared {
+            AuthenticationProvider()
+        }
     }
 
     public var authenticationManager: AuthenticationManager {
-        AuthenticationManager(firebaseAuthenticationManager: firebaseAuthenticationManager)
+        shared {
+            AuthenticationManager(firebaseAuthenticationManager: firebaseAuthenticationManager)
+        }
     }
 
     public var firebaseAuthenticationManager: FirebaseAuthenticationManager {
-        FirebaseAuthenticationManager()
+        shared {
+            FirebaseAuthenticationManager()
+        }
     }
 
     public var authenticationUsecase: AuthenticationUsecase {
-        AuthenticationUsecase(authenticationManager: authenticationManager)
+        shared {
+            AuthenticationUsecase(authenticationManager: authenticationManager)
+        }
     }
 }
 

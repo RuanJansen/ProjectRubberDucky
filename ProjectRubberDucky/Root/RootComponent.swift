@@ -14,11 +14,14 @@ class RootComponent: BootstrapComponent {
     }
 
     public var navigationManager: NavigationManager {
-        NavigationManager(mainFeature: tabViewContainerComponent.feature,
-                          onboardingFeature: onboardingComponent.feature,
-                          authenticationFeature: authenticationComponent.feature,
-                          authenticationManager: authenticationManager,
-                          onboardingUsecase: onboardingUsecase)
+        print("RootComponent/navigationManager - authenticationManager.id:\(self.authenticationManager.id)")
+        return shared {
+            NavigationManager(mainFeature: tabViewContainerComponent.feature,
+                              onboardingFeature: onboardingComponent.feature,
+                              authenticationFeature: authenticationComponent.feature,
+                              authenticationManager: self.authenticationManager,
+                              onboardingUsecase: onboardingUsecase)
+        }
     }
 
     public var view: some View {

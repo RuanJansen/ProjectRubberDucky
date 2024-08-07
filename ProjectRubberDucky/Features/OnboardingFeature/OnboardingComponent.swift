@@ -13,11 +13,15 @@ extension RootComponent {
     }
 
     var onboardingProvider: any FeatureProvider {
-        OnboardingProvider(onboardingUsecase: onboardingUsecase)
+        shared {
+            OnboardingProvider(onboardingUsecase: onboardingUsecase)
+        }
     }
 
     public var onboardingUsecase: OnboardingUsecase {
-        OnboardingUsecase()
+        shared {
+            OnboardingUsecase()
+        }
     }
 }
 
