@@ -28,11 +28,11 @@ struct RootView: View {
             case .authenticationView(let authenticationView):
                 authenticationView
             case .launchingView:
-                LaunchingView(isLaunching: $navigationManager.isLaunching)
+                LaunchingView()
             }
         }
         .task {
-            await navigationManager.fetch()
+            await navigationManager.fetchContent()
         }
         .tint(appStyling.tintColor)
     }

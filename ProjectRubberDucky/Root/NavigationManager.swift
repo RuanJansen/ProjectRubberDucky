@@ -22,7 +22,6 @@ class NavigationManager {
     private let authenticationManager: AuthenticationManager
 
     public let onboardingUsecase: OnboardingUsecase
-    public var isLaunching: Bool
     public var navigationState: NavigationState
 
     init(mainFeature: any Feature, 
@@ -35,19 +34,20 @@ class NavigationManager {
         self.authenticationFeature = authenticationFeature
         self.authenticationManager = authenticationManager
         self.onboardingUsecase = onboardingUsecase
-        self.isLaunching = true
         self.navigationState = .launchingView
     }
 
-    func fetch() async {
+    func fetchContent() async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.startAppFlow()
+        }
+    }
+
+    private func startAppFlow()  {
         if authenticationManager.isAuthenticated {
-            await MainActor.run {
-                self.navigationState = .mainView(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
-            }
+            self.navigationState = .mainView(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
-            await MainActor.run {
-                self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
-            }
+            self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
         }
     }
 }

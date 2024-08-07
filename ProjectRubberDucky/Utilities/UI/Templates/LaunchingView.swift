@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LaunchingView: View {
-    @Binding var isLaunching: Bool
     @Environment(AppStyling.self) var appStyling
 
     var body: some View {
@@ -22,10 +21,5 @@ struct LaunchingView: View {
         }
         .font(.title)
         .foregroundStyle(appStyling.tintColor)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                isLaunching.toggle()
-            }
-        }
     }
 }
