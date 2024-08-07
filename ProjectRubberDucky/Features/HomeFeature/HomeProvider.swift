@@ -54,13 +54,13 @@ class HomeProvider: FeatureProvider {
                         }
                     }
 
-                    let carousel = CarouselDataModel(title: prompt, videos: videos)
+                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title > $1.title }))
                     await carouselManager.addCarousel(carousel)
                 }
             }
         }
 
-        let carousels = await carouselManager.getCarousels()
+        let carousels = await carouselManager.getCarousels().sorted(by: {$0.title > $1.title})
 
         await MainActor.run {
             self.viewState = .presentContent(using: HomeDataModel(carousels: carousels))
