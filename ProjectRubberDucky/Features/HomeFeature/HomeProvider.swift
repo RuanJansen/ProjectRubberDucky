@@ -49,6 +49,8 @@ class HomeProvider: FeatureProvider {
                     if let repository = self.repository {
                         if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
                             videos.append(contentsOf: fetchedContent)
+                        } else {
+
                         }
                     }
 

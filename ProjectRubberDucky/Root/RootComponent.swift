@@ -3,28 +3,27 @@ import NeedleFoundation
 import Combine
 
 class RootComponent: BootstrapComponent {
-    @AppStorage("isAuthenticated") var isAuthenticated: Bool = false
-    @State public var onboardingUsecase: OnboardingUsecase
+//    @AppStorage("isAuthenticated") var isAuthenticated: Bool = false
     @State public var appStyling: AppStyling
     @State public var appMetaData: AppMetaData
 
     override init() {
-        self.onboardingUsecase = OnboardingUsecase()
         self.appStyling = AppStyling()
         self.appMetaData = AppMetaData()
         super.init()
     }
 
+    public var navigationManager: NavigationManager {
+        NavigationManager(mainFeature: tabViewContainerComponent.feature,
+                          onboardingFeature: onboardingComponent.feature,
+                          authenticationFeature: authenticationComponent.feature,
+                          authenticationManager: authenticationManager,
+                          onboardingUsecase: onboardingUsecase)
+    }
+
     public var view: some View {
-        RootView(feature: isAuthenticated ? tabViewContainerComponent.feature : authenticationComponent.feature)
+        RootView(navigationManager: navigationManager)
             .environment(appStyling)
             .environment(self.appMetaData)
-            .if(isAuthenticated) { rootView in
-                rootView
-                    .sheet(isPresented: onboardingUsecase.$isShowingOnboarding) {
-                        AnyView(self.onboardingComponent.feature.featureView)
-                            .environment(self.appStyling)
-                    }
-            }
     }
 }

@@ -8,21 +8,32 @@
 import SwiftUI
 
 struct RootView: View {
-    let feature: any Feature
+    @State var navigationManager: NavigationManager
 
-    @State var isLaunching: Bool = true
     @Environment(AppStyling.self) var appStyling
 
-    init(feature: any Feature) {
-        self.feature = feature
+    init(navigationManager: NavigationManager) {
+        self._navigationManager = State(wrappedValue: navigationManager)
     }
 
     var body: some View {
-        if isLaunching {
-            LaunchingView(isLaunching: $isLaunching)
-        } else {
-            AnyView(feature.featureView)
-                .tint(appStyling.tintColor)
+        Group {
+            switch navigationManager.navigationState {
+            case .mainView(let mainView, let onboardingView):
+                mainView
+                    .sheet(isPresented: navigationManager.onboardingUsecase.$isShowingOnboarding) {
+                        onboardingView
+                            .environment(self.appStyling)
+                    }
+            case .authenticationView(let authenticationView):
+                authenticationView
+            case .launchingView:
+                LaunchingView(isLaunching: $navigationManager.isLaunching)
+            }
         }
+        .task {
+            await navigationManager.fetch()
+        }
+        .tint(appStyling.tintColor)
     }
 }

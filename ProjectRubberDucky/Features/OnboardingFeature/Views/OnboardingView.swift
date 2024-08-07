@@ -69,8 +69,7 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
 
             if let image = page.image {
                 image
-                    .resizable()
-                    .frame(width: 50, height: 50, alignment: .center)
+                    .font(.largeTitle)
                     .foregroundStyle(appStyling.tintColor)
                     .padding()
 

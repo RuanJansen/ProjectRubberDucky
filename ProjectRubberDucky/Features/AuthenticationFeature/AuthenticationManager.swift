@@ -9,28 +9,28 @@ enum AuthenticationStatus {
 
 @Observable
 class AuthenticationManager {
-    private var isAuthenticated: Bool
+    public var isAuthenticated: Bool 
+
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
 
-    init(isAuthenticated: Bool,
-         firebaseAuthenticationManager: FirebaseAuthenticationManager) {
-        self.isAuthenticated = isAuthenticated
+    init(firebaseAuthenticationManager: FirebaseAuthenticationManager) {
+        self.isAuthenticated = true
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }
 
     public func createUser(email: String, password: String) async throws -> FirebaseUserDataModel {
+        isAuthenticated = true
         return try await firebaseAuthenticationManager.createUser(email: email, password: password)
     }
 
     public func login() {
-        let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
-
-        if let authUser {
-            isAuthenticated = true
-        } else {
-            isAuthenticated = false
-        }
+//        let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
+//
+//        if let authUser {
+//            isAuthenticated = true
+//        } else {
+//            isAuthenticated = false
+//        }
+        isAuthenticated = true
     }
-
-    
 }

@@ -11,8 +11,7 @@ extension RootComponent {
     }
 
     public var authenticationManager: AuthenticationManager {
-        AuthenticationManager(isAuthenticated: isAuthenticated, 
-                              firebaseAuthenticationManager: firebaseAuthenticationManager)
+        AuthenticationManager(firebaseAuthenticationManager: firebaseAuthenticationManager)
     }
 
     public var firebaseAuthenticationManager: FirebaseAuthenticationManager {
