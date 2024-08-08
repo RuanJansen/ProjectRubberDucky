@@ -27,6 +27,18 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
+                        .if(authenticationUsecase.showingInvalidEmailToast) { view in
+                            view
+                                .overlay {
+                                    createToats(title: "Invalid Email", message: nil, image: Image(systemName: "exclamationmark.triangle"))
+                                    }
+                        }
+                        .if(authenticationUsecase.showingInvalidPasswordToast) { view in
+                            view
+                                .overlay {
+                                    createToats(title: "Invalid Password", message: "Your password: \n\u{2022} Must contain at least one letter.\n\u{2022} Must contain at least one digit.\n\u{2022} Must contain at least 8 characters long.\n\u{2022} Cannot contain any special characters.", image: Image(systemName: "exclamationmark.triangle"))
+                                }
+                        }
                 }
             case .error:
                 EmptyView()
@@ -37,6 +49,25 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
         .task {
             await provider.fetchContent()
         }
+    }
+
+    @ViewBuilder
+    private func createToats(title: String, message: String?, image: Image) -> some View {
+        VStack {
+                image
+                    .foregroundStyle(.red)
+                    .font(.largeTitle)
+                    .padding()
+                Text(title)
+                    .font(.title)
+
+            if let message {
+                Text(message)
+                    .padding()
+            }
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
     }
 
     @ViewBuilder

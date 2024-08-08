@@ -11,12 +11,17 @@ class AuthenticationUsecase {
     var email: String
     var password: String
 
+    var showingInvalidEmailToast: Bool
+    var showingInvalidPasswordToast: Bool
+
     var currentNonce: String?
 
     init(authenticationManager: AuthenticationManager) {
         self.authenticationManager = authenticationManager
         self.email = String()
         self.password = String()
+        self.showingInvalidEmailToast = false
+        self.showingInvalidPasswordToast = false
     }
 
     public func authenticate() async {
@@ -24,8 +29,28 @@ class AuthenticationUsecase {
     }
 
     public func register() async {
-        guard !email.isEmpty, !password.isEmpty else {
-            // validate
+//        guard !email.isEmpty, !password.isEmpty else {
+//            // validate
+//            return
+//        }
+
+        guard isValidEmail(email: email) else {
+            self.showingInvalidEmailToast = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                self.showingInvalidEmailToast = false
+            }
+
+            return
+        }
+
+        guard isValidPassword(password) else {
+            self.showingInvalidPasswordToast = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                self.showingInvalidPasswordToast = false
+            }
+
             return
         }
 
@@ -85,7 +110,22 @@ class AuthenticationUsecase {
         }
     }
 
+    func isValidEmail(email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
 
+    func isValidPassword(_ password: String) -> Bool {
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        return passwordPredicate.evaluate(with: password)
+
+//        The password must contain at least one letter.
+//        The password must contain at least one digit.
+//        The password must be at least 8 characters long.
+//        The password can only contain letters and digits (no special characters).
+    }
 }
 
 extension AuthenticationUsecase {
