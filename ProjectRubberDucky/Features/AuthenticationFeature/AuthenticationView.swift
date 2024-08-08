@@ -12,6 +12,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     @State var provider: Provider
     @State var authenticationUsecase: AuthenticationUsecase
     @State private var isPresentingRegisterView: Bool
+    @Environment(AppStyling.self) var appStyling
 
     init(provider: Provider, authenticationUsecase: AuthenticationUsecase) {
         self.provider = provider
@@ -73,6 +74,11 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     @ViewBuilder
     private func createContentView(using dataModel: AuthenticationDataModel) -> some View {
         VStack {
+            appStyling.appIconImage
+                .resizable()
+                .clipShape(Circle())
+                .frame(width: 100, height: 100)
+
             Form {
                 Section {
                     TextField("Email", text: $authenticationUsecase.email)
@@ -90,6 +96,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }
             .frame(maxHeight: 200)
             .scrollDisabled(true)
+            .padding(.bottom)
 
 
             Button {
@@ -100,26 +107,27 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                 Text("Sign in with Email")
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(.primary)
+                    .frame(height: 55)
+                    .foregroundStyle(.black)
+                    .fontWeight(.semibold)
                     .font(.title2)
                     .background {
-                        RoundedRectangle(cornerRadius: 25)
-                            .stroke(lineWidth: 1.0)
+                        RoundedRectangle(cornerRadius: 8)
                     }
             }
             .padding(.horizontal)
 
-            SignInWithAppleButton { request in
+            SignInWithAppleButton(.continue) { request in
                 authenticationUsecase.signInWithApple(onRequest: request)
             } onCompletion: { result in
                 authenticationUsecase.signInWithApple(onCompletion: result)
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: 50)
-            .background {
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(lineWidth: 1.0)
-            }
+            .signInWithAppleButtonStyle(.white)
+            .frame(height: 55)
+//            .background {
+//                RoundedRectangle(cornerRadius: 25)
+//                    .stroke(lineWidth: 1.0)
+//            }
             .padding()
 
             Spacer()
