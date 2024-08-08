@@ -40,6 +40,14 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                                     createToats(title: "Invalid Password", message: "Your password: \n\u{2022} Must contain at least one letter.\n\u{2022} Must contain at least one digit.\n\u{2022} Must contain at least 8 characters long.\n\u{2022} Cannot contain any special characters.", image: Image(systemName: "exclamationmark.triangle"))
                                 }
                         }
+                        .if(authenticationUsecase.showingIsLoadingToast) { view in
+                            view.overlay {
+                                ProgressView()
+                                    .frame(width: 100, height: 100)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
+                            }
+                    }
                 }
             case .error:
                 EmptyView()
@@ -98,7 +106,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .scrollDisabled(true)
             .padding(.bottom)
 
-
             Button {
                 Task {
                     await authenticationUsecase.register()
@@ -124,10 +131,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }
             .signInWithAppleButtonStyle(.white)
             .frame(height: 55)
-//            .background {
-//                RoundedRectangle(cornerRadius: 25)
-//                    .stroke(lineWidth: 1.0)
-//            }
             .padding()
 
             Spacer()

@@ -13,6 +13,7 @@ class AuthenticationUsecase {
 
     var showingInvalidEmailToast: Bool
     var showingInvalidPasswordToast: Bool
+    var showingIsLoadingToast: Bool
 
     var currentNonce: String?
 
@@ -22,6 +23,7 @@ class AuthenticationUsecase {
         self.password = String()
         self.showingInvalidEmailToast = false
         self.showingInvalidPasswordToast = false
+        self.showingIsLoadingToast = false
     }
 
     public func authenticate() async {
@@ -54,12 +56,17 @@ class AuthenticationUsecase {
             return
         }
 
+        showingIsLoadingToast = true
+
         do {
             let returnedUserData: () = try await authenticationManager.createUser(email: email, password: password)
             email = ""
             password = ""
+            showingIsLoadingToast = false
         } catch {
             // error
+            showingIsLoadingToast = false
+
         }
     }
 
@@ -73,6 +80,7 @@ class AuthenticationUsecase {
     public func signInWithApple(onCompletion completion: Result<ASAuthorization, any Error>) {
         switch completion {
         case .success(let authResults):
+            showingIsLoadingToast = true
             switch authResults.credential {
             case let appleIDCredential as ASAuthorizationAppleIDCredential:
 
@@ -97,6 +105,7 @@ class AuthenticationUsecase {
                         return
                     }
                     print("signed in")
+                    self.showingIsLoadingToast = false
                     self.authenticationManager.login()
                 }
 
