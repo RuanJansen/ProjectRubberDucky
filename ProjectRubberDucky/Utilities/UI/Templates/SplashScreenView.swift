@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LaunchingView: View {
+struct SplashScreenView: View {
     @Environment(AppStyling.self) var appStyling
 
     var body: some View {

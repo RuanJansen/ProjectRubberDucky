@@ -19,17 +19,17 @@ struct RootView: View {
     var body: some View {
         Group {
             switch navigationManager.navigationState {
-            case .mainView(let mainView, let onboardingView):
+            case .main(let mainView, let onboardingView):
                 mainView
                     .sheet(isPresented: $navigationManager.showOnboardingSheet) {
                         onboardingView
                             .environment(self.appStyling)
                     }
 
-            case .authenticationView(let authenticationView):
+            case .authentication(let authenticationView):
                 authenticationView
-            case .launchingView:
-                LaunchingView()
+            case .splashScreen:
+                SplashScreenView()
             }
         }
         .task {

@@ -10,9 +10,9 @@ import SwiftUI
 import Combine
 
 enum NavigationState {
-    case mainView(AnyView, onboardingFeature: AnyView?)
-    case authenticationView(AnyView)
-    case launchingView
+    case main(AnyView, onboardingFeature: AnyView?)
+    case authentication(AnyView)
+    case splashScreen
 }
 
 @Observable
@@ -39,11 +39,14 @@ class NavigationManager {
         self.authenticationManager = authenticationManager
         self.userDefaultsManager = userDefaultsManager
         self.showOnboardingSheet = false
-        self.navigationState = .launchingView
+        self.navigationState = .splashScreen
         self.addListeners()
     }
 
     func fetchContent() async {
+        await MainActor.run {
+            self.navigationState = .splashScreen
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             self.startAppFlow()
         }
@@ -52,14 +55,14 @@ class NavigationManager {
     private func addListeners() {
         authenticationManager.$isAuthenticated.sink { [self] result in
             if result {
-                self.navigationState = .mainView(AnyView(self.mainFeature.featureView), onboardingFeature: AnyView(self.onboardingFeature.featureView))
+                self.navigationState = .main(AnyView(self.mainFeature.featureView), onboardingFeature: AnyView(self.onboardingFeature.featureView))
                 if userDefaultsManager.shouldShowOnboarding {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
                         self.showOnboardingSheet = true
                     }
                 }
             } else {
-                self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
+                self.navigationState = .authentication(AnyView(authenticationFeature.featureView))
             }
         }
         .store(in: &cancellables)
@@ -67,9 +70,9 @@ class NavigationManager {
 
     private func startAppFlow()  {
         if userDefaultsManager.isAuthenticated {
-            self.navigationState = .mainView(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
+            self.navigationState = .main(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
-            self.navigationState = .authenticationView(AnyView(authenticationFeature.featureView))
+            self.navigationState = .authentication(AnyView(authenticationFeature.featureView))
         }
     }
 }
