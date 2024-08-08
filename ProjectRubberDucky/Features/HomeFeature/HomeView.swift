@@ -304,9 +304,21 @@ struct GridContainerView: View {
                                 })
                             }
                         }
-                        Text(video.title)
-                            .multilineTextAlignment(.center)
-                            .font(.subheadline)
+                        .overlay {
+                            VStack(alignment: .leading) {
+                                Spacer()
+                                HStack {
+                                    Text(video.title)
+                                        .multilineTextAlignment(.leading)
+                                        .font(.footnote)
+                                    Spacer()
+                                }
+                                .frame(height: 55)
+                                .padding(.horizontal)
+                                .background(.ultraThinMaterial)
+                            }
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
 
                         Spacer()
 
