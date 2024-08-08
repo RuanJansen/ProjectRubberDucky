@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == HomeDataModel {
     @State var provider: Provider
@@ -160,14 +161,22 @@ struct CardView: View {
         .padding()
         .background {
             if let imageURL = video.thumbnail {
-                AsyncImage(url: imageURL, content: { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
+                KFImage(imageURL)
+                    .placeholder {
+                        Image(systemName: "wifi.slash")
 
-                }, placeholder: {
-                    Image(systemName: "wifi.slash")
-                })
+                    }
+                    .resizable()
+                    .scaledToFill()
+
+//                AsyncImage(url: imageURL, content: { image in
+//                    image
+//                        .resizable()
+//                        .scaledToFill()
+//
+//                }, placeholder: {
+//                    Image(systemName: "wifi.slash")
+//                })
             }
 
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
@@ -216,14 +225,22 @@ struct VideoDetailView: View {
                     presentVideoPlayer = true
                 } label: {
                     if let imageURL = video.thumbnail {
-                        AsyncImage(url: imageURL, content: { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                        }, placeholder: {
-                            Image(systemName: "wifi.slash")
-                        })
+                        KFImage(imageURL)
+                            .placeholder {
+                                Image(systemName: "wifi.slash")
+
+                            }
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+//                        AsyncImage(url: imageURL, content: { image in
+//                            image
+//                                .resizable()
+//                                .scaledToFill()
+//                                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+//                        }, placeholder: {
+//                            Image(systemName: "wifi.slash")
+//                        })
                         .overlay {
                             Image(systemName: "play.circle.fill")
                                 .resizable()
@@ -292,16 +309,25 @@ struct GridContainerView: View {
                             VideoDetailView(video: video)
                         } label: {
                             if let imageURL = video.thumbnail {
-                                AsyncImage(url: imageURL, content: { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 110, height: 200)
-                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                KFImage(imageURL)
+                                    .placeholder {
+                                        Image(systemName: "wifi.slash")
 
-                                }, placeholder: {
-                                    Image(systemName: "wifi.slash")
-                                })
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 110, height: 200)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                                AsyncImage(url: imageURL, content: { image in
+//                                    image
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: 110, height: 200)
+//                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//
+//                                }, placeholder: {
+//                                    Image(systemName: "wifi.slash")
+//                                })
                             }
                         }
                         .overlay {
