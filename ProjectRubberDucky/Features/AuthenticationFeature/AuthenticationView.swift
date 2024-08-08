@@ -28,6 +28,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
+                        .ignoresSafeArea(.keyboard)
                         .if(authenticationUsecase.showingInvalidEmailToast) { view in
                             view
                                 .overlay {
@@ -106,13 +107,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .scrollDisabled(true)
             .padding(.bottom)
 
-            NavigationLink {
-                createRegstraterView()
-            } label: {
-                Text("Not a member yet?")
-            }
-            .padding(.bottom)
-
             Button {
                 Task {
                     await authenticationUsecase.signIn()
@@ -130,6 +124,14 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     }
             }
             .padding(.horizontal)
+            .padding(.bottom)
+
+            NavigationLink {
+                createRegstraterView()
+            } label: {
+                Text("Not a member yet?")
+            }
+            .padding(.bottom)
 
             SignInWithAppleButton(.continue) { request in
                 authenticationUsecase.signInWithApple(onRequest: request)
@@ -138,7 +140,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }
             .signInWithAppleButtonStyle(.white)
             .frame(height: 55)
-            .padding()
+            .padding(.horizontal)
 
             Spacer()
         }
@@ -196,8 +198,10 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         RoundedRectangle(cornerRadius: 8)
                     }
             }
+            .padding(.bottom)
             .padding(.horizontal)
         }
+        .ignoresSafeArea(.keyboard)
         .navigationTitle("Register")
     }
 }

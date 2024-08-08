@@ -62,13 +62,13 @@ class HomeProvider: FeatureProvider {
                         }
                     }
 
-                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title > $1.title }))
+                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title < $1.title }))
                     await carouselManager.addCarousel(carousel)
                 }
             }
         }
 
-        let carousels = await carouselManager.getCarousels().sorted(by: {$0.title > $1.title})
+        let carousels = await carouselManager.getCarousels().sorted(by: {$0.title < $1.title})
 
         return carousels
     }
