@@ -16,19 +16,27 @@ class SettingsProvider: FeatureProvider {
 
     private var appMetaData: AppMetaData
     private var authenticationManager: AuthenticationManager
+    private let firebaseProvider: FirebaseProvider?
+
+    private var currentUser: UserDataModel?
+
     init(appMetaData: AppMetaData,
-         authenticationManager: AuthenticationManager) {
+         authenticationManager: AuthenticationManager,
+         firebaseProvider: FirebaseProvider?) {
         self.appMetaData = appMetaData
         self.authenticationManager = authenticationManager
+        self.firebaseProvider = firebaseProvider
         self.viewState = .loading
     }
 
     func fetchContent() async {
+        await updateUser()
         viewState = .presentContent(using: setupSettingsDataModel())
     }
 
     private func setupSettingsDataModel() -> SettingsDataModel {
-        SettingsDataModel(sections: setupSettingsSections(),
+        SettingsDataModel(user: currentUser,
+                          sections: setupSettingsSections(),
                           build: fetchAppBuildVersion())
     }
 
@@ -50,10 +58,14 @@ class SettingsProvider: FeatureProvider {
             return nil
         }
     }
+
+    private func updateUser() async {
+        currentUser = await firebaseProvider?.fetchUser()
+    }
 }
 
 extension SettingsProvider: LogoutProvider {
     func logOut() async {
-        authenticationManager.logOut()
+        await authenticationManager.logOut()
     }
 }

@@ -10,6 +10,7 @@ class AuthenticationUsecase {
 
     var email: String
     var password: String
+    var username: String
 
     var showingInvalidEmailToast: Bool
     var showingInvalidPasswordToast: Bool
@@ -21,6 +22,7 @@ class AuthenticationUsecase {
         self.authenticationManager = authenticationManager
         self.email = String()
         self.password = String()
+        self.username = String()
         self.showingInvalidEmailToast = false
         self.showingInvalidPasswordToast = false
         self.showingIsLoadingToast = false
@@ -31,11 +33,6 @@ class AuthenticationUsecase {
     }
 
     public func register() async {
-//        guard !email.isEmpty, !password.isEmpty else {
-//            // validate
-//            return
-//        }
-
         guard isValidEmail(email: email) else {
             self.showingInvalidEmailToast = true
 
@@ -65,6 +62,48 @@ class AuthenticationUsecase {
             showingIsLoadingToast = false
         } catch {
             // error
+            print("Register failed")
+            showingIsLoadingToast = false
+
+        }
+    }
+
+    public func signIn() async {
+//        guard !email.isEmpty, !password.isEmpty else {
+//            // validate
+//            return
+//        }
+
+        guard isValidEmail(email: email) else {
+            self.showingInvalidEmailToast = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                self.showingInvalidEmailToast = false
+            }
+
+            return
+        }
+
+        guard isValidPassword(password) else {
+            self.showingInvalidPasswordToast = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                self.showingInvalidPasswordToast = false
+            }
+
+            return
+        }
+
+        showingIsLoadingToast = true
+
+        do {
+            let returnedUserData: () = try await authenticationManager.signIn(email: email, password: password)
+            email = ""
+            password = ""
+            showingIsLoadingToast = false
+        } catch {
+            // error
+            print("Sign in failed")
             showingIsLoadingToast = false
 
         }

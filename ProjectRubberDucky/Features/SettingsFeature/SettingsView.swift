@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == SettingsDataModel {
     @State var provider: Provider
@@ -42,6 +43,38 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
     private func createContentView(using dataModel: SettingsDataModel) -> some View {
         VStack {
             Form {
+                if let user = dataModel.user {
+                    HStack(spacing: 20) {
+                        if let photoURL = user.photoURL {
+                            KFImage(photoURL)
+                                .placeholder {
+                                    Image(systemName: "person.crop.circle")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 50, height: 50)
+                                        .clipShape(Circle())
+                                }
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                        } else {
+                            Image(systemName: "person.crop.circle")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                        }
+
+                        if let displayName = user.displayName {
+                            Text(displayName)
+                        } else if let email = user.email {
+                            Text(email)
+                        } else {
+                            Text("User")
+                        }
+                    }
+                }
+
+
                 ForEach(dataModel.sections, id: \.id) { section in
                     Section {
                         ForEach(section.items, id: \.id) { item in
@@ -59,6 +92,7 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                     }
                 }
             }
+
             Spacer()
 
             Button {

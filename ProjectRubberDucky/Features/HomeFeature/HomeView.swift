@@ -168,48 +168,10 @@ struct CardView: View {
                     }
                     .resizable()
                     .scaledToFill()
-
-//                AsyncImage(url: imageURL, content: { image in
-//                    image
-//                        .resizable()
-//                        .scaledToFill()
-//
-//                }, placeholder: {
-//                    Image(systemName: "wifi.slash")
-//                })
             }
 
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
         }
-//        .onAppear {
-//            let headers = ["X-Plex-Token": PlexAuthentication.primaryTokenRuanPc]
-//
-//            // Create a custom URLSessionConfiguration
-//            let config = URLSessionConfiguration.default
-//            config.httpAdditionalHeaders = headers
-//
-//            // Create a custom URLSession with the configuration
-//            let session = URLSession(configuration: config)
-//
-//            // Create a URLRequest with the custom session
-//            if let imageUrl = video.thumbnail {
-//                var request = URLRequest(url: imageUrl)
-//                request.httpMethod = "GET"
-//
-//                // Load the image with the URLRequest
-//                session.dataTask(with: request) { data, response, error in
-//                    // Handle response if needed
-//                    if let data {
-//                        if let image = UIImage(data: data) {
-//                            self.image = image
-//                        } else {
-//                            dump(data)
-//                        }
-//                    }
-//                }
-//                .resume()
-//            }
-//        }
     }
 }
 
@@ -233,20 +195,12 @@ struct VideoDetailView: View {
                             .resizable()
                             .scaledToFill()
                             .clipShape(RoundedRectangle(cornerRadius: 25.0))
-//                        AsyncImage(url: imageURL, content: { image in
-//                            image
-//                                .resizable()
-//                                .scaledToFill()
-//                                .clipShape(RoundedRectangle(cornerRadius: 25.0))
-//                        }, placeholder: {
-//                            Image(systemName: "wifi.slash")
-//                        })
-                        .overlay {
-                            Image(systemName: "play.circle.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundStyle(Color.white.opacity(0.5))
-                        }
+                            .overlay {
+                                Image(systemName: "play.circle.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(Color.white.opacity(0.5))
+                            }
                     }
                 }
                 .padding(.horizontal)
@@ -295,10 +249,10 @@ struct GridContainerView: View {
     var videos: [VideoDataModel]
 
     let columns: [GridItem] = [
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
 
     var body: some View {
         ScrollView {
@@ -318,16 +272,6 @@ struct GridContainerView: View {
                                     .scaledToFill()
                                     .frame(width: 110, height: 200)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
-//                                AsyncImage(url: imageURL, content: { image in
-//                                    image
-//                                        .resizable()
-//                                        .scaledToFill()
-//                                        .frame(width: 110, height: 200)
-//                                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//
-//                                }, placeholder: {
-//                                    Image(systemName: "wifi.slash")
-//                                })
                             }
                         }
                         .overlay {
@@ -347,7 +291,6 @@ struct GridContainerView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
 
                         Spacer()
-
                     }
                 }
             }

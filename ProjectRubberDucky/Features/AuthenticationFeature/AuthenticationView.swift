@@ -47,8 +47,8 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
                             }
+                        }
                     }
-                }
             case .error:
                 EmptyView()
             case .none:
@@ -106,9 +106,16 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .scrollDisabled(true)
             .padding(.bottom)
 
+            NavigationLink {
+                createRegstraterView()
+            } label: {
+                Text("Not a member yet?")
+            }
+            .padding(.bottom)
+
             Button {
                 Task {
-                    await authenticationUsecase.register()
+                    await authenticationUsecase.signIn()
                 }
             } label: {
                 Text("Sign in with Email")
@@ -136,5 +143,61 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             Spacer()
         }
         .navigationTitle(dataModel.title)
+    }
+
+    @ViewBuilder
+    private func createRegstraterView() -> some View {
+        VStack {
+            Form {
+                Section {
+                    TextField("Email", text: $authenticationUsecase.email)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                } header: {
+                    Text("Email")
+                }
+
+                Section {
+                    SecureField("Password", text: $authenticationUsecase.password)
+                } header: {
+                    Text("Password")
+                }
+
+//                Section {
+//                    SecureField("Password", text: $authenticationUsecase.password)
+//                } header: {
+//                    Text("Re-enter password")
+//                }
+
+//                Section {
+//                    TextField("Username", text: $authenticationUsecase.username)
+//                        .autocorrectionDisabled()
+//                        .textInputAutocapitalization(.never)
+//                } header: {
+//                    Text("About you")
+//                }
+
+            }
+            .padding(.bottom)
+
+            Button {
+                Task {
+                    await authenticationUsecase.register()
+                }
+            } label: {
+                Text("Register")
+                    .padding(.vertical)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 55)
+                    .foregroundStyle(.black)
+                    .fontWeight(.semibold)
+                    .font(.title2)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                    }
+            }
+            .padding(.horizontal)
+        }
+        .navigationTitle("Register")
     }
 }

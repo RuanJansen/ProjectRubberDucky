@@ -47,8 +47,26 @@ class AuthenticationManager: ObservableObject {
         userDefaultsManager.isAuthenticated = isAuthenticated
     }
 
-    public func logOut() {
-        isAuthenticated = false
+    public func signIn(email: String, password: String) async throws {
+        do {
+            let newUser = try await firebaseAuthenticationManager.signIn(email: email, password: password)
+            isAuthenticated = true
+        } catch {
+            login()
+        }
+
         userDefaultsManager.isAuthenticated = isAuthenticated
+    }
+
+    public func logOut() async {
+        do {
+            try await firebaseAuthenticationManager.logOut()
+            isAuthenticated = false
+            userDefaultsManager.isAuthenticated = isAuthenticated
+        } catch {
+            isAuthenticated = true
+            userDefaultsManager.isAuthenticated = isAuthenticated
+            return
+        }
     }
 }
