@@ -43,48 +43,43 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
     private func createContentView(using dataModel: SettingsDataModel) -> some View {
         VStack {
             Form {
-                if let user = dataModel.user {
-                    HStack(spacing: 20) {
-                        if let photoURL = user.photoURL {
-                            KFImage(photoURL)
-                                .placeholder {
-                                    Image(systemName: "person.crop.circle")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 50, height: 50)
-                                        .clipShape(Circle())
-                                }
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                        } else {
-                            Image(systemName: "person.crop.circle")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                        }
+                if let account = dataModel.account {
+                    RDButton(action: account.action) {
+                        HStack(spacing: 20) {
+                            if let photoURL = account.imageURL {
+                                KFImage(photoURL)
+                                    .placeholder {
+                                        Image(systemName: "person.crop.circle")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(Circle())
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                            } else {
+                                Image(systemName: "person.crop.circle")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                            }
 
-                        if let displayName = user.displayName {
-                            Text(displayName)
-                        } else if let email = user.email {
-                            Text(email)
-                        } else {
-                            Text("User")
+                            if let title = account.title {
+                                Text(title)
+                            }
                         }
                     }
+                    .foregroundStyle(.primary)
                 }
 
 
                 ForEach(dataModel.sections, id: \.id) { section in
                     Section {
                         ForEach(section.items, id: \.id) { item in
-                            if let buttonAction = item.buttonAction {
-                                RDButton(action: buttonAction, label: { Text(item.title) })
-                                    .foregroundStyle(item.fontColor)
-                            } else {
-                                Text(item.title)
-                                    .foregroundStyle(item.fontColor)
-                            }
+                            RDButton(action: item.buttonAction, label: { Text(item.title) })
+                                .foregroundStyle(item.fontColor)
+
                         }
                     } header: {
                         if let header = section.header{

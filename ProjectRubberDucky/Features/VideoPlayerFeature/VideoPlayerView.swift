@@ -68,7 +68,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                         }
                         .modifier(CarouselButtonModifier())
 
-                        Text(video.title ?? "Video title")
+                        Text(video.title)
                             .font(.title3)
                     }
                     .fullScreenCover(item: $selectedVideo) { video in
@@ -165,15 +165,11 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-        if let url = video.url {
-            VideoPlayer(playerController: AVPlayerController(link: url,
+            VideoPlayer(playerController: AVPlayerController(link: video.url,
                                                              title: video.title,
                                                              publisher: video.id.uuidString,
-                                                             thumbnail: video.thumbnail!))
+                                                             thumbnail: video.thumbnail))
             .ignoresSafeArea()
-        } else {
-            Image(systemName: "wifi.slash")
-        }
     }
 }
 

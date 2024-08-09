@@ -136,8 +136,6 @@ class AuthenticationUsecase {
                     self.showingIsLoadingToast = false
                     self.authenticationManager.login()
                 }
-
-                print("\(String(describing: Auth.auth().currentUser?.uid))")
             default:
                 break
 

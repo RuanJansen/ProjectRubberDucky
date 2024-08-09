@@ -13,6 +13,7 @@ struct RDButton<Label> : View where Label : View{
 
     @State var presentSheet: Bool = false
     @State var navigate: Bool = false
+    @State var fullScreenCover: Bool = false
     @State var destination: AnyView?
 
     @State var alertModel: RDAlertModel?
@@ -26,12 +27,17 @@ struct RDButton<Label> : View where Label : View{
             case .sheet(let view):
                 destination = view
                 presentSheet = true
-            case .pushNavigation(let view):
+            case .navigatate(let view, let _):
                 destination = view
                 navigate = true
             case .alert(let model):
                 alertModel = model
                 showAlert = true
+            case .fullScreenCover(let view):
+                destination = view
+                fullScreenCover = true
+            case .none: break
+                //
             }
         } label: {
             switch action {
@@ -39,14 +45,22 @@ struct RDButton<Label> : View where Label : View{
                 label()
             case .sheet(let anyView):
                 label()
-            case .pushNavigation(let anyView):
-                HStack {
+            case .navigatate(let _, let hideCevron):
+                if hideCevron {
                     label()
-                    Spacer()
-                    Image(systemName: "chevron.forward")
-                        .foregroundStyle(.tertiary)
+                } else {
+                    HStack {
+                        label()
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             case .alert(let model):
+                label()
+            case .fullScreenCover(_):
+                label()
+            case .none:
                 label()
             }
         }
@@ -56,6 +70,11 @@ struct RDButton<Label> : View where Label : View{
             }
         }
         .navigationDestination(isPresented: $navigate) {
+            if let destination {
+                destination
+            }
+        }
+        .fullScreenCover(isPresented: $fullScreenCover) {
             if let destination {
                 destination
             }
@@ -93,8 +112,10 @@ struct RDButton<Label> : View where Label : View{
 enum RDButtonAction {
     case action(() -> Void)
     case sheet(AnyView)
-    case pushNavigation(AnyView)
+    case navigatate(AnyView, hideCevron: Bool = false)
+    case fullScreenCover(AnyView)
     case alert(RDAlertModel)
+    case none
 }
 
 struct RDAlertModel {

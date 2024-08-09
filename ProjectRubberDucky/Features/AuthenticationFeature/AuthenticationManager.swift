@@ -69,4 +69,14 @@ class AuthenticationManager: ObservableObject {
             return
         }
     }
+
+    public func deleteAccount() async {
+        do {
+            try await firebaseAuthenticationManager.deleteAccount()
+            isAuthenticated = false
+            userDefaultsManager.isAuthenticated = isAuthenticated
+        } catch {
+
+        }
+    }
 }

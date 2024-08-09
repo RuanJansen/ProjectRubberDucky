@@ -7,6 +7,7 @@
 
 import Observation
 import SwiftUI
+import Kingfisher
 
 @Observable
 class SettingsProvider: FeatureProvider {
@@ -17,15 +18,17 @@ class SettingsProvider: FeatureProvider {
     private var appMetaData: AppMetaData
     private var authenticationManager: AuthenticationManager
     private let firebaseProvider: FirebaseProvider?
-
+    private let accountView: any FeatureView
     private var currentUser: UserDataModel?
 
     init(appMetaData: AppMetaData,
          authenticationManager: AuthenticationManager,
-         firebaseProvider: FirebaseProvider?) {
+         firebaseProvider: FirebaseProvider?,
+         accountView: any FeatureView) {
         self.appMetaData = appMetaData
         self.authenticationManager = authenticationManager
         self.firebaseProvider = firebaseProvider
+        self.accountView = accountView
         self.viewState = .loading
     }
 
@@ -35,14 +38,24 @@ class SettingsProvider: FeatureProvider {
     }
 
     private func setupSettingsDataModel() -> SettingsDataModel {
-        SettingsDataModel(user: currentUser,
-                          sections: [], 
+        SettingsDataModel(account: setupSettingsAccount(),
+                          sections: [],
                           logOut: setupSettingsLogOut(),
                           build: fetchAppBuildVersion())
     }
 
-    private func setupSettingsLogOut() -> SettingsLogOutDataModel {
-        SettingsLogOutDataModel(title: "Log out",
+    private func setupSettingsAccount() -> SettingsAccountDataModel? {
+        guard let user = currentUser else {
+            return nil
+        }
+
+        return SettingsAccountDataModel(imageURL: user.photoURL,
+                                        title: (user.displayName ?? user.email) ?? "User",
+                                        action: .navigatate(AnyView(accountView), hideCevron: false))
+    }
+
+    private func setupSettingsLogOut() -> LogOutDataModel {
+        LogOutDataModel(title: "Log out",
                                 action: .alert(RDAlertModel(title: "Log out",
                                                             message: "Are you sure you would like to log out?", buttons: [
                                                                 RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel),
@@ -53,13 +66,13 @@ class SettingsProvider: FeatureProvider {
                                                                 }, role: .destructive)])))
     }
 
-    private func setupSettingsSections() -> [SettingsSection] {
-        [SettingsSection(header: "Header",
+    private func setupSettingsSections() -> [SectionDataModel] {
+        [SectionDataModel(header: "Header",
                          items: [
-                            SettingsSectionItem(title: "pushNavigation", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
-                            SettingsSectionItem(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
-                            SettingsSectionItem(title: "action", buttonAction: .action { print("pressed") }),
-                            SettingsSectionItem(title: "none")
+                            SectionItemDataModel(title: "pushNavigation", buttonAction: .navigatate(AnyView(ConstructionView()))),
+                            SectionItemDataModel(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
+                            SectionItemDataModel(title: "action", buttonAction: .action { print("pressed") }),
+                            SectionItemDataModel(title: "none", buttonAction: .none)
                          ])
         ]
     }

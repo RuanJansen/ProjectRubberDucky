@@ -68,6 +68,10 @@ class FirebaseAuthenticationManager {
     func logOut() async throws {
         try Auth.auth().signOut()
     }
+
+    public func deleteAccount() async throws {
+        try await Auth.auth().currentUser?.delete()
+    }
 }
 
 extension FirebaseAuthenticationManager: FirebaseProvider {

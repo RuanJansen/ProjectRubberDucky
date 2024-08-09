@@ -8,38 +8,50 @@
 import SwiftUI
 
 struct SettingsDataModel {
-    let user: UserDataModel?
-    let sections: [SettingsSection]
-    let logOut: SettingsLogOutDataModel
+    let account: SettingsAccountDataModel?
+    let sections: [SectionDataModel]
+    let logOut: LogOutDataModel
     let build: String?
 
-    init(user: UserDataModel?, sections: [SettingsSection], logOut: SettingsLogOutDataModel, build: String?) {
-        self.user = user
+    init(account: SettingsAccountDataModel?, sections: [SectionDataModel], logOut: LogOutDataModel, build: String?) {
+        self.account = account
         self.sections = sections
         self.logOut = logOut
         self.build = build
     }
 }
 
-struct SettingsSection: Identifiable {
+struct SettingsAccountDataModel {
+    let imageURL: URL?
+    let title: String?
+    let action: RDButtonAction
+
+    init(imageURL: URL?, title: String?, action: RDButtonAction) {
+        self.imageURL = imageURL
+        self.title = title
+        self.action = action
+    }
+}
+
+struct SectionDataModel: Identifiable {
     let id: UUID
     let header: String?
-    let items: [SettingsSectionItem]
+    let items: [SectionItemDataModel]
 
-    init(header: String? = nil, items: [SettingsSectionItem]) {
+    init(header: String? = nil, items: [SectionItemDataModel]) {
         self.id = UUID()
         self.header = header
         self.items = items
     }
 }
 
-struct SettingsSectionItem: Identifiable {
+struct SectionItemDataModel: Identifiable {
     let id: UUID
     let title: String
-    let buttonAction: RDButtonAction?
+    let buttonAction: RDButtonAction
     let fontColor: Color
 
-    init(title: String, buttonAction: RDButtonAction? = nil, fontColor: Color = .primary) {
+    init(title: String, buttonAction: RDButtonAction, fontColor: Color = .primary) {
         self.id = UUID()
         self.title = title
         self.buttonAction = buttonAction
@@ -47,7 +59,7 @@ struct SettingsSectionItem: Identifiable {
     }
 }
 
-struct SettingsLogOutDataModel {
+struct LogOutDataModel {
     let title: String
     let action: RDButtonAction
 }

@@ -72,11 +72,10 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
         .overlay {
             if let searchResults = dataModel.searchResults {
                 List(searchResults, id: \.id) { video in
-                    NavigationLink {
-                        VideoDetailView(video: video)
-                    } label: {
+                    RDButton(action: .navigatate(AnyView(VideoDetailView(video: video)))) {
                         Text(video.title)
                     }
+                    .foregroundStyle(.primary)
                 }
             }
         }
@@ -84,9 +83,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
 
     @ViewBuilder
     private func createCarouselView(using carousel: CarouselDataModel) -> some View {
-        NavigationLink {
-            GridContainerView(title: carousel.title, videos: carousel.videos)
-        } label: {
+        RDButton(action: .navigatate(AnyView(GridContainerView(title: carousel.title, videos: carousel.videos)), hideCevron: true)) {
             Label(carousel.title, systemImage: "chevron.right")
                 .environment(\.layoutDirection, .rightToLeft)
                 .font(.title3)
@@ -97,9 +94,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             HStack {
                 ForEach(carousel.videos, id: \.id) { video in
                     VStack {
-                        NavigationLink {
-                            VideoDetailView(video: video)
-                        } label: {
+                        RDButton(action: .navigatate(AnyView(VideoDetailView(video: video)), hideCevron: true)) {
                             CardView(video: video)
                         }
                         .modifier(CarouselButtonModifier())
@@ -160,15 +155,14 @@ struct CardView: View {
         }
         .padding()
         .background {
-            if let imageURL = video.thumbnail {
-                KFImage(imageURL)
+                KFImage(video.thumbnail)
                     .placeholder {
                         Image(systemName: "wifi.slash")
 
                     }
                     .resizable()
                     .scaledToFill()
-            }
+
 
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
         }
@@ -177,17 +171,11 @@ struct CardView: View {
 
 struct VideoDetailView: View {
     var video: VideoDataModel
-
-    @State var presentVideoPlayer: Bool = false
-
     var body: some View {
         VStack {
             ScrollView {
-                Button {
-                    presentVideoPlayer = true
-                } label: {
-                    if let imageURL = video.thumbnail {
-                        KFImage(imageURL)
+                RDButton(action: .fullScreenCover(AnyView(createVideoPlayerView(with: video)))) {
+                        KFImage(video.thumbnail)
                             .placeholder {
                                 Image(systemName: "wifi.slash")
 
@@ -201,14 +189,12 @@ struct VideoDetailView: View {
                                     .frame(width: 25, height: 25)
                                     .foregroundStyle(Color.white.opacity(0.5))
                             }
-                    }
+
                 }
                 .padding(.horizontal)
 
                 HStack {
-                    Button {
-                        presentVideoPlayer.toggle()
-                    } label: {
+                    RDButton(action: .fullScreenCover(AnyView(createVideoPlayerView(with: video)))) {
                         Label("Watch Trailer", systemImage: "popcorn.fill")
                     }
                     Spacer()
@@ -224,23 +210,15 @@ struct VideoDetailView: View {
 
         }
         .navigationTitle(video.title)
-        .fullScreenCover(isPresented: $presentVideoPlayer) {
-            createVideoPlayerView(with: video)
-        }
-
     }
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-        if let url = video.url {
-            VideoPlayer(playerController: AVPlayerController(link: url,
+            VideoPlayer(playerController: AVPlayerController(link: video.url,
                                                              title: video.title,
                                                              publisher: video.id.uuidString,
-                                                             thumbnail: video.thumbnail!))
+                                                             thumbnail: video.thumbnail))
             .ignoresSafeArea()
-        } else {
-            Image(systemName: "wifi.slash")
-        }
     }
 }
 
@@ -262,8 +240,7 @@ struct GridContainerView: View {
                         NavigationLink {
                             VideoDetailView(video: video)
                         } label: {
-                            if let imageURL = video.thumbnail {
-                                KFImage(imageURL)
+                                KFImage(video.thumbnail)
                                     .placeholder {
                                         Image(systemName: "wifi.slash")
 
@@ -272,7 +249,7 @@ struct GridContainerView: View {
                                     .scaledToFill()
                                     .frame(width: 110, height: 200)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
+
                         }
                         .overlay {
                             VStack(alignment: .leading) {

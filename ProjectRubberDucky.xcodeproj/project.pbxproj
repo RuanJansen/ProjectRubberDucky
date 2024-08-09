@@ -36,6 +36,12 @@
 		F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3B2C660F4F00C052BB /* RegisterContent.json */; };
 		F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */; };
 		F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */; };
+		F3342D432C664F3000C052BB /* AccountDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D422C664F3000C052BB /* AccountDependency.swift */; };
+		F3342D452C664F5300C052BB /* AccountComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D442C664F5300C052BB /* AccountComponent.swift */; };
+		F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D462C66501B00C052BB /* AccountFeature.swift */; };
+		F3342D492C66505B00C052BB /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D482C66505B00C052BB /* AccountView.swift */; };
+		F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4A2C66509B00C052BB /* AccountDataModel.swift */; };
+		F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4C2C66514100C052BB /* AccountProvider.swift */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -142,6 +148,12 @@
 		F3342D3B2C660F4F00C052BB /* RegisterContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RegisterContent.json; sourceTree = "<group>"; };
 		F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFetcher.swift; sourceTree = "<group>"; };
 		F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationContentProvider.swift; sourceTree = "<group>"; };
+		F3342D422C664F3000C052BB /* AccountDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDependency.swift; sourceTree = "<group>"; };
+		F3342D442C664F5300C052BB /* AccountComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComponent.swift; sourceTree = "<group>"; };
+		F3342D462C66501B00C052BB /* AccountFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFeature.swift; sourceTree = "<group>"; };
+		F3342D482C66505B00C052BB /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		F3342D4A2C66509B00C052BB /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = "<group>"; };
+		F3342D4C2C66514100C052BB /* AccountProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProvider.swift; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
 		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -355,6 +367,19 @@
 			path = EditableContent;
 			sourceTree = "<group>";
 		};
+		F3342D412C664F0700C052BB /* AccountFeature */ = {
+			isa = PBXGroup;
+			children = (
+				F3342D422C664F3000C052BB /* AccountDependency.swift */,
+				F3342D442C664F5300C052BB /* AccountComponent.swift */,
+				F3342D462C66501B00C052BB /* AccountFeature.swift */,
+				F3342D482C66505B00C052BB /* AccountView.swift */,
+				F3342D4A2C66509B00C052BB /* AccountDataModel.swift */,
+				F3342D4C2C66514100C052BB /* AccountProvider.swift */,
+			);
+			path = AccountFeature;
+			sourceTree = "<group>";
+		};
 		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +566,7 @@
 		F3DB67832C28A38100F53642 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F3342D412C664F0700C052BB /* AccountFeature */,
 				F306A4052C3A5B7D00246390 /* AuthenticationFeature */,
 				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
 				F33B7E052C5D6CD600F1F49F /* HomeFeature */,
@@ -772,11 +798,13 @@
 				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */,
+				F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */,
 				F3342D2E2C63936300C052BB /* NavigationManager.swift in Sources */,
 				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
 				F36AD4E42C61336800774C49 /* SubscribedView.swift in Sources */,
 				F3F13AEF2C4979CB008D6841 /* UserCodableModel.swift in Sources */,
 				F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */,
+				F3342D432C664F3000C052BB /* AccountDependency.swift in Sources */,
 				F3DB67B52C294FC600F53642 /* PexelGateway.swift in Sources */,
 				F3DB67B72C29510F00F53642 /* ServiceFetcher.swift in Sources */,
 				F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */,
@@ -788,6 +816,7 @@
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F3F13AF82C537CE7008D6841 /* OnboardingProvider.swift in Sources */,
 				F306A4142C3A5FE500246390 /* AuthenticationDependency.swift in Sources */,
+				F3342D492C66505B00C052BB /* AccountView.swift in Sources */,
 				F3342D322C63DCC100C052BB /* LogoutUsecase.swift in Sources */,
 				F306A4182C3A60D000246390 /* AuthenticationDataModel.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
@@ -804,11 +833,13 @@
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F32045A82C6203E200A2DFA7 /* SplashScreenView.swift in Sources */,
+				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
 				F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */,
+				F3342D452C664F5300C052BB /* AccountComponent.swift in Sources */,
 				F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
@@ -828,6 +859,7 @@
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,
+				F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */,
 				F3342D382C660B5D00C052BB /* LoginContent.json in Sources */,
 				F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,

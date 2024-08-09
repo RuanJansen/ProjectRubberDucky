@@ -34,6 +34,19 @@ private class OnboardingDependencyc2e150944dc3c9e77b26Provider: OnboardingDepend
 private func factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return OnboardingDependencyc2e150944dc3c9e77b26Provider(rootComponent: parent1(component) as! RootComponent)
 }
+private class AccountDependency38402058fc99315b7606Provider: AccountDependency {
+    var accountProvider: any FeatureProvider {
+        return rootComponent.accountProvider
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->AccountComponent
+private func factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return AccountDependency38402058fc99315b7606Provider(rootComponent: parent1(component) as! RootComponent)
+}
 private class VideoPlayerDependency3bd39f7301b443c46ea0Provider: VideoPlayerDependency {
     var videoPlayerFeatureProvider: any FeatureProvider {
         return rootComponent.videoPlayerFeatureProvider
@@ -167,6 +180,11 @@ extension OnboardingComponent: Registration {
         keyPathToName[\OnboardingDependency.userDefaultsManager] = "userDefaultsManager-UserDefaultsManager"
     }
 }
+extension AccountComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\AccountDependency.accountProvider] = "accountProvider-any FeatureProvider"
+    }
+}
 extension VideoPlayerComponent: Registration {
     public func registerItems() {
         keyPathToName[\VideoPlayerDependency.videoPlayerFeatureProvider] = "videoPlayerFeatureProvider-any FeatureProvider"
@@ -218,6 +236,8 @@ extension RootComponent: Registration {
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
+        localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
+        localTable["accountProvider-any FeatureProvider"] = { [unowned self] in self.accountProvider as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
@@ -230,7 +250,7 @@ extension RootComponent: Registration {
         localTable["logoutUsecase-LogoutUsecase"] = { [unowned self] in self.logoutUsecase as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
-        localTable["authenticationContentProvider-ContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
+        localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
         localTable["firebaseAuthenticationManager-FirebaseAuthenticationManager"] = { [unowned self] in self.firebaseAuthenticationManager as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
@@ -263,6 +283,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent->OnboardingComponent", factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->AccountComponent", factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SubscribedComponent", factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e)
