@@ -29,18 +29,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                 NavigationStack {
                     createContentView(using: dataModel)
                         .ignoresSafeArea(.keyboard)
-                        .if(authenticationUsecase.showingInvalidEmailToast) { view in
-                            view
-                                .overlay {
-                                    createToats(title: "Invalid Email", message: nil, image: Image(systemName: "exclamationmark.triangle"))
-                                    }
-                        }
-                        .if(authenticationUsecase.showingInvalidPasswordToast) { view in
-                            view
-                                .overlay {
-                                    createToats(title: "Invalid Password", message: "Your password: \n\u{2022} Must contain at least one letter.\n\u{2022} Must contain at least one digit.\n\u{2022} Must contain at least 8 characters long.\n\u{2022} Cannot contain any special characters.", image: Image(systemName: "exclamationmark.triangle"))
-                                }
-                        }
                         .if(authenticationUsecase.showingIsLoadingToast) { view in
                             view.overlay {
                                 ProgressView()
@@ -49,6 +37,34 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                                 .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
                             }
                         }
+                        .alert(authenticationUsecase.fetchInvalidEmailRDAlertModel().title,
+                               isPresented: $authenticationUsecase.showingInvalidEmail, actions: {
+                            ForEach(authenticationUsecase.fetchInvalidEmailRDAlertModel().buttons, id: \.id) { button in
+                                    Button(role: button.role) {
+                                        button.action()
+                                    } label: {
+                                        Text(button.title)
+                                    }
+                                }
+                        }, message: {
+                            if let message = authenticationUsecase.fetchInvalidEmailRDAlertModel().message {
+                                Text(message)
+                            }
+                        })
+                        .alert(authenticationUsecase.fetchInvalidPasswordRDAlertModel().title,
+                               isPresented: $authenticationUsecase.showingInvalidPassword, actions: {
+                            ForEach(authenticationUsecase.fetchInvalidPasswordRDAlertModel().buttons, id: \.id) { button in
+                                    Button(role: button.role) {
+                                        button.action()
+                                    } label: {
+                                        Text(button.title)
+                                    }
+                                }
+                        }, message: {
+                            if let message = authenticationUsecase.fetchInvalidPasswordRDAlertModel().message {
+                                Text(message)
+                            }
+                        })
                     }
             case .error:
                 EmptyView()

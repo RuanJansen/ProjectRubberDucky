@@ -12,8 +12,8 @@ class AuthenticationUsecase {
     var password: String
     var username: String
 
-    var showingInvalidEmailToast: Bool
-    var showingInvalidPasswordToast: Bool
+    var showingInvalidEmail: Bool
+    var showingInvalidPassword: Bool
     var showingIsLoadingToast: Bool
 
     var currentNonce: String?
@@ -23,8 +23,8 @@ class AuthenticationUsecase {
         self.email = String()
         self.password = String()
         self.username = String()
-        self.showingInvalidEmailToast = false
-        self.showingInvalidPasswordToast = false
+        self.showingInvalidEmail = false
+        self.showingInvalidPassword = false
         self.showingIsLoadingToast = false
     }
 
@@ -34,20 +34,20 @@ class AuthenticationUsecase {
 
     public func register() async {
         guard isValidEmail(email: email) else {
-            self.showingInvalidEmailToast = true
+            self.showingInvalidEmail = true
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidEmailToast = false
+                self.showingInvalidEmail = false
             }
 
             return
         }
 
         guard isValidPassword(password) else {
-            self.showingInvalidPasswordToast = true
+            self.showingInvalidPassword = true
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidPasswordToast = false
+                self.showingInvalidPassword = false
             }
 
             return
@@ -75,22 +75,12 @@ class AuthenticationUsecase {
 //        }
 
         guard isValidEmail(email: email) else {
-            self.showingInvalidEmailToast = true
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidEmailToast = false
-            }
-
+            self.showingInvalidEmail = true
             return
         }
 
         guard isValidPassword(password) else {
-            self.showingInvalidPasswordToast = true
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidPasswordToast = false
-            }
-
+            self.showingInvalidPassword = true
             return
         }
 
@@ -98,8 +88,7 @@ class AuthenticationUsecase {
 
         do {
             let returnedUserData: () = try await authenticationManager.signIn(email: email, password: password)
-            email = ""
-            password = ""
+            password = String()
             showingIsLoadingToast = false
         } catch {
             // error
@@ -173,6 +162,18 @@ class AuthenticationUsecase {
 //        The password must contain at least one digit.
 //        The password must be at least 8 characters long.
 //        The password can only contain letters and digits (no special characters).
+    }
+
+    func fetchInvalidEmailRDAlertModel() -> RDAlertModel {
+        RDAlertModel(title: "Invalid Email",
+                     message: "Please enter a valid email address.",
+                     buttons: [RDAlertButtonModel(title: "Okay", action: {})])
+    }
+
+    func fetchInvalidPasswordRDAlertModel() -> RDAlertModel {
+        RDAlertModel(title: "Invalid Password",
+                     message: "Make sure your password contains at least one letter, at least one digit, is at least 8 characters long and does not contain any special characters.",
+                     buttons: [RDAlertButtonModel(title: "Okay", action: {})])
     }
 }
 

@@ -60,16 +60,33 @@ struct RDButton<Label> : View where Label : View{
                 destination
             }
         }
-        .alert(isPresented: $showAlert) {
-            let alert = alertModel!
+        .alert(alertModel?.title ?? "",
+               isPresented: $showAlert, actions: {
+            if let buttons = alertModel?.buttons {
+                ForEach(buttons, id: \.id) { button in
+                    Button(role: button.role) {
+                        button.action()
+                    } label: {
+                        Text(button.title)
+                    }
+                }
+            }
+        }, message: {
+            if let message = alertModel?.message {
+                Text(message)
+            }
+        })
 
-            let title: Text = Text(alert.title)
-            let message: Text? = alert.message != nil ? Text(alert.message!) : nil
-            let primaryButton: Alert.Button = .default(Text(alert.primaryButtonTitle), action: alert.primaryAction)
-            let secondaryButton: Alert.Button = .cancel(Text(alert.secondaryButtonTitle), action: alert.secondaryAction)
-
-            return Alert(title: title, message: message, primaryButton: primaryButton, secondaryButton: secondaryButton)
-        }
+//        .alert(isPresented: $showAlert) {
+//            let alert = alertModel!
+//
+//            let title: Text = Text(alert.title)
+//            let message: Text? = alert.message != nil ? Text(alert.message!) : nil
+//            let primaryButton: Alert.Button = .default(Text(alert.primaryButtonTitle), action: alert.primaryAction)
+//            let secondaryButton: Alert.Button = .cancel(Text(alert.secondaryButtonTitle), action: alert.secondaryAction)
+//
+//            return Alert(title: title, message: message, primaryButton: primaryButton, secondaryButton: secondaryButton)
+//        }
     }
 }
 
@@ -83,9 +100,20 @@ enum RDButtonAction {
 struct RDAlertModel {
     let title: String
     let message: String?
-    let primaryButtonTitle: String
-    let secondaryButtonTitle: String
-    let primaryAction: () -> Void
-    let secondaryAction: (() -> Void)
+    let buttons: [RDAlertButtonModel]
+}
+
+struct RDAlertButtonModel {
+    let id: UUID
+    let title: String
+    let action: () -> Void
+    let role: ButtonRole?
+
+    init(title: String, action: @escaping () -> Void, role: ButtonRole? = nil) {
+        self.id = UUID()
+        self.title = title
+        self.action = action
+        self.role = role
+    }
 }
 
