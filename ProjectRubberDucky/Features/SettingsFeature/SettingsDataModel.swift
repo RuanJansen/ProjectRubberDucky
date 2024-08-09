@@ -10,11 +10,13 @@ import SwiftUI
 struct SettingsDataModel {
     let user: UserDataModel?
     let sections: [SettingsSection]
+    let logOut: SettingsLogOutDataModel
     let build: String?
 
-    init(user: UserDataModel?, sections: [SettingsSection], build: String?) {
+    init(user: UserDataModel?, sections: [SettingsSection], logOut: SettingsLogOutDataModel, build: String?) {
         self.user = user
         self.sections = sections
+        self.logOut = logOut
         self.build = build
     }
 }
@@ -45,12 +47,7 @@ struct SettingsSectionItem: Identifiable {
     }
 }
 
-enum RDButtonAction {
-    case action(Void)
-    case sheet(AnyView)
-    case pushNavigation(AnyView)
-    case alert(title: String,
-               message: String,
-               primaryAction: Void,
-               secondaryAction: Void? = nil)
+struct SettingsLogOutDataModel {
+    let title: String
+    let action: RDButtonAction
 }

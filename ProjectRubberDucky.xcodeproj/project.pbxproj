@@ -19,7 +19,7 @@
 		F306A41A2C3A64CA00246390 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4192C3A64CA00246390 /* AuthenticationManager.swift */; };
 		F306A41D2C3A713E00246390 /* AuthenticationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */; };
 		F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4202C416EB100246390 /* SearchUsecase.swift */; };
-		F32045A62C616DD400A2DFA7 /* RDButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A52C616DD400A2DFA7 /* RDButtonView.swift */; };
+		F32045A62C616DD400A2DFA7 /* RDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A52C616DD400A2DFA7 /* RDButton.swift */; };
 		F32045A82C6203E200A2DFA7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32045A72C6203E200A2DFA7 /* SplashScreenView.swift */; };
 		F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */; };
 		F32045AE2C6271BE00A2DFA7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F32045AD2C6271BE00A2DFA7 /* FirebaseAuth */; };
@@ -127,7 +127,7 @@
 		F306A4192C3A64CA00246390 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUsecase.swift; sourceTree = "<group>"; };
 		F306A4202C416EB100246390 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
-		F32045A52C616DD400A2DFA7 /* RDButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDButtonView.swift; sourceTree = "<group>"; };
+		F32045A52C616DD400A2DFA7 /* RDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDButton.swift; sourceTree = "<group>"; };
 		F32045A72C6203E200A2DFA7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRubberDucky.entitlements; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 			children = (
 				F36AD4FF2C613DC700774C49 /* ErrorView.swift */,
 				F36AD5012C613E1400774C49 /* ConstructionView.swift */,
-				F32045A52C616DD400A2DFA7 /* RDButtonView.swift */,
+				F32045A52C616DD400A2DFA7 /* RDButton.swift */,
 				F32045A72C6203E200A2DFA7 /* SplashScreenView.swift */,
 			);
 			path = Templates;
@@ -824,7 +824,7 @@
 				F36AD5052C615FC700774C49 /* AppMetaData.swift in Sources */,
 				F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */,
 				F36AD4F42C613A6A00774C49 /* SettingsDependency.swift in Sources */,
-				F32045A62C616DD400A2DFA7 /* RDButtonView.swift in Sources */,
+				F32045A62C616DD400A2DFA7 /* RDButton.swift in Sources */,
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,

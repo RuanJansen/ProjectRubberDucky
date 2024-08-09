@@ -36,16 +36,35 @@ class SettingsProvider: FeatureProvider {
 
     private func setupSettingsDataModel() -> SettingsDataModel {
         SettingsDataModel(user: currentUser,
-                          sections: setupSettingsSections(),
+                          sections: [], 
+                          logOut: setupSettingsLogOut(),
                           build: fetchAppBuildVersion())
+    }
+
+    private func setupSettingsLogOut() -> SettingsLogOutDataModel {
+        SettingsLogOutDataModel(title: "Log out",
+                                action: .alert(RDAlertModel(title: "Log out",
+                                                            message: "Are you sure you would like to log out?",
+                                                            primaryButtonTitle: "Log Out",
+                                                            secondaryButtonTitle: "Cancel",
+                                                            primaryAction: { Task {
+            await self.logOut()
+        } },
+                                                            secondaryAction: {})))
     }
 
     private func setupSettingsSections() -> [SettingsSection] {
         [SettingsSection(header: "Header",
                          items: [
-                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
-                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
-                            SettingsSectionItem(title: "something", buttonAction: .pushNavigation(AnyView(ConstructionView())))
+                            SettingsSectionItem(title: "pushNavigation", buttonAction: .pushNavigation(AnyView(ConstructionView()))),
+                            SettingsSectionItem(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
+                            SettingsSectionItem(title: "action", buttonAction: .action { print("pressed") }),
+                            SettingsSectionItem(title: "alert", buttonAction: .alert(RDAlertModel(title: "Alert",
+                                                                                                  message: "Message!@",
+                                                                                                  primaryButtonTitle: "Okay", secondaryButtonTitle: "Cancel",
+                                                                                                  primaryAction: { print("popup action") },
+                                                                                                  secondaryAction: { print("popup cancel") }))),
+                            SettingsSectionItem(title: "none")
                          ])
         ]
     }

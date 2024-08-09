@@ -40,5 +40,15 @@ struct ErrorView: View {
                 .foregroundStyle(.red)
                 .padding()
         }
+//        .alert(isPresented: $showAlert) {
+//            let alert = alertModel!
+//
+//            let title: Text = Text(alert.title)
+//            let message: Text? = alert.message != nil ? Text(alert.message!) : nil
+//            let primaryButton: Alert.Button = .default(Text(alert.primaryButtonTitle), action: alert.primaryAction)
+//            let secondaryButton: Alert.Button = .cancel(Text(alert.secondaryButtonTitle), action: alert.secondaryAction)
+//
+//            return Alert(title: title, message: message, primaryButton: primaryButton, secondaryButton: secondaryButton)
+//        }
     }
 }

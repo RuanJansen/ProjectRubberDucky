@@ -78,10 +78,12 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                 ForEach(dataModel.sections, id: \.id) { section in
                     Section {
                         ForEach(section.items, id: \.id) { item in
-                            NavigationLink {
-                                ConstructionView()
-                            } label: {
+                            if let buttonAction = item.buttonAction {
+                                RDButton(action: buttonAction, label: { Text(item.title) })
+                                    .foregroundStyle(item.fontColor)
+                            } else {
                                 Text(item.title)
+                                    .foregroundStyle(item.fontColor)
                             }
                         }
                     } header: {
@@ -95,12 +97,8 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
 
             Spacer()
 
-            Button {
-                Task {
-                    await logoutUsecase.LogOut()
-                }
-            } label: {
-                Text("Log out")
+            RDButton(action: dataModel.logOut.action) {
+                Text(dataModel.logOut.title)
                     .padding(.vertical, 8)
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
