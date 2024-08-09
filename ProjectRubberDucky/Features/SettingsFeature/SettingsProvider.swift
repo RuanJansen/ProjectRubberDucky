@@ -64,7 +64,7 @@ class SettingsProvider: FeatureProvider {
     }
 }
 
-extension SettingsProvider: LogoutProvider {
+extension SettingsProvider: LogoutProvidable {
     func logOut() async {
         await authenticationManager.logOut()
     }

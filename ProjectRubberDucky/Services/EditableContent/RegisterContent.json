@@ -1,0 +1,21 @@
+{
+    "id": "register",
+    "content": [
+        {
+            "id": "pageTitle"
+            "description": "Register"
+        },
+        {
+            "id": "sectionHeader1"
+            "description": "Email"
+        },
+        {
+            "id": "sectionHeader2"
+            "description": "Password"
+        },
+        {
+            "id": "primaryAction"
+            "description": "Register"
+        }
+    ]
+}

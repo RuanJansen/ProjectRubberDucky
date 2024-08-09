@@ -9,9 +9,9 @@ import Observation
 
 @Observable
 class LogoutUsecase {
-    private var provider: LogoutProvider
+    private var provider: LogoutProvidable
 
-    init(provider: LogoutProvider) {
+    init(provider: LogoutProvidable) {
         self.provider = provider
     }
 

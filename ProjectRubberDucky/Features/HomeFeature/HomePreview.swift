@@ -6,7 +6,7 @@ import SwiftUI
 }
 
 @Observable
-fileprivate class MockHomeProvider: FeatureProvider, SearchableProvider {
+fileprivate class MockHomeProvider: FeatureProvider, SearchProvidable {
     func clearSearch() async {
         self.viewState = .presentContent(using: HomeDataModel(carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
     }

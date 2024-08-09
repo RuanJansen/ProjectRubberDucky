@@ -8,8 +8,12 @@ extension RootComponent {
 
     public var authenticationFeatureProvider: any FeatureProvider {
         shared {
-            AuthenticationProvider()
+            AuthenticationProvider(contentProvider: authenticationContentProvider)
         }
+    }
+
+    public var authenticationContentProvider: AuthenticationContentProvidable {
+        AuthenticationContentProvider()
     }
 
     public var authenticationManager: AuthenticationManager {

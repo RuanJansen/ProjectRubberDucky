@@ -45,11 +45,15 @@ public enum ViewState<DataModel>: Identifiable {
     case none
 }
 
-protocol SearchableProvider {
+protocol SearchProvidable {
     func searchContent(prompt: String) async
     func clearSearch() async
 }
 
-protocol LogoutProvider {
+protocol LogoutProvidable {
     func logOut() async
+}
+
+protocol ContentProvidable {
+    func fetch(content id: String, for table: String) async -> String?
 }

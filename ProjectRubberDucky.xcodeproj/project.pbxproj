@@ -31,6 +31,11 @@
 		F3342D302C63CD4D00C052BB /* Bundle+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */; };
 		F3342D322C63DCC100C052BB /* LogoutUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D312C63DCC100C052BB /* LogoutUsecase.swift */; };
 		F3342D352C65174200C052BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F3342D342C65174200C052BB /* Kingfisher */; };
+		F3342D382C660B5D00C052BB /* LoginContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3342D372C660B5D00C052BB /* LoginContent.json */; };
+		F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D392C660EE200C052BB /* ContentCodableModel.swift */; };
+		F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3B2C660F4F00C052BB /* RegisterContent.json */; };
+		F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */; };
+		F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -132,6 +137,11 @@
 		F3342D2D2C63936300C052BB /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extention.swift"; sourceTree = "<group>"; };
 		F3342D312C63DCC100C052BB /* LogoutUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUsecase.swift; sourceTree = "<group>"; };
+		F3342D372C660B5D00C052BB /* LoginContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginContent.json; sourceTree = "<group>"; };
+		F3342D392C660EE200C052BB /* ContentCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCodableModel.swift; sourceTree = "<group>"; };
+		F3342D3B2C660F4F00C052BB /* RegisterContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RegisterContent.json; sourceTree = "<group>"; };
+		F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFetcher.swift; sourceTree = "<group>"; };
+		F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationContentProvider.swift; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
 		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -257,6 +267,7 @@
 				F3F13AEE2C4979CB008D6841 /* UserCodableModel.swift */,
 				F306A40C2C3A5FC300246390 /* AuthenticationProvider.swift */,
 				F306A4092C3A5BAA00246390 /* AuthenticationView.swift */,
+				F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */,
 			);
 			path = AuthenticationFeature;
 			sourceTree = "<group>";
@@ -331,6 +342,17 @@
 			children = (
 			);
 			path = NavigationManager;
+			sourceTree = "<group>";
+		};
+		F3342D362C660AFE00C052BB /* EditableContent */ = {
+			isa = PBXGroup;
+			children = (
+				F3342D392C660EE200C052BB /* ContentCodableModel.swift */,
+				F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */,
+				F3342D372C660B5D00C052BB /* LoginContent.json */,
+				F3342D3B2C660F4F00C052BB /* RegisterContent.json */,
+			);
+			path = EditableContent;
 			sourceTree = "<group>";
 		};
 		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
@@ -594,6 +616,7 @@
 		F3DB67B12C294F5F00F53642 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F3342D362C660AFE00C052BB /* EditableContent */,
 				F32D3F312C31A3DA0084CC79 /* Pexel */,
 				F32D3F2B2C317A170084CC79 /* Plex */,
 			);
@@ -729,6 +752,7 @@
 				F36AD4F22C61395300774C49 /* LibraryView.swift in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
+				F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */,
 				F36AD4FC2C613B9C00774C49 /* SettingsFeature.swift in Sources */,
 				F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */,
 				F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */,
@@ -743,6 +767,7 @@
 				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
 				F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */,
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
+				F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
 				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
@@ -783,10 +808,12 @@
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
+				F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */,
 				F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
 				F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */,
+				F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */,
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
 				F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */,
 				F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */,
@@ -801,6 +828,7 @@
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,
+				F3342D382C660B5D00C052BB /* LoginContent.json in Sources */,
 				F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,
 				F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */,

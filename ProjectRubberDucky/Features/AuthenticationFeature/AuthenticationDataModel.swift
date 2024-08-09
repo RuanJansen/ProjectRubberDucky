@@ -1,13 +1,21 @@
 import Foundation
 
 struct AuthenticationDataModel {
-    let title: String
+    let signIn: AuthenticationSignInDataModel
+    let register: AuthenticationRegisterDataModel
 }
 
-struct AuthenticationSection: Identifiable {
-    let id: UUID
+struct AuthenticationSignInDataModel {
+    let pageTitle: String
+    let sectionHeader1: String
+    let sectionHeader2: String
+    let primaryAction: String
+    let secondaryAction: String
+}
 
-    let header: String
-    let textfield: String
-    
+struct AuthenticationRegisterDataModel {
+    let pageTitle: String
+    let sectionHeader1: String
+    let sectionHeader2: String
+    let primaryAction: String
 }

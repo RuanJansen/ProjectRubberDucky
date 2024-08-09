@@ -230,6 +230,7 @@ extension RootComponent: Registration {
         localTable["logoutUsecase-LogoutUsecase"] = { [unowned self] in self.logoutUsecase as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
+        localTable["authenticationContentProvider-ContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
         localTable["firebaseAuthenticationManager-FirebaseAuthenticationManager"] = { [unowned self] in self.firebaseAuthenticationManager as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }

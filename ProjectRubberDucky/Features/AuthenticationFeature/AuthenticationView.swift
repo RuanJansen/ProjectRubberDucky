@@ -90,17 +90,17 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
 
             Form {
                 Section {
-                    TextField("Email", text: $authenticationUsecase.email)
+                    TextField(dataModel.signIn.sectionHeader1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 } header: {
-                    Text("Email")
+                    Text(dataModel.signIn.sectionHeader1)
                 }
 
                 Section {
-                    SecureField("Password", text: $authenticationUsecase.password)
+                    SecureField(dataModel.signIn.sectionHeader2, text: $authenticationUsecase.password)
                 } header: {
-                    Text("Password")
+                    Text(dataModel.signIn.sectionHeader2)
                 }
             }
             .frame(maxHeight: 200)
@@ -112,7 +112,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     await authenticationUsecase.signIn()
                 }
             } label: {
-                Text("Sign in with Email")
+                Text(dataModel.signIn.primaryAction)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
                     .frame(height: 55)
@@ -127,9 +127,9 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .padding(.bottom)
 
             NavigationLink {
-                createRegstraterView()
+                createRegstraterView(dataModel: dataModel.register)
             } label: {
-                Text("Not a member yet?")
+                Text(dataModel.signIn.secondaryAction)
             }
             .padding(.bottom)
 
@@ -144,25 +144,25 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
 
             Spacer()
         }
-        .navigationTitle(dataModel.title)
+        .navigationTitle(dataModel.signIn.pageTitle)
     }
 
     @ViewBuilder
-    private func createRegstraterView() -> some View {
+    private func createRegstraterView(dataModel: AuthenticationRegisterDataModel) -> some View {
         VStack {
             Form {
                 Section {
-                    TextField("Email", text: $authenticationUsecase.email)
+                    TextField(dataModel.sectionHeader1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 } header: {
-                    Text("Email")
+                    Text(dataModel.sectionHeader1)
                 }
 
                 Section {
-                    SecureField("Password", text: $authenticationUsecase.password)
+                    SecureField(dataModel.sectionHeader2, text: $authenticationUsecase.password)
                 } header: {
-                    Text("Password")
+                    Text(dataModel.sectionHeader2)
                 }
 
 //                Section {
@@ -187,7 +187,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     await authenticationUsecase.register()
                 }
             } label: {
-                Text("Register")
+                Text(dataModel.primaryAction)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
                     .frame(height: 55)
@@ -202,6 +202,6 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .padding(.horizontal)
         }
         .ignoresSafeArea(.keyboard)
-        .navigationTitle("Register")
+        .navigationTitle(dataModel.pageTitle)
     }
 }

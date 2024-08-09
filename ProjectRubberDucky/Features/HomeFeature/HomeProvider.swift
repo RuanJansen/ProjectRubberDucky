@@ -74,7 +74,7 @@ class HomeProvider: FeatureProvider {
     }
 }
 
-extension HomeProvider: SearchableProvider {
+extension HomeProvider: SearchProvidable {
     func clearSearch() async {
         await setupHomeDataModel()
     }

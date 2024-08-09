@@ -12,9 +12,9 @@ import Observation
 @Observable
 class SearchUsecase {
     var searchText: String
-    private var provider: SearchableProvider
+    private var provider: SearchProvidable
 
-    init(provider: SearchableProvider) {
+    init(provider: SearchProvidable) {
         self.provider = provider
         self.searchText = String()
     }

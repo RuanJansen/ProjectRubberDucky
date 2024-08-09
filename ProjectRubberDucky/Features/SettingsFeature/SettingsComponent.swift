@@ -19,7 +19,7 @@ extension RootComponent {
     }
 
     public var logoutUsecase: LogoutUsecase {
-        LogoutUsecase(provider: settingsFeatureProvider as! LogoutProvider)
+        LogoutUsecase(provider: settingsFeatureProvider as! LogoutProvidable)
     }
 }
 
