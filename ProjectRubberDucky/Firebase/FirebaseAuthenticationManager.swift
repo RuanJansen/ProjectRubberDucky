@@ -54,7 +54,10 @@ class FirebaseAuthenticationManager {
             throw URLError(.unknown)
         }
 
-        return UserDataModel(user: user)
+        let currentUser = UserDataModel(user: user)
+
+        setupCurrentUser(currentUser)
+        return currentUser
     }
 
     func signIn(email: String, password: String) async throws -> UserDataModel  {
