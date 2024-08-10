@@ -27,7 +27,7 @@ struct RDButton<Label> : View where Label : View{
             case .sheet(let view):
                 destination = view
                 presentSheet = true
-            case .navigatate(let view, let _):
+            case .navigatate(let view, _):
                 destination = view
                 navigate = true
             case .alert(let model):
@@ -41,11 +41,11 @@ struct RDButton<Label> : View where Label : View{
             }
         } label: {
             switch action {
-            case .action(let _):
+            case .action( _):
                 label()
             case .sheet(let anyView):
                 label()
-            case .navigatate(let _, let hideCevron):
+            case .navigatate( _, let hideCevron):
                 if hideCevron {
                     label()
                 } else {
@@ -95,17 +95,6 @@ struct RDButton<Label> : View where Label : View{
                 Text(message)
             }
         })
-
-//        .alert(isPresented: $showAlert) {
-//            let alert = alertModel!
-//
-//            let title: Text = Text(alert.title)
-//            let message: Text? = alert.message != nil ? Text(alert.message!) : nil
-//            let primaryButton: Alert.Button = .default(Text(alert.primaryButtonTitle), action: alert.primaryAction)
-//            let secondaryButton: Alert.Button = .cancel(Text(alert.secondaryButtonTitle), action: alert.secondaryAction)
-//
-//            return Alert(title: title, message: message, primaryButton: primaryButton, secondaryButton: secondaryButton)
-//        }
     }
 }
 

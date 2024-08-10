@@ -49,62 +49,46 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                             if let photoURL = account.imageURL {
                                 KFImage(photoURL)
                                     .placeholder {
-                                        Image(systemName: "person.crop.circle")
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 50, height: 50)
-                                            .clipShape(Circle())
+                                        ProgressView()
                                     }
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 50, height: 50)
+                                    .scaledToFit()
+                                    .frame(width: 25)
                             } else {
                                 Image(systemName: "person.crop.circle")
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 25)
                             }
 
                             if let title = account.title {
                                 Text(title)
                             }
                         }
+                        .padding(.vertical)
                     }
                     .foregroundStyle(.primary)
                 }
-
 
                 ForEach(dataModel.sections, id: \.id) { section in
                     Section {
                         ForEach(section.items, id: \.id) { item in
                             RDButton(action: item.buttonAction, label: { Text(item.title) })
+                                .if(item.hasMaxWidth) { view in
+                                    view
+                                        .frame(maxWidth: .infinity)
+                                }
                                 .foregroundStyle(item.fontColor)
-
                         }
                     } header: {
                         if let header = section.header{
                             Text(header)
                         }
-
                     }
                 }
             }
 
             Spacer()
-
-            RDButton(action: dataModel.logOut.action) {
-                Text(dataModel.logOut.title)
-                    .padding(.vertical, 8)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.primary)
-                    .font(.title2)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                    }
-            }
-            .tint(.red)
-            .padding(.horizontal)
 
             if let build = dataModel.build {
                 Text(build)

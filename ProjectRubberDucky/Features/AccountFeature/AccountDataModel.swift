@@ -8,5 +8,6 @@
 import Foundation
 
 struct AccountDataModel {
-    let deleteAccountSection: SectionItemDataModel
+    let user: UserDataModel?
+    let sections: [SectionDataModel]
 }

@@ -15,7 +15,7 @@ extension RootComponent {
 
     public var accountProvider: any FeatureProvider {
         shared {
-            AccountProvider(authenticationManager: authenticationManager)
+            AccountProvider(authenticationManager: authenticationManager, firebaseProvider: firebaseAuthenticationManager)
         }
     }
 }

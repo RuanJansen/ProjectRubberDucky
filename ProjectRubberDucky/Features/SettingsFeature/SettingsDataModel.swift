@@ -10,13 +10,11 @@ import SwiftUI
 struct SettingsDataModel {
     let account: SettingsAccountDataModel?
     let sections: [SectionDataModel]
-    let logOut: LogOutDataModel
     let build: String?
 
-    init(account: SettingsAccountDataModel?, sections: [SectionDataModel], logOut: LogOutDataModel, build: String?) {
+    init(account: SettingsAccountDataModel?, sections: [SectionDataModel], build: String?) {
         self.account = account
         self.sections = sections
-        self.logOut = logOut
         self.build = build
     }
 }
@@ -50,16 +48,13 @@ struct SectionItemDataModel: Identifiable {
     let title: String
     let buttonAction: RDButtonAction
     let fontColor: Color
+    let hasMaxWidth: Bool
 
-    init(title: String, buttonAction: RDButtonAction, fontColor: Color = .primary) {
+    init(title: String, buttonAction: RDButtonAction, fontColor: Color = .primary, hasMaxWidth: Bool = false) {
         self.id = UUID()
         self.title = title
         self.buttonAction = buttonAction
         self.fontColor = fontColor
+        self.hasMaxWidth = hasMaxWidth
     }
-}
-
-struct LogOutDataModel {
-    let title: String
-    let action: RDButtonAction
 }

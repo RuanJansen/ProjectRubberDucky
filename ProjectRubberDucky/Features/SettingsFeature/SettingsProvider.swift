@@ -39,8 +39,7 @@ class SettingsProvider: FeatureProvider {
 
     private func setupSettingsDataModel() -> SettingsDataModel {
         SettingsDataModel(account: setupSettingsAccount(),
-                          sections: [],
-                          logOut: setupSettingsLogOut(),
+                          sections: setupSettingsSections(),
                           build: fetchAppBuildVersion())
     }
 
@@ -54,29 +53,26 @@ class SettingsProvider: FeatureProvider {
                                         action: .navigatate(AnyView(accountView), hideCevron: false))
     }
 
-    private func setupSettingsLogOut() -> LogOutDataModel {
-        LogOutDataModel(title: "Log out",
-                                action: .alert(RDAlertModel(title: "Log out",
-                                                            message: "Are you sure you would like to log out?", buttons: [
-                                                                RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel),
-                                                                RDAlertButtonModel(title: "Log out", action: {
-                                                                    Task {
-                                                                        await self.logOut()
-                                                                    }
-                                                                }, role: .destructive)])))
-    }
-
     private func setupSettingsSections() -> [SectionDataModel] {
         [SectionDataModel(header: "Header",
-                         items: [
-                            SectionItemDataModel(title: "pushNavigation", buttonAction: .navigatate(AnyView(ConstructionView()))),
-                            SectionItemDataModel(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
-                            SectionItemDataModel(title: "action", buttonAction: .action { print("pressed") }),
-                            SectionItemDataModel(title: "none", buttonAction: .none)
-                         ])
+                          items: [SectionItemDataModel(title: "pushNavigation", buttonAction: .navigatate(AnyView(ConstructionView()))),
+                                  SectionItemDataModel(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
+                                  SectionItemDataModel(title: "action", buttonAction: .action { print("pressed") }),
+                                  SectionItemDataModel(title: "none", buttonAction: .none)]),
+         SectionDataModel(items: [SectionItemDataModel(title: "Log out",
+                                                       buttonAction: .alert(RDAlertModel(title: "Log out",
+                                                                                         message: "Are you sure you would like to log out?", buttons: [
+                                                                                            RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel),
+                                                                                            RDAlertButtonModel(title: "Log out", action: {
+                                                                                                Task {
+                                                                                                    await self.logOut()
+                                                                                                }
+                                                                                            }, role: .destructive)])),
+                                                       fontColor: .red,
+                                                       hasMaxWidth: true)])
         ]
     }
-    
+
     private func fetchAppBuildVersion() -> String? {
         if let appVersion = appMetaData.appVersion,
            let appBuild = appMetaData.appBuild {
@@ -85,7 +81,7 @@ class SettingsProvider: FeatureProvider {
             return nil
         }
     }
-
+    
     private func updateUser() async {
         currentUser = await firebaseProvider?.fetchUser()
     }

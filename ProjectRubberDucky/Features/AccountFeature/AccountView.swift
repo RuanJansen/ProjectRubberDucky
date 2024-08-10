@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == AccountDataModel {
     @State var provider: Provider
@@ -20,7 +21,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
             case .loading:
                 ProgressView()
             case .presentContent(let dataModel):
-                setupContentView(with: dataModel)
+                createContentView(using: dataModel)
             case .error:
                 EmptyView()
             case .none:
@@ -33,23 +34,54 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
     }
 
     @ViewBuilder
-    private func setupContentView(with dataModel: AccountDataModel) -> some View {
+    private func createContentView(using dataModel: AccountDataModel) -> some View {
         VStack {
-            Spacer()
-            RDButton(action: dataModel.deleteAccountSection.buttonAction) {
-                Text(dataModel.deleteAccountSection.title)
-                    .padding(.vertical, 8)
-                    .foregroundStyle(dataModel.deleteAccountSection.fontColor)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.primary)
-                    .font(.title2)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
+            if let user = dataModel.user {
+                VStack(spacing: 20) {
+                    if let photoURL = user.photoURL {
+                        KFImage(photoURL)
+                            .placeholder {
+                                ProgressView()
+                            }
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100)
+                    } else {
+                        Image(systemName: "person.crop.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100)
                     }
+
+                    if let displayName = user.displayName {
+                        Text(displayName)
+                    }
+
+                    if let email = user.email {
+                        Text(email)
+                    }
+                }
             }
-            .tint(.red)
-            .padding(.horizontal)
-            .padding(.bottom)
+
+            Form {
+                ForEach(dataModel.sections, id: \.id) { section in
+                    Section {
+                        ForEach(section.items, id: \.id) { item in
+                            RDButton(action: item.buttonAction, label: { Text(item.title) })
+                                .if(item.hasMaxWidth) { view in
+                                    view
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .foregroundStyle(item.fontColor)
+                        }
+                    } header: {
+                        if let header = section.header{
+                            Text(header)
+                        }
+                    }
+                }
+            }
+            Spacer()
         }
     }
 }
