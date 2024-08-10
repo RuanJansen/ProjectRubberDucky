@@ -46,11 +46,11 @@ struct SectionDataModel: Identifiable {
 struct SectionItemDataModel: Identifiable {
     let id: UUID
     let title: String
-    let buttonAction: RDButtonAction
+    let buttonAction: RDButtonAction?
     let fontColor: Color
     let hasMaxWidth: Bool
 
-    init(title: String, buttonAction: RDButtonAction, fontColor: Color = .primary, hasMaxWidth: Bool = false) {
+    init(title: String, buttonAction: RDButtonAction? = nil, fontColor: Color = .primary, hasMaxWidth: Bool = false) {
         self.id = UUID()
         self.title = title
         self.buttonAction = buttonAction

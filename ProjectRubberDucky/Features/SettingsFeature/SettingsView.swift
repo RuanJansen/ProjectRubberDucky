@@ -73,12 +73,21 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                 ForEach(dataModel.sections, id: \.id) { section in
                     Section {
                         ForEach(section.items, id: \.id) { item in
-                            RDButton(action: item.buttonAction, label: { Text(item.title) })
-                                .if(item.hasMaxWidth) { view in
-                                    view
-                                        .frame(maxWidth: .infinity)
-                                }
-                                .foregroundStyle(item.fontColor)
+                            if let buttonAction = item.buttonAction {
+                                RDButton(action: buttonAction, label: { Text(item.title) })
+                                    .if(item.hasMaxWidth) { view in
+                                        view
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .foregroundStyle(item.fontColor)
+                            } else {
+                                Text(item.title)
+                                    .if(item.hasMaxWidth) { view in
+                                        view
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .foregroundStyle(item.fontColor)
+                            }
                         }
                     } header: {
                         if let header = section.header{

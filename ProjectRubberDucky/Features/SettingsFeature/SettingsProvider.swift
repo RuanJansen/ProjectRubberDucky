@@ -54,11 +54,20 @@ class SettingsProvider: FeatureProvider {
     }
 
     private func setupSettingsSections() -> [SectionDataModel] {
-        [SectionDataModel(header: "Header",
+        [SectionDataModel(header: "Text",
+                          items: [SectionItemDataModel(title: "Just some simple text")]),
+         SectionDataModel(header: "RDButtons",
                           items: [SectionItemDataModel(title: "pushNavigation", buttonAction: .navigatate(AnyView(ConstructionView()))),
                                   SectionItemDataModel(title: "sheet", buttonAction: .sheet(AnyView(ConstructionView()))),
                                   SectionItemDataModel(title: "action", buttonAction: .action { print("pressed") }),
-                                  SectionItemDataModel(title: "none", buttonAction: .none)]),
+                                  SectionItemDataModel(title: "alert", buttonAction: .alert(RDAlertModel(title: "Alert",
+                                                                                                         message: "This is my RDButton alert.", buttons: [
+                                                                                                            RDAlertButtonModel(title: "Primary", action: {}),
+                                                                                                            RDAlertButtonModel(title: "Secondary", action: {}),
+                                                                                                            RDAlertButtonModel(title: "Destructive", action: {}, role: .destructive),
+                                                                                                            RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel)]))),
+
+                                  SectionItemDataModel(title: "none", buttonAction: RDButtonAction.none)]),
          SectionDataModel(items: [SectionItemDataModel(title: "Log out",
                                                        buttonAction: .alert(RDAlertModel(title: "Log out",
                                                                                          message: "Are you sure you would like to log out?", buttons: [
@@ -81,7 +90,7 @@ class SettingsProvider: FeatureProvider {
             return nil
         }
     }
-    
+
     private func updateUser() async {
         currentUser = await firebaseProvider?.fetchUser()
     }
