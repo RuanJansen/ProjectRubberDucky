@@ -8,7 +8,8 @@
 import Foundation
 
 struct ManifestCodableModel: Codable {
-    let id: String
+    let entityName: String
+    let version: String
     let content: [ContentCodableModel]
 }
 

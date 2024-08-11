@@ -34,32 +34,44 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
     }
 
     @ViewBuilder
+    private func createProfilePhotoView(user: UserDataModel) -> some View {
+        VStack(spacing: 20) {
+            if let photoURL = user.photoURL {
+                KFImage(photoURL)
+                    .placeholder {
+                        ProgressView()
+                    }
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+            } else {
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+            }
+
+        }
+    }
+
+    @ViewBuilder
     private func createContentView(using dataModel: AccountDataModel) -> some View {
         VStack {
             if let user = dataModel.user {
-                VStack(spacing: 20) {
-                    if let photoURL = user.photoURL {
-                        KFImage(photoURL)
-                            .placeholder {
-                                ProgressView()
-                            }
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100)
-                    } else {
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100)
+                if let profileImageButtonAction = dataModel.profileImageButtonAction {
+                    RDButton(profileImageButtonAction) {
+                        createProfilePhotoView(user: user)
                     }
+                } else {
+                    createProfilePhotoView(user: user)
+                }
 
-                    if let displayName = user.displayName {
-                        Text(displayName)
-                    }
+                if let displayName = user.displayName {
+                    Text(displayName)
+                }
 
-                    if let email = user.email {
-                        Text(email)
-                    }
+                if let email = user.email {
+                    Text(email)
                 }
             }
 
@@ -68,7 +80,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
                     Section {
                         ForEach(section.items, id: \.id) { item in
                             if let buttonAction = item.buttonAction {
-                                RDButton(action: buttonAction, label: { Text(item.title) })
+                                RDButton(buttonAction, label: { Text(item.title) })
                                     .if(item.hasMaxWidth) { view in
                                         view
                                             .frame(maxWidth: .infinity)
@@ -86,6 +98,10 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
                     } header: {
                         if let header = section.header{
                             Text(header)
+                        }
+                    } footer: {
+                        if let footer = section.footer {
+                            Text(footer)
                         }
                     }
                 }

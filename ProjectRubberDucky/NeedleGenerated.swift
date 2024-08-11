@@ -232,9 +232,11 @@ extension RootComponent: Registration {
 
         localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
         localTable["appMetaData-AppMetaData"] = { [unowned self] in self.appMetaData as Any }
-        localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
-        localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
+        localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
+        localTable["firebaseRemoteConfig-FirebaseRemoteConfig"] = { [unowned self] in self.firebaseRemoteConfig as Any }
+        localTable["contentFetcher-ContentFetcher"] = { [unowned self] in self.contentFetcher as Any }
+        localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
         localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
         localTable["accountProvider-any FeatureProvider"] = { [unowned self] in self.accountProvider as Any }

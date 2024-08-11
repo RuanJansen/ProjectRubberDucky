@@ -10,8 +10,8 @@ import FirebaseAuth
 struct UserDataModel {
     let uid: String
     let email: String?
-    let displayName: String?
-    let photoURL: URL?
+    var displayName: String?
+    var photoURL: URL?
 
     init(user: User) {
         self.uid = user.uid
@@ -23,6 +23,7 @@ struct UserDataModel {
 
 protocol FirebaseProvider {
     func fetchUser() async -> UserDataModel?
+    func updateUser(with user: UserDataModel) async throws 
 }
 
 class FirebaseAuthenticationManager {
@@ -80,5 +81,12 @@ class FirebaseAuthenticationManager {
 extension FirebaseAuthenticationManager: FirebaseProvider {
     func fetchUser() async -> UserDataModel? {
         currentUser
+    }
+
+    func updateUser(with user: UserDataModel) async throws {
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = user.displayName
+        changeRequest?.photoURL = user.photoURL
+        try await changeRequest?.commitChanges()
     }
 }

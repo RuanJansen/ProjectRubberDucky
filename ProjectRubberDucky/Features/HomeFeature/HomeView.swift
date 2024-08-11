@@ -72,7 +72,9 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
         .overlay {
             if let searchResults = dataModel.searchResults {
                 List(searchResults, id: \.id) { video in
-                    RDButton(action: .navigatate(AnyView(VideoDetailView(video: video)))) {
+                    RDButton(.navigate({
+                        AnyView(VideoDetailView(video: video))
+                    })) {
                         Text(video.title)
                     }
                     .foregroundStyle(.primary)
@@ -83,7 +85,10 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
 
     @ViewBuilder
     private func createCarouselView(using carousel: CarouselDataModel) -> some View {
-        RDButton(action: .navigatate(AnyView(GridContainerView(title: carousel.title, videos: carousel.videos)), hideCevron: true)) {
+
+        RDButton(.navigate(hideCevron: true) {
+            AnyView(GridContainerView(title: carousel.title, videos: carousel.videos))
+        }) {
             Label(carousel.title, systemImage: "chevron.right")
                 .environment(\.layoutDirection, .rightToLeft)
                 .font(.title3)
@@ -94,7 +99,9 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             HStack {
                 ForEach(carousel.videos, id: \.id) { video in
                     VStack {
-                        RDButton(action: .navigatate(AnyView(VideoDetailView(video: video)), hideCevron: true)) {
+                        RDButton(.navigate(hideCevron: true) {
+                            AnyView(VideoDetailView(video: video))
+                        }) {
                             CardView(video: video)
                         }
                         .modifier(CarouselButtonModifier())
@@ -155,13 +162,13 @@ struct CardView: View {
         }
         .padding()
         .background {
-                KFImage(video.thumbnail)
-                    .placeholder {
-                        Image(systemName: "wifi.slash")
+            KFImage(video.thumbnail)
+                .placeholder {
+                    Image(systemName: "wifi.slash")
 
-                    }
-                    .resizable()
-                    .scaledToFill()
+                }
+                .resizable()
+                .scaledToFill()
 
 
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
@@ -174,27 +181,31 @@ struct VideoDetailView: View {
     var body: some View {
         VStack {
             ScrollView {
-                RDButton(action: .fullScreenCover(AnyView(createVideoPlayerView(with: video)))) {
-                        KFImage(video.thumbnail)
-                            .placeholder {
-                                Image(systemName: "wifi.slash")
+                RDButton(.fullScreenCover(swipeDismissable: true) {
+                    AnyView(createVideoPlayerView(with: video))
+                }) {
+                    KFImage(video.thumbnail)
+                        .placeholder {
+                            Image(systemName: "wifi.slash")
 
-                            }
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                            .overlay {
-                                Image(systemName: "play.circle.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundStyle(Color.white.opacity(0.5))
-                            }
+                        }
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                        .overlay {
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(Color.white.opacity(0.5))
+                        }
 
                 }
                 .padding(.horizontal)
 
                 HStack {
-                    RDButton(action: .fullScreenCover(AnyView(createVideoPlayerView(with: video)))) {
+                    RDButton(.fullScreenCover(swipeDismissable: true) {
+                        AnyView(createVideoPlayerView(with: video))
+                    }) {
                         Label("Watch Trailer", systemImage: "popcorn.fill")
                     }
                     Spacer()
@@ -214,12 +225,13 @@ struct VideoDetailView: View {
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-            VideoPlayer(playerController: AVPlayerController(link: video.url,
-                                                             title: video.title,
-                                                             publisher: video.id.uuidString,
-                                                             thumbnail: video.thumbnail))
-            .ignoresSafeArea()
+        VideoPlayer(playerController: AVPlayerController(link: video.url,
+                                                         title: video.title,
+                                                         publisher: video.id.uuidString,
+                                                         thumbnail: video.thumbnail))
+        .ignoresSafeArea()
     }
+
 }
 
 struct GridContainerView: View {
@@ -240,15 +252,15 @@ struct GridContainerView: View {
                         NavigationLink {
                             VideoDetailView(video: video)
                         } label: {
-                                KFImage(video.thumbnail)
-                                    .placeholder {
-                                        Image(systemName: "wifi.slash")
+                            KFImage(video.thumbnail)
+                                .placeholder {
+                                    Image(systemName: "wifi.slash")
 
-                                    }
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 110, height: 200)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                }
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 110, height: 200)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
 
                         }
                         .overlay {

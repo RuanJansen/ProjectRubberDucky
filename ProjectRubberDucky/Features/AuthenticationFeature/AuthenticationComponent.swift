@@ -13,7 +13,7 @@ extension RootComponent {
     }
 
     public var authenticationContentProvider: AuthenticationContentProvidable {
-        AuthenticationContentProvider()
+        AuthenticationContentProvider(contentFetcher: contentFetcher)
     }
 
     public var authenticationManager: AuthenticationManager {

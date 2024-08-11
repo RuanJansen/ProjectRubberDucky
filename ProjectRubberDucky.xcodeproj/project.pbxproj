@@ -42,6 +42,10 @@
 		F3342D492C66505B00C052BB /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D482C66505B00C052BB /* AccountView.swift */; };
 		F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4A2C66509B00C052BB /* AccountDataModel.swift */; };
 		F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4C2C66514100C052BB /* AccountProvider.swift */; };
+		F3342D4F2C67A1AA00C052BB /* PhotosPickerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */; };
+		F3342D532C690D0B00C052BB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F3342D522C690D0B00C052BB /* FirebaseRemoteConfig */; };
+		F3342D552C69116400C052BB /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */; };
+		F3342D572C69179900C052BB /* FirebaseRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -154,6 +158,9 @@
 		F3342D482C66505B00C052BB /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F3342D4A2C66509B00C052BB /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = "<group>"; };
 		F3342D4C2C66514100C052BB /* AccountProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProvider.swift; sourceTree = "<group>"; };
+		F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerUsecase.swift; sourceTree = "<group>"; };
+		F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfig.swift; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
 		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -243,6 +250,7 @@
 				F32045AE2C6271BE00A2DFA7 /* FirebaseAuth in Frameworks */,
 				F3DB67802C28A36B00F53642 /* NeedleFoundation in Frameworks */,
 				F32045B02C6272E500A2DFA7 /* FirebaseFirestore in Frameworks */,
+				F3342D532C690D0B00C052BB /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +280,6 @@
 			children = (
 				F306A40E2C3A5FCE00246390 /* AuthenticationFeature.swift */,
 				F306A4192C3A64CA00246390 /* AuthenticationManager.swift */,
-				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
 				F306A4132C3A5FE500246390 /* AuthenticationDependency.swift */,
 				F306A4112C3A5FDE00246390 /* AuthenticationComponent.swift */,
 				F306A4172C3A60D000246390 /* AuthenticationDataModel.swift */,
@@ -303,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
+				F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -380,11 +388,21 @@
 			path = AccountFeature;
 			sourceTree = "<group>";
 		};
+		F3342D512C67ED2F00C052BB /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */,
+				F306A4202C416EB100246390 /* SearchUsecase.swift */,
+				F3342D312C63DCC100C052BB /* LogoutUsecase.swift */,
+				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
 		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
 			isa = PBXGroup;
 			children = (
 				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
-				F306A4202C416EB100246390 /* SearchUsecase.swift */,
 				F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */,
 				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
 				F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */,
@@ -462,7 +480,6 @@
 				F36AD4F92C613B5400774C49 /* SettingsDataModel.swift */,
 				F36AD4FB2C613B9C00774C49 /* SettingsFeature.swift */,
 				F36AD4FD2C613BFB00774C49 /* SettingsView.swift */,
-				F3342D312C63DCC100C052BB /* LogoutUsecase.swift */,
 			);
 			path = SettingsFeature;
 			sourceTree = "<group>";
@@ -537,6 +554,7 @@
 				F3342D2C2C63827C00C052BB /* NavigationManager */,
 				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
+				F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */,
 				F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */,
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
 				F34B7D8E2C3834F000587031 /* DependencyManager.swift */,
@@ -581,6 +599,7 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F3342D512C67ED2F00C052BB /* Usecases */,
 				F3DB67882C28A4F200F53642 /* Architecture.swift */,
 				F36AD4D62C6117F600774C49 /* AppStyling.swift */,
 				F36AD5042C615FC700774C49 /* AppMetaData.swift */,
@@ -684,6 +703,7 @@
 				F32045AD2C6271BE00A2DFA7 /* FirebaseAuth */,
 				F32045AF2C6272E500A2DFA7 /* FirebaseFirestore */,
 				F3342D342C65174200C052BB /* Kingfisher */,
+				F3342D522C690D0B00C052BB /* FirebaseRemoteConfig */,
 			);
 			productName = ProjectRubberDucky;
 			productReference = F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */;
@@ -733,6 +753,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3342D552C69116400C052BB /* RemoteConfigDefaults.plist in Resources */,
 				F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */,
 				F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */,
 				F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */,
@@ -791,6 +812,7 @@
 				F36AD4E22C61336000774C49 /* SubscribedProvider.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
 				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
+				F3342D4F2C67A1AA00C052BB /* PhotosPickerUsecase.swift in Sources */,
 				F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */,
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
 				F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */,
@@ -799,6 +821,7 @@
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */,
 				F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */,
+				F3342D572C69179900C052BB /* FirebaseRemoteConfig.swift in Sources */,
 				F3342D2E2C63936300C052BB /* NavigationManager.swift in Sources */,
 				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
 				F36AD4E42C61336800774C49 /* SubscribedView.swift in Sources */,
@@ -1013,7 +1036,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1047,7 +1070,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1147,6 +1170,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3342D332C65174200C052BB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		F3342D522C690D0B00C052BB /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32045A92C626FE700A2DFA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		F3DB677F2C28A36B00F53642 /* NeedleFoundation */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -35,21 +35,11 @@ class AuthenticationUsecase {
     public func register() async {
         guard isValidEmail(email: email) else {
             self.showingInvalidEmail = true
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidEmail = false
-            }
-
             return
         }
 
         guard isValidPassword(password) else {
             self.showingInvalidPassword = true
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                self.showingInvalidPassword = false
-            }
-
             return
         }
 
@@ -64,16 +54,10 @@ class AuthenticationUsecase {
             // error
             print("Register failed")
             showingIsLoadingToast = false
-
         }
     }
 
     public func signIn() async {
-//        guard !email.isEmpty, !password.isEmpty else {
-//            // validate
-//            return
-//        }
-
         guard isValidEmail(email: email) else {
             self.showingInvalidEmail = true
             return

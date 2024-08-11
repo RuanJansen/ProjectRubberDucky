@@ -20,41 +20,47 @@ protocol AuthenticationContentProvidable {
 }
 
 class AuthenticationContentProvider: AuthenticationContentProvidable {
+    var contentFetcher: ContentFetcher
+
+    init(contentFetcher: ContentFetcher) {
+        self.contentFetcher = contentFetcher
+    }
+
     func fetchLoginPageTitle() async -> String {
-        await fetch(content: "pageTitle", for: "LoginContent") ?? "Login"
+        await fetch(content: "pageTitle", for: "loginContent") ?? "-"
     }
     
     func fetchLoginSectionHeader1() async -> String {
-        await fetch(content: "sectionHeader1", for: "LoginContent") ?? "Email"
+        await fetch(content: "sectionHeader1", for: "loginContent") ?? "-"
     }
     
     func fetchLoginSectionHeader2() async -> String {
-        await fetch(content: "sectionHeader2", for: "LoginContent") ?? "Password"
+        await fetch(content: "sectionHeader2", for: "loginContent") ?? "-"
     }
     
     func fetchLoginPrimaryAction() async -> String {
-        await fetch(content: "primaryAction", for: "LoginContent") ?? "Sign in with Email"
+        await fetch(content: "primaryAction", for: "loginContent") ?? "-"
     }
     
     func fetchLoginSecondaryAction() async -> String {
-        await fetch(content: "secondaryAction", for: "LoginContent") ?? "Not a member yet?"
+        await fetch(content: "secondaryAction", for: "loginContent") ?? "-"
     }
     
 
     func fetchRegisterPageTitle() async -> String {
-        await fetch(content: "pageTitle", for: "Register") ?? "Register"
+        await fetch(content: "pageTitle", for: "registerContent") ?? "-"
     }
 
     func fetchRegisterSectionHeader1() async -> String {
-        await fetch(content: "sectionHeader1", for: "Register") ?? "Email"
+        await fetch(content: "sectionHeader1", for: "registerContent") ?? "-"
     }
 
     func fetchRegisterSectionHeader2() async -> String {
-        await fetch(content: "sectionHeader2", for: "Register") ?? "Password"
+        await fetch(content: "sectionHeader2", for: "registerContent") ?? "-"
     }
 
     func fetchRegisterPrimaryAction() async -> String {
-        await fetch(content: "primaryAction", for: "Register") ?? "Register"
+        await fetch(content: "primaryAction", for: "registerContent") ?? "-"
     }
 
 }
@@ -62,7 +68,7 @@ class AuthenticationContentProvider: AuthenticationContentProvidable {
 extension AuthenticationContentProvider: ContentProvidable {
     func fetch(content id: String, for table: String) async -> String? {
         do {
-            return try await ContentFetcher.fetch(content: id, for: table)
+            return try await contentFetcher.fetch(content: id, for: table)
         } catch {
             return nil
         }

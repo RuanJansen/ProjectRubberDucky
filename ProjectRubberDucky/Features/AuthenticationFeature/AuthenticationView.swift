@@ -9,10 +9,25 @@ import SwiftUI
 import _AuthenticationServices_SwiftUI
 
 struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == AuthenticationDataModel{
+    @Environment(AppStyling.self) var appStyling
+
     @State var provider: Provider
     @State var authenticationUsecase: AuthenticationUsecase
     @State private var isPresentingRegisterView: Bool
-    @Environment(AppStyling.self) var appStyling
+
+    @FocusState private var focusedField: Field?
+
+    enum Field {
+        case loginEmail
+        case loginPassword
+        case loginButton
+        case registerEmail
+        case registerPassword
+        case registerButton
+        case navigateToRegister
+    }
+
+
 
     init(provider: Provider, authenticationUsecase: AuthenticationUsecase) {
         self.provider = provider
@@ -66,6 +81,30 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                             }
                         })
                     }
+                .onSubmit {
+                    switch focusedField {
+                    case .loginEmail:
+                        focusedField = .loginPassword
+                    case .loginPassword:
+                        Task {
+                            await authenticationUsecase.signIn()
+                        }
+                    case .loginButton:
+                        break
+                    case .registerEmail:
+                        focusedField = .registerPassword
+                    case .registerPassword:
+                        Task {
+                            await authenticationUsecase.register()
+                        }
+                    case .registerButton:
+                        break
+                    case .navigateToRegister:
+                        focusedField = .registerEmail
+                    case nil:
+                        break
+                    }
+                }
             case .error:
                 EmptyView()
             case .none:
@@ -109,12 +148,16 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     TextField(dataModel.signIn.sectionHeader1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .submitLabel(.next)
+                        .focused($focusedField, equals: .loginEmail)
                 } header: {
                     Text(dataModel.signIn.sectionHeader1)
                 }
 
                 Section {
                     SecureField(dataModel.signIn.sectionHeader2, text: $authenticationUsecase.password)
+                        .submitLabel(.go)
+                        .focused($focusedField, equals: .loginPassword)
                 } header: {
                     Text(dataModel.signIn.sectionHeader2)
                 }
@@ -123,11 +166,11 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .scrollDisabled(true)
             .padding(.bottom)
 
-            Button {
+            RDButton(.action({
                 Task {
                     await authenticationUsecase.signIn()
                 }
-            } label: {
+            }), label: {
                 Text(dataModel.signIn.primaryAction)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
@@ -138,15 +181,17 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     .background {
                         RoundedRectangle(cornerRadius: 8)
                     }
-            }
+            })
+            .focused($focusedField, equals: .loginButton)
             .padding(.horizontal)
             .padding(.bottom)
 
-            NavigationLink {
-                createRegstraterView(dataModel: dataModel.register)
-            } label: {
+            RDButton(.navigate(hideCevron: true) {
+                AnyView(createRegstraterView(dataModel: dataModel.register))
+            }, label: {
                 Text(dataModel.signIn.secondaryAction)
-            }
+            })
+            .focused($focusedField, equals: .navigateToRegister)
             .padding(.bottom)
 
             SignInWithAppleButton(.continue) { request in
@@ -171,12 +216,16 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     TextField(dataModel.sectionHeader1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .submitLabel(.next)
+                        .focused($focusedField, equals: .registerEmail)
                 } header: {
                     Text(dataModel.sectionHeader1)
                 }
 
                 Section {
                     SecureField(dataModel.sectionHeader2, text: $authenticationUsecase.password)
+                        .submitLabel(.go)
+                        .focused($focusedField, equals: .registerPassword)
                 } header: {
                     Text(dataModel.sectionHeader2)
                 }
@@ -198,11 +247,11 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }
             .padding(.bottom)
 
-            Button {
+            RDButton(.action {
                 Task {
                     await authenticationUsecase.register()
                 }
-            } label: {
+            }, label: {
                 Text(dataModel.primaryAction)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
@@ -213,7 +262,8 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     .background {
                         RoundedRectangle(cornerRadius: 8)
                     }
-            }
+            })
+            .focused($focusedField, equals: .registerButton)
             .padding(.bottom)
             .padding(.horizontal)
         }

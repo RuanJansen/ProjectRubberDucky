@@ -7,6 +7,7 @@
 
 import Observation
 import SwiftUI
+import Combine
 
 @Observable
 class AccountProvider: FeatureProvider {
@@ -16,23 +17,50 @@ class AccountProvider: FeatureProvider {
 
     private var authenticationManager: AuthenticationManager
     private var firebaseProvider: FirebaseProvider?
-    
+    private var photosPickerUsecase: PhotosPickerUsecase
+
     private var currentUser: UserDataModel?
+
+    private var cancellables = Set<AnyCancellable>()
 
     init(authenticationManager: AuthenticationManager,
          firebaseProvider: FirebaseProvider?) {
         self.viewState = .loading
         self.authenticationManager = authenticationManager
         self.firebaseProvider = firebaseProvider
+        self.photosPickerUsecase = PhotosPickerUsecase()
+    }
+
+    func addListeners() {
+        photosPickerUsecase.$selection.sink { selection in
+            Task {
+                do {
+                    if let data = try await self.photosPickerUsecase.fetchImageData() {
+                        self.savePhotoURL(from: data)
+                    }
+                } catch {
+
+                }
+            }
+        }
+        .store(in: &cancellables)
     }
 
     func fetchContent() async {
-        await updateUser()
-        self.viewState = await .presentContent(using: AccountDataModel(user: currentUser,
-                                                                       sections: [SectionDataModel(items: [SectionItemDataModel(title: "Delete Account",
-                                                                                                                                buttonAction: .alert(setupDeleteAlert()),
-                                                                                                                                fontColor: .red,
-                                                                                                                                hasMaxWidth: true)])]))
+        await fetchUser()
+        let alertModel = await setupDeleteAlert()
+        await MainActor.run {
+            self.viewState = .presentContent(using: AccountDataModel(user: currentUser,
+//                                                                     profileImageButtonAction: .photosPicker {
+//                RDPhotosPickerModel(selection: self.photosPickerUsecase.selection)
+//            } ,
+                                                                     sections: [SectionDataModel(items: [SectionItemDataModel(title: "Delete Account",
+                                                                                                                              buttonAction: .alert{
+                alertModel
+            },
+                                                                                                                              fontColor: .red,
+                                                                                                                              hasMaxWidth: true)])]))
+        }
     }
 
     private func setupDeleteAlert() async -> RDAlertModel {
@@ -48,11 +76,35 @@ class AccountProvider: FeatureProvider {
                             ])
     }
 
+    private func savePhotoURL(from: Data) {
+
+    }
+
     private func deleteAccount() async {
         await authenticationManager.deleteAccount()
     }
 
-    private func updateUser() async {
+    private func fetchUser() async {
         currentUser = await firebaseProvider?.fetchUser()
+    }
+
+    private func updateUser(displayName: String) async {
+        currentUser?.displayName = displayName
+        await updateUser()
+    }
+
+    private func updateUser(photoURL: URL?) async {
+        currentUser?.photoURL = photoURL
+        await updateUser()
+    }
+
+    private func updateUser() async {
+        if let currentUser {
+            do {
+                try await firebaseProvider?.updateUser(with: currentUser)
+            } catch {
+                //
+            }
+        }
     }
 }

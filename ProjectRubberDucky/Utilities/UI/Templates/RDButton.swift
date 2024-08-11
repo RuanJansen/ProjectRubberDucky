@@ -6,18 +6,31 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct RDButton<Label> : View where Label : View{
     let action: RDButtonAction
     let label: () -> Label
 
-    @State var presentSheet: Bool = false
-    @State var navigate: Bool = false
-    @State var fullScreenCover: Bool = false
-    @State var destination: AnyView?
+    init(_ action: RDButtonAction,
+         label: @escaping () -> Label) {
+        self.action = action
+        self.label = label
+    }
+    @State private var destination: AnyView?
 
-    @State var alertModel: RDAlertModel?
-    @State var showAlert: Bool = false
+    @State private var presentSheet: Bool = false
+
+    @State private var navigate: Bool = false
+
+    @State private var fullScreenCoverSwipeDismissable: Bool = false
+    @State private var fullScreenCover: Bool = false
+
+    @State private var alertModel: RDAlertModel?
+    @State private var showAlert: Bool = false
+
+    @State private var photosPickerModel: RDPhotosPickerModel?
+    @State private var photosPicker: Bool = false
 
     var body: some View {
         Button {
@@ -25,17 +38,21 @@ struct RDButton<Label> : View where Label : View{
             case .action(let action):
                 action()
             case .sheet(let view):
-                destination = view
+                destination = view()
                 presentSheet = true
-            case .navigatate(let view, _):
-                destination = view
+            case .navigate(_, let view):
+                destination = view()
                 navigate = true
             case .alert(let model):
-                alertModel = model
+                alertModel = model()
                 showAlert = true
-            case .fullScreenCover(let view):
-                destination = view
+            case .fullScreenCover(let swipeDismissable, let view):
+                destination = view()
                 fullScreenCover = true
+                fullScreenCoverSwipeDismissable = swipeDismissable
+            case .photosPicker(let model):
+                photosPickerModel = model()
+                photosPicker = true
             case .none: break
                 //
             }
@@ -45,7 +62,7 @@ struct RDButton<Label> : View where Label : View{
                 label()
             case .sheet(let anyView):
                 label()
-            case .navigatate( _, let hideCevron):
+            case .navigate(let hideCevron, _):
                 if hideCevron {
                     label()
                 } else {
@@ -56,9 +73,11 @@ struct RDButton<Label> : View where Label : View{
                             .foregroundStyle(.tertiary)
                     }
                 }
-            case .alert(let model):
+            case .alert(_):
                 label()
             case .fullScreenCover(_):
+                label()
+            case .photosPicker(_):
                 label()
             case .none:
                 label()
@@ -77,6 +96,16 @@ struct RDButton<Label> : View where Label : View{
         .fullScreenCover(isPresented: $fullScreenCover) {
             if let destination {
                 destination
+                    .if(fullScreenCoverSwipeDismissable) { view in
+                            view
+                            .gesture(
+                                DragGesture().onEnded { value in
+                                    if value.location.y - value.startLocation.y > 150 {
+                                        fullScreenCover = false
+                                    }
+                                }
+                            )
+                    }
             }
         }
         .alert(alertModel?.title ?? "",
@@ -95,15 +124,26 @@ struct RDButton<Label> : View where Label : View{
                 Text(message)
             }
         })
+        .if(photosPicker) { view in
+            if let photosPickerModel {
+                view
+                    .photosPicker(isPresented: $photosPicker,
+                                  selection: photosPickerModel.$selection,
+                                  matching: photosPickerModel.matching,
+                                  preferredItemEncoding: photosPickerModel.preferredItemEncoding)
+            }
+        }
+
     }
 }
 
 enum RDButtonAction {
     case action(() -> Void)
-    case sheet(AnyView)
-    case navigatate(AnyView, hideCevron: Bool = false)
-    case fullScreenCover(AnyView)
-    case alert(RDAlertModel)
+    case sheet(() -> AnyView)
+    case navigate(hideCevron: Bool = false, () -> AnyView)
+    case fullScreenCover(swipeDismissable: Bool = false,() -> AnyView)
+    case alert(() -> RDAlertModel)
+    case photosPicker(() -> RDPhotosPickerModel)
     case none
 }
 
@@ -124,6 +164,20 @@ struct RDAlertButtonModel {
         self.title = title
         self.action = action
         self.role = role
+    }
+}
+
+struct RDPhotosPickerModel {
+    @State var selection: PhotosPickerItem?
+    let matching: PHPickerFilter
+    let preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy
+
+    init(selection: PhotosPickerItem?,
+         matching: PHPickerFilter = .images,
+         preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) {
+        self._selection = State(initialValue: selection)
+        self.matching = matching
+        self.preferredItemEncoding = preferredItemEncoding
     }
 }
 

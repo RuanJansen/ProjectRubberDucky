@@ -34,11 +34,13 @@ struct SettingsAccountDataModel {
 struct SectionDataModel: Identifiable {
     let id: UUID
     let header: String?
+    let footer: String?
     let items: [SectionItemDataModel]
 
-    init(header: String? = nil, items: [SectionItemDataModel]) {
+    init(header: String? = nil, footer: String? = nil, items: [SectionItemDataModel]) {
         self.id = UUID()
         self.header = header
+        self.footer = footer
         self.items = items
     }
 }

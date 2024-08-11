@@ -66,6 +66,36 @@
             endingLineNumber = "38"
             landmarkName = "init?(url:headers:placeholderImage:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 78c5bf1f41d34694"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38">
+               </Location>
+               <Location
+                  uuid = "ADBE0D55-C1BC-47C6-B93C-10E3F5443A93 - 6f2d2f4485a00fe1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftUI.Image.init(url: Swift.Optional&lt;Foundation.URL&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, placeholderImage: Swift.Optional&lt;SwiftUI.Image&gt;) -&gt; Swift.Optional&lt;SwiftUI.Image&gt;"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Utilities/Extensions/Image+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -242,6 +272,36 @@
             endingLineNumber = "78"
             landmarkName = "authenticateUser(with:and:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "57FB160D-C0D2-4D40-8336-6EFF730DA6A3 - c82148d46c80125d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ProjectRubberDucky.PlexGateway.authenticateUser(with: Swift.String, and: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78">
+               </Location>
+               <Location
+                  uuid = "57FB160D-C0D2-4D40-8336-6EFF730DA6A3 - ee53f964debdbc5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for ProjectRubberDucky.PlexGateway.authenticateUser(with: Swift.String, and: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -258,54 +318,100 @@
             endingLineNumber = "83"
             landmarkName = "authenticateUser(with:and:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5A8A213E-6AB6-409E-9B5C-22C46C864CCC - c82148d46c8012e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ProjectRubberDucky.PlexGateway.authenticateUser(with: Swift.String, and: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83">
+               </Location>
+               <Location
+                  uuid = "5A8A213E-6AB6-409E-9B5C-22C46C864CCC - ee53f964debdbce5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for ProjectRubberDucky.PlexGateway.authenticateUser(with: Swift.String, and: Swift.String, completion: (Swift.Bool, Swift.String) -&gt; ()) async -&gt; ()"
+                  moduleName = "ProjectRubberDucky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruanjansen/Documents/GitHub/Projects/ProjectRubberDucky/ProjectRubberDucky/Services/Plex/PlexGateway.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5BECB9B2-B286-44A4-BA68-9965A2B82D65"
+            uuid = "839F7314-646D-4D4B-80B3-FFAAF5BDA5F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProjectRubberDucky/Features/AuthenticationFeature/AuthenticationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99B81EC8-EA13-44D7-B521-9C9AD4B7917E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectRubberDucky/Features/AccountFeature/AccountProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "fetchContent()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "addListeners()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65B6C6BD-1E4E-44FC-8B14-2322DF7BE36E"
+            uuid = "6BB5D295-17F1-42EF-8DBD-22431D0E8DE5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProjectRubberDucky/Features/AccountFeature/AccountProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "updateUser()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "savePhotoURL(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5936BF04-C387-4F75-84C8-0B1320074938"
+            uuid = "F19FF85B-1EDF-4905-8261-59CC864C9859"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ProjectRubberDucky/Firebase/FirebaseAuthenticationManager.swift"
+            filePath = "ProjectRubberDucky/Utilities/UI/Templates/RDButton.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "fetchUser()"
-            landmarkType = "7">
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

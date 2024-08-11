@@ -38,31 +38,31 @@ class AuthenticationProvider: FeatureProvider {
             return nil
         }
     }
-
+    
     private func setupSignInDataModel() async -> AuthenticationSignInDataModel? {
-            let pageTitle = await contentProvider.fetchLoginPageTitle()
-            let sectionHeader1 = await contentProvider.fetchLoginSectionHeader1()
-            let sectionHeader2 = await contentProvider.fetchLoginSectionHeader2()
-            let primaryAction = await contentProvider.fetchLoginPrimaryAction()
-            let secondaryAction = await contentProvider.fetchLoginSecondaryAction()
+        let pageTitle = await contentProvider.fetchLoginPageTitle()
+        let sectionHeader1 = await contentProvider.fetchLoginSectionHeader1()
+        let sectionHeader2 = await contentProvider.fetchLoginSectionHeader2()
+        let primaryAction = await contentProvider.fetchLoginPrimaryAction()
+        let secondaryAction = await contentProvider.fetchLoginSecondaryAction()
 
-            return AuthenticationSignInDataModel(pageTitle: pageTitle,
-                                      sectionHeader1: sectionHeader1,
-                                      sectionHeader2: sectionHeader2,
-                                      primaryAction: primaryAction,
-                                      secondaryAction: secondaryAction)
+        return AuthenticationSignInDataModel(pageTitle: pageTitle,
+                                             sectionHeader1: sectionHeader1,
+                                             sectionHeader2: sectionHeader2,
+                                             primaryAction: primaryAction,
+                                             secondaryAction: secondaryAction)
     }
 
     private func setupRegisterDataModel() async -> AuthenticationRegisterDataModel? {
-            let pageTitle = await contentProvider.fetchLoginPageTitle()
+        let pageTitle = await contentProvider.fetchRegisterPageTitle()
         let sectionHeader1 = await contentProvider.fetchRegisterSectionHeader1()
-            let sectionHeader2 = await contentProvider.fetchRegisterSectionHeader2()
-            let primaryAction = await contentProvider.fetchRegisterPrimaryAction()
+        let sectionHeader2 = await contentProvider.fetchRegisterSectionHeader2()
+        let primaryAction = await contentProvider.fetchRegisterPrimaryAction()
 
-            return AuthenticationRegisterDataModel(pageTitle: pageTitle,
-                                      sectionHeader1: sectionHeader1,
-                                      sectionHeader2: sectionHeader2,
-                                      primaryAction: primaryAction)
+        return AuthenticationRegisterDataModel(pageTitle: pageTitle,
+                                               sectionHeader1: sectionHeader1,
+                                               sectionHeader2: sectionHeader2,
+                                               primaryAction: primaryAction)
 
     }
 }

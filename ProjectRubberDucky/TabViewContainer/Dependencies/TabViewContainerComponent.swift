@@ -19,8 +19,8 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
     private var tabs: [any Tabable]? {
         return [
             homeTab,
-            subscribedTab,
-            libraryTab,
+//            subscribedTab,
+//            libraryTab,
             settingsTab
         ]
     }

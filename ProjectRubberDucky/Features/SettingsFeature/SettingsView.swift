@@ -44,7 +44,7 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
         VStack {
             Form {
                 if let account = dataModel.account {
-                    RDButton(action: account.action) {
+                    RDButton(account.action) {
                         HStack(spacing: 20) {
                             if let photoURL = account.imageURL {
                                 KFImage(photoURL)
@@ -74,7 +74,7 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                     Section {
                         ForEach(section.items, id: \.id) { item in
                             if let buttonAction = item.buttonAction {
-                                RDButton(action: buttonAction, label: { Text(item.title) })
+                                RDButton(buttonAction, label: { Text(item.title) })
                                     .if(item.hasMaxWidth) { view in
                                         view
                                             .frame(maxWidth: .infinity)
@@ -93,16 +93,12 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
                         if let header = section.header{
                             Text(header)
                         }
+                    } footer: {
+                        if let footer = section.footer {
+                            Text(footer)
+                        }
                     }
                 }
-            }
-
-            Spacer()
-
-            if let build = dataModel.build {
-                Text(build)
-                    .font(.footnote)
-                    .padding()
             }
         }
     }

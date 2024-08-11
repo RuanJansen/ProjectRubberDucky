@@ -12,10 +12,10 @@ class RootComponent: BootstrapComponent {
         super.init()
     }
 
-    public var userDefaultsManager: UserDefaultsManager {
-        shared {
-            UserDefaultsManager()
-        }
+    public var view: some View {
+        RootView(navigationManager: navigationManager)
+            .environment(appStyling)
+            .environment(self.appMetaData)
     }
 
     public var navigationManager: NavigationManager {
@@ -28,9 +28,21 @@ class RootComponent: BootstrapComponent {
         }
     }
 
-    public var view: some View {
-        RootView(navigationManager: navigationManager)
-            .environment(appStyling)
-            .environment(self.appMetaData)
+    public var firebaseRemoteConfig: FirebaseRemoteConfig {
+        shared {
+            FirebaseRemoteConfig()
+        }
+    }
+
+    public var contentFetcher: ContentFetcher {
+        shared {
+            ContentFetcher(firebaseContentFetcher: firebaseRemoteConfig)
+        }
+    }
+
+    public var userDefaultsManager: UserDefaultsManager {
+        shared {
+            UserDefaultsManager()
+        }
     }
 }
