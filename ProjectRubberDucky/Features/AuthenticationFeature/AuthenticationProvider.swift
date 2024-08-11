@@ -9,7 +9,6 @@ class AuthenticationProvider: FeatureProvider {
     private let contentProvider: AuthenticationContentProvidable
     private let authenticationManager: AuthenticationManager?
 
-
     init(contentProvider: AuthenticationContentProvidable,
          authenticationManager: AuthenticationManager? = nil) {
         self.contentProvider = contentProvider

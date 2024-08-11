@@ -34,10 +34,18 @@ class RootComponent: BootstrapComponent {
         }
     }
 
+    public var featureFlagProvider: FeatureFlagProvider {
+        FeatureFlagProvider(featureFlagFetcher: featureFlagFetcher)
+    }
+
     public var contentFetcher: ContentFetcher {
         shared {
             ContentFetcher(firebaseContentFetcher: firebaseRemoteConfig)
         }
+    }
+
+    public var featureFlagFetcher: FeatureFlagFetcher {
+        FeatureFlagFetcher(firebaseFeatureFlagFetcher: firebaseRemoteConfig)
     }
 
     public var userDefaultsManager: UserDefaultsManager {
@@ -46,3 +54,4 @@ class RootComponent: BootstrapComponent {
         }
     }
 }
+

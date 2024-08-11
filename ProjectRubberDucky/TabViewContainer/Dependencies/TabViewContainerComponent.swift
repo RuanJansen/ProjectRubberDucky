@@ -5,6 +5,10 @@ extension RootComponent {
     public var tabViewContainerComponent: TabViewContainerComponent {
         TabViewContainerComponent(parent: self)
     }
+
+    public var tabFeatureFlagProvider: TabFeatureFlagProvidable {
+        featureFlagProvider as! TabFeatureFlagProvidable
+    }
 }
 
 class TabViewContainerComponent: Component<TabViewContainerDependency> {
@@ -17,13 +21,47 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
     }
 
     private var tabs: [any Tabable]? {
-        return [
-            homeTab,
-//            subscribedTab,
-//            libraryTab,
-            settingsTab
-        ]
+        var tabs: [any Tabable] = []
+
+        if homeTabFeatreFlag {
+            tabs.append(homeTab)
+        }
+
+        if subscribedTabFeatreFlag {
+            tabs.append(subscribedTab)
+        }
+
+        if libraryTabFeatreFlag {
+            tabs.append(libraryTab)
+        }
+
+        if settingsTabFeatreFlag {
+            tabs.append(settingsTab)
+        }
+
+        return tabs
     }
+
+    private var tabFeatureFlagProvider: TabFeatureFlagProvidable {
+        dependency.tabFeatureFlagProvider
+    }
+
+    public var homeTabFeatreFlag: Bool {
+        tabFeatureFlagProvider.fetchHomeTabFeatreFlag()
+    }
+
+    public var subscribedTabFeatreFlag: Bool {
+        tabFeatureFlagProvider.fetcSubscribedTabFeatreFlag()
+    }
+
+    public var libraryTabFeatreFlag: Bool {
+        tabFeatureFlagProvider.fetchLibraryTabFeatreFlag()
+    }
+
+    public var settingsTabFeatreFlag: Bool {
+        tabFeatureFlagProvider.fetchSettingsTabFeatreFlag()
+    }
+
 
     private var videoPlayerTab: any Tabable {
         TabViewContainerDataModel(name: "Video Player",

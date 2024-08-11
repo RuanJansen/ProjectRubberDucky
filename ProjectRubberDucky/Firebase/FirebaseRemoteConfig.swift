@@ -48,7 +48,6 @@ class FirebaseRemoteConfig {
                 print("Config not fetched")
                 print("Error: \(error?.localizedDescription ?? "No error available.")")
             }
-            self.displayWelcome()
         }
     }
 
@@ -63,24 +62,9 @@ class FirebaseRemoteConfig {
 
             self.remoteConfig.activate { changed, error in
                 guard error == nil else { return print(error!) }
-                DispatchQueue.main.async {
-                    self.displayWelcome()
-                }
             }
         }
     }
-
-    private func displayWelcome() {
-        // [START get_config_value]
-        var welcomeMessage = remoteConfig[welcomeMessageConfigKey].stringValue
-        // [END get_config_value]
-
-        if remoteConfig[welcomeMessageCapsConfigKey].boolValue {
-            welcomeMessage = welcomeMessage.uppercased()
-        }
-        print(welcomeMessage)
-    }
-
 }
 
 extension FirebaseRemoteConfig: ContentFetchable {

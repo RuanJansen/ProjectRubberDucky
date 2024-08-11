@@ -15,7 +15,7 @@ extension RootComponent {
 
     var homeFeatureProvider: any FeatureProvider {
         shared {
-            HomeProvider(repository: videoRepository)
+            HomeProvider(contentProvider: homeContentProvider, repository: videoRepository)
         }
     }
 
@@ -27,6 +27,10 @@ extension RootComponent {
 
     public var videoRepository: PexelRepository {
         PexelRepository()
+    }
+
+    public var homeContentProvider: HomeContentProvidable {
+        HomeContentProvider(contentFetcher: contentFetcher)
     }
 }
 

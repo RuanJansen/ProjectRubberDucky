@@ -8,7 +8,7 @@ import SwiftUI
 @Observable
 fileprivate class MockHomeProvider: FeatureProvider, SearchProvidable {
     func clearSearch() async {
-        self.viewState = .presentContent(using: HomeDataModel(carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
+        self.viewState = .presentContent(using: HomeDataModel(pageTitle: "Home", carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
     }
     
     typealias DataModel = HomeDataModel
@@ -20,7 +20,7 @@ fileprivate class MockHomeProvider: FeatureProvider, SearchProvidable {
     }
 
     func fetchContent() async {
-        self.viewState = .presentContent(using: HomeDataModel(carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
+        self.viewState = .presentContent(using: HomeDataModel(pageTitle: "Home", carousels: [CarouselDataModel(title: "Music", videos: setupContent())]))
     }
 
     private func setupContent() -> [VideoDataModel] {
@@ -56,7 +56,7 @@ fileprivate class MockHomeProvider: FeatureProvider, SearchProvidable {
     }
 
     func searchContent(prompt: String) async {
-        self.viewState = .presentContent(using: HomeDataModel(searchResults: setupContent()))
+        self.viewState = .presentContent(using: HomeDataModel(pageTitle: "Home", searchResults: setupContent()))
     }
 
 }

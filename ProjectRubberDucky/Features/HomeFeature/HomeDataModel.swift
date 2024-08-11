@@ -9,12 +9,15 @@ import Foundation
 
 struct HomeDataModel: Identifiable {
     let id: UUID
+    let pageTitle: String
     let searchResults: [VideoDataModel]?
     let carousels: [CarouselDataModel]?
 
-    init(searchResults: [VideoDataModel]? = nil,
+    init(pageTitle: String,
+         searchResults: [VideoDataModel]? = nil,
          carousels: [CarouselDataModel]? = nil ) {
         self.id = UUID()
+        self.pageTitle = pageTitle
         self.searchResults = searchResults
         self.carousels = carousels
     }

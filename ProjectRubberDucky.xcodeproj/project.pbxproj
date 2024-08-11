@@ -31,9 +31,7 @@
 		F3342D302C63CD4D00C052BB /* Bundle+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */; };
 		F3342D322C63DCC100C052BB /* LogoutUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D312C63DCC100C052BB /* LogoutUsecase.swift */; };
 		F3342D352C65174200C052BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F3342D342C65174200C052BB /* Kingfisher */; };
-		F3342D382C660B5D00C052BB /* LoginContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3342D372C660B5D00C052BB /* LoginContent.json */; };
 		F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D392C660EE200C052BB /* ContentCodableModel.swift */; };
-		F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3B2C660F4F00C052BB /* RegisterContent.json */; };
 		F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */; };
 		F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */; };
 		F3342D432C664F3000C052BB /* AccountDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D422C664F3000C052BB /* AccountDependency.swift */; };
@@ -44,8 +42,10 @@
 		F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4C2C66514100C052BB /* AccountProvider.swift */; };
 		F3342D4F2C67A1AA00C052BB /* PhotosPickerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */; };
 		F3342D532C690D0B00C052BB /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F3342D522C690D0B00C052BB /* FirebaseRemoteConfig */; };
-		F3342D552C69116400C052BB /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */; };
 		F3342D572C69179900C052BB /* FirebaseRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */; };
+		F3342D592C6936FF00C052BB /* FeatureFlagFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D582C6936FF00C052BB /* FeatureFlagFetcher.swift */; };
+		F3342D5B2C69398200C052BB /* FeatureFlagProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */; };
+		F3342D5D2C694CB900C052BB /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -85,6 +85,7 @@
 		F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */; };
 		F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */; };
 		F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD442C32F758001176F8 /* VideoDataModel.swift */; };
+		F3D2BC592C6952E700D4637C /* HomeContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2BC582C6952E700D4637C /* HomeContentProvider.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
 		F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67742C28A33100F53642 /* Assets.xcassets */; };
 		F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67772C28A33100F53642 /* Preview Assets.xcassets */; };
@@ -147,9 +148,7 @@
 		F3342D2D2C63936300C052BB /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extention.swift"; sourceTree = "<group>"; };
 		F3342D312C63DCC100C052BB /* LogoutUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUsecase.swift; sourceTree = "<group>"; };
-		F3342D372C660B5D00C052BB /* LoginContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginContent.json; sourceTree = "<group>"; };
 		F3342D392C660EE200C052BB /* ContentCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCodableModel.swift; sourceTree = "<group>"; };
-		F3342D3B2C660F4F00C052BB /* RegisterContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RegisterContent.json; sourceTree = "<group>"; };
 		F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFetcher.swift; sourceTree = "<group>"; };
 		F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationContentProvider.swift; sourceTree = "<group>"; };
 		F3342D422C664F3000C052BB /* AccountDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDependency.swift; sourceTree = "<group>"; };
@@ -159,8 +158,10 @@
 		F3342D4A2C66509B00C052BB /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = "<group>"; };
 		F3342D4C2C66514100C052BB /* AccountProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProvider.swift; sourceTree = "<group>"; };
 		F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerUsecase.swift; sourceTree = "<group>"; };
-		F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfig.swift; sourceTree = "<group>"; };
+		F3342D582C6936FF00C052BB /* FeatureFlagFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFetcher.swift; sourceTree = "<group>"; };
+		F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagProvider.swift; sourceTree = "<group>"; };
+		F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
 		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerProvider.swift; sourceTree = "<group>"; };
 		F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		F3B4DD442C32F758001176F8 /* VideoDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDataModel.swift; sourceTree = "<group>"; };
+		F3D2BC582C6952E700D4637C /* HomeContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentProvider.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRubberDuckyApp.swift; sourceTree = "<group>"; };
 		F3DB67742C28A33100F53642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -364,17 +366,6 @@
 			path = NavigationManager;
 			sourceTree = "<group>";
 		};
-		F3342D362C660AFE00C052BB /* EditableContent */ = {
-			isa = PBXGroup;
-			children = (
-				F3342D392C660EE200C052BB /* ContentCodableModel.swift */,
-				F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */,
-				F3342D372C660B5D00C052BB /* LoginContent.json */,
-				F3342D3B2C660F4F00C052BB /* RegisterContent.json */,
-			);
-			path = EditableContent;
-			sourceTree = "<group>";
-		};
 		F3342D412C664F0700C052BB /* AccountFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +401,7 @@
 				F33B7E0C2C5D6D4300F1F49F /* HomeDependency.swift */,
 				F33B7E0E2C5D6D5100F1F49F /* HomeComponent.swift */,
 				F33B7E102C5D6DC100F1F49F /* HomeDataModel.swift */,
+				F3D2BC582C6952E700D4637C /* HomeContentProvider.swift */,
 			);
 			path = HomeFeature;
 			sourceTree = "<group>";
@@ -503,6 +495,7 @@
 				F3DB67862C28A44500F53642 /* RootComponent.swift */,
 				F392CCAF2C610D2C00843540 /* RootView.swift */,
 				F3342D2D2C63936300C052BB /* NavigationManager.swift */,
+				F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -554,7 +547,7 @@
 				F3342D2C2C63827C00C052BB /* NavigationManager */,
 				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
-				F3342D542C69116400C052BB /* RemoteConfigDefaults.plist */,
+				F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */,
 				F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */,
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
 				F34B7D8E2C3834F000587031 /* DependencyManager.swift */,
@@ -640,9 +633,12 @@
 		F3DB67A62C28B68700F53642 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */,
 				F3DB67A72C28B6A200F53642 /* APIFetcher.swift */,
 				F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */,
 				F3DB67B62C29510F00F53642 /* ServiceFetcher.swift */,
+				F3342D392C660EE200C052BB /* ContentCodableModel.swift */,
+				F3342D582C6936FF00C052BB /* FeatureFlagFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -661,7 +657,6 @@
 		F3DB67B12C294F5F00F53642 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F3342D362C660AFE00C052BB /* EditableContent */,
 				F32D3F312C31A3DA0084CC79 /* Pexel */,
 				F32D3F2B2C317A170084CC79 /* Plex */,
 			);
@@ -753,7 +748,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3342D552C69116400C052BB /* RemoteConfigDefaults.plist in Resources */,
+				F3342D5D2C694CB900C052BB /* RemoteConfigDefaults.plist in Resources */,
 				F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */,
 				F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */,
 				F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */,
@@ -799,6 +794,7 @@
 				F36AD4F22C61395300774C49 /* LibraryView.swift in Sources */,
 				F3DB678E2C28A60D00F53642 /* TabViewContainerComponent.swift in Sources */,
 				F3DB67902C28A62C00F53642 /* TabViewContainerProvider.swift in Sources */,
+				F3D2BC592C6952E700D4637C /* HomeContentProvider.swift in Sources */,
 				F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */,
 				F36AD4FC2C613B9C00774C49 /* SettingsFeature.swift in Sources */,
 				F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */,
@@ -814,8 +810,8 @@
 				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
 				F3342D4F2C67A1AA00C052BB /* PhotosPickerUsecase.swift in Sources */,
 				F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */,
+				F3342D592C6936FF00C052BB /* FeatureFlagFetcher.swift in Sources */,
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
-				F3342D3C2C660F4F00C052BB /* RegisterContent.json in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
 				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
@@ -854,6 +850,7 @@
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
+				F3342D5B2C69398200C052BB /* FeatureFlagProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F32045A82C6203E200A2DFA7 /* SplashScreenView.swift in Sources */,
 				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
@@ -883,7 +880,6 @@
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
 				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,
 				F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */,
-				F3342D382C660B5D00C052BB /* LoginContent.json in Sources */,
 				F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,
 				F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */,
@@ -1036,7 +1032,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1070,7 +1066,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;

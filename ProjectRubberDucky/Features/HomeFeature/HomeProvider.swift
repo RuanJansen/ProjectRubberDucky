@@ -14,9 +14,12 @@ class HomeProvider: FeatureProvider {
 
     var viewState: ViewState<HomeDataModel>
 
+    private let contentProvider: HomeContentProvidable
     private let repository: PexelRepository?
 
-    init(repository: PexelRepository? = nil) {
+    init(contentProvider: HomeContentProvidable,
+         repository: PexelRepository? = nil) {
+        self.contentProvider = contentProvider
         self.repository = repository
         self.viewState = .loading
     }
@@ -38,15 +41,22 @@ class HomeProvider: FeatureProvider {
     }
 
     private func setupHomeDataModel() async {
+        let pageTitle = await contentProvider.fetchPageTitle()
         let carousels = await fetchDefaultVideoCarousels()
 
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(carousels: carousels))
+            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, carousels: carousels))
         }
     }
 
     private func fetchDefaultVideoCarousels() async -> [CarouselDataModel] {
-        let prompts: [String] = ["Ocean", "Galaxy", "Mountains", "Nature", "Africa wild life", "Ocean wild life", "Insect wild life"]
+        var prompts: [String] = []
+        await prompts.append(contentProvider.fetchCarousel1())
+        await prompts.append(contentProvider.fetchCarousel2())
+        await prompts.append(contentProvider.fetchCarousel3())
+        await prompts.append(contentProvider.fetchCarousel4())
+        await prompts.append(contentProvider.fetchCarousel5())
+
         let carouselManager = CarouselManager()
 
         await withTaskGroup(of: Void.self) { taskGroup in
@@ -80,11 +90,12 @@ extension HomeProvider: SearchProvidable {
     }
     
     func searchContent(prompt: String) async {
+        let pageTitle = await contentProvider.fetchPageTitle()
         let defaultCarousels = await fetchDefaultVideoCarousels()
         let searchVideos = await fetchSearchVideoCarousel(prompt: prompt)
         
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(searchResults: searchVideos, carousels: defaultCarousels))
+            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, searchResults: searchVideos, carousels: defaultCarousels))
         }
     }
 

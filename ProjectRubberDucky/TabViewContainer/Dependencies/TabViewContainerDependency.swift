@@ -6,4 +6,5 @@ protocol TabViewContainerDependency: Dependency {
     var subscribedComponent: SubscribedComponent { get }
     var libraryComponent: LibraryComponent { get }
     var settingsComponent: SettingsComponent { get }
+    var tabFeatureFlagProvider: TabFeatureFlagProvidable { get }
 }

@@ -150,6 +150,9 @@ private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewCon
     var settingsComponent: SettingsComponent {
         return rootComponent.settingsComponent
     }
+    var tabFeatureFlagProvider: TabFeatureFlagProvidable {
+        return rootComponent.tabFeatureFlagProvider
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -225,6 +228,7 @@ extension TabViewContainerComponent: Registration {
         keyPathToName[\TabViewContainerDependency.subscribedComponent] = "subscribedComponent-SubscribedComponent"
         keyPathToName[\TabViewContainerDependency.libraryComponent] = "libraryComponent-LibraryComponent"
         keyPathToName[\TabViewContainerDependency.settingsComponent] = "settingsComponent-SettingsComponent"
+        keyPathToName[\TabViewContainerDependency.tabFeatureFlagProvider] = "tabFeatureFlagProvider-TabFeatureFlagProvidable"
     }
 }
 extension RootComponent: Registration {
@@ -235,7 +239,9 @@ extension RootComponent: Registration {
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["firebaseRemoteConfig-FirebaseRemoteConfig"] = { [unowned self] in self.firebaseRemoteConfig as Any }
+        localTable["featureFlagProvider-FeatureFlagProvider"] = { [unowned self] in self.featureFlagProvider as Any }
         localTable["contentFetcher-ContentFetcher"] = { [unowned self] in self.contentFetcher as Any }
+        localTable["featureFlagFetcher-FeatureFlagFetcher"] = { [unowned self] in self.featureFlagFetcher as Any }
         localTable["userDefaultsManager-UserDefaultsManager"] = { [unowned self] in self.userDefaultsManager as Any }
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
         localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
@@ -245,6 +251,7 @@ extension RootComponent: Registration {
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
         localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
         localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
+        localTable["homeContentProvider-HomeContentProvidable"] = { [unowned self] in self.homeContentProvider as Any }
         localTable["subscribedComponent-SubscribedComponent"] = { [unowned self] in self.subscribedComponent as Any }
         localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
@@ -259,6 +266,7 @@ extension RootComponent: Registration {
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
         localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
+        localTable["tabFeatureFlagProvider-TabFeatureFlagProvidable"] = { [unowned self] in self.tabFeatureFlagProvider as Any }
         localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
         localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
     }
