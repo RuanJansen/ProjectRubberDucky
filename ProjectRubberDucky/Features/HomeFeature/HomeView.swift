@@ -61,6 +61,10 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             if let carousels = dataModel.carousels {
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
+                        if let topCarousel = dataModel.topCarousel {
+                            createTopCarouselView(using: topCarousel)
+                        }
+
                         ForEach(carousels, id: \.id) { carousel in
                             createCarouselView(using: carousel)
                         }
@@ -84,9 +88,67 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     }
 
     @ViewBuilder
+    private func createTopCarouselView(using carouselVideos: [VideoDataModel]) -> some View {
+        VStack {
+            TabView {
+                ForEach(carouselVideos, id: \.id) { video in
+                    VStack {
+                        RDButton(.navigate(hideChevron: true) {
+                            AnyView(VideoDetailView(video: video))
+                        }) {
+                            KFImage(video.thumbnail)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity)
+                                .overlay {
+                                    LinearGradient(colors: [.clear,
+                                                            .clear,
+                                                            .clear,
+                                                            .clear,
+                                                            .clear,
+                                                            .clear,
+                                                            .clear,
+                                                            .black.opacity(0.25),
+                                                            .black.opacity(0.5),
+                                                            .black.opacity(0.75),
+                                                            .black],
+                                                   startPoint: .top,
+                                                   endPoint: .bottom)
+                                    .padding(.top)
+                                }
+                                .overlay(alignment: .bottom) {
+                                    HStack(alignment: .bottom) {
+                                        VStack(alignment: .leading) {
+                                            Text(video.title.capitalized)
+                                                .font(.title)
+                                            if let category = video.category {
+                                                Text(category.capitalized)
+                                                    .font(.subheadline)
+                                            }
+                                        }
+                                        Spacer()
+                                        if let quality = video.quality {
+                                            Text(quality.uppercased())
+                                                .font(.subheadline)
+                                        }
+                                    }
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal)
+                                }
+                        }
+                    }
+                    .frame(maxHeight: .infinity, alignment: .top)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+        }
+        .frame(height: 250)
+    }
+
+    @ViewBuilder
     private func createCarouselView(using carousel: CarouselDataModel) -> some View {
 
-        RDButton(.navigate(hideCevron: true) {
+        RDButton(.navigate(hideChevron: true) {
             AnyView(GridContainerView(title: carousel.title, videos: carousel.videos))
         }) {
             Label(carousel.title, systemImage: "chevron.right")
@@ -99,7 +161,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             HStack {
                 ForEach(carousel.videos, id: \.id) { video in
                     VStack {
-                        RDButton(.navigate(hideCevron: true) {
+                        RDButton(.navigate(hideChevron: true) {
                             AnyView(VideoDetailView(video: video))
                         }) {
                             CardView(video: video)
@@ -144,7 +206,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
 
 struct CardView: View {
     private let video: VideoDataModel
-    @State private var image: UIImage?
+
     init(video: VideoDataModel) {
         self.video = video
     }
@@ -169,7 +231,6 @@ struct CardView: View {
                 }
                 .resizable()
                 .scaledToFill()
-
 
             LinearGradient(colors: [.clear, .clear, .black.opacity(0.5)], startPoint: .top, endPoint: .bottom)
         }
@@ -246,34 +307,48 @@ struct GridContainerView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
+            LazyVGrid(columns: columns, spacing: 1) {
                 ForEach(videos, id: \.id) { video in
                     VStack {
-                        NavigationLink {
-                            VideoDetailView(video: video)
-                        } label: {
+                        RDButton(.navigate(hideChevron: true) {
+                            AnyView(VideoDetailView(video: video))
+                        }) {
                             KFImage(video.thumbnail)
                                 .placeholder {
                                     Image(systemName: "wifi.slash")
-
                                 }
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 110, height: 200)
+                                .frame(width: 115, height: 200)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-
                         }
                         .overlay {
                             VStack(alignment: .leading) {
                                 Spacer()
                                 HStack {
-                                    Text(video.title)
-                                        .multilineTextAlignment(.leading)
-                                        .font(.footnote)
-                                    Spacer()
+                                    VStack {
+                                        HStack {
+                                            Text(video.title)
+                                                .font(.body)
+                                                .fontWeight(.thin)
+                                                .fixedSize(horizontal: false, vertical: true)
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        if let quality = video.quality {
+                                            HStack {
+                                                Text(quality.uppercased())
+                                                    .font(.footnote)
+                                                    .fontWeight(.thin)
+                                            }
+                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                                    .multilineTextAlignment(.leading)
                                 }
-                                .frame(height: 55)
-                                .padding(.horizontal)
+                                .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                                .frame(height: 75)
+                                .padding(.horizontal, 5)
                                 .background(.ultraThinMaterial)
                             }
                         }

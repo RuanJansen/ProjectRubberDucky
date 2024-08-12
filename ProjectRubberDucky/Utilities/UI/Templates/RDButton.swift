@@ -62,8 +62,8 @@ struct RDButton<Label> : View where Label : View{
                 label()
             case .sheet(let anyView):
                 label()
-            case .navigate(let hideCevron, _):
-                if hideCevron {
+            case .navigate(let hideChevron, _):
+                if hideChevron {
                     label()
                 } else {
                     HStack {
@@ -140,7 +140,7 @@ struct RDButton<Label> : View where Label : View{
 enum RDButtonAction {
     case action(() -> Void)
     case sheet(() -> AnyView)
-    case navigate(hideCevron: Bool = false, () -> AnyView)
+    case navigate(hideChevron: Bool = false, () -> AnyView)
     case fullScreenCover(swipeDismissable: Bool = false,() -> AnyView)
     case alert(() -> RDAlertModel)
     case photosPicker(() -> RDPhotosPickerModel)

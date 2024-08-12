@@ -52,7 +52,7 @@ class SettingsProvider: FeatureProvider {
 
         return SettingsAccountDataModel(imageURL: user.photoURL,
                                         title: (user.displayName ?? user.email) ?? "User",
-                                        action: .navigate(hideCevron: false) {
+                                        action: .navigate(hideChevron: false) {
             AnyView(self.accountView)
         })
     }

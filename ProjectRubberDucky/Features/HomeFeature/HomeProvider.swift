@@ -43,9 +43,10 @@ class HomeProvider: FeatureProvider {
     private func setupHomeDataModel() async {
         let pageTitle = await contentProvider.fetchPageTitle()
         let carousels = await fetchDefaultVideoCarousels()
+        let topCarousel = await setupTopCarouselVideos()
 
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, carousels: carousels))
+            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, topCarousel: topCarousel, carousels: carousels))
         }
     }
 
@@ -64,13 +65,7 @@ class HomeProvider: FeatureProvider {
                 taskGroup.addTask {
                     var videos: [VideoDataModel] = []
 
-                    if let repository = self.repository {
-                        if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-                            videos.append(contentsOf: fetchedContent)
-                        } else {
-
-                        }
-                    }
+                    await videos.append(contentsOf: self.fetchVideos(using: prompt))
 
                     let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title < $1.title }))
                     await carouselManager.addCarousel(carousel)
@@ -81,6 +76,33 @@ class HomeProvider: FeatureProvider {
         let carousels = await carouselManager.getCarousels().sorted(by: {$0.title < $1.title})
 
         return carousels
+    }
+
+    private func fetchVideos(using prompt: String) async -> [VideoDataModel] {
+        if let repository = self.repository {
+            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
+                return fetchedContent
+            }
+        }
+        return []
+    }
+
+    private func setupTopCarouselVideos() async -> [VideoDataModel] {
+        var videos: [VideoDataModel] = []
+
+        var prompts: [String] = []
+        await prompts.append(contentProvider.fetchCarousel1())
+        await prompts.append(contentProvider.fetchCarousel2())
+        await prompts.append(contentProvider.fetchCarousel3())
+        await prompts.append(contentProvider.fetchCarousel4())
+        await prompts.append(contentProvider.fetchCarousel5())
+
+        for prompt in prompts {
+            if let randomVideo = await self.fetchVideos(using: prompt).randomElement() {
+                videos.append(randomVideo)
+            }
+        }
+        return videos
     }
 }
 
@@ -93,9 +115,9 @@ extension HomeProvider: SearchProvidable {
         let pageTitle = await contentProvider.fetchPageTitle()
         let defaultCarousels = await fetchDefaultVideoCarousels()
         let searchVideos = await fetchSearchVideoCarousel(prompt: prompt)
-        
+        let topCarousel = await setupTopCarouselVideos()
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, searchResults: searchVideos, carousels: defaultCarousels))
+            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, searchResults: searchVideos, topCarousel: topCarousel, carousels: defaultCarousels))
         }
     }
 

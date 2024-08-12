@@ -13,6 +13,6 @@ struct CarouselButtonModifier: ViewModifier {
         content
             .foregroundColor(.primary)
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            .frame(width: 350, height: 175)
+            .frame(width: 300, height: 150)
     }
 }

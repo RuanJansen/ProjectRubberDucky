@@ -186,7 +186,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             .padding(.horizontal)
             .padding(.bottom)
 
-            RDButton(.navigate(hideCevron: true) {
+            RDButton(.navigate(hideChevron: true) {
                 AnyView(createRegstraterView(dataModel: dataModel.register))
             }, label: {
                 Text(dataModel.signIn.secondaryAction)
