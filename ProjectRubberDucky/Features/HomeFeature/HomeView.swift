@@ -321,36 +321,37 @@ struct GridContainerView: View {
                                 .scaledToFill()
                                 .frame(width: 115, height: 200)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                        }
-                        .overlay {
-                            VStack(alignment: .leading) {
-                                Spacer()
-                                HStack {
-                                    VStack {
+                                .overlay {
+                                    VStack(alignment: .leading) {
+                                        Spacer()
                                         HStack {
-                                            Text(video.title)
-                                                .font(.body)
-                                                .fontWeight(.thin)
-                                                .fixedSize(horizontal: false, vertical: true)
-                                        }
-                                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                                        if let quality = video.quality {
-                                            HStack {
-                                                Text(quality.uppercased())
-                                                    .font(.footnote)
-                                                    .fontWeight(.thin)
+                                            VStack {
+                                                HStack {
+                                                    Text(video.title)
+                                                        .font(.body)
+                                                        .fontWeight(.thin)
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                }
+                                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                if let quality = video.quality {
+                                                    HStack {
+                                                        Text(quality.uppercased())
+                                                            .font(.footnote)
+                                                            .fontWeight(.thin)
+                                                    }
+                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                                }
                                             }
-                                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                                            .multilineTextAlignment(.leading)
                                         }
+                                        .foregroundStyle(.white)
+                                        .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                                        .frame(height: 75)
+                                        .padding(.horizontal, 5)
+                                        .background(.ultraThinMaterial)
                                     }
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                    .multilineTextAlignment(.leading)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                                .frame(height: 75)
-                                .padding(.horizontal, 5)
-                                .background(.ultraThinMaterial)
-                            }
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 8))
 
