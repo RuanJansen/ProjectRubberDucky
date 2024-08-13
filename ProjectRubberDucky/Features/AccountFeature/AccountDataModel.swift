@@ -8,11 +8,11 @@
 import Foundation
 
 struct AccountDataModel {
-    let user: UserDataModel?
+    let user: UserAuthDataModel?
     let profileImageButtonAction: RDButtonAction?
     let sections: [SectionDataModel]
 
-    init(user: UserDataModel? = nil, profileImageButtonAction: RDButtonAction? = nil, sections: [SectionDataModel]) {
+    init(user: UserAuthDataModel? = nil, profileImageButtonAction: RDButtonAction? = nil, sections: [SectionDataModel]) {
         self.user = user
         self.profileImageButtonAction = profileImageButtonAction
         self.sections = sections

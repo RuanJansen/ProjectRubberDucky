@@ -62,13 +62,6 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
         tabFeatureFlagProvider.fetchSettingsTabFeatreFlag()
     }
 
-
-    private var videoPlayerTab: any Tabable {
-        TabViewContainerDataModel(name: "Video Player",
-                                  systemImage: "video.fill",
-                                  feature: dependency.videoPlayerComponent.feature)
-    }
-
     private var homeTab: any Tabable {
         TabViewContainerDataModel(name: "Home",
                                   systemImage: "house.fill",

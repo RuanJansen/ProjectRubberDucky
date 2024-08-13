@@ -19,7 +19,7 @@ class AccountProvider: FeatureProvider {
     private var firebaseProvider: FirebaseProvider?
     private var photosPickerUsecase: PhotosPickerUsecase
 
-    private var currentUser: UserDataModel?
+    private var currentUser: UserAuthDataModel?
 
     private var cancellables = Set<AnyCancellable>()
 

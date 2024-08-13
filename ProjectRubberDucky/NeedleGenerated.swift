@@ -47,19 +47,6 @@ private class AccountDependency38402058fc99315b7606Provider: AccountDependency {
 private func factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return AccountDependency38402058fc99315b7606Provider(rootComponent: parent1(component) as! RootComponent)
 }
-private class VideoPlayerDependency3bd39f7301b443c46ea0Provider: VideoPlayerDependency {
-    var videoPlayerFeatureProvider: any FeatureProvider {
-        return rootComponent.videoPlayerFeatureProvider
-    }
-    private let rootComponent: RootComponent
-    init(rootComponent: RootComponent) {
-        self.rootComponent = rootComponent
-    }
-}
-/// ^->RootComponent->VideoPlayerComponent
-private func factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return VideoPlayerDependency3bd39f7301b443c46ea0Provider(rootComponent: parent1(component) as! RootComponent)
-}
 private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
     var homeFeatureProvider: any FeatureProvider {
         return rootComponent.homeFeatureProvider
@@ -135,9 +122,6 @@ private func factorydbcb054e6931f74941b7b3a8f24c1d289f2c0f2e(_ component: Needle
     return LibraryDependencydf4b476f51ad8d19a376Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewContainerDependency {
-    var videoPlayerComponent: VideoPlayerComponent {
-        return rootComponent.videoPlayerComponent
-    }
     var homeComponent: HomeComponent {
         return rootComponent.homeComponent
     }
@@ -162,19 +146,6 @@ private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewCon
 private func factoryf4fcb82992c91b07199cb3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return TabViewContainerDependencyaf64c5e4f995451e1558Provider(rootComponent: parent1(component) as! RootComponent)
 }
-private class PlexDependency0f97827058ae2b890713Provider: PlexDependency {
-    var plexGateway: PlexGateway {
-        return rootComponent.plexGateway
-    }
-    private let rootComponent: RootComponent
-    init(rootComponent: RootComponent) {
-        self.rootComponent = rootComponent
-    }
-}
-/// ^->RootComponent->PlexComponent
-private func factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return PlexDependency0f97827058ae2b890713Provider(rootComponent: parent1(component) as! RootComponent)
-}
 
 #else
 extension OnboardingComponent: Registration {
@@ -186,11 +157,6 @@ extension OnboardingComponent: Registration {
 extension AccountComponent: Registration {
     public func registerItems() {
         keyPathToName[\AccountDependency.accountProvider] = "accountProvider-any FeatureProvider"
-    }
-}
-extension VideoPlayerComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\VideoPlayerDependency.videoPlayerFeatureProvider] = "videoPlayerFeatureProvider-any FeatureProvider"
     }
 }
 extension HomeComponent: Registration {
@@ -223,7 +189,6 @@ extension LibraryComponent: Registration {
 }
 extension TabViewContainerComponent: Registration {
     public func registerItems() {
-        keyPathToName[\TabViewContainerDependency.videoPlayerComponent] = "videoPlayerComponent-VideoPlayerComponent"
         keyPathToName[\TabViewContainerDependency.homeComponent] = "homeComponent-HomeComponent"
         keyPathToName[\TabViewContainerDependency.subscribedComponent] = "subscribedComponent-SubscribedComponent"
         keyPathToName[\TabViewContainerDependency.libraryComponent] = "libraryComponent-LibraryComponent"
@@ -239,6 +204,7 @@ extension RootComponent: Registration {
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["firebaseRemoteConfig-FirebaseRemoteConfig"] = { [unowned self] in self.firebaseRemoteConfig as Any }
+        localTable["firebaseUserManager-FirebaseUserManager"] = { [unowned self] in self.firebaseUserManager as Any }
         localTable["featureFlagProvider-FeatureFlagProvider"] = { [unowned self] in self.featureFlagProvider as Any }
         localTable["contentFetcher-ContentFetcher"] = { [unowned self] in self.contentFetcher as Any }
         localTable["featureFlagFetcher-FeatureFlagFetcher"] = { [unowned self] in self.featureFlagFetcher as Any }
@@ -246,8 +212,6 @@ extension RootComponent: Registration {
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
         localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
         localTable["accountProvider-any FeatureProvider"] = { [unowned self] in self.accountProvider as Any }
-        localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
-        localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
         localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
         localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
@@ -267,13 +231,6 @@ extension RootComponent: Registration {
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
         localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
         localTable["tabFeatureFlagProvider-TabFeatureFlagProvidable"] = { [unowned self] in self.tabFeatureFlagProvider as Any }
-        localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
-        localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
-    }
-}
-extension PlexComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\PlexDependency.plexGateway] = "plexGateway-PlexGateway"
     }
 }
 
@@ -294,7 +251,6 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent->OnboardingComponent", factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AccountComponent", factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e)
-    registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SubscribedComponent", factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SettingsComponent", factory3b338491ae548e90be9ab3a8f24c1d289f2c0f2e)
@@ -302,7 +258,6 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent->LibraryComponent", factorydbcb054e6931f74941b7b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->TabViewContainerComponent", factoryf4fcb82992c91b07199cb3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
-    registerProviderFactory("^->RootComponent->PlexComponent", factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e)
 }
 #endif
 

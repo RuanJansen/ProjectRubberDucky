@@ -34,6 +34,10 @@ class RootComponent: BootstrapComponent {
         }
     }
 
+    public var firebaseUserManager: FirebaseUserManager {
+        FirebaseUserManager()
+    }
+
     public var featureFlagProvider: FeatureFlagProvider {
         FeatureFlagProvider(featureFlagFetcher: featureFlagFetcher)
     }

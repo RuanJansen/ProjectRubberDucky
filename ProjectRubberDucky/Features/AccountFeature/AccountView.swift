@@ -34,7 +34,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
     }
 
     @ViewBuilder
-    private func createProfilePhotoView(user: UserDataModel) -> some View {
+    private func createProfilePhotoView(user: UserAuthDataModel) -> some View {
         VStack(spacing: 20) {
             if let photoURL = user.photoURL {
                 KFImage(photoURL)

@@ -7,7 +7,7 @@
 
 import FirebaseAuth
 
-struct UserDataModel {
+struct UserAuthDataModel {
     let uid: String
     let email: String?
     var displayName: String?
@@ -22,48 +22,48 @@ struct UserDataModel {
 }
 
 protocol FirebaseProvider {
-    func fetchUser() async -> UserDataModel?
-    func updateUser(with user: UserDataModel) async throws 
+    func fetchUser() async -> UserAuthDataModel?
+    func updateUser(with user: UserAuthDataModel) async throws 
 }
 
 class FirebaseAuthenticationManager {
-    init(currentUser: UserDataModel? = nil) {
+    init(currentUser: UserAuthDataModel? = nil) {
         self.currentUser = currentUser
         self.setupCurrentUser()
     }
 
-    public var currentUser: UserDataModel?
+    public var currentUser: UserAuthDataModel?
 
-    private func setupCurrentUser(_ user : UserDataModel? = nil) {
+    private func setupCurrentUser(_ user : UserAuthDataModel? = nil) {
         if let user {
             currentUser = user
         } else if let safeCurrent = Auth.auth().currentUser {
-            currentUser = UserDataModel(user: safeCurrent)
+            currentUser = UserAuthDataModel(user: safeCurrent)
         }
     }
 
-    func createUser(email: String, password: String) async throws -> UserDataModel {
+    func createUser(email: String, password: String) async throws -> UserAuthDataModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-        let user = UserDataModel(user: authDataResult.user)
+        let user = UserAuthDataModel(user: authDataResult.user)
         setupCurrentUser(user)
         return user
     }
 
-    func getAuthenticatedUser() throws -> UserDataModel {
+    func getAuthenticatedUser() throws -> UserAuthDataModel {
         guard let user = Auth.auth().currentUser else {
             // handle error
             throw URLError(.unknown)
         }
 
-        let currentUser = UserDataModel(user: user)
+        let currentUser = UserAuthDataModel(user: user)
 
         setupCurrentUser(currentUser)
         return currentUser
     }
 
-    func signIn(email: String, password: String) async throws -> UserDataModel  {
+    func signIn(email: String, password: String) async throws -> UserAuthDataModel  {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-        let user = UserDataModel(user: authDataResult.user)
+        let user = UserAuthDataModel(user: authDataResult.user)
 
         setupCurrentUser(user)
         return user
@@ -79,11 +79,11 @@ class FirebaseAuthenticationManager {
 }
 
 extension FirebaseAuthenticationManager: FirebaseProvider {
-    func fetchUser() async -> UserDataModel? {
+    func fetchUser() async -> UserAuthDataModel? {
         currentUser
     }
 
-    func updateUser(with user: UserDataModel) async throws {
+    func updateUser(with user: UserAuthDataModel) async throws {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = user.displayName
         changeRequest?.photoURL = user.photoURL

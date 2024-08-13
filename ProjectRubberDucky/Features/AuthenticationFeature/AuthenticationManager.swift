@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import FirebaseAuth
 
 enum AuthenticationStatus {
     case userAuthenticated
@@ -14,24 +15,25 @@ class AuthenticationManager: ObservableObject {
     @Published public var isAuthenticated: Bool
 
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
+    private let firebaseUserManager: FirebaseUserManager
     private let userDefaultsManager: UserDefaultsManager
 
     init(firebaseAuthenticationManager: FirebaseAuthenticationManager,
+         firebaseUserManager: FirebaseUserManager,
          userDefaultsManager: UserDefaultsManager) {
         self.id = UUID()
         self.isAuthenticated = userDefaultsManager.isAuthenticated
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
+        self.firebaseUserManager = firebaseUserManager
         self.userDefaultsManager = userDefaultsManager
     }
 
     public func createUser(email: String, password: String) async {
         do {
             let newUser = try await firebaseAuthenticationManager.createUser(email: email, password: password)
+            try await firebaseUserManager.createUser(with: newUser)
             isAuthenticated = true
-        } catch {
-            login()
-        }
-        
+        } catch { }
         userDefaultsManager.isAuthenticated = isAuthenticated
     }
 
@@ -53,6 +55,21 @@ class AuthenticationManager: ObservableObject {
             isAuthenticated = true
         } catch {
             login()
+        }
+
+        userDefaultsManager.isAuthenticated = isAuthenticated
+    }
+
+    public func signInWithApple() async {
+        let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
+
+        if let authUser {
+            do {
+                try await firebaseUserManager.createUser(with: authUser)
+                isAuthenticated = true
+            } catch { }
+        } else {
+            isAuthenticated = false
         }
 
         userDefaultsManager.isAuthenticated = isAuthenticated

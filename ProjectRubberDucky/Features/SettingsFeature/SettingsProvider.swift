@@ -19,7 +19,7 @@ class SettingsProvider: FeatureProvider {
     private var authenticationManager: AuthenticationManager
     private let firebaseProvider: FirebaseProvider?
     private let accountView: any FeatureView
-    private var currentUser: UserDataModel?
+    private var currentUser: UserAuthDataModel?
 
     init(appMetaData: AppMetaData,
          authenticationManager: AuthenticationManager,

@@ -118,7 +118,9 @@ class AuthenticationUsecase {
                     }
                     print("signed in")
                     self.showingIsLoadingToast = false
-                    self.authenticationManager.login()
+                    Task {
+                        await self.authenticationManager.signInWithApple()
+                    }
                 }
             default:
                 break
