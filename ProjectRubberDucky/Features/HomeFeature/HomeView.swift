@@ -40,6 +40,8 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                 await searchUsecase.clearSearch()
                             }
                         }
+//                        .ignoresSafeArea()
+
                 }
             case .error:
                 ErrorView(errorModel: ErrorDataModel(title: "Whoops!",
@@ -70,6 +72,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                         }
                         Spacer()
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }
@@ -83,6 +86,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                     }
                     .foregroundStyle(.primary)
                 }
+                .listStyle(.inset)
             }
         }
     }

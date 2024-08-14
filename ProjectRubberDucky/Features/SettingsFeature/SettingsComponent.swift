@@ -17,23 +17,14 @@ extension RootComponent {
             SettingsProvider(appMetaData: appMetaData, authenticationManager: authenticationManager, firebaseProvider: firebaseAuthenticationManager, accountView: accountComponent.feature.featureView)
         }
     }
-
-    public var logoutUsecase: LogoutUsecase {
-        LogoutUsecase(provider: settingsFeatureProvider as! LogoutProvidable)
-    }
 }
 
 class SettingsComponent: Component<SettingsDependency> {
     public var feature: any Feature {
-        SettingsFeature(featureProvider: featureProvider, 
-                        logoutUsecase: logoutUsecase)
+        SettingsFeature(featureProvider: featureProvider)
     }
 
     public var featureProvider: any FeatureProvider {
         dependency.settingsFeatureProvider
-    }
-
-    public var logoutUsecase: LogoutUsecase {
-        dependency.logoutUsecase
     }
 }

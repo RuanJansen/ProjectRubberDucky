@@ -29,7 +29,6 @@
 		F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D3F2C2C317A230084CC79 /* PlexGateway.swift */; };
 		F3342D2E2C63936300C052BB /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D2D2C63936300C052BB /* NavigationManager.swift */; };
 		F3342D302C63CD4D00C052BB /* Bundle+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */; };
-		F3342D322C63DCC100C052BB /* LogoutUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D312C63DCC100C052BB /* LogoutUsecase.swift */; };
 		F3342D352C65174200C052BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F3342D342C65174200C052BB /* Kingfisher */; };
 		F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D392C660EE200C052BB /* ContentCodableModel.swift */; };
 		F3342D3E2C660FFA00C052BB /* ContentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */; };
@@ -147,7 +146,6 @@
 		F32D3F2C2C317A230084CC79 /* PlexGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexGateway.swift; sourceTree = "<group>"; };
 		F3342D2D2C63936300C052BB /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extention.swift"; sourceTree = "<group>"; };
-		F3342D312C63DCC100C052BB /* LogoutUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUsecase.swift; sourceTree = "<group>"; };
 		F3342D392C660EE200C052BB /* ContentCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCodableModel.swift; sourceTree = "<group>"; };
 		F3342D3D2C660FFA00C052BB /* ContentFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFetcher.swift; sourceTree = "<group>"; };
 		F3342D3F2C66209400C052BB /* AuthenticationContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationContentProvider.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 			children = (
 				F3342D4E2C67A1AA00C052BB /* PhotosPickerUsecase.swift */,
 				F306A4202C416EB100246390 /* SearchUsecase.swift */,
-				F3342D312C63DCC100C052BB /* LogoutUsecase.swift */,
 				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
 			);
 			path = Usecases;
@@ -836,7 +833,6 @@
 				F3F13AF82C537CE7008D6841 /* OnboardingProvider.swift in Sources */,
 				F306A4142C3A5FE500246390 /* AuthenticationDependency.swift in Sources */,
 				F3342D492C66505B00C052BB /* AccountView.swift in Sources */,
-				F3342D322C63DCC100C052BB /* LogoutUsecase.swift in Sources */,
 				F306A4182C3A60D000246390 /* AuthenticationDataModel.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
 				F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */,

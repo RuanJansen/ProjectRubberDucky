@@ -60,7 +60,7 @@ struct RDButton<Label> : View where Label : View{
             switch action {
             case .action( _):
                 label()
-            case .sheet(let anyView):
+            case .sheet(_):
                 label()
             case .navigate(let hideChevron, _):
                 if hideChevron {
@@ -75,7 +75,7 @@ struct RDButton<Label> : View where Label : View{
                 }
             case .alert(_):
                 label()
-            case .fullScreenCover(_):
+            case .fullScreenCover(_, _):
                 label()
             case .photosPicker(_):
                 label()

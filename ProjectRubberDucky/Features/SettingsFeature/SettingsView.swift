@@ -10,12 +10,9 @@ import Kingfisher
 
 struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == SettingsDataModel {
     @State var provider: Provider
-    @State var logoutUsecase: LogoutUsecase
 
-    init(provider: Provider,
-         logoutUsecase: LogoutUsecase) {
+    init(provider: Provider) {
         self._provider = State(wrappedValue: provider)
-        self._logoutUsecase = State(wrappedValue: logoutUsecase)
     }
 
     var body: some View {

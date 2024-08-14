@@ -93,9 +93,6 @@ private class SettingsDependency1ba9e199f1bddeac9850Provider: SettingsDependency
     var settingsFeatureProvider: any FeatureProvider {
         return rootComponent.settingsFeatureProvider
     }
-    var logoutUsecase: LogoutUsecase {
-        return rootComponent.logoutUsecase
-    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -207,7 +204,6 @@ extension SubscribedComponent: Registration {
 extension SettingsComponent: Registration {
     public func registerItems() {
         keyPathToName[\SettingsDependency.settingsFeatureProvider] = "settingsFeatureProvider-any FeatureProvider"
-        keyPathToName[\SettingsDependency.logoutUsecase] = "logoutUsecase-LogoutUsecase"
     }
 }
 extension AuthenticationComponent: Registration {
@@ -256,7 +252,6 @@ extension RootComponent: Registration {
         localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
         localTable["settingsFeatureProvider-any FeatureProvider"] = { [unowned self] in self.settingsFeatureProvider as Any }
-        localTable["logoutUsecase-LogoutUsecase"] = { [unowned self] in self.logoutUsecase as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
