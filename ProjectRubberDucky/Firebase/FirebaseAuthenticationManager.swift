@@ -69,6 +69,21 @@ class FirebaseAuthenticationManager {
         return user
     }
 
+    func signInWithApple(idToken idTokenString: String, rawNonce nonce: String, completion: @escaping () -> Void) {
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if (error != nil) {
+                // Error. If error.code == .MissingOrInvalidNonce, make sure
+                // you're sending the SHA256-hashed nonce as a hex string with
+                // your request to Apple.
+                print(error?.localizedDescription as Any)
+                return
+            }
+            print("signed in")
+            completion()
+        }
+    }
+
     func logOut() async throws {
         try Auth.auth().signOut()
     }
