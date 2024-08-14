@@ -10,41 +10,13 @@
 	<string>false</string>
 	<key>libraryTabFeatureFlag</key>
 	<string>false</string>
+	<key>featuredVideoContent</key>
+	<string>{&quot;entityName&quot;:&quot;registerContent&quot;,&quot;version&quot;:&quot;0.1&quot;,&quot;cacheable&quot;:true,&quot;content&quot;:[{&quot;id&quot;:&quot;0&quot;,&quot;description&quot;:&quot;Mountains&quot;},{&quot;id&quot;:&quot;1&quot;,&quot;description&quot;:&quot;Ocean&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;description&quot;:&quot;Beaches&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;description&quot;:&quot;Clouds&quot;},{&quot;id&quot;:&quot;4&quot;,&quot;description&quot;:&quot;Space&quot;}]}</string>
 	<key>loginContent</key>
 	<string>{&quot;entityName&quot;:&quot;loginContent&quot;,&quot;version&quot;:&quot;0.1&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;pageTitle&quot;,&quot;description&quot;:&quot;Login&quot;},{&quot;id&quot;:&quot;sectionHeader1&quot;,&quot;description&quot;:&quot;Email&quot;},{&quot;id&quot;:&quot;sectionHeader2&quot;,&quot;description&quot;:&quot;Password&quot;},{&quot;id&quot;:&quot;primaryAction&quot;,&quot;description&quot;:&quot;Sign in with Email&quot;},{&quot;id&quot;:&quot;secondaryAction&quot;,&quot;description&quot;:&quot;Not a member yet?&quot;}]}</string>
 	<key>registerContent</key>
 	<string>{&quot;entityName&quot;:&quot;registerContent&quot;,&quot;version&quot;:&quot;0.1&quot;,&quot;cacheable&quot;:true,&quot;content&quot;:[{&quot;id&quot;:&quot;pageTitle&quot;,&quot;description&quot;:&quot;Register&quot;},{&quot;id&quot;:&quot;sectionHeader1&quot;,&quot;description&quot;:&quot;Email&quot;},{&quot;id&quot;:&quot;sectionHeader2&quot;,&quot;description&quot;:&quot;Password&quot;},{&quot;id&quot;:&quot;primaryAction&quot;,&quot;description&quot;:&quot;Register&quot;}]}</string>
 	<key>homeContent</key>
-	<string>{
-  &quot;entityName&quot;: &quot;homeContent&quot;,
-  &quot;version&quot;: &quot;0.1&quot;,
-  &quot;cacheable&quot;: true,
-  &quot;content&quot;: [
-    {
-      &quot;id&quot;: &quot;pageTitle&quot;,
-      &quot;description&quot;: &quot;Home&quot;
-    },
-    {
-      &quot;id&quot;: &quot;carousel1&quot;,
-      &quot;description&quot;: &quot;Mountains&quot;
-    },
-    {
-      &quot;id&quot;: &quot;carousel2&quot;,
-      &quot;description&quot;: &quot;Ocean&quot;
-    },
-    {
-      &quot;id&quot;: &quot;carousel3&quot;,
-      &quot;description&quot;: &quot;Nature&quot;
-    },
-    {
-      &quot;id&quot;: &quot;carousel4&quot;,
-      &quot;description&quot;: &quot;Snow&quot;
-    },
-    {
-      &quot;id&quot;: &quot;carousel5&quot;,
-      &quot;description&quot;: &quot;Clouds&quot;
-    }
-  ]
-}</string>
+	<string>{&quot;entityName&quot;:&quot;homeContent&quot;,&quot;version&quot;:&quot;0.1&quot;,&quot;cacheable&quot;:true,&quot;content&quot;:[{&quot;id&quot;:&quot;pageTitle&quot;,&quot;description&quot;:&quot;Home&quot;}]}</string>
 </dict>
 </plist>

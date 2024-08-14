@@ -51,12 +51,7 @@ class HomeProvider: FeatureProvider {
     }
 
     private func fetchDefaultVideoCarousels() async -> [CarouselDataModel] {
-        var prompts: [String] = []
-        await prompts.append(contentProvider.fetchCarousel1())
-        await prompts.append(contentProvider.fetchCarousel2())
-        await prompts.append(contentProvider.fetchCarousel3())
-        await prompts.append(contentProvider.fetchCarousel4())
-        await prompts.append(contentProvider.fetchCarousel5())
+        var prompts: [String] = await contentProvider.fetchVideoTitles()
 
         let carouselManager = CarouselManager()
 
@@ -90,12 +85,7 @@ class HomeProvider: FeatureProvider {
     private func setupFeaturedVideos() async -> [VideoDataModel] {
         var videos: [VideoDataModel] = []
 
-        var prompts: [String] = []
-        await prompts.append(contentProvider.fetchCarousel1())
-        await prompts.append(contentProvider.fetchCarousel2())
-        await prompts.append(contentProvider.fetchCarousel3())
-        await prompts.append(contentProvider.fetchCarousel4())
-        await prompts.append(contentProvider.fetchCarousel5())
+        var prompts: [String] = await contentProvider.fetchVideoTitles()
 
         for prompt in prompts {
             if let randomVideo = await self.fetchVideos(using: prompt).randomElement() {

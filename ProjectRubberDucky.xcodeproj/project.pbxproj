@@ -44,7 +44,6 @@
 		F3342D572C69179900C052BB /* FirebaseRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */; };
 		F3342D592C6936FF00C052BB /* FeatureFlagFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D582C6936FF00C052BB /* FeatureFlagFetcher.swift */; };
 		F3342D5B2C69398200C052BB /* FeatureFlagProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */; };
-		F3342D5D2C694CB900C052BB /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */; };
 		F33B7E072C5D6CFC00F1F49F /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */; };
 		F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */; };
 		F33B7E0B2C5D6D3500F1F49F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */; };
@@ -75,6 +74,7 @@
 		F36AD5002C613DC700774C49 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4FF2C613DC700774C49 /* ErrorView.swift */; };
 		F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5012C613E1400774C49 /* ConstructionView.swift */; };
 		F36AD5052C615FC700774C49 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5042C615FC700774C49 /* AppMetaData.swift */; };
+		F384711F2C6CF9EE00FF80C9 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F384711E2C6CF9ED00FF80C9 /* RemoteConfigDefaults.plist */; };
 		F392CCB02C610D2C00843540 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392CCAF2C610D2C00843540 /* RootView.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
@@ -159,7 +159,6 @@
 		F3342D562C69179900C052BB /* FirebaseRemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfig.swift; sourceTree = "<group>"; };
 		F3342D582C6936FF00C052BB /* FeatureFlagFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFetcher.swift; sourceTree = "<group>"; };
 		F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagProvider.swift; sourceTree = "<group>"; };
-		F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvider.swift; sourceTree = "<group>"; };
 		F33B7E0A2C5D6D3500F1F49F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		F36AD4FF2C613DC700774C49 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		F36AD5012C613E1400774C49 /* ConstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructionView.swift; sourceTree = "<group>"; };
 		F36AD5042C615FC700774C49 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
+		F384711E2C6CF9ED00FF80C9 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F392CCAF2C610D2C00843540 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
@@ -544,7 +544,7 @@
 				F3342D2C2C63827C00C052BB /* NavigationManager */,
 				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
-				F3342D5C2C694CB900C052BB /* RemoteConfigDefaults.plist */,
+				F384711E2C6CF9ED00FF80C9 /* RemoteConfigDefaults.plist */,
 				F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */,
 				F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */,
 				F34B7D8E2C3834F000587031 /* DependencyManager.swift */,
@@ -745,7 +745,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3342D5D2C694CB900C052BB /* RemoteConfigDefaults.plist in Resources */,
+				F384711F2C6CF9EE00FF80C9 /* RemoteConfigDefaults.plist in Resources */,
 				F3DB67782C28A33100F53642 /* Preview Assets.xcassets in Resources */,
 				F32045AB2C62702900A2DFA7 /* GoogleService-Info.plist in Resources */,
 				F3DB67752C28A33100F53642 /* Assets.xcassets in Resources */,
@@ -1028,7 +1028,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1062,7 +1062,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;

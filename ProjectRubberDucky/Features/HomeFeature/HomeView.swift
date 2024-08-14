@@ -40,7 +40,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                 await searchUsecase.clearSearch()
                             }
                         }
-//                        .ignoresSafeArea()
+                    //                        .ignoresSafeArea()
 
                 }
             case .error:
@@ -64,7 +64,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
                         if let featuredVideos = dataModel.featuredVideos {
-                            createTopCarouselView(using: featuredVideos)
+                            createFeaturedCarouselView(using: featuredVideos)
                         }
 
                         ForEach(carousels, id: \.id) { carousel in
@@ -92,7 +92,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     }
 
     @ViewBuilder
-    private func createTopCarouselView(using carouselVideos: [VideoDataModel]) -> some View {
+    private func createFeaturedCarouselView(using carouselVideos: [VideoDataModel]) -> some View {
         VStack {
             TabView {
                 ForEach(carouselVideos, id: \.id) { video in
@@ -171,9 +171,6 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                             CardView(video: video)
                         }
                         .modifier(CarouselButtonModifier())
-
-                        Text(video.title)
-                            .font(.subheadline)
                     }
                 }
             }
@@ -325,35 +322,12 @@ struct GridContainerView: View {
                                 .scaledToFill()
                                 .frame(width: 115, height: 200)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .overlay {
-                                    VStack(alignment: .leading) {
-                                        Spacer()
-                                        HStack {
-                                            VStack {
-                                                HStack {
-                                                    Text(video.title)
-                                                        .font(.body)
-                                                        .fontWeight(.thin)
-                                                        .fixedSize(horizontal: false, vertical: true)
-                                                }
-                                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                                                if let quality = video.quality {
-                                                    HStack {
-                                                        Text(quality.uppercased())
-                                                            .font(.footnote)
-                                                            .fontWeight(.thin)
-                                                    }
-                                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                                }
-                                            }
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                            .multilineTextAlignment(.leading)
-                                        }
-                                        .foregroundStyle(.white)
-                                        .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                                        .frame(height: 75)
-                                        .padding(.horizontal, 5)
-                                        .background(.ultraThinMaterial)
+                                .overlay(alignment: .bottomTrailing) {
+                                    if let quality = video.quality {
+                                        Text(quality.uppercased())
+                                            .font(.callout)
+                                            .foregroundStyle(.white)
+                                            .padding(5)
                                     }
                                 }
                         }

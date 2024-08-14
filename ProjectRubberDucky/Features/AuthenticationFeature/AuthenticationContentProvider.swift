@@ -68,7 +68,7 @@ class AuthenticationContentProvider: AuthenticationContentProvidable {
 extension AuthenticationContentProvider: ContentProvidable {
     func fetch(content id: String, for table: String) async -> String? {
         do {
-            return try await contentFetcher.fetch(content: id, for: table)
+            return try await contentFetcher.fetch(content: id, from: table)
         } catch {
             return nil
         }
