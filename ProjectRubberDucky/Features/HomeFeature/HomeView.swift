@@ -63,8 +63,8 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             if let carousels = dataModel.carousels {
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack {
-                        if let topCarousel = dataModel.topCarousel {
-                            createTopCarouselView(using: topCarousel)
+                        if let featuredVideos = dataModel.featuredVideos {
+                            createTopCarouselView(using: featuredVideos)
                         }
 
                         ForEach(carousels, id: \.id) { carousel in
@@ -77,7 +77,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             }
         }
         .overlay {
-            if let searchResults = dataModel.searchResults {
+            if let searchResults = searchUsecase.searchVideos {
                 List(searchResults, id: \.id) { video in
                     RDButton(.navigate({
                         AnyView(VideoDetailView(video: video))

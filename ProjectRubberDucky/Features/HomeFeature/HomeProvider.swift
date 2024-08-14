@@ -43,10 +43,10 @@ class HomeProvider: FeatureProvider {
     private func setupHomeDataModel() async {
         let pageTitle = await contentProvider.fetchPageTitle()
         let carousels = await fetchDefaultVideoCarousels()
-        let topCarousel = await setupTopCarouselVideos()
+        let featuredVideos = await setupFeaturedVideos()
 
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, topCarousel: topCarousel, carousels: carousels))
+            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, topCarousel: featuredVideos, carousels: carousels))
         }
     }
 
@@ -87,7 +87,7 @@ class HomeProvider: FeatureProvider {
         return []
     }
 
-    private func setupTopCarouselVideos() async -> [VideoDataModel] {
+    private func setupFeaturedVideos() async -> [VideoDataModel] {
         var videos: [VideoDataModel] = []
 
         var prompts: [String] = []
@@ -103,47 +103,5 @@ class HomeProvider: FeatureProvider {
             }
         }
         return videos
-    }
-}
-
-extension HomeProvider: SearchProvidable {
-    func clearSearch() async {
-        await setupHomeDataModel()
-    }
-    
-    func searchContent(prompt: String) async {
-        let pageTitle = await contentProvider.fetchPageTitle()
-        let defaultCarousels = await fetchDefaultVideoCarousels()
-        let searchVideos = await fetchSearchVideoCarousel(prompt: prompt)
-        let topCarousel = await setupTopCarouselVideos()
-        await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, searchResults: searchVideos, topCarousel: topCarousel, carousels: defaultCarousels))
-        }
-    }
-
-    private func fetchSearchVideoCarousel(prompt: String) async -> [VideoDataModel] {
-        let videoManager = VideoManager()
-
-        if let repository = self.repository {
-            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-                await videoManager.addVideos(fetchedContent)
-            }
-        }
-
-        let videos = await videoManager.getVideos()
-
-        return videos
-    }
-
-    actor VideoManager {
-        var videos: [VideoDataModel] = []
-
-        func addVideos(_ newVideos: [VideoDataModel]) {
-            videos.append(contentsOf: newVideos)
-        }
-
-        func getVideos() -> [VideoDataModel] {
-            return videos
-        }
     }
 }

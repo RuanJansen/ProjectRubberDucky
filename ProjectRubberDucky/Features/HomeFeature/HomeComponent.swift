@@ -21,7 +21,7 @@ extension RootComponent {
 
     public var searchUsecase: SearchUsecase {
         shared {
-            SearchUsecase(provider: homeFeatureProvider as! SearchProvidable)
+            SearchUsecase(repository: videoRepository)
         }
     }
 

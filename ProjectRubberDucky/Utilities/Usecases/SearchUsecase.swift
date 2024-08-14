@@ -11,21 +11,32 @@ import Observation
 
 @Observable
 class SearchUsecase {
-    var searchText: String
-    private var provider: SearchProvidable
+    private let repository: PexelRepository?
 
-    init(provider: SearchProvidable) {
-        self.provider = provider
+    var searchText: String
+    var searchVideos: [VideoDataModel]?
+
+    init(repository: PexelRepository? = nil) {
+        self.repository = repository
         self.searchText = String()
     }
 
     public func search() async {
-        await provider.searchContent(prompt: searchText)
+        self.searchVideos = await fetchVideos(using: searchText)
     }
 
     public func clearSearch() async {
         if searchText.isEmpty {
-            await provider.clearSearch()
+            self.searchVideos = nil
         }
+    }
+
+    private func fetchVideos(using prompt: String) async -> [VideoDataModel]? {
+        if let repository = self.repository {
+            if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
+                return fetchedContent
+            }
+        }
+        return nil
     }
 }
