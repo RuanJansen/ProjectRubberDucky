@@ -16,13 +16,15 @@ class AuthenticationManager: ObservableObject {
 
 
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
-    private let userDefaultsManager: UserDefaultsManager
 
-    init(firebaseAuthenticationManager: FirebaseAuthenticationManager,
-         userDefaultsManager: UserDefaultsManager) {
-        self.isAuthenticated = userDefaultsManager.isAuthenticated
+    init(firebaseAuthenticationManager: FirebaseAuthenticationManager) {
+        self.isAuthenticated = false
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
-        self.userDefaultsManager = userDefaultsManager
+        self.authenticateUser()
+    }
+
+    public func authenticateUser() {
+        self.isAuthenticated = firebaseAuthenticationManager.checkUserIsAuthenticated()
     }
 
     public func createUser(email: String, password: String) async {
@@ -32,8 +34,6 @@ class AuthenticationManager: ObservableObject {
         } catch {
             login()
         }
-        
-        userDefaultsManager.isAuthenticated = isAuthenticated
     }
 
     public func login() {
@@ -44,8 +44,6 @@ class AuthenticationManager: ObservableObject {
         } else {
             isAuthenticated = false
         }
-
-        userDefaultsManager.isAuthenticated = isAuthenticated
     }
 
     public func signIn(email: String, password: String) async throws {
@@ -55,18 +53,14 @@ class AuthenticationManager: ObservableObject {
         } catch {
             login()
         }
-
-        userDefaultsManager.isAuthenticated = isAuthenticated
     }
 
     public func logOut() async {
         do {
             try await firebaseAuthenticationManager.logOut()
             isAuthenticated = false
-            userDefaultsManager.isAuthenticated = isAuthenticated
         } catch {
             isAuthenticated = true
-            userDefaultsManager.isAuthenticated = isAuthenticated
             return
         }
     }
@@ -75,7 +69,6 @@ class AuthenticationManager: ObservableObject {
         do {
             try await firebaseAuthenticationManager.deleteAccount()
             isAuthenticated = false
-            userDefaultsManager.isAuthenticated = isAuthenticated
         } catch {
 
         }

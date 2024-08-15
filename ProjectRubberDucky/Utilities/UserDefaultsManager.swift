@@ -10,6 +10,4 @@ import SwiftUI
 
 class UserDefaultsManager {
     @AppStorage("shouldShowOnboarding") var shouldShowOnboarding: Bool = true
-    @AppStorage("isAuthenticated") var isAuthenticated: Bool = false
-
 }

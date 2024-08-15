@@ -10,6 +10,8 @@ import SwiftUI
 struct SplashScreenView: View {
     @Environment(AppStyling.self) var appStyling
 
+    @State private var scale = 0.5
+
     var body: some View {
         VStack {
             appStyling.appIconImage
@@ -17,9 +19,15 @@ struct SplashScreenView: View {
                 .scaledToFit()
                 .clipShape(Circle())
                 .frame(width: 150)
+                .scaleEffect(scale)
             Text(appStyling.appName)
         }
         .font(.title)
         .foregroundStyle(appStyling.tintColor)
+        .onAppear {
+            withAnimation(.bouncy(duration: 2)) {
+                scale = 1
+            }
+        }
     }
 }

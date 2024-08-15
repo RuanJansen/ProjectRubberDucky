@@ -69,7 +69,7 @@ class NavigationManager {
     }
 
     private func startAppFlow()  {
-        if userDefaultsManager.isAuthenticated {
+        if authenticationManager.isAuthenticated {
             self.navigationState = .main(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
             self.navigationState = .authentication(AnyView(authenticationFeature.featureView))

@@ -61,6 +61,14 @@ class FirebaseAuthenticationManager {
         return currentUser
     }
 
+    func checkUserIsAuthenticated() -> Bool {
+        if let user = Auth.auth().currentUser?.reload() {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func signIn(email: String, password: String) async throws -> UserDataModel  {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
         let user = UserDataModel(user: authDataResult.user)
