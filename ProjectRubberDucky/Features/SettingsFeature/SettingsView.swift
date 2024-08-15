@@ -23,7 +23,7 @@ struct SettingsView<Provider: FeatureProvider>: FeatureView where Provider.DataM
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .navigationTitle("Settings")
+                        .navigationTitle(dataModel.pageTitle)
                 }
             case .error:
                 EmptyView()

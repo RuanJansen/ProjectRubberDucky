@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-class PhotosPickerUsecase: ObservableObject {
+class PhotosPickerManager: ObservableObject {
     @Published var selection: PhotosPickerItem?
 
     init() {

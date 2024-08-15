@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct SettingsDataModel {
+    let pageTitle: String
     let account: SettingsAccountDataModel?
     let sections: [SectionDataModel]
     let build: String?
 
-    init(account: SettingsAccountDataModel?, sections: [SectionDataModel], build: String?) {
+    init(pageTitle: String, account: SettingsAccountDataModel?, sections: [SectionDataModel], build: String?) {
+        self.pageTitle = pageTitle
         self.account = account
         self.sections = sections
         self.build = build

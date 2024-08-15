@@ -15,27 +15,30 @@ class AccountProvider: FeatureProvider {
 
     var viewState: ViewState<AccountDataModel>
 
+    private let contentProvider: AccountContentProvidable
     private var authenticationManager: AuthenticationManager
     private var firebaseProvider: FirebaseProvider?
-    private var photosPickerUsecase: PhotosPickerUsecase
+    private var photosPickerManager: PhotosPickerManager
 
     private var currentUser: UserDataModel?
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(authenticationManager: AuthenticationManager,
+    init(contentProvider: AccountContentProvidable,
+         authenticationManager: AuthenticationManager,
          firebaseProvider: FirebaseProvider?) {
         self.viewState = .loading
+        self.contentProvider = contentProvider
         self.authenticationManager = authenticationManager
         self.firebaseProvider = firebaseProvider
-        self.photosPickerUsecase = PhotosPickerUsecase()
+        self.photosPickerManager = PhotosPickerManager()
     }
 
     func addListeners() {
-        photosPickerUsecase.$selection.sink { selection in
+        photosPickerManager.$selection.sink { selection in
             Task {
                 do {
-                    if let data = try await self.photosPickerUsecase.fetchImageData() {
+                    if let data = try await self.photosPickerManager.fetchImageData() {
                         self.savePhotoURL(from: data)
                     }
                 } catch {
@@ -48,13 +51,17 @@ class AccountProvider: FeatureProvider {
 
     func fetchContent() async {
         await fetchUser()
+        let pageTitle = await contentProvider.fetchPageTitle()
         let alertModel = await setupDeleteAlert()
+        let deleteText = await contentProvider.fetchDeleteText()
+
         await MainActor.run {
-            self.viewState = .presentContent(using: AccountDataModel(user: currentUser,
-//                                                                     profileImageButtonAction: .photosPicker {
-//                RDPhotosPickerModel(selection: self.photosPickerUsecase.selection)
-//            } ,
-                                                                     sections: [SectionDataModel(items: [SectionItemDataModel(title: "Delete Account",
+            self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle, 
+                                                                     user: currentUser,
+                                                                     profileImageButtonAction: .photosPicker {
+                RDPhotosPickerModel(selection: self.photosPickerManager.selection)
+            } ,
+                                                                     sections: [SectionDataModel(items: [SectionItemDataModel(title: deleteText,
                                                                                                                               buttonAction: .alert{
                 alertModel
             },
@@ -64,11 +71,16 @@ class AccountProvider: FeatureProvider {
     }
 
     private func setupDeleteAlert() async -> RDAlertModel {
-        return RDAlertModel(title: "Delete Account",
-                            message: "Are you sure you would like to delete your account?",
+        let accountAlertTitle = await contentProvider.fetchAccountAlertTitle()
+        let accountAlertMessage = await contentProvider.fetchAccountAlertMessage()
+        let accountAlertPrimaryActionText = await contentProvider.fetchAccountAlertPrimaryActionText()
+        let accountAlertSecondaryActionText = await contentProvider.fetchAccountAlertSecondaryActionText()
+
+        return RDAlertModel(title: accountAlertTitle,
+                            message: accountAlertMessage,
                             buttons: [
-                                RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel),
-                                RDAlertButtonModel(title: "Delete", action: {
+                                RDAlertButtonModel(title: accountAlertPrimaryActionText, action: {}, role: .cancel),
+                                RDAlertButtonModel(title: accountAlertSecondaryActionText, action: {
                                     Task {
                                         await self.deleteAccount()
                                     }
@@ -77,7 +89,8 @@ class AccountProvider: FeatureProvider {
     }
 
     private func savePhotoURL(from: Data) {
-
+//        currentUser?.photoURL = displayName
+//        await updateUser()
     }
 
     private func deleteAccount() async {

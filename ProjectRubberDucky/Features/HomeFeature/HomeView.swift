@@ -27,7 +27,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .navigationTitle("Home")
+                        .navigationTitle(dataModel.pageTitle)
                         .searchPresentationToolbarBehavior(.avoidHidingContent)
                         .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
                         .onSubmit(of: .search) {
