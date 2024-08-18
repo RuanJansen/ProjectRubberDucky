@@ -62,7 +62,7 @@ class FirebaseAuthenticationManager {
     }
 
     func checkUserIsAuthenticated() -> Bool {
-        if let user = Auth.auth().currentUser?.reload() {
+        if (Auth.auth().currentUser?.reload()) != nil {
             return true
         } else {
             return false
@@ -96,8 +96,13 @@ class FirebaseAuthenticationManager {
         try Auth.auth().signOut()
     }
 
-    public func deleteAccount() async throws {
-        try await Auth.auth().currentUser?.delete()
+    public func deleteAccount() {
+        Auth.auth().currentUser?.delete(completion: { error in
+            Auth.auth().currentUser?.reload()
+            if let error {
+                print(error.localizedDescription)
+            }
+        })
     }
 }
 

@@ -30,6 +30,7 @@ struct RDButton<Label> : View where Label : View{
     @State private var showAlert: Bool = false
 
     @State private var photosPickerModel: RDPhotosPickerModel?
+    @State private var photosPickerItemSelection: PhotosPickerItem?
     @State private var photosPicker: Bool = false
 
     var body: some View {
@@ -50,8 +51,9 @@ struct RDButton<Label> : View where Label : View{
                 destination = view()
                 fullScreenCover = true
                 fullScreenCoverSwipeDismissable = swipeDismissable
-            case .photosPicker(let model):
+            case .photosPicker(let model, let selection):
                 photosPickerModel = model()
+                selection(photosPickerItemSelection)
                 photosPicker = true
             case .none: break
                 //
@@ -77,7 +79,7 @@ struct RDButton<Label> : View where Label : View{
                 label()
             case .fullScreenCover(_, _):
                 label()
-            case .photosPicker(_):
+            case .photosPicker(_, _):
                 label()
             case .none:
                 label()
@@ -128,7 +130,7 @@ struct RDButton<Label> : View where Label : View{
             if let photosPickerModel {
                 view
                     .photosPicker(isPresented: $photosPicker,
-                                  selection: photosPickerModel.$selection,
+                                  selection: $photosPickerItemSelection,
                                   matching: photosPickerModel.matching,
                                   preferredItemEncoding: photosPickerModel.preferredItemEncoding)
             }
@@ -143,7 +145,7 @@ enum RDButtonAction {
     case navigate(hideChevron: Bool = false, () -> AnyView)
     case fullScreenCover(swipeDismissable: Bool = false,() -> AnyView)
     case alert(() -> RDAlertModel)
-    case photosPicker(() -> RDPhotosPickerModel)
+    case photosPicker(() -> RDPhotosPickerModel, selection: (PhotosPickerItem?) -> ())
     case none
 }
 
@@ -168,14 +170,11 @@ struct RDAlertButtonModel {
 }
 
 struct RDPhotosPickerModel {
-    @State var selection: PhotosPickerItem?
     let matching: PHPickerFilter
     let preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy
 
-    init(selection: PhotosPickerItem?,
-         matching: PHPickerFilter = .images,
+    init(matching: PHPickerFilter = .images,
          preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) {
-        self._selection = State(initialValue: selection)
         self.matching = matching
         self.preferredItemEncoding = preferredItemEncoding
     }

@@ -29,7 +29,8 @@ class AuthenticationManager: ObservableObject {
 
     public func createUser(email: String, password: String) async {
         do {
-            let newUser = try await firebaseAuthenticationManager.createUser(email: email, password: password)
+            let user = try await firebaseAuthenticationManager.createUser(email: email, password: password)
+            await UserFirestoreManager().createUser(user: user)
             isAuthenticated = true
         } catch {
             login()
@@ -39,7 +40,7 @@ class AuthenticationManager: ObservableObject {
     public func login() {
         let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
 
-        if let authUser {
+        if authUser != nil {
             isAuthenticated = true
         } else {
             isAuthenticated = false
@@ -48,7 +49,7 @@ class AuthenticationManager: ObservableObject {
 
     public func signIn(email: String, password: String) async throws {
         do {
-            let newUser = try await firebaseAuthenticationManager.signIn(email: email, password: password)
+            _ = try await firebaseAuthenticationManager.signIn(email: email, password: password)
             isAuthenticated = true
         } catch {
             login()
@@ -65,13 +66,9 @@ class AuthenticationManager: ObservableObject {
         }
     }
 
-    public func deleteAccount() async {
-        do {
-            try await firebaseAuthenticationManager.deleteAccount()
-            isAuthenticated = false
-        } catch {
-
-        }
+    public func deleteAccount() {
+        firebaseAuthenticationManager.deleteAccount()
+        isAuthenticated = false
     }
 
     public func signInWithApple(onRequest request: ASAuthorizationAppleIDRequest) {

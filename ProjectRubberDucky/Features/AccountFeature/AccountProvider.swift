@@ -54,15 +54,18 @@ class AccountProvider: FeatureProvider {
         let pageTitle = await contentProvider.fetchPageTitle()
         let alertModel = await setupDeleteAlert()
         let deleteText = await contentProvider.fetchDeleteText()
+        let profileImageButtonAction: RDButtonAction = .photosPicker {
+            RDPhotosPickerModel()
+        } selection: { selection in
+            self.photosPickerManager.selection = selection
+        }
 
         await MainActor.run {
-            self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle, 
+            self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle,
                                                                      user: currentUser,
-                                                                     profileImageButtonAction: .photosPicker {
-                RDPhotosPickerModel(selection: self.photosPickerManager.selection)
-            } ,
+                                                                     profileImageButtonAction: profileImageButtonAction,
                                                                      sections: [SectionDataModel(items: [SectionItemDataModel(title: deleteText,
-                                                                                                                              buttonAction: .alert{
+                                                                                                                              buttonAction: .alert {
                 alertModel
             },
                                                                                                                               fontColor: .red,
@@ -81,9 +84,7 @@ class AccountProvider: FeatureProvider {
                             buttons: [
                                 RDAlertButtonModel(title: accountAlertPrimaryActionText, action: {}, role: .cancel),
                                 RDAlertButtonModel(title: accountAlertSecondaryActionText, action: {
-                                    Task {
-                                        await self.deleteAccount()
-                                    }
+                                        self.deleteAccount()
                                 }, role: .destructive)
                             ])
     }
@@ -93,8 +94,8 @@ class AccountProvider: FeatureProvider {
 //        await updateUser()
     }
 
-    private func deleteAccount() async {
-        await authenticationManager.deleteAccount()
+    private func deleteAccount() {
+        authenticationManager.deleteAccount()
     }
 
     private func fetchUser() async {
