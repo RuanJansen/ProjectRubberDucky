@@ -131,6 +131,17 @@ private class LibraryDependencydf4b476f51ad8d19a376Provider: LibraryDependency {
 private func factorydbcb054e6931f74941b7b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return LibraryDependencydf4b476f51ad8d19a376Provider(rootComponent: parent1(component) as! RootComponent)
 }
+private class FirebaseDependencyaefab86451f384d2bf0bProvider: FirebaseDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->RootComponent->FirebaseComponent
+private func factory5f1a7b4ee4ee371ff93ae3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return FirebaseDependencyaefab86451f384d2bf0bProvider()
+}
 private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewContainerDependency {
     var videoPlayerComponent: VideoPlayerComponent {
         return rootComponent.videoPlayerComponent
@@ -217,6 +228,11 @@ extension LibraryComponent: Registration {
         keyPathToName[\LibraryDependency.libraryFeatureProvider] = "libraryFeatureProvider-any FeatureProvider"
     }
 }
+extension FirebaseComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension TabViewContainerComponent: Registration {
     public func registerItems() {
         keyPathToName[\TabViewContainerDependency.videoPlayerComponent] = "videoPlayerComponent-VideoPlayerComponent"
@@ -234,7 +250,6 @@ extension RootComponent: Registration {
         localTable["appMetaData-AppMetaData"] = { [unowned self] in self.appMetaData as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
-        localTable["firebaseRemoteConfig-FirebaseRemoteConfig"] = { [unowned self] in self.firebaseRemoteConfig as Any }
         localTable["featureFlagProvider-FeatureFlagProvider"] = { [unowned self] in self.featureFlagProvider as Any }
         localTable["contentFetcher-ContentFetcher"] = { [unowned self] in self.contentFetcher as Any }
         localTable["featureFlagFetcher-FeatureFlagFetcher"] = { [unowned self] in self.featureFlagFetcher as Any }
@@ -242,6 +257,7 @@ extension RootComponent: Registration {
         localTable["onboardingComponent-OnboardingComponent"] = { [unowned self] in self.onboardingComponent as Any }
         localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
         localTable["accountProvider-any FeatureProvider"] = { [unowned self] in self.accountProvider as Any }
+        localTable["accountContentProvider-AccountContentProvidable"] = { [unowned self] in self.accountContentProvider as Any }
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
@@ -252,6 +268,7 @@ extension RootComponent: Registration {
         localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
         localTable["settingsFeatureProvider-any FeatureProvider"] = { [unowned self] in self.settingsFeatureProvider as Any }
+        localTable["settingsContentProvider-SettingsContentProvidable"] = { [unowned self] in self.settingsContentProvider as Any }
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
@@ -260,6 +277,7 @@ extension RootComponent: Registration {
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
+        localTable["firebaseComponent-FirebaseComponent"] = { [unowned self] in self.firebaseComponent as Any }
         localTable["tabViewContainerComponent-TabViewContainerComponent"] = { [unowned self] in self.tabViewContainerComponent as Any }
         localTable["tabFeatureFlagProvider-TabFeatureFlagProvidable"] = { [unowned self] in self.tabFeatureFlagProvider as Any }
         localTable["plexComponent-PlexComponent"] = { [unowned self] in self.plexComponent as Any }
@@ -295,6 +313,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent->SettingsComponent", factory3b338491ae548e90be9ab3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AuthenticationComponent", factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->LibraryComponent", factorydbcb054e6931f74941b7b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->FirebaseComponent", factory5f1a7b4ee4ee371ff93ae3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->TabViewContainerComponent", factoryf4fcb82992c91b07199cb3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->PlexComponent", factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e)

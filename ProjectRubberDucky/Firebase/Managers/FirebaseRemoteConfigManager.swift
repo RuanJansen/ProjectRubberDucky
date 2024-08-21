@@ -16,7 +16,7 @@ protocol FeatureFlagFetchable {
     func fetchFeatureFlag(forKey key: String) -> Bool
 }
 
-class FirebaseRemoteConfig {
+class FirebaseRemoteConfigManager {
     private var remoteConfig: RemoteConfig!
 
     let welcomeMessageConfigKey = "welcome_message"
@@ -67,14 +67,14 @@ class FirebaseRemoteConfig {
     }
 }
 
-extension FirebaseRemoteConfig: ContentFetchable {
+extension FirebaseRemoteConfigManager: ContentFetchable {
     public func fetchContent(forKey table: String) -> Data {
         let value = remoteConfig.configValue(forKey: table)
         return value.dataValue
     }
 }
 
-extension FirebaseRemoteConfig: FeatureFlagFetchable {
+extension FirebaseRemoteConfigManager: FeatureFlagFetchable {
     public func fetchFeatureFlag(forKey key: String) -> Bool {
         let value = remoteConfig.configValue(forKey: key)
         return value.boolValue

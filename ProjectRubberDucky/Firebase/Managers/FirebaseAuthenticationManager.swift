@@ -42,11 +42,15 @@ class FirebaseAuthenticationManager {
         }
     }
 
-    func createUser(email: String, password: String) async throws -> UserDataModel {
-        let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-        let user = UserDataModel(user: authDataResult.user)
-        setupCurrentUser(user)
-        return user
+    func createUser(email: String, password: String) async -> UserDataModel? {
+        do {
+            let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            let user = UserDataModel(user: authDataResult.user)
+            setupCurrentUser(user)
+            return user
+        } catch {
+            return nil
+        }
     }
 
     func getAuthenticatedUser() throws -> UserDataModel {
@@ -69,12 +73,16 @@ class FirebaseAuthenticationManager {
         }
     }
 
-    func signIn(email: String, password: String) async throws -> UserDataModel  {
-        let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-        let user = UserDataModel(user: authDataResult.user)
+    func signIn(email: String, password: String) async -> UserDataModel? {
+        do {
+            let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            let user = UserDataModel(user: authDataResult.user)
 
-        setupCurrentUser(user)
-        return user
+            setupCurrentUser(user)
+            return user
+        } catch {
+            return nil
+        }
     }
 
     func signInWithApple(idToken idTokenString: String, rawNonce nonce: String, completion: @escaping () -> Void) {
@@ -96,11 +104,16 @@ class FirebaseAuthenticationManager {
         try Auth.auth().signOut()
     }
 
-    public func deleteAccount() {
+    public func deleteAccount(completion: @escaping (UserDataModel) -> ()) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let user = UserDataModel(user: currentUser)
         Auth.auth().currentUser?.delete(completion: { error in
             Auth.auth().currentUser?.reload()
             if let error {
                 print(error.localizedDescription)
+            } else {
+                completion(user)
+                print("User Deleted: ", String(describing: self.currentUser?.email))
             }
         })
     }

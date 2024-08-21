@@ -41,17 +41,19 @@ class HomeProvider: FeatureProvider {
     }
 
     private func setupHomeDataModel() async {
-        let pageTitle = await contentProvider.fetchPageTitle()
-        let carousels = await fetchDefaultVideoCarousels()
-        let featuredVideos = await setupFeaturedVideos()
+        async let pageTitle = contentProvider.fetchPageTitle()
+        async let carousels = fetchDefaultVideoCarousels()
+        async let featuredVideos = setupFeaturedVideos()
+
+        let dataModel = await HomeDataModel(pageTitle: pageTitle, topCarousel: featuredVideos, carousels: carousels)
 
         await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(pageTitle: pageTitle, topCarousel: featuredVideos, carousels: carousels))
+            self.viewState = .presentContent(using:dataModel )
         }
     }
 
     private func fetchDefaultVideoCarousels() async -> [CarouselDataModel] {
-        var prompts: [String] = await contentProvider.fetchVideoTitles()
+        let prompts: [String] = await contentProvider.fetchVideoTitles()
 
         let carouselManager = CarouselManager()
 
@@ -85,7 +87,7 @@ class HomeProvider: FeatureProvider {
     private func setupFeaturedVideos() async -> [VideoDataModel] {
         var videos: [VideoDataModel] = []
 
-        var prompts: [String] = await contentProvider.fetchVideoTitles()
+        let prompts: [String] = await contentProvider.fetchVideoTitles()
 
         for prompt in prompts {
             if let randomVideo = await self.fetchVideos(using: prompt).randomElement() {

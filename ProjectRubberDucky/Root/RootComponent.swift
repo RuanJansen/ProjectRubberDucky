@@ -28,24 +28,18 @@ class RootComponent: BootstrapComponent {
         }
     }
 
-    public var firebaseRemoteConfig: FirebaseRemoteConfig {
-        shared {
-            FirebaseRemoteConfig()
-        }
-    }
-
     public var featureFlagProvider: FeatureFlagProvider {
         FeatureFlagProvider(featureFlagFetcher: featureFlagFetcher)
     }
 
     public var contentFetcher: ContentFetcher {
         shared {
-            ContentFetcher(firebaseContentFetcher: firebaseRemoteConfig)
+            ContentFetcher(firebaseContentFetcher: firebaseComponent.firebaseRemoteConfig)
         }
     }
 
     public var featureFlagFetcher: FeatureFlagFetcher {
-        FeatureFlagFetcher(firebaseFeatureFlagFetcher: firebaseRemoteConfig)
+        FeatureFlagFetcher(firebaseFeatureFlagFetcher: firebaseComponent.firebaseRemoteConfig)
     }
 
     public var userDefaultsManager: UserDefaultsManager {

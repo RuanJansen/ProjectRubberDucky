@@ -95,7 +95,7 @@ class AccountProvider: FeatureProvider {
     }
 
     private func deleteAccount() {
-        authenticationManager.deleteAccount()
+        authenticationManager.deleteUser()
     }
 
     private func fetchUser() async {

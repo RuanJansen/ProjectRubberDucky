@@ -17,9 +17,13 @@ class AuthenticationManager: ObservableObject {
 
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
 
-    init(firebaseAuthenticationManager: FirebaseAuthenticationManager) {
+    private let firestoreUserManager: FirestoreUserManager
+
+    init(firebaseAuthenticationManager: FirebaseAuthenticationManager,
+         firestoreUserManager: FirestoreUserManager) {
         self.isAuthenticated = false
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
+        self.firestoreUserManager = firestoreUserManager
         self.authenticateUser()
     }
 
@@ -28,31 +32,31 @@ class AuthenticationManager: ObservableObject {
     }
 
     public func createUser(email: String, password: String) async {
+        guard let user = await firebaseAuthenticationManager.createUser(email: email, password: password) else { return }
         do {
-            let user = try await firebaseAuthenticationManager.createUser(email: email, password: password)
-            await UserFirestoreManager().createUser(user: user)
+            try await firestoreUserManager.createUser(user: user)
             isAuthenticated = true
         } catch {
-            login()
-        }
-    }
-
-    public func login() {
-        let authUser = try? firebaseAuthenticationManager.getAuthenticatedUser()
-
-        if authUser != nil {
-            isAuthenticated = true
-        } else {
             isAuthenticated = false
+            deleteUser()
         }
     }
 
     public func signIn(email: String, password: String) async throws {
+        guard let user = await firebaseAuthenticationManager.signIn(email: email, password: password) else { return }
         do {
-            _ = try await firebaseAuthenticationManager.signIn(email: email, password: password)
+            try await firestoreUserManager.createUser(user: user)
             isAuthenticated = true
-        } catch {
-            login()
+        } catch { }
+    }
+
+    public func login() {
+        let authUser = try? self.firebaseAuthenticationManager.getAuthenticatedUser()
+
+        if authUser != nil {
+            self.isAuthenticated = true
+        } else {
+            self.isAuthenticated = false
         }
     }
 
@@ -66,9 +70,12 @@ class AuthenticationManager: ObservableObject {
         }
     }
 
-    public func deleteAccount() {
-        firebaseAuthenticationManager.deleteAccount()
-        isAuthenticated = false
+    public func deleteUser() {
+        firebaseAuthenticationManager.deleteAccount() { user in
+            self.firestoreUserManager.deleteUser(user: user)
+            self.isAuthenticated = false
+        }
+
     }
 
     public func signInWithApple(onRequest request: ASAuthorizationAppleIDRequest) {
@@ -98,7 +105,13 @@ class AuthenticationManager: ObservableObject {
 
                 firebaseAuthenticationManager.signInWithApple(idToken: idTokenString, rawNonce: nonce) {
                     onSignedIn(true)
-                    self.login()
+                    let authUser = try? self.firebaseAuthenticationManager.getAuthenticatedUser()
+
+                    if authUser != nil {
+                        self.isAuthenticated = true
+                    } else {
+                        self.isAuthenticated = false
+                    }
                 }
             default:
                 break
