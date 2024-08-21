@@ -18,6 +18,12 @@ class FirestoreUserManager {
 
     }
 
+    func updateUser(user: UserDataModel) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(user.uid)
+        userRef.updateData(createDocumentData(with: user))
+    }
+
     private func createDocumentData(with user: UserDataModel) -> [String: Any] {
         return [
             "uid": user.uid,

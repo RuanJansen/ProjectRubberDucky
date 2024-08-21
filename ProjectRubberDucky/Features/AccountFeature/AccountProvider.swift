@@ -54,11 +54,12 @@ class AccountProvider: FeatureProvider {
         let pageTitle = await contentProvider.fetchPageTitle()
         let alertModel = await setupDeleteAlert()
         let deleteText = await contentProvider.fetchDeleteText()
-        let profileImageButtonAction: RDButtonAction = .photosPicker {
-            RDPhotosPickerModel()
-        } selection: { selection in
-            self.photosPickerManager.selection = selection
-        }
+        let profileImageButtonAction: RDButtonAction = .none
+//        let profileImageButtonAction: RDButtonAction = .photosPicker {
+//            RDPhotosPickerModel()
+//        } selection: { selection in
+//            self.photosPickerManager.selection = selection
+//        }
 
         await MainActor.run {
             self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle,

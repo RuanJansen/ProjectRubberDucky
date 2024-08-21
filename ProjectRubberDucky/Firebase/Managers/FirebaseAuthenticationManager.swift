@@ -65,8 +65,11 @@ class FirebaseAuthenticationManager {
         return currentUser
     }
 
-    func checkUserIsAuthenticated() -> Bool {
+    func checkUserIsAuthenticated(completion: @escaping (UserDataModel) -> ()) -> Bool {
         if (Auth.auth().currentUser?.reload()) != nil {
+            if let currentUser = Auth.auth().currentUser {
+                completion(UserDataModel(user: currentUser))
+            }
             return true
         } else {
             return false
@@ -120,8 +123,12 @@ class FirebaseAuthenticationManager {
 }
 
 extension FirebaseAuthenticationManager: FirebaseProvider {
-    func fetchUser() async -> UserDataModel? {
-        currentUser
+    func fetchUser() -> UserDataModel? {
+        if let currentUser = Auth.auth().currentUser {
+            return UserDataModel(user: currentUser)
+        } else {
+            return nil
+        }
     }
 
     func updateUser(with user: UserDataModel) async throws {

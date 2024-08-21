@@ -14,9 +14,7 @@ class AuthenticationManager: ObservableObject {
     @Published public var isAuthenticated: Bool
     var currentNonce: String?
 
-
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
-
     private let firestoreUserManager: FirestoreUserManager
 
     init(firebaseAuthenticationManager: FirebaseAuthenticationManager,
@@ -28,7 +26,9 @@ class AuthenticationManager: ObservableObject {
     }
 
     public func authenticateUser() {
-        self.isAuthenticated = firebaseAuthenticationManager.checkUserIsAuthenticated()
+        self.isAuthenticated = firebaseAuthenticationManager.checkUserIsAuthenticated() { user in
+            self.firestoreUserManager.updateUser(user: user)
+        }
     }
 
     public func createUser(email: String, password: String) async {
@@ -53,7 +53,12 @@ class AuthenticationManager: ObservableObject {
     public func login() {
         let authUser = try? self.firebaseAuthenticationManager.getAuthenticatedUser()
 
-        if authUser != nil {
+        if let authUser {
+            Task {
+                do {
+                    try await self.firestoreUserManager.createUser(user: authUser)
+                } catch { }
+            }
             self.isAuthenticated = true
         } else {
             self.isAuthenticated = false
@@ -105,13 +110,7 @@ class AuthenticationManager: ObservableObject {
 
                 firebaseAuthenticationManager.signInWithApple(idToken: idTokenString, rawNonce: nonce) {
                     onSignedIn(true)
-                    let authUser = try? self.firebaseAuthenticationManager.getAuthenticatedUser()
-
-                    if authUser != nil {
-                        self.isAuthenticated = true
-                    } else {
-                        self.isAuthenticated = false
-                    }
+                    self.login()
                 }
             default:
                 break
