@@ -22,7 +22,6 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
                 ProgressView()
             case .presentContent(let dataModel):
                 createContentView(using: dataModel)
-                    .navigationTitle(dataModel.pageTitle)
             case .error:
                 EmptyView()
             case .none:
@@ -86,7 +85,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
                                         view
                                             .frame(maxWidth: .infinity)
                                     }
-                                    .foregroundStyle(item.fontColor)
+                                    .tint(item.fontColor)
                             } else {
                                 Text(item.title)
                                     .if(item.hasMaxWidth) { view in
@@ -109,5 +108,6 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
             }
             Spacer()
         }
+        .navigationTitle(dataModel.pageTitle)
     }
 }

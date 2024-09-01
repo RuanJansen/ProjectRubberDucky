@@ -57,14 +57,10 @@ class AuthenticationUsecase {
 
         do {
             await emailRegistrationManager.createUser(email: email, password: password, displayName: displayName)
-            email = String()
-            password = String()
-            displayName = String()
-            showingIsLoadingToast = false
+            resetProperties()
         } catch {
             // error
             print("Register failed")
-            showingIsLoadingToast = false
         }
     }
 
@@ -83,8 +79,7 @@ class AuthenticationUsecase {
 
         do {
             try await emailSignInManager.signIn(email: email, password: password)
-            password = String()
-            showingIsLoadingToast = false
+            resetProperties()
         } catch {
             // error
             print("Sign in failed")
@@ -97,8 +92,9 @@ class AuthenticationUsecase {
     }
 
     public func signInWithApple(onCompletion completion: Result<ASAuthorization, any Error>) {
-        appleSignInManager.signInWithApple(onCompletion: completion) { isSuccessful in
+        appleSignInManager.signInWithApple(onCompletion: completion) { [self] isSuccessful in
             self.showingIsLoadingToast = isSuccessful
+            self.resetProperties()
         } onSignedIn: { isSignedIn in
             self.showingIsLoadingToast = !isSignedIn
         }
@@ -141,5 +137,13 @@ class AuthenticationUsecase {
         RDAlertModel(title: "Passwords missmatch",
                      message: "Your passwords are not matching.",
                      buttons: [RDAlertButtonModel(title: "Okay", action: {})])
+    }
+
+    private func resetProperties() {
+        email = String()
+        password = String()
+        rePassword = String()
+        displayName = String()
+        showingIsLoadingToast = false
     }
 }

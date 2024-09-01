@@ -15,19 +15,23 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     @State var authenticationUsecase: AuthenticationUsecase
     @State private var isPresentingRegisterView: Bool
 
-    @FocusState private var focusedField: Field?
+    @FocusState private var loginFocusedField: LoginFocusField?
+    @FocusState private var registerFocusedField: RegisterFocusField?
 
-    enum Field {
-        case loginEmail
-        case loginPassword
-        case loginButton
-        case registerEmail
-        case registerPassword
-        case registerButton
-        case navigateToRegister
+    enum LoginFocusField {
+        case email
+        case password
+        case primaryButton
+        case secondaryButton
     }
 
-
+    enum RegisterFocusField {
+        case email
+        case password
+        case rePassword
+        case displayName
+        case primaryButton
+    }
 
     init(provider: Provider, authenticationUsecase: AuthenticationUsecase) {
         self.provider = provider
@@ -43,40 +47,31 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .ignoresSafeArea(.keyboard)
-                        .if(authenticationUsecase.showingIsLoadingToast) { view in
-                            view.overlay {
-                                ProgressView()
-                                    .frame(width: 100, height: 100)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
-                            }
-                        }
                         .alert(authenticationUsecase.fetchInvalidEmailRDAlertModel().title,
                                isPresented: $authenticationUsecase.showingInvalidEmail,
                                actions: {
-                                    ForEach(authenticationUsecase.fetchInvalidEmailRDAlertModel().buttons, id: \.id) { button in
-                                        Button(role: button.role) {
-                                            button.action()
-                                        } label: {
-                                            Text(button.title)
-                                        }
-                                    }
-                                }, 
+                            ForEach(authenticationUsecase.fetchInvalidEmailRDAlertModel().buttons, id: \.id) { button in
+                                Button(role: button.role) {
+                                    button.action()
+                                } label: {
+                                    Text(button.title)
+                                }
+                            }
+                        },
                                message: {
-                                    if let message = authenticationUsecase.fetchInvalidEmailRDAlertModel().message {
-                                        Text(message)
-                                    }
+                            if let message = authenticationUsecase.fetchInvalidEmailRDAlertModel().message {
+                                Text(message)
+                            }
                         })
                         .alert(authenticationUsecase.fetchInvalidPasswordRDAlertModel().title,
                                isPresented: $authenticationUsecase.showingInvalidPassword, actions: {
                             ForEach(authenticationUsecase.fetchInvalidPasswordRDAlertModel().buttons, id: \.id) { button in
-                                    Button(role: button.role) {
-                                        button.action()
-                                    } label: {
-                                        Text(button.title)
-                                    }
+                                Button(role: button.role) {
+                                    button.action()
+                                } label: {
+                                    Text(button.title)
                                 }
+                            }
                         }, message: {
                             if let message = authenticationUsecase.fetchInvalidPasswordRDAlertModel().message {
                                 Text(message)
@@ -85,41 +80,17 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         .alert(authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().title,
                                isPresented: $authenticationUsecase.showingPasswordsMissmatch, actions: {
                             ForEach(authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().buttons, id: \.id) { button in
-                                    Button(role: button.role) {
-                                        button.action()
-                                    } label: {
-                                        Text(button.title)
-                                    }
+                                Button(role: button.role) {
+                                    button.action()
+                                } label: {
+                                    Text(button.title)
                                 }
+                            }
                         }, message: {
                             if let message = authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().message {
                                 Text(message)
                             }
                         })
-                    }
-                .onSubmit {
-                    switch focusedField {
-                    case .loginEmail:
-                        focusedField = .loginPassword
-                    case .loginPassword:
-                        Task {
-                            await authenticationUsecase.signIn()
-                        }
-                    case .loginButton:
-                        break
-                    case .registerEmail:
-                        focusedField = .registerPassword
-                    case .registerPassword:
-                        Task {
-                            await authenticationUsecase.register()
-                        }
-                    case .registerButton:
-                        break
-                    case .navigateToRegister:
-                        focusedField = .registerEmail
-                    case nil:
-                        break
-                    }
                 }
             case .error:
                 EmptyView()
@@ -133,22 +104,11 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
     }
 
     @ViewBuilder
-    private func createToats(title: String, message: String?, image: Image) -> some View {
-        VStack {
-                image
-                    .foregroundStyle(.red)
-                    .font(.largeTitle)
-                    .padding()
-                Text(title)
-                    .font(.title)
-
-            if let message {
-                Text(message)
-                    .padding()
-            }
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
+    private func createLoadingToats() -> some View {
+        ProgressView()
+            .frame(width: 100, height: 100)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 8).fill(.ultraThinMaterial))
     }
 
     @ViewBuilder
@@ -165,7 +125,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.next)
-                        .focused($focusedField, equals: .loginEmail)
+                        .focused($loginFocusedField, equals: .email)
                 } header: {
                     Text(dataModel.signIn.sectionHeader1)
                 }
@@ -173,7 +133,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                 Section {
                     SecureField(dataModel.signIn.textFieldDefault2, text: $authenticationUsecase.password)
                         .submitLabel(.go)
-                        .focused($focusedField, equals: .loginPassword)
+                        .focused($loginFocusedField, equals: .password)
                 } header: {
                     Text(dataModel.signIn.sectionHeader2)
                 }
@@ -198,7 +158,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         RoundedRectangle(cornerRadius: 8)
                     }
             })
-            .focused($focusedField, equals: .loginButton)
+            .focused($loginFocusedField, equals: .primaryButton)
             .padding(.horizontal)
             .padding(.bottom)
 
@@ -207,7 +167,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             }, label: {
                 Text(dataModel.signIn.secondaryAction)
             })
-            .focused($focusedField, equals: .navigateToRegister)
+            .focused($loginFocusedField, equals: .secondaryButton)
             .padding(.bottom)
 
             SignInWithAppleButton(.continue) { request in
@@ -222,6 +182,28 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             Spacer()
         }
         .navigationTitle(dataModel.signIn.pageTitle)
+        .ignoresSafeArea(.keyboard)
+        .if(authenticationUsecase.showingIsLoadingToast) { view in
+            view.overlay {
+                createLoadingToats()
+            }
+        }
+        .onSubmit {
+            switch loginFocusedField {
+            case .email:
+                loginFocusedField = .password
+            case .password:
+                Task {
+                    await authenticationUsecase.signIn()
+                }
+            case .primaryButton:
+                break
+            case .secondaryButton:
+                break
+            case nil:
+                break
+            }
+        }
     }
 
     @ViewBuilder
@@ -233,21 +215,23 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.next)
-                        .focused($focusedField, equals: .registerEmail)
+                        .focused($registerFocusedField, equals: .email)
                 } header: {
                     Text(dataModel.sectionHeader1)
                 }
 
                 Section {
                     SecureField(dataModel.textFieldDefault2, text: $authenticationUsecase.password)
-                        .submitLabel(.go)
-                        .focused($focusedField, equals: .registerPassword)
+                        .submitLabel(.next)
+                        .focused($registerFocusedField, equals: .password)
                 } header: {
                     Text(dataModel.sectionHeader2)
                 }
 
                 Section {
                     SecureField(dataModel.textFieldDefault3, text: $authenticationUsecase.rePassword)
+                        .submitLabel(.next)
+                        .focused($registerFocusedField, equals: .rePassword)
                 } header: {
                     Text(dataModel.sectionHeader3)
                 }
@@ -256,6 +240,8 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                     TextField(dataModel.textFieldDefault4, text: $authenticationUsecase.displayName)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .submitLabel(.go)
+                        .focused($registerFocusedField, equals: .displayName)
                 } header: {
                     Text(dataModel.sectionHeader4)
                 }
@@ -278,11 +264,34 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                         RoundedRectangle(cornerRadius: 8)
                     }
             })
-            .focused($focusedField, equals: .registerButton)
+            .focused($registerFocusedField, equals: .primaryButton)
             .padding(.bottom)
             .padding(.horizontal)
         }
-        .ignoresSafeArea(.keyboard)
         .navigationTitle(dataModel.pageTitle)
+        .ignoresSafeArea(.keyboard)
+        .if(authenticationUsecase.showingIsLoadingToast) { view in
+            view.overlay {
+                createLoadingToats()
+            }
+        }
+        .onSubmit {
+            switch registerFocusedField {
+            case .email:
+                registerFocusedField = .password
+            case .password:
+                registerFocusedField = .rePassword
+            case .rePassword:
+                registerFocusedField = .displayName
+            case .displayName:
+                Task {
+                    await authenticationUsecase.register()
+                }
+            case .primaryButton:
+                break
+            case nil:
+                break
+            }
+        }
     }
 }

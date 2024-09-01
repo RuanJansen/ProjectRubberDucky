@@ -52,8 +52,19 @@ class AuthenticationManager: ObservableObject {
         }
     }
 
-    public func deleteUser() {
+    public func deleteAccount(onFailure: @escaping () -> (Void)) {
         firebaseAuthenticationManager.deleteAccount() { user in
+            if let user {
+                self.firestoreUserFactory.deleteUser(user: user)
+                self.isAuthenticated = false
+            } else {
+                onFailure()
+            }
+        }
+    }
+
+    public func deleteUser() async throws {
+        try await firebaseAuthenticationManager.deleteUser() { user in
             self.firestoreUserFactory.deleteUser(user: user)
             self.isAuthenticated = false
         }
@@ -66,7 +77,12 @@ class AuthenticationManager: ObservableObject {
     }
 }
 
-class AppleSignInManager {
+protocol AppleSignInManager {
+    func signInWithApple(onRequest request: ASAuthorizationAppleIDRequest)
+    func signInWithApple(onCompletion completion: Result<ASAuthorization, any Error>, onSuccess: @escaping (Bool) -> Void, onSignedIn: @escaping (Bool) -> Void)
+}
+
+class ConcreteAppleSignInManager: AppleSignInManager {
     private let authenticationManager: AuthenticationManager
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
 
@@ -149,7 +165,11 @@ class AppleSignInManager {
     }
 }
 
-class EmailSignInManager {
+protocol EmailSignInManager {
+    func signIn(email: String, password: String) async throws
+}
+
+class ConcreteEmailSignInManager: EmailSignInManager {
     private let authenticationManager: AuthenticationManager
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
     private let firestoreUserFactory: FirestoreUserFactory
@@ -166,7 +186,11 @@ class EmailSignInManager {
     }
 }
 
-class EmailRegistrationManager {
+protocol EmailRegistrationManager {
+    func createUser(email: String, password: String, displayName: String) async
+}
+
+class ConcreteEmailRegistrationManager: EmailRegistrationManager {
     private let authenticationManager: AuthenticationManager
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
     private let firestoreUserFactory: FirestoreUserFactory
@@ -177,14 +201,14 @@ class EmailRegistrationManager {
         self.firestoreUserFactory = firestoreUserFactory
     }
 
-    public func createUser(email: String, password: String, displayName: String? = nil) async {
+    public func createUser(email: String, password: String, displayName: String) async {
         guard let user = await firebaseAuthenticationManager.createUser(email: email, password: password, displayName: displayName) else { return }
         do {
             try await firestoreUserFactory.createUser(user: user)
             authenticationManager.isAuthenticated = true
         } catch {
             authenticationManager.isAuthenticated = false
-            authenticationManager.deleteUser()
+            authenticationManager.deleteAccount { }
         }
     }
 }

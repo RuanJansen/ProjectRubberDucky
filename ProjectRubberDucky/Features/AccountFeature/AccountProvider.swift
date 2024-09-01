@@ -19,7 +19,7 @@ class AccountProvider: FeatureProvider {
     private var authenticationManager: AuthenticationManager
     private var firebaseProvider: FirebaseProvider?
     private var photosPickerManager: PhotosPickerManager
-
+    private var shouldReauthenticate: Bool
     private var currentUser: UserDataModel?
 
     private var cancellables = Set<AnyCancellable>()
@@ -32,6 +32,8 @@ class AccountProvider: FeatureProvider {
         self.authenticationManager = authenticationManager
         self.firebaseProvider = firebaseProvider
         self.photosPickerManager = PhotosPickerManager()
+        self.shouldReauthenticate = false
+        self.startObserving()
     }
 
     func addListeners() {
@@ -49,28 +51,59 @@ class AccountProvider: FeatureProvider {
         .store(in: &cancellables)
     }
 
+    func startObserving() {
+        _ = withObservationTracking {
+            shouldReauthenticate
+        } onChange: {
+            Task {
+                await self.fetchContent()
+            }
+        }
+    }
+
     func fetchContent() async {
         await fetchUser()
         let pageTitle = await contentProvider.fetchPageTitle()
-        let alertModel = await setupDeleteAlert()
+        let deleteAlertModel = await setupDeleteAlert()
         let deleteText = await contentProvider.fetchDeleteText()
-        let profileImageButtonAction: RDButtonAction = .none
-//        let profileImageButtonAction: RDButtonAction = .photosPicker {
-//            RDPhotosPickerModel()
-//        } selection: { selection in
-//            self.photosPickerManager.selection = selection
-//        }
+        let profileImageButtonAction: RDButtonAction? = nil
+        //        let profileImageButtonAction: RDButtonAction = .photosPicker {
+        //            RDPhotosPickerModel()
+        //        } selection: { selection in
+        //            self.photosPickerManager.selection = selection
+        //        }
+
+        let reauthenticateAlertModel = RDAlertModel(title: "Re-authenticate Account",
+                                                    message: "There was an error deleting your account. You have been signed in for too long and need to reauthenticate your account. Log out and retry this action after you have signed in again.",
+                                                    buttons: [
+                                                        RDAlertButtonModel(title: "Cancel", action: {}, role: .cancel),
+                                                        RDAlertButtonModel(title: "Log out", action: {
+                                                            Task {
+                                                                await self.logOut()
+                                                            }
+                                                        }, role: .destructive)
+                                                    ])
+        var deleteErrorFooterMessage: String? = nil
+
+        if shouldReauthenticate {
+            deleteErrorFooterMessage = "There was an error deleting your account. You have been signed in for too long and need to reauthenticate your account. Log out and retry this action after you have signed in again."
+        }
+
+        let sections = [SectionDataModel(footer: deleteErrorFooterMessage,
+                                         items: [
+                                            SectionItemDataModel(title: deleteText,
+                                                                 buttonAction: .alert {
+                                                                     self.shouldReauthenticate ? reauthenticateAlertModel : deleteAlertModel
+                                                                 },
+                                                                 fontColor: .red,
+                                                                 hasMaxWidth: true)])
+        ]
 
         await MainActor.run {
             self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle,
                                                                      user: currentUser,
                                                                      profileImageButtonAction: profileImageButtonAction,
-                                                                     sections: [SectionDataModel(items: [SectionItemDataModel(title: deleteText,
-                                                                                                                              buttonAction: .alert {
-                alertModel
-            },
-                                                                                                                              fontColor: .red,
-                                                                                                                              hasMaxWidth: true)])]))
+                                                                     sections: sections))
         }
     }
 
@@ -85,7 +118,9 @@ class AccountProvider: FeatureProvider {
                             buttons: [
                                 RDAlertButtonModel(title: accountAlertPrimaryActionText, action: {}, role: .cancel),
                                 RDAlertButtonModel(title: accountAlertSecondaryActionText, action: {
-                                        self.deleteAccount()
+                                    Task {
+                                        await self.deleteAccount()
+                                    }
                                 }, role: .destructive)
                             ])
     }
@@ -95,8 +130,18 @@ class AccountProvider: FeatureProvider {
 //        await updateUser()
     }
 
-    private func deleteAccount() {
-        authenticationManager.deleteUser()
+    private func deleteAccount() async {
+        authenticationManager.deleteAccount {
+            self.shouldReauthenticate = true
+        }
+    }
+
+    private func deleteUser() async {
+        do {
+            try await authenticationManager.deleteUser()
+        } catch {
+            shouldReauthenticate = true
+        }
     }
 
     private func fetchUser() async {
@@ -121,5 +166,10 @@ class AccountProvider: FeatureProvider {
                 //
             }
         }
+    }
+
+    func logOut() async {
+        await authenticationManager.logOut()
+        shouldReauthenticate = false
     }
 }

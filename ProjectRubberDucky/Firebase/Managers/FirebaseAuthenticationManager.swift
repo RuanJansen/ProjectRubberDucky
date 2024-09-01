@@ -112,18 +112,45 @@ class FirebaseAuthenticationManager {
         try Auth.auth().signOut()
     }
 
-    public func deleteAccount(completion: @escaping (UserDataModel) -> ()) {
+    public func deleteAccount(completion: @escaping (UserDataModel?) -> ()) {
+        #warning("When session expires, reauthenticate the user by invoking reauthenticateWithCredential:completion:")
         guard let currentUser = Auth.auth().currentUser else { return }
         let user = UserDataModel(user: currentUser)
         Auth.auth().currentUser?.delete(completion: { error in
             Auth.auth().currentUser?.reload()
             if let error {
+                completion(nil)
                 print(error.localizedDescription)
             } else {
                 completion(user)
                 print("User Deleted: ", String(describing: self.currentUser?.email))
             }
         })
+        AuthErrors
+
+
+    }
+
+    public func deleteUser(completion: @escaping (UserDataModel) -> ()) async throws {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        try await currentUser.delete()
+        let user = UserDataModel(user: currentUser)
+        completion(user)
+    }
+
+    public func reAuthenticate() {
+//        let user = Auth.auth().currentUser
+//        var credential: AuthCredential
+//
+//        // Prompt the user to re-provide their sign-in credentials
+//
+//        user?.reauthenticate(with: credential, completion: { authDataResult, error in
+//            if let error = error {
+//                // An error happened.
+//              } else {
+//                // User re-authenticated.
+//              }
+//        })
     }
 }
 

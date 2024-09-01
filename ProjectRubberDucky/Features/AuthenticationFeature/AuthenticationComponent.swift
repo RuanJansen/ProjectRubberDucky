@@ -32,18 +32,18 @@ extension RootComponent {
     }
 
     public var appleSignInManager: AppleSignInManager {
-        AppleSignInManager(authenticationManager: authenticationManager, 
+        ConcreteAppleSignInManager(authenticationManager: authenticationManager,
                            firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager)
     }
 
     public var emailSignInManager: EmailSignInManager {
-        EmailSignInManager(authenticationManager: authenticationManager, 
+        ConcreteEmailSignInManager(authenticationManager: authenticationManager,
                            firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
                            firestoreUserFactory: firebaseComponent.firestoreUserFactory)
     }
 
     public var emailRegistrationManager: EmailRegistrationManager {
-        EmailRegistrationManager(authenticationManager: authenticationManager, 
+        ConcreteEmailRegistrationManager(authenticationManager: authenticationManager, 
                                  firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
                                  firestoreUserFactory: firebaseComponent.firestoreUserFactory)
     }
