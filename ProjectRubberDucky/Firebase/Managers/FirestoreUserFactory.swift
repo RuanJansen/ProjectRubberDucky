@@ -8,7 +8,7 @@
 import FirebaseFirestore
 import FirebaseCore
 
-class FirestoreUserManager {
+class FirestoreUserFactory {
 
     func createUser(user: UserDataModel) async throws {
         let db = Firestore.firestore()

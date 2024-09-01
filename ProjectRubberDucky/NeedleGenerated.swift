@@ -273,8 +273,10 @@ extension RootComponent: Registration {
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
         localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
-        localTable["firebaseAuthenticationManager-FirebaseAuthenticationManager"] = { [unowned self] in self.firebaseAuthenticationManager as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
+        localTable["appleSignInManager-AppleSignInManager"] = { [unowned self] in self.appleSignInManager as Any }
+        localTable["emailSignInManager-EmailSignInManager"] = { [unowned self] in self.emailSignInManager as Any }
+        localTable["emailRegistrationManager-EmailRegistrationManager"] = { [unowned self] in self.emailRegistrationManager as Any }
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
         localTable["firebaseComponent-FirebaseComponent"] = { [unowned self] in self.firebaseComponent as Any }

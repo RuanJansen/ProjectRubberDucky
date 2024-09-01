@@ -53,18 +53,20 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                             }
                         }
                         .alert(authenticationUsecase.fetchInvalidEmailRDAlertModel().title,
-                               isPresented: $authenticationUsecase.showingInvalidEmail, actions: {
-                            ForEach(authenticationUsecase.fetchInvalidEmailRDAlertModel().buttons, id: \.id) { button in
-                                    Button(role: button.role) {
-                                        button.action()
-                                    } label: {
-                                        Text(button.title)
+                               isPresented: $authenticationUsecase.showingInvalidEmail,
+                               actions: {
+                                    ForEach(authenticationUsecase.fetchInvalidEmailRDAlertModel().buttons, id: \.id) { button in
+                                        Button(role: button.role) {
+                                            button.action()
+                                        } label: {
+                                            Text(button.title)
+                                        }
                                     }
-                                }
-                        }, message: {
-                            if let message = authenticationUsecase.fetchInvalidEmailRDAlertModel().message {
-                                Text(message)
-                            }
+                                }, 
+                               message: {
+                                    if let message = authenticationUsecase.fetchInvalidEmailRDAlertModel().message {
+                                        Text(message)
+                                    }
                         })
                         .alert(authenticationUsecase.fetchInvalidPasswordRDAlertModel().title,
                                isPresented: $authenticationUsecase.showingInvalidPassword, actions: {
@@ -77,6 +79,20 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                                 }
                         }, message: {
                             if let message = authenticationUsecase.fetchInvalidPasswordRDAlertModel().message {
+                                Text(message)
+                            }
+                        })
+                        .alert(authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().title,
+                               isPresented: $authenticationUsecase.showingPasswordsMissmatch, actions: {
+                            ForEach(authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().buttons, id: \.id) { button in
+                                    Button(role: button.role) {
+                                        button.action()
+                                    } label: {
+                                        Text(button.title)
+                                    }
+                                }
+                        }, message: {
+                            if let message = authenticationUsecase.fetchPasswordsMissmatchRDAlertModel().message {
                                 Text(message)
                             }
                         })
@@ -145,7 +161,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
 
             Form {
                 Section {
-                    TextField(dataModel.signIn.sectionHeader1, text: $authenticationUsecase.email)
+                    TextField(dataModel.signIn.textFieldDefault1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.next)
@@ -155,7 +171,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                 }
 
                 Section {
-                    SecureField(dataModel.signIn.sectionHeader2, text: $authenticationUsecase.password)
+                    SecureField(dataModel.signIn.textFieldDefault2, text: $authenticationUsecase.password)
                         .submitLabel(.go)
                         .focused($focusedField, equals: .loginPassword)
                 } header: {
@@ -213,7 +229,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
         VStack {
             Form {
                 Section {
-                    TextField(dataModel.sectionHeader1, text: $authenticationUsecase.email)
+                    TextField(dataModel.textFieldDefault1, text: $authenticationUsecase.email)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.next)
@@ -223,27 +239,26 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
                 }
 
                 Section {
-                    SecureField(dataModel.sectionHeader2, text: $authenticationUsecase.password)
+                    SecureField(dataModel.textFieldDefault2, text: $authenticationUsecase.password)
                         .submitLabel(.go)
                         .focused($focusedField, equals: .registerPassword)
                 } header: {
                     Text(dataModel.sectionHeader2)
                 }
 
-//                Section {
-//                    SecureField("Password", text: $authenticationUsecase.password)
-//                } header: {
-//                    Text("Re-enter password")
-//                }
+                Section {
+                    SecureField(dataModel.textFieldDefault3, text: $authenticationUsecase.rePassword)
+                } header: {
+                    Text(dataModel.sectionHeader3)
+                }
 
-//                Section {
-//                    TextField("Username", text: $authenticationUsecase.username)
-//                        .autocorrectionDisabled()
-//                        .textInputAutocapitalization(.never)
-//                } header: {
-//                    Text("About you")
-//                }
-
+                Section {
+                    TextField(dataModel.textFieldDefault4, text: $authenticationUsecase.displayName)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                } header: {
+                    Text(dataModel.sectionHeader4)
+                }
             }
             .padding(.bottom)
 

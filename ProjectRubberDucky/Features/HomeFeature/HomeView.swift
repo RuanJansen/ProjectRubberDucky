@@ -40,7 +40,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                 await searchUsecase.clearSearch()
                             }
                         }
-                    //                        .ignoresSafeArea()
+//                        .ignoresSafeArea()
 
                 }
             case .error:

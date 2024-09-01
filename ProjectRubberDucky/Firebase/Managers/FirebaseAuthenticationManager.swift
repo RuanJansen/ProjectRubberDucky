@@ -42,10 +42,15 @@ class FirebaseAuthenticationManager {
         }
     }
 
-    func createUser(email: String, password: String) async -> UserDataModel? {
+    func createUser(email: String, password: String, displayName: String? = nil) async -> UserDataModel? {
         do {
             let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            let user = UserDataModel(user: authDataResult.user)
+            var user = UserDataModel(user: authDataResult.user)
+
+            if let displayName {
+                user.displayName = displayName
+            }
+
             setupCurrentUser(user)
             return user
         } catch {
@@ -89,7 +94,7 @@ class FirebaseAuthenticationManager {
     }
 
     func signInWithApple(idToken idTokenString: String, rawNonce nonce: String, completion: @escaping () -> Void) {
-        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        let credential = OAuthProvider.credential(providerID: .apple, idToken: idTokenString, rawNonce: nonce)
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if (error != nil) {
                 // Error. If error.code == .MissingOrInvalidNonce, make sure

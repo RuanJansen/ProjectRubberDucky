@@ -18,15 +18,36 @@ extension RootComponent {
 
     public var authenticationManager: AuthenticationManager {
         shared {
-            AuthenticationManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager, firestoreUserManager: firebaseComponent.firestoreUserManager)
+            AuthenticationManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                                  firestoreUserFactory: firebaseComponent.firestoreUserFactory)
         }
     }
 
     public var authenticationUsecase: AuthenticationUsecase {
         shared {
-            AuthenticationUsecase(authenticationManager: authenticationManager)
+            AuthenticationUsecase(appleSignInManager: appleSignInManager, 
+                                  emailSignInManager: emailSignInManager,
+                                  emailRegistrationManager: emailRegistrationManager)
         }
     }
+
+    public var appleSignInManager: AppleSignInManager {
+        AppleSignInManager(authenticationManager: authenticationManager, 
+                           firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager)
+    }
+
+    public var emailSignInManager: EmailSignInManager {
+        EmailSignInManager(authenticationManager: authenticationManager, 
+                           firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                           firestoreUserFactory: firebaseComponent.firestoreUserFactory)
+    }
+
+    public var emailRegistrationManager: EmailRegistrationManager {
+        EmailRegistrationManager(authenticationManager: authenticationManager, 
+                                 firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                                 firestoreUserFactory: firebaseComponent.firestoreUserFactory)
+    }
+
 }
 
 class AuthenticationComponent: Component<AuthenticationDependency> {

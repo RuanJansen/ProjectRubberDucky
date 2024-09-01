@@ -78,7 +78,7 @@
 		F38471212C6E828E00FF80C9 /* AccountContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38471202C6E828E00FF80C9 /* AccountContentProvider.swift */; };
 		F38471232C6E82E800FF80C9 /* SettingsContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38471222C6E82E800FF80C9 /* SettingsContentProvider.swift */; };
 		F38471252C6E8D7300FF80C9 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F38471242C6E8D7200FF80C9 /* RemoteConfigDefaults.plist */; };
-		F38471282C6FE9C100FF80C9 /* FirestoreUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38471272C6FE9C100FF80C9 /* FirestoreUserManager.swift */; };
+		F38471282C6FE9C100FF80C9 /* FirestoreUserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */; };
 		F392CCB02C610D2C00843540 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392CCAF2C610D2C00843540 /* RootView.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
@@ -197,7 +197,7 @@
 		F38471202C6E828E00FF80C9 /* AccountContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountContentProvider.swift; sourceTree = "<group>"; };
 		F38471222C6E82E800FF80C9 /* SettingsContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContentProvider.swift; sourceTree = "<group>"; };
 		F38471242C6E8D7200FF80C9 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
-		F38471272C6FE9C100FF80C9 /* FirestoreUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserManager.swift; sourceTree = "<group>"; };
+		F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserFactory.swift; sourceTree = "<group>"; };
 		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F392CCAF2C610D2C00843540 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				F3342D562C69179900C052BB /* FirebaseRemoteConfigManager.swift */,
-				F38471272C6FE9C100FF80C9 /* FirestoreUserManager.swift */,
+				F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */,
 				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
 			);
 			path = Managers;
@@ -870,7 +870,7 @@
 				F3342D5B2C69398200C052BB /* FeatureFlagProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
 				F32045A82C6203E200A2DFA7 /* SplashScreenView.swift in Sources */,
-				F38471282C6FE9C100FF80C9 /* FirestoreUserManager.swift in Sources */,
+				F38471282C6FE9C100FF80C9 /* FirestoreUserFactory.swift in Sources */,
 				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,

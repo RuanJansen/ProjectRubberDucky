@@ -15,49 +15,26 @@ class AuthenticationManager: ObservableObject {
     var currentNonce: String?
 
     private let firebaseAuthenticationManager: FirebaseAuthenticationManager
-    private let firestoreUserManager: FirestoreUserManager
+    private let firestoreUserFactory: FirestoreUserFactory
 
     init(firebaseAuthenticationManager: FirebaseAuthenticationManager,
-         firestoreUserManager: FirestoreUserManager) {
+         firestoreUserFactory: FirestoreUserFactory) {
         self.isAuthenticated = false
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
-        self.firestoreUserManager = firestoreUserManager
-        self.authenticateUser()
+        self.firestoreUserFactory = firestoreUserFactory
+        self.updateAuthenticatedUserData()
     }
 
-    public func authenticateUser() {
-        self.isAuthenticated = firebaseAuthenticationManager.checkUserIsAuthenticated() { user in
-            self.firestoreUserManager.updateUser(user: user)
-        }
-    }
-
-    public func createUser(email: String, password: String) async {
-        guard let user = await firebaseAuthenticationManager.createUser(email: email, password: password) else { return }
-        do {
-            try await firestoreUserManager.createUser(user: user)
-            isAuthenticated = true
-        } catch {
-            isAuthenticated = false
-            deleteUser()
-        }
-    }
-
-    public func signIn(email: String, password: String) async throws {
-        guard let user = await firebaseAuthenticationManager.signIn(email: email, password: password) else { return }
-        do {
-            try await firestoreUserManager.createUser(user: user)
-            isAuthenticated = true
-        } catch { }
-    }
-
-    public func login() {
+    public func authenticate() {
         let authUser = try? self.firebaseAuthenticationManager.getAuthenticatedUser()
 
         if let authUser {
             Task {
                 do {
-                    try await self.firestoreUserManager.createUser(user: authUser)
-                } catch { }
+                    try await self.firestoreUserFactory.createUser(user: authUser)
+                } catch {
+                    print("Failed adding user to FireStore")
+                }
             }
             self.isAuthenticated = true
         } else {
@@ -77,10 +54,27 @@ class AuthenticationManager: ObservableObject {
 
     public func deleteUser() {
         firebaseAuthenticationManager.deleteAccount() { user in
-            self.firestoreUserManager.deleteUser(user: user)
+            self.firestoreUserFactory.deleteUser(user: user)
             self.isAuthenticated = false
         }
+    }
 
+    private func updateAuthenticatedUserData() {
+        self.isAuthenticated = firebaseAuthenticationManager.checkUserIsAuthenticated() { user in
+            self.firestoreUserFactory.updateUser(user: user)
+        }
+    }
+}
+
+class AppleSignInManager {
+    private let authenticationManager: AuthenticationManager
+    private let firebaseAuthenticationManager: FirebaseAuthenticationManager
+
+    private var currentNonce: String?
+
+    init(authenticationManager: AuthenticationManager, firebaseAuthenticationManager: FirebaseAuthenticationManager) {
+        self.authenticationManager = authenticationManager
+        self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }
 
     public func signInWithApple(onRequest request: ASAuthorizationAppleIDRequest) {
@@ -96,13 +90,14 @@ class AuthenticationManager: ObservableObject {
             onSuccess(true)
             switch authResults.credential {
             case let appleIDCredential as ASAuthorizationAppleIDCredential:
-
                 guard let nonce = currentNonce else {
                     fatalError("Invalid state: A login callback was received, but no login request was sent.")
                 }
+
                 guard let appleIDToken = appleIDCredential.identityToken else {
                     fatalError("Invalid state: A login callback was received, but no login request was sent.")
                 }
+
                 guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
                     print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                     return
@@ -110,13 +105,14 @@ class AuthenticationManager: ObservableObject {
 
                 firebaseAuthenticationManager.signInWithApple(idToken: idTokenString, rawNonce: nonce) {
                     onSignedIn(true)
-                    self.login()
+                    self.authenticationManager.authenticate()
                 }
             default:
                 break
 
             }
-        default:
+        case .failure(let failure):
+            print(failure.localizedDescription)
             break
         }
     }
@@ -150,5 +146,45 @@ class AuthenticationManager: ObservableObject {
         }.joined()
 
         return hashString
+    }
+}
+
+class EmailSignInManager {
+    private let authenticationManager: AuthenticationManager
+    private let firebaseAuthenticationManager: FirebaseAuthenticationManager
+    private let firestoreUserFactory: FirestoreUserFactory
+
+    init(authenticationManager: AuthenticationManager, firebaseAuthenticationManager: FirebaseAuthenticationManager, firestoreUserFactory: FirestoreUserFactory) {
+        self.authenticationManager = authenticationManager
+        self.firebaseAuthenticationManager = firebaseAuthenticationManager
+        self.firestoreUserFactory = firestoreUserFactory
+    }
+
+    public func signIn(email: String, password: String) async throws {
+        guard let user = await firebaseAuthenticationManager.signIn(email: email, password: password) else { return }
+        authenticationManager.authenticate()
+    }
+}
+
+class EmailRegistrationManager {
+    private let authenticationManager: AuthenticationManager
+    private let firebaseAuthenticationManager: FirebaseAuthenticationManager
+    private let firestoreUserFactory: FirestoreUserFactory
+
+    init(authenticationManager: AuthenticationManager, firebaseAuthenticationManager: FirebaseAuthenticationManager, firestoreUserFactory: FirestoreUserFactory) {
+        self.authenticationManager = authenticationManager
+        self.firebaseAuthenticationManager = firebaseAuthenticationManager
+        self.firestoreUserFactory = firestoreUserFactory
+    }
+
+    public func createUser(email: String, password: String, displayName: String? = nil) async {
+        guard let user = await firebaseAuthenticationManager.createUser(email: email, password: password, displayName: displayName) else { return }
+        do {
+            try await firestoreUserFactory.createUser(user: user)
+            authenticationManager.isAuthenticated = true
+        } catch {
+            authenticationManager.isAuthenticated = false
+            authenticationManager.deleteUser()
+        }
     }
 }
