@@ -19,7 +19,8 @@ extension RootComponent {
 
     var onboardingProvider: any FeatureProvider {
         shared {
-            OnboardingProvider(userDefaultsManager: userDefaultsManager)
+            OnboardingProvider(userDefaultsManager: userDefaultsManager,
+                               tabFeatureFlagProvider: tabFeatureFlagProvider)
         }
     }
 }

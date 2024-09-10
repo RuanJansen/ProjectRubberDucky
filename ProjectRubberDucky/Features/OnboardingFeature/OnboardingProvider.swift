@@ -14,36 +14,18 @@ class OnboardingProvider: FeatureProvider {
     public var viewState: ViewState<DataModel>
 
     private var userDefaultsManager: UserDefaultsManager
+    private var tabFeatureFlagProvider: TabFeatureFlagProvidable
 
-    init(userDefaultsManager: UserDefaultsManager) {
+    init(userDefaultsManager: UserDefaultsManager,
+         tabFeatureFlagProvider: TabFeatureFlagProvidable) {
         self.userDefaultsManager = userDefaultsManager
+        self.tabFeatureFlagProvider = tabFeatureFlagProvider
         viewState = .loading
     }
 
     func fetchContent() async {
         if userDefaultsManager.shouldShowOnboarding {
-            let dataModel: DataModel = [
-                OnboardingDataModel(title: "Home",
-                                    description: "This is where you can find your recommended content.",
-                                    buttonTitle: "Next",
-                                    image: Image(systemName: "house.fill"),
-                                    tag: 0),
-                OnboardingDataModel(title: "Subscribed",
-                                    description: "This is where you can find the creators you are sunscribed to.",
-                                    buttonTitle: "Next",
-                                    image: Image(systemName: "tv.badge.wifi"),
-                                    tag: 1),
-                OnboardingDataModel(title: "Library",
-                                    description: "This is where you can find your saved content.",
-                                    buttonTitle: "Next",
-                                    image: Image(systemName: "books.vertical.fill"),
-                                    tag: 2),
-                OnboardingDataModel(title: "Settings",
-                                    description: "This is where you can access your profile settings.",
-                                    buttonTitle: "Done",
-                                    image: Image(systemName: "gear"),
-                                    tag: 3)
-            ]
+            let dataModel: DataModel = await createDataModel()
 
             await MainActor.run {
                 viewState = .presentContent(using: dataModel)
@@ -54,5 +36,47 @@ class OnboardingProvider: FeatureProvider {
             }
         }
     }
-    
+
+    private func createDataModel() async -> DataModel {
+        var dataModel: DataModel = []
+        var tagIndex: Int = -1
+
+        if tabFeatureFlagProvider.fetchHomeTabFeatreFlag() {
+            tagIndex += 1
+            dataModel.append(OnboardingDataModel(title: "Home",
+                                                 description: "This is where you can find your recommended content.",
+                                                 buttonTitle: "Next",
+                                                 image: Image(systemName: "house.fill"),
+                                                 tag: tagIndex))
+        }
+
+        if tabFeatureFlagProvider.fetcSearchTabFeatreFlag() {
+            tagIndex += 1
+            dataModel.append(OnboardingDataModel(title: "Search",
+                                                 description: "This is where you can search for content.",
+                                                 buttonTitle: "Next",
+                                                 image: Image(systemName: "magnifyingglass"),
+                                                 tag: tagIndex))
+        }
+
+        if tabFeatureFlagProvider.fetchLibraryTabFeatreFlag() {
+            tagIndex += 1
+            dataModel.append(OnboardingDataModel(title: "Library",
+                                                 description: "This is where you can find your saved content.",
+                                                 buttonTitle: "Next",
+                                                 image: Image(systemName: "books.vertical.fill"),
+                                                 tag: tagIndex))
+        }
+
+        if tabFeatureFlagProvider.fetchSettingsTabFeatreFlag() {
+            tagIndex += 1
+            dataModel.append(OnboardingDataModel(title: "Settings",
+                                                 description: "This is where you can access your profile settings.",
+                                                 buttonTitle: "Done",
+                                                 image: Image(systemName: "gear"),
+                                                 tag: tagIndex))
+        }
+
+        return dataModel
+    }
 }

@@ -11,80 +11,48 @@ import SwiftUI
 
 @Observable
 class AVPlayerController {
-    var link: URL
-    var title: String
-    var publisher: String
-    var thumbnail: URL
+    private let videoFileURL: URL
+    private var player: AVPlayer?
+    
+    var avPlayerViewController: AVPlayerViewController?
 
-    var player: AVPlayer?
-    var avPlayerViewController: AVPlayerViewController
-
-    init(link: URL,
-         title: String,
-         publisher: String,
-         thumbnail: URL) {
-        self.link = link
-        self.title = title
-        self.publisher = publisher
-        self.thumbnail = thumbnail
+    init(videoFileURL: URL) {
+        self.videoFileURL = videoFileURL
         self.avPlayerViewController = AVPlayerViewController()
         setupPlayer()
         setupAVPlayerViewController()
         playPlayer()
     }
 
-    // MARK: - AVPlayer Setup
-//    private func setupPlayer() {
-//        // Initialize AVPlayer with the provided video link
-//        let headers = ["X-Plex-Token": PlexAuthentication.primaryToken]
-//        let options = ["AVURLAssetHTTPHeaderFieldsKey": headers]
-//
-//        let asset = AVURLAsset(url: link, options: options)
-//
-//        // Check if the asset is playable
-//        asset.loadValuesAsynchronously(forKeys: ["playable"]) {
-//            var error: NSError? = nil
-//            let status = asset.statusOfValue(forKey: "playable", error: &error)
-//            if status == .loaded {
-//                DispatchQueue.main.async {
-//                    let playerItem = AVPlayerItem(asset: asset)
-//                    self.player = AVPlayer(playerItem: playerItem)
-//                }
-//            } else {
-//                print("Error: \(String(describing: error?.localizedDescription))")
-//            }
-//        }
-//    }
+    // MARK: - Teardown
+    public func teardownPlayer() {
+        pausePlayer()
+        player = nil
+        avPlayerViewController = nil
+    }
 
+    // MARK: - Setup
     private func setupPlayer() {
-        // Initialize AVPlayer with the provided video link
-        let headers = ["X-Plex-Token": PlexAuthentication.token]
-
-        let asset = AVURLAsset(url: link, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
-
-        let playerItem = AVPlayerItem(asset: asset)
-
+        let playerItem = AVPlayerItem(asset: AVURLAsset(url: videoFileURL))
         player = AVPlayer(playerItem: playerItem)
     }
+    
     // MARK: - AVPlayerViewController Setup
-
     private func setupAVPlayerViewController() {
         // Assign AVPlayer to AVPlayerViewController
-        avPlayerViewController.player = player
-        avPlayerViewController.allowsPictureInPicturePlayback = true
+        avPlayerViewController?.player = player
+        avPlayerViewController?.allowsPictureInPicturePlayback = true
         #if os(iOS)
-        avPlayerViewController.canStartPictureInPictureAutomaticallyFromInline = true
+        avPlayerViewController?.canStartPictureInPictureAutomaticallyFromInline = true
         #endif
     }
 
     // MARK: - Playback Control
 
-    // Pause the AVPlayer
     func pausePlayer() {
         player?.pause()
     }
 
-    // Play the AVPlayer
     func playPlayer() {
         player?.play()
     }

@@ -15,12 +15,10 @@ class PexelRepository {
             let pexelDataModel = pexelVideos.map {
                 VideoDataModel(id: UUID(),
                                title: String(describing: $0.user.name),
-                               category: prompt,
-                               url: URL(string: $0.videoFiles.first!.link)!,
-                               thumbnailImageUrl: URL(string: $0.image)!,
-                               posterImageUrl: URL(string: $0.image)!,
-                               squareImageUrl: URL(string: $0.image)!,
-                               quality: $0.videoFiles.first!.quality.rawValue)
+                               genre: prompt,
+                               quality: $0.videoFiles.first!.quality.rawValue,
+                               videoFileUrl: URL(string: $0.videoFiles.first!.link)!,
+                               thumbnailImageUrl: URL(string: $0.image)!)
             }
 
             return pexelDataModel

@@ -47,19 +47,6 @@ private class AccountDependency38402058fc99315b7606Provider: AccountDependency {
 private func factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return AccountDependency38402058fc99315b7606Provider(rootComponent: parent1(component) as! RootComponent)
 }
-private class VideoPlayerDependency3bd39f7301b443c46ea0Provider: VideoPlayerDependency {
-    var videoPlayerFeatureProvider: any FeatureProvider {
-        return rootComponent.videoPlayerFeatureProvider
-    }
-    private let rootComponent: RootComponent
-    init(rootComponent: RootComponent) {
-        self.rootComponent = rootComponent
-    }
-}
-/// ^->RootComponent->VideoPlayerComponent
-private func factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return VideoPlayerDependency3bd39f7301b443c46ea0Provider(rootComponent: parent1(component) as! RootComponent)
-}
 private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
     var homeFeatureProvider: any FeatureProvider {
         return rootComponent.homeFeatureProvider
@@ -88,19 +75,6 @@ private class SearchDependencyf947dc409bd44ace18e0Provider: SearchDependency {
 /// ^->RootComponent->SearchComponent
 private func factory0febe76f0f58b52b4c18b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return SearchDependencyf947dc409bd44ace18e0Provider(rootComponent: parent1(component) as! RootComponent)
-}
-private class SubscribedDependencyace226668fff7e031d51Provider: SubscribedDependency {
-    var subscribedFeatureProvider: any FeatureProvider {
-        return rootComponent.subscribedFeatureProvider
-    }
-    private let rootComponent: RootComponent
-    init(rootComponent: RootComponent) {
-        self.rootComponent = rootComponent
-    }
-}
-/// ^->RootComponent->SubscribedComponent
-private func factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SubscribedDependencyace226668fff7e031d51Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class SettingsDependency1ba9e199f1bddeac9850Provider: SettingsDependency {
     var settingsFeatureProvider: any FeatureProvider {
@@ -156,14 +130,8 @@ private func factory5f1a7b4ee4ee371ff93ae3b0c44298fc1c149afb(_ component: Needle
     return FirebaseDependencyaefab86451f384d2bf0bProvider()
 }
 private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewContainerDependency {
-    var videoPlayerComponent: VideoPlayerComponent {
-        return rootComponent.videoPlayerComponent
-    }
     var homeComponent: HomeComponent {
         return rootComponent.homeComponent
-    }
-    var subscribedComponent: SubscribedComponent {
-        return rootComponent.subscribedComponent
     }
     var libraryComponent: LibraryComponent {
         return rootComponent.libraryComponent
@@ -212,11 +180,6 @@ extension AccountComponent: Registration {
         keyPathToName[\AccountDependency.accountProvider] = "accountProvider-any FeatureProvider"
     }
 }
-extension VideoPlayerComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\VideoPlayerDependency.videoPlayerFeatureProvider] = "videoPlayerFeatureProvider-any FeatureProvider"
-    }
-}
 extension HomeComponent: Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.homeFeatureProvider] = "homeFeatureProvider-any FeatureProvider"
@@ -226,11 +189,6 @@ extension SearchComponent: Registration {
     public func registerItems() {
         keyPathToName[\SearchDependency.searchFeatureProvider] = "searchFeatureProvider-any FeatureProvider"
         keyPathToName[\SearchDependency.searchUsecase] = "searchUsecase-SearchUsecase"
-    }
-}
-extension SubscribedComponent: Registration {
-    public func registerItems() {
-        keyPathToName[\SubscribedDependency.subscribedFeatureProvider] = "subscribedFeatureProvider-any FeatureProvider"
     }
 }
 extension SettingsComponent: Registration {
@@ -256,9 +214,7 @@ extension FirebaseComponent: Registration {
 }
 extension TabViewContainerComponent: Registration {
     public func registerItems() {
-        keyPathToName[\TabViewContainerDependency.videoPlayerComponent] = "videoPlayerComponent-VideoPlayerComponent"
         keyPathToName[\TabViewContainerDependency.homeComponent] = "homeComponent-HomeComponent"
-        keyPathToName[\TabViewContainerDependency.subscribedComponent] = "subscribedComponent-SubscribedComponent"
         keyPathToName[\TabViewContainerDependency.libraryComponent] = "libraryComponent-LibraryComponent"
         keyPathToName[\TabViewContainerDependency.settingsComponent] = "settingsComponent-SettingsComponent"
         keyPathToName[\TabViewContainerDependency.searchComponent] = "searchComponent-SearchComponent"
@@ -280,15 +236,11 @@ extension RootComponent: Registration {
         localTable["accountComponent-AccountComponent"] = { [unowned self] in self.accountComponent as Any }
         localTable["accountProvider-any FeatureProvider"] = { [unowned self] in self.accountProvider as Any }
         localTable["accountContentProvider-AccountContentProvidable"] = { [unowned self] in self.accountContentProvider as Any }
-        localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
-        localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
         localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
         localTable["homeContentProvider-HomeContentProvidable"] = { [unowned self] in self.homeContentProvider as Any }
         localTable["searchComponent-SearchComponent"] = { [unowned self] in self.searchComponent as Any }
         localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
-        localTable["subscribedComponent-SubscribedComponent"] = { [unowned self] in self.subscribedComponent as Any }
-        localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
         localTable["settingsFeatureProvider-any FeatureProvider"] = { [unowned self] in self.settingsFeatureProvider as Any }
         localTable["settingsContentProvider-SettingsContentProvidable"] = { [unowned self] in self.settingsContentProvider as Any }
@@ -332,10 +284,8 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent->OnboardingComponent", factory8fb7918b43e15c3c3f86b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AccountComponent", factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e)
-    registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SearchComponent", factory0febe76f0f58b52b4c18b3a8f24c1d289f2c0f2e)
-    registerProviderFactory("^->RootComponent->SubscribedComponent", factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SettingsComponent", factory3b338491ae548e90be9ab3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AuthenticationComponent", factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->LibraryComponent", factorydbcb054e6931f74941b7b3a8f24c1d289f2c0f2e)

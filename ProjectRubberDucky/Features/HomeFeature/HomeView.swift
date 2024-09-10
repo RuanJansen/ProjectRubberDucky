@@ -95,8 +95,8 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                         VStack(alignment: .center) {
                                             Text(video.title.capitalized)
                                                 .font(.system(size: 24, weight: .bold))
-                                            if let category = video.category {
-                                                Text("\(category.capitalized) • \(video.ageRating)")
+                                            if let genre = video.genre {
+                                                Text("\(genre.capitalized) • \(video.rated)")
                                                     .font(.system(size: 17, weight: .medium))
                                             }
                                         }
@@ -239,7 +239,9 @@ struct VideoDetailView: View {
                 .padding(.horizontal)
 
                 VStack {
-                    Text(video.description ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+                    if let description = video.description {
+                        Text(description)
+                    }
                 }
                 .padding()
                 Spacer()
@@ -251,13 +253,13 @@ struct VideoDetailView: View {
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-        VideoPlayer(playerController: AVPlayerController(link: video.videoFileUrl,
-                                                         title: video.title,
-                                                         publisher: video.id.uuidString,
-                                                         thumbnail: video.thumbnailImageUrl))
+        let player = AVPlayerController(videoFileURL: video.videoFileUrl)
+        VideoPlayer(playerController: player)
+            .onDisappear {
+                player.teardownPlayer()
+            }
         .ignoresSafeArea()
     }
-
 }
 
 struct GridContainerView: View {

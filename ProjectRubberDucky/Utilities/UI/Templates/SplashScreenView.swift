@@ -17,7 +17,7 @@ struct SplashScreenView: View {
             appStyling.appIconImage
                 .resizable()
                 .scaledToFit()
-                .clipShape(Circle())
+                .clipShape(RoundedRectangle(cornerRadius: 32))
                 .frame(width: 150)
                 .scaleEffect(scale)
             Text(appStyling.appName)

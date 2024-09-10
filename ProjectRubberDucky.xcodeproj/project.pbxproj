@@ -53,7 +53,6 @@
 		F33B7E132C5D7A2900F1F49F /* HomePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E122C5D7A2900F1F49F /* HomePreview.swift */; };
 		F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B7D8E2C3834F000587031 /* DependencyManager.swift */; };
 		F34DF8922C762677008D158A /* FirebaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DF8912C762677008D158A /* FirebaseComponent.swift */; };
-		F350E2492C8F408A00CA5C88 /* CarouselTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */; };
 		F350E24C2C90845F00CA5C88 /* SearchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24B2C90845F00CA5C88 /* SearchComponent.swift */; };
 		F350E24E2C90855900CA5C88 /* SearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24D2C90855900CA5C88 /* SearchProvider.swift */; };
 		F350E2502C9085E800CA5C88 /* SearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24F2C9085E800CA5C88 /* SearchDataModel.swift */; };
@@ -61,12 +60,6 @@
 		F350E2542C90865100CA5C88 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2532C90865100CA5C88 /* SearchFeature.swift */; };
 		F350E2562C90867D00CA5C88 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2552C90867D00CA5C88 /* SearchView.swift */; };
 		F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4D62C6117F600774C49 /* AppStyling.swift */; };
-		F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4DB2C6132F300774C49 /* SubscribedDependency.swift */; };
-		F36AD4DE2C61331800774C49 /* SubscribedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */; };
-		F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4DF2C61335300774C49 /* SubscribedFeature.swift */; };
-		F36AD4E22C61336000774C49 /* SubscribedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E12C61336000774C49 /* SubscribedProvider.swift */; };
-		F36AD4E42C61336800774C49 /* SubscribedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E32C61336800774C49 /* SubscribedView.swift */; };
-		F36AD4E62C6133A700774C49 /* SubscribedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */; };
 		F36AD4E82C61379900774C49 /* LibraryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E72C61379900774C49 /* LibraryDependency.swift */; };
 		F36AD4EA2C6137CE00774C49 /* LibraryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4E92C6137CE00774C49 /* LibraryComponent.swift */; };
 		F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4EB2C61385500774C49 /* LibraryFeature.swift */; };
@@ -92,8 +85,6 @@
 		F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE02C32D223001176F8 /* PlexComponent.swift */; };
 		F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */; };
 		F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD412C32F758001176F8 /* PexelRepository.swift */; };
-		F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */; };
-		F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */; };
 		F3B4DD482C32F758001176F8 /* VideoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DD442C32F758001176F8 /* VideoDataModel.swift */; };
 		F3D2BC592C6952E700D4637C /* HomeContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2BC582C6952E700D4637C /* HomeContentProvider.swift */; };
 		F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67702C28A32F00F53642 /* ProjectRubberDuckyApp.swift */; };
@@ -109,9 +100,6 @@
 		F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */; };
 		F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67932C28A68000F53642 /* TabViewContainerView.swift */; };
 		F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67952C28A69B00F53642 /* TabViewContainerFeature.swift */; };
-		F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */; };
-		F3DB679B2C28A86E00F53642 /* VideoPlayerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */; };
-		F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */; };
 		F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A72C28B6A200F53642 /* APIFetcher.swift */; };
 		F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */; };
 		F3DB67AE2C28B7AA00F53642 /* MockFilms.json in Resources */ = {isa = PBXBuildFile; fileRef = F3DB67AC2C28B7AA00F53642 /* MockFilms.json */; };
@@ -122,7 +110,6 @@
 		F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67B82C2958A700F53642 /* PexelContent.json */; };
 		F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */; };
 		F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB67DB2C2EAB7400F53642 /* AVPlayerController.swift */; };
-		F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13AEC2C48E5AE008D6841 /* VideoPlayerPreview.swift */; };
 		F3F13AEF2C4979CB008D6841 /* UserCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13AEE2C4979CB008D6841 /* UserCodableModel.swift */; };
 		F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13AF12C537BE0008D6841 /* OnboardingView.swift */; };
 		F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13AF32C537CD1008D6841 /* OnboardingComponent.swift */; };
@@ -179,7 +166,6 @@
 		F33B7E122C5D7A2900F1F49F /* HomePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePreview.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
 		F34DF8912C762677008D158A /* FirebaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseComponent.swift; sourceTree = "<group>"; };
-		F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTemplate.swift; sourceTree = "<group>"; };
 		F350E24B2C90845F00CA5C88 /* SearchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComponent.swift; sourceTree = "<group>"; };
 		F350E24D2C90855900CA5C88 /* SearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProvider.swift; sourceTree = "<group>"; };
 		F350E24F2C9085E800CA5C88 /* SearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataModel.swift; sourceTree = "<group>"; };
@@ -187,12 +173,6 @@
 		F350E2532C90865100CA5C88 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		F350E2552C90867D00CA5C88 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F36AD4D62C6117F600774C49 /* AppStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyling.swift; sourceTree = "<group>"; };
-		F36AD4DB2C6132F300774C49 /* SubscribedDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedDependency.swift; sourceTree = "<group>"; };
-		F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedComponent.swift; sourceTree = "<group>"; };
-		F36AD4DF2C61335300774C49 /* SubscribedFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedFeature.swift; sourceTree = "<group>"; };
-		F36AD4E12C61336000774C49 /* SubscribedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedProvider.swift; sourceTree = "<group>"; };
-		F36AD4E32C61336800774C49 /* SubscribedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedView.swift; sourceTree = "<group>"; };
-		F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedDataModel.swift; sourceTree = "<group>"; };
 		F36AD4E72C61379900774C49 /* LibraryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDependency.swift; sourceTree = "<group>"; };
 		F36AD4E92C6137CE00774C49 /* LibraryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryComponent.swift; sourceTree = "<group>"; };
 		F36AD4EB2C61385500774C49 /* LibraryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFeature.swift; sourceTree = "<group>"; };
@@ -219,8 +199,6 @@
 		F3B4DCE02C32D223001176F8 /* PlexComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexComponent.swift; sourceTree = "<group>"; };
 		F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexDependency.swift; sourceTree = "<group>"; };
 		F3B4DD412C32F758001176F8 /* PexelRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PexelRepository.swift; sourceTree = "<group>"; };
-		F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerProvider.swift; sourceTree = "<group>"; };
-		F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		F3B4DD442C32F758001176F8 /* VideoDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDataModel.swift; sourceTree = "<group>"; };
 		F3D2BC582C6952E700D4637C /* HomeContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentProvider.swift; sourceTree = "<group>"; };
 		F3DB676D2C28A32F00F53642 /* ProjectRubberDucky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRubberDucky.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,9 +214,6 @@
 		F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerDataModel.swift; sourceTree = "<group>"; };
 		F3DB67932C28A68000F53642 /* TabViewContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerView.swift; sourceTree = "<group>"; };
 		F3DB67952C28A69B00F53642 /* TabViewContainerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainerFeature.swift; sourceTree = "<group>"; };
-		F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerComponent.swift; sourceTree = "<group>"; };
-		F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerDependency.swift; sourceTree = "<group>"; };
-		F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFeature.swift; sourceTree = "<group>"; };
 		F3DB67A72C28B6A200F53642 /* APIFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcher.swift; sourceTree = "<group>"; };
 		F3DB67A92C28B6AF00F53642 /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		F3DB67AD2C28B7AA00F53642 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/MockFilms.json; sourceTree = "<group>"; };
@@ -250,7 +225,6 @@
 		F3DB67BA2C29597300F53642 /* MockFilmsCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFilmsCaller.swift; sourceTree = "<group>"; };
 		F3DB67BE2C2E0ABF00F53642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F3DB67DB2C2EAB7400F53642 /* AVPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerController.swift; path = ProjectRubberDucky/Utilities/Tools/AVPlayerController/AVPlayerController.swift; sourceTree = SOURCE_ROOT; };
-		F3F13AEC2C48E5AE008D6841 /* VideoPlayerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerPreview.swift; sourceTree = "<group>"; };
 		F3F13AEE2C4979CB008D6841 /* UserCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCodableModel.swift; sourceTree = "<group>"; };
 		F3F13AF12C537BE0008D6841 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F3F13AF32C537CD1008D6841 /* OnboardingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingComponent.swift; sourceTree = "<group>"; };
@@ -424,7 +398,6 @@
 				F36AD5012C613E1400774C49 /* ConstructionView.swift */,
 				F32045A52C616DD400A2DFA7 /* RDButton.swift */,
 				F32045A72C6203E200A2DFA7 /* SplashScreenView.swift */,
-				F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -495,19 +468,6 @@
 				F38471222C6E82E800FF80C9 /* SettingsContentProvider.swift */,
 			);
 			path = SettingsFeature;
-			sourceTree = "<group>";
-		};
-		F36AD4DA2C61319400774C49 /* SubscribedFeature */ = {
-			isa = PBXGroup;
-			children = (
-				F36AD4DB2C6132F300774C49 /* SubscribedDependency.swift */,
-				F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */,
-				F36AD4DF2C61335300774C49 /* SubscribedFeature.swift */,
-				F36AD4E12C61336000774C49 /* SubscribedProvider.swift */,
-				F36AD4E52C6133A700774C49 /* SubscribedDataModel.swift */,
-				F36AD4E32C61336800774C49 /* SubscribedView.swift */,
-			);
-			path = SubscribedFeature;
 			sourceTree = "<group>";
 		};
 		F392CCAE2C610CF500843540 /* Root */ = {
@@ -602,10 +562,8 @@
 				F306A4052C3A5B7D00246390 /* AuthenticationFeature */,
 				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
 				F33B7E052C5D6CD600F1F49F /* HomeFeature */,
-				F36AD4DA2C61319400774C49 /* SubscribedFeature */,
 				F36AD4D82C61315400774C49 /* LibraryFeature */,
 				F36AD4D92C61316100774C49 /* SettingsFeature */,
-				F3DB67972C28A7E300F53642 /* VideoPlayerFeature */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -637,19 +595,6 @@
 				F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */,
 			);
 			path = TabViewContainer;
-			sourceTree = "<group>";
-		};
-		F3DB67972C28A7E300F53642 /* VideoPlayerFeature */ = {
-			isa = PBXGroup;
-			children = (
-				F3F13AEC2C48E5AE008D6841 /* VideoPlayerPreview.swift */,
-				F3DB679C2C28A8C300F53642 /* VideoPlayerFeature.swift */,
-				F3DB679A2C28A86E00F53642 /* VideoPlayerDependency.swift */,
-				F3DB67982C28A80300F53642 /* VideoPlayerComponent.swift */,
-				F3B4DD422C32F758001176F8 /* VideoPlayerProvider.swift */,
-				F3B4DD432C32F758001176F8 /* VideoPlayerView.swift */,
-			);
-			path = VideoPlayerFeature;
 			sourceTree = "<group>";
 		};
 		F3DB67A62C28B68700F53642 /* Services */ = {
@@ -807,10 +752,8 @@
 			files = (
 				F36AD4F82C613B3100774C49 /* SettingsProvider.swift in Sources */,
 				F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */,
-				F36AD4DE2C61331800774C49 /* SubscribedComponent.swift in Sources */,
 				F350E2542C90865100CA5C88 /* SearchFeature.swift in Sources */,
 				F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */,
-				F36AD4E62C6133A700774C49 /* SubscribedDataModel.swift in Sources */,
 				F306A40F2C3A5FCE00246390 /* AuthenticationFeature.swift in Sources */,
 				F36AD4EE2C61389200774C49 /* LibraryProvider.swift in Sources */,
 				F306A4122C3A5FDE00246390 /* AuthenticationComponent.swift in Sources */,
@@ -825,27 +768,21 @@
 				F3F13B052C53844E008D6841 /* View+Extension.swift in Sources */,
 				F3F13AFA2C537D1B008D6841 /* OnboardingDependency.swift in Sources */,
 				F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */,
-				F3DB679B2C28A86E00F53642 /* VideoPlayerDependency.swift in Sources */,
 				F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */,
-				F3B4DD462C32F758001176F8 /* VideoPlayerProvider.swift in Sources */,
-				F36AD4E22C61336000774C49 /* SubscribedProvider.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
 				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
 				F3342D4F2C67A1AA00C052BB /* PhotosPickerManager.swift in Sources */,
-				F3F13AED2C48E5AE008D6841 /* VideoPlayerPreview.swift in Sources */,
 				F3342D592C6936FF00C052BB /* FeatureFlagFetcher.swift in Sources */,
 				F38471212C6E828E00FF80C9 /* AccountContentProvider.swift in Sources */,
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
 				F350E2562C90867D00CA5C88 /* SearchView.swift in Sources */,
 				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
-				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */,
 				F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */,
 				F3342D572C69179900C052BB /* FirebaseRemoteConfigManager.swift in Sources */,
 				F3342D2E2C63936300C052BB /* NavigationManager.swift in Sources */,
 				F3DB67BB2C29597300F53642 /* MockFilmsCaller.swift in Sources */,
-				F36AD4E42C61336800774C49 /* SubscribedView.swift in Sources */,
 				F3F13AEF2C4979CB008D6841 /* UserCodableModel.swift in Sources */,
 				F3DB67942C28A68000F53642 /* TabViewContainerView.swift in Sources */,
 				F3342D432C664F3000C052BB /* AccountDependency.swift in Sources */,
@@ -874,7 +811,6 @@
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
 				F350E24C2C90845F00CA5C88 /* SearchComponent.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
-				F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
 				F3342D5B2C69398200C052BB /* FeatureFlagProvider.swift in Sources */,
 				F3DB67962C28A69B00F53642 /* TabViewContainerFeature.swift in Sources */,
@@ -882,7 +818,6 @@
 				F38471282C6FE9C100FF80C9 /* FirestoreUserFactory.swift in Sources */,
 				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
-				F350E2492C8F408A00CA5C88 /* CarouselTemplate.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
@@ -890,7 +825,6 @@
 				F3342D452C664F5300C052BB /* AccountComponent.swift in Sources */,
 				F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
-				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
 				F350E2522C90861B00CA5C88 /* SearchDependency.swift in Sources */,
 				F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */,
 				F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */,
@@ -909,12 +843,10 @@
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F38471232C6E82E800FF80C9 /* SettingsContentProvider.swift in Sources */,
 				F3DB67892C28A4F200F53642 /* Architecture.swift in Sources */,
-				F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */,
 				F3342D4D2C66514200C052BB /* AccountProvider.swift in Sources */,
 				F36AD4FA2C613B5400774C49 /* SettingsDataModel.swift in Sources */,
 				F3F13AF22C537BE0008D6841 /* OnboardingView.swift in Sources */,
 				F33B7E092C5D6D2C00F1F49F /* HomeProvider.swift in Sources */,
-				F3DB679D2C28A8C300F53642 /* VideoPlayerFeature.swift in Sources */,
 				F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */,
 				F34DF8922C762677008D158A /* FirebaseComponent.swift in Sources */,
 				F3342D302C63CD4D00C052BB /* Bundle+Extention.swift in Sources */,
