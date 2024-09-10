@@ -64,9 +64,6 @@ private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
     var homeFeatureProvider: any FeatureProvider {
         return rootComponent.homeFeatureProvider
     }
-    var searchUsecase: SearchUsecase {
-        return rootComponent.searchUsecase
-    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -75,6 +72,22 @@ private class HomeDependencycad225e9266b3c9a56ddProvider: HomeDependency {
 /// ^->RootComponent->HomeComponent
 private func factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeDependencycad225e9266b3c9a56ddProvider(rootComponent: parent1(component) as! RootComponent)
+}
+private class SearchDependencyf947dc409bd44ace18e0Provider: SearchDependency {
+    var searchFeatureProvider: any FeatureProvider {
+        return rootComponent.searchFeatureProvider
+    }
+    var searchUsecase: SearchUsecase {
+        return rootComponent.searchUsecase
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->SearchComponent
+private func factory0febe76f0f58b52b4c18b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SearchDependencyf947dc409bd44ace18e0Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class SubscribedDependencyace226668fff7e031d51Provider: SubscribedDependency {
     var subscribedFeatureProvider: any FeatureProvider {
@@ -158,6 +171,9 @@ private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewCon
     var settingsComponent: SettingsComponent {
         return rootComponent.settingsComponent
     }
+    var searchComponent: SearchComponent {
+        return rootComponent.searchComponent
+    }
     var tabFeatureFlagProvider: TabFeatureFlagProvidable {
         return rootComponent.tabFeatureFlagProvider
     }
@@ -204,7 +220,12 @@ extension VideoPlayerComponent: Registration {
 extension HomeComponent: Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.homeFeatureProvider] = "homeFeatureProvider-any FeatureProvider"
-        keyPathToName[\HomeDependency.searchUsecase] = "searchUsecase-SearchUsecase"
+    }
+}
+extension SearchComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\SearchDependency.searchFeatureProvider] = "searchFeatureProvider-any FeatureProvider"
+        keyPathToName[\SearchDependency.searchUsecase] = "searchUsecase-SearchUsecase"
     }
 }
 extension SubscribedComponent: Registration {
@@ -240,6 +261,7 @@ extension TabViewContainerComponent: Registration {
         keyPathToName[\TabViewContainerDependency.subscribedComponent] = "subscribedComponent-SubscribedComponent"
         keyPathToName[\TabViewContainerDependency.libraryComponent] = "libraryComponent-LibraryComponent"
         keyPathToName[\TabViewContainerDependency.settingsComponent] = "settingsComponent-SettingsComponent"
+        keyPathToName[\TabViewContainerDependency.searchComponent] = "searchComponent-SearchComponent"
         keyPathToName[\TabViewContainerDependency.tabFeatureFlagProvider] = "tabFeatureFlagProvider-TabFeatureFlagProvidable"
     }
 }
@@ -261,9 +283,10 @@ extension RootComponent: Registration {
         localTable["videoPlayerComponent-VideoPlayerComponent"] = { [unowned self] in self.videoPlayerComponent as Any }
         localTable["videoPlayerFeatureProvider-any FeatureProvider"] = { [unowned self] in self.videoPlayerFeatureProvider as Any }
         localTable["homeComponent-HomeComponent"] = { [unowned self] in self.homeComponent as Any }
-        localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
         localTable["videoRepository-PexelRepository"] = { [unowned self] in self.videoRepository as Any }
         localTable["homeContentProvider-HomeContentProvidable"] = { [unowned self] in self.homeContentProvider as Any }
+        localTable["searchComponent-SearchComponent"] = { [unowned self] in self.searchComponent as Any }
+        localTable["searchUsecase-SearchUsecase"] = { [unowned self] in self.searchUsecase as Any }
         localTable["subscribedComponent-SubscribedComponent"] = { [unowned self] in self.subscribedComponent as Any }
         localTable["subscribedFeatureProvider-any FeatureProvider"] = { [unowned self] in self.subscribedFeatureProvider as Any }
         localTable["settingsComponent-SettingsComponent"] = { [unowned self] in self.settingsComponent as Any }
@@ -311,6 +334,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent->AccountComponent", factory67f6ec6b2855db44921ab3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->VideoPlayerComponent", factory232adfb6564890b636e6b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->SearchComponent", factory0febe76f0f58b52b4c18b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SubscribedComponent", factoryc31a694f6a52c67c30e7b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SettingsComponent", factory3b338491ae548e90be9ab3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AuthenticationComponent", factorya9615aa036cdc6ec6737b3a8f24c1d289f2c0f2e)

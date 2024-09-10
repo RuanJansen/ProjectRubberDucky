@@ -64,7 +64,7 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
                         Button {
                             selectedVideo = video
                         } label: {
-                            CardView(video: video)
+                            CardView(item: video)
                         }
                         .modifier(CarouselButtonModifier())
 
@@ -83,92 +83,12 @@ struct VideoPlayerView<Provider: FeatureProvider>: FeatureView where Provider.Da
     }
 #endif
 
-#if os(tvOS)
-    @ViewBuilder
-    private func createContentView(using dataModel: [VideoDataModel]) -> some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(dataModel, id: \.id) { video in
-                        Button {
-                            selectedVideo = video
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text(video.title ?? "Video title")
-                                Spacer()
-                                HStack {
-                                    Spacer()
-                                    if let quality = video.quality {
-                                        Text(quality.uppercased())
-                                    }
-                                }
-                            }
-                        }
-                        .modifier(CarouselButtonModifier())
-                        .fullScreenCover(item: $selectedVideo) { video in
-                            createVideoPlayerView(with: video)
-                        }
-                    }
-                }
-            }
-            Spacer()
-//            HStack {
-//                createVideoDetailView()
-//            }
-        }
-    }
-
-//    @ViewBuilder
-//    private func createVideoDetailView() -> some View {
-//        if let focusVideo {
-//            AsyncImage(url: focusVideo.thumbnail) { image in
-//                image
-//                    .resizable()
-//                    .scaledToFit()
-//                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
-//            } placeholder: {
-//                Image(systemName: "wifi.slash")
-//            }
-//
-//            VStack(alignment: .leading) {
-//                Text((focusVideo.title)!)
-//                    .font(.title)
-//                Text((focusVideo.quality?.uppercased())!)
-//                Spacer()
-//            }
-//        }
-//    }
-#endif
-
-    @ViewBuilder
-    private func createBackgroundView() -> some View {
-        ZStack {
-            Circle()
-                .fill(.purple)
-                .blur(radius: 120.0)
-                .frame(width: 750)
-                .offset(x: -500, y: -100)
-
-            Circle()
-                .fill(.cyan)
-                .blur(radius: 120.0)
-                .frame(width: 750)
-                .offset(x: 500, y: 100)
-
-            Circle()
-                .fill(.purple)
-                .blur(radius: 120.0)
-                .frame(width: 250)
-                .offset(x: 750, y: -600)
-        }
-    }
-
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-            VideoPlayer(playerController: AVPlayerController(link: video.url,
+            VideoPlayer(playerController: AVPlayerController(link: video.videoFileUrl,
                                                              title: video.title,
                                                              publisher: video.id.uuidString,
-                                                             thumbnail: video.thumbnail))
+                                                             thumbnail: video.thumbnailImageUrl))
             .ignoresSafeArea()
     }
 }

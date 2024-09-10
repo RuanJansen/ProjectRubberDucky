@@ -10,13 +10,10 @@ import Kingfisher
 
 struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == HomeDataModel {
     @State var provider: Provider
-    @Bindable var searchUsecase: SearchUsecase
     @Environment(AppStyling.self) var appStyling
 
-    init(provider: Provider,
-         searchUsecase: SearchUsecase) {
+    init(provider: Provider) {
         self.provider = provider
-        self.searchUsecase = searchUsecase
     }
 
     var body: some View {
@@ -27,21 +24,10 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
-                        .navigationTitle(dataModel.pageTitle)
-                        .searchPresentationToolbarBehavior(.avoidHidingContent)
-                        .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
-                        .onSubmit(of: .search) {
-                            Task {
-                                await searchUsecase.search()
-                            }
+                        .ignoresSafeArea(edges: .top)
+                        .refreshable {
+                            await provider.fetchContent()
                         }
-                        .onChange(of: searchUsecase.searchText) {
-                            Task {
-                                await searchUsecase.clearSearch()
-                            }
-                        }
-//                        .ignoresSafeArea()
-
                 }
             case .error:
                 ErrorView(errorModel: ErrorDataModel(title: "Whoops!",
@@ -61,7 +47,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     private func createContentView(using dataModel: HomeDataModel) -> some View {
         VStack {
             if let carousels = dataModel.carousels {
-                ScrollView(.vertical, showsIndicators: true) {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         if let featuredVideos = dataModel.featuredVideos {
                             createFeaturedCarouselView(using: featuredVideos)
@@ -76,19 +62,6 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                 }
             }
         }
-        .overlay {
-            if let searchResults = searchUsecase.searchVideos {
-                List(searchResults, id: \.id) { video in
-                    RDButton(.navigate({
-                        AnyView(VideoDetailView(video: video))
-                    })) {
-                        Text(video.title)
-                    }
-                    .foregroundStyle(.primary)
-                }
-                .listStyle(.inset)
-            }
-        }
     }
 
     @ViewBuilder
@@ -100,14 +73,12 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                         RDButton(.navigate(hideChevron: true) {
                             AnyView(VideoDetailView(video: video))
                         }) {
-                            KFImage(video.thumbnail)
+                            KFImage(video.thumbnailImageUrl)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: .infinity)
                                 .overlay {
                                     LinearGradient(colors: [.clear,
-                                                            .clear,
-                                                            .clear,
                                                             .clear,
                                                             .clear,
                                                             .clear,
@@ -118,22 +89,16 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                                             .black],
                                                    startPoint: .top,
                                                    endPoint: .bottom)
-                                    .padding(.top)
                                 }
                                 .overlay(alignment: .bottom) {
                                     HStack(alignment: .bottom) {
-                                        VStack(alignment: .leading) {
+                                        VStack(alignment: .center) {
                                             Text(video.title.capitalized)
-                                                .font(.title)
+                                                .font(.system(size: 24, weight: .bold))
                                             if let category = video.category {
-                                                Text(category.capitalized)
-                                                    .font(.subheadline)
+                                                Text("\(category.capitalized) • \(video.ageRating)")
+                                                    .font(.system(size: 17, weight: .medium))
                                             }
-                                        }
-                                        Spacer()
-                                        if let quality = video.quality {
-                                            Text(quality.uppercased())
-                                                .font(.subheadline)
                                         }
                                     }
                                     .foregroundStyle(.white)
@@ -151,7 +116,6 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
 
     @ViewBuilder
     private func createCarouselView(using carousel: CarouselDataModel) -> some View {
-
         RDButton(.navigate(hideChevron: true) {
             AnyView(GridContainerView(title: carousel.title, videos: carousel.videos))
         }) {
@@ -168,7 +132,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                         RDButton(.navigate(hideChevron: true) {
                             AnyView(VideoDetailView(video: video))
                         }) {
-                            CardView(video: video)
+                            VideoCardTeplate(video: video)
                         }
                         .modifier(CarouselButtonModifier())
                     }
@@ -205,7 +169,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
     }
 }
 
-struct CardView: View {
+struct VideoCardTeplate: View {
     private let video: VideoDataModel
 
     init(video: VideoDataModel) {
@@ -225,7 +189,7 @@ struct CardView: View {
         }
         .padding()
         .background {
-            KFImage(video.thumbnail)
+            KFImage(video.thumbnailImageUrl)
                 .placeholder {
                     Image(systemName: "wifi.slash")
 
@@ -246,7 +210,7 @@ struct VideoDetailView: View {
                 RDButton(.fullScreenCover(swipeDismissable: true) {
                     AnyView(createVideoPlayerView(with: video))
                 }) {
-                    KFImage(video.thumbnail)
+                    KFImage(video.thumbnailImageUrl)
                         .placeholder {
                             Image(systemName: "wifi.slash")
 
@@ -287,10 +251,10 @@ struct VideoDetailView: View {
 
     @ViewBuilder
     private func createVideoPlayerView(with video: VideoDataModel) -> some View {
-        VideoPlayer(playerController: AVPlayerController(link: video.url,
+        VideoPlayer(playerController: AVPlayerController(link: video.videoFileUrl,
                                                          title: video.title,
                                                          publisher: video.id.uuidString,
-                                                         thumbnail: video.thumbnail))
+                                                         thumbnail: video.thumbnailImageUrl))
         .ignoresSafeArea()
     }
 
@@ -314,7 +278,7 @@ struct GridContainerView: View {
                         RDButton(.navigate(hideChevron: true) {
                             AnyView(VideoDetailView(video: video))
                         }) {
-                            KFImage(video.thumbnail)
+                            KFImage(video.thumbnailImageUrl)
                                 .placeholder {
                                     Image(systemName: "wifi.slash")
                                 }

@@ -53,6 +53,13 @@
 		F33B7E132C5D7A2900F1F49F /* HomePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B7E122C5D7A2900F1F49F /* HomePreview.swift */; };
 		F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B7D8E2C3834F000587031 /* DependencyManager.swift */; };
 		F34DF8922C762677008D158A /* FirebaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DF8912C762677008D158A /* FirebaseComponent.swift */; };
+		F350E2492C8F408A00CA5C88 /* CarouselTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */; };
+		F350E24C2C90845F00CA5C88 /* SearchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24B2C90845F00CA5C88 /* SearchComponent.swift */; };
+		F350E24E2C90855900CA5C88 /* SearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24D2C90855900CA5C88 /* SearchProvider.swift */; };
+		F350E2502C9085E800CA5C88 /* SearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E24F2C9085E800CA5C88 /* SearchDataModel.swift */; };
+		F350E2522C90861B00CA5C88 /* SearchDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2512C90861B00CA5C88 /* SearchDependency.swift */; };
+		F350E2542C90865100CA5C88 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2532C90865100CA5C88 /* SearchFeature.swift */; };
+		F350E2562C90867D00CA5C88 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350E2552C90867D00CA5C88 /* SearchView.swift */; };
 		F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4D62C6117F600774C49 /* AppStyling.swift */; };
 		F36AD4DC2C6132F300774C49 /* SubscribedDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4DB2C6132F300774C49 /* SubscribedDependency.swift */; };
 		F36AD4DE2C61331800774C49 /* SubscribedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */; };
@@ -172,6 +179,13 @@
 		F33B7E122C5D7A2900F1F49F /* HomePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePreview.swift; sourceTree = "<group>"; };
 		F34B7D8E2C3834F000587031 /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
 		F34DF8912C762677008D158A /* FirebaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseComponent.swift; sourceTree = "<group>"; };
+		F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTemplate.swift; sourceTree = "<group>"; };
+		F350E24B2C90845F00CA5C88 /* SearchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComponent.swift; sourceTree = "<group>"; };
+		F350E24D2C90855900CA5C88 /* SearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProvider.swift; sourceTree = "<group>"; };
+		F350E24F2C9085E800CA5C88 /* SearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataModel.swift; sourceTree = "<group>"; };
+		F350E2512C90861B00CA5C88 /* SearchDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDependency.swift; sourceTree = "<group>"; };
+		F350E2532C90865100CA5C88 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
+		F350E2552C90867D00CA5C88 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F36AD4D62C6117F600774C49 /* AppStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyling.swift; sourceTree = "<group>"; };
 		F36AD4DB2C6132F300774C49 /* SubscribedDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedDependency.swift; sourceTree = "<group>"; };
 		F36AD4DD2C61331800774C49 /* SubscribedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedComponent.swift; sourceTree = "<group>"; };
@@ -391,7 +405,6 @@
 		F33B7E052C5D6CD600F1F49F /* HomeFeature */ = {
 			isa = PBXGroup;
 			children = (
-				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
 				F33B7E062C5D6CFC00F1F49F /* HomeFeature.swift */,
 				F33B7E122C5D7A2900F1F49F /* HomePreview.swift */,
 				F33B7E082C5D6D2C00F1F49F /* HomeProvider.swift */,
@@ -411,41 +424,9 @@
 				F36AD5012C613E1400774C49 /* ConstructionView.swift */,
 				F32045A52C616DD400A2DFA7 /* RDButton.swift */,
 				F32045A72C6203E200A2DFA7 /* SplashScreenView.swift */,
+				F350E2482C8F408A00CA5C88 /* CarouselTemplate.swift */,
 			);
 			path = Templates;
-			sourceTree = "<group>";
-		};
-		F34B7D8A2C382CA100587031 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB678B2C28A5F000F53642 /* TabViewContainerDependency.swift */,
-				F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		F34B7D8B2C382CAF00587031 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB678F2C28A62C00F53642 /* TabViewContainerProvider.swift */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		F34B7D8C2C382CB800587031 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F34B7D8D2C382CC400587031 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F3DB67932C28A68000F53642 /* TabViewContainerView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		F34DF8612C70C37B008D158A /* Managers */ = {
@@ -466,6 +447,27 @@
 				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		F350E24A2C90844600CA5C88 /* SearchFeature */ = {
+			isa = PBXGroup;
+			children = (
+				F350E24B2C90845F00CA5C88 /* SearchComponent.swift */,
+				F350E2532C90865100CA5C88 /* SearchFeature.swift */,
+				F350E24D2C90855900CA5C88 /* SearchProvider.swift */,
+				F350E24F2C9085E800CA5C88 /* SearchDataModel.swift */,
+				F350E2512C90861B00CA5C88 /* SearchDependency.swift */,
+				F350E2552C90867D00CA5C88 /* SearchView.swift */,
+			);
+			path = SearchFeature;
+			sourceTree = "<group>";
+		};
+		F350E2572C90888A00CA5C88 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				F3B4DD442C32F758001176F8 /* VideoDataModel.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		F36AD4D82C61315400774C49 /* LibraryFeature */ = {
@@ -561,6 +563,7 @@
 		F3DB676F2C28A32F00F53642 /* ProjectRubberDucky */ = {
 			isa = PBXGroup;
 			children = (
+				F350E2572C90888A00CA5C88 /* DataModels */,
 				F34DF8612C70C37B008D158A /* Managers */,
 				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
@@ -594,6 +597,7 @@
 		F3DB67832C28A38100F53642 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F350E24A2C90844600CA5C88 /* SearchFeature */,
 				F3342D412C664F0700C052BB /* AccountFeature */,
 				F306A4052C3A5B7D00246390 /* AuthenticationFeature */,
 				F3F13AF02C537BC0008D6841 /* OnboardingFeature */,
@@ -626,10 +630,11 @@
 			isa = PBXGroup;
 			children = (
 				F3DB67952C28A69B00F53642 /* TabViewContainerFeature.swift */,
-				F34B7D8D2C382CC400587031 /* Views */,
-				F34B7D8C2C382CB800587031 /* Models */,
-				F34B7D8B2C382CAF00587031 /* Providers */,
-				F34B7D8A2C382CA100587031 /* Dependencies */,
+				F3DB67932C28A68000F53642 /* TabViewContainerView.swift */,
+				F3DB67912C28A64100F53642 /* TabViewContainerDataModel.swift */,
+				F3DB678F2C28A62C00F53642 /* TabViewContainerProvider.swift */,
+				F3DB678B2C28A5F000F53642 /* TabViewContainerDependency.swift */,
+				F3DB678D2C28A60D00F53642 /* TabViewContainerComponent.swift */,
 			);
 			path = TabViewContainer;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				F36AD4F82C613B3100774C49 /* SettingsProvider.swift in Sources */,
 				F3DB67AA2C28B6AF00F53642 /* DataDecoder.swift in Sources */,
 				F36AD4DE2C61331800774C49 /* SubscribedComponent.swift in Sources */,
+				F350E2542C90865100CA5C88 /* SearchFeature.swift in Sources */,
 				F3DB67B92C2958A700F53642 /* PexelContent.json in Sources */,
 				F36AD4E62C6133A700774C49 /* SubscribedDataModel.swift in Sources */,
 				F306A40F2C3A5FCE00246390 /* AuthenticationFeature.swift in Sources */,
@@ -831,6 +837,7 @@
 				F38471212C6E828E00FF80C9 /* AccountContentProvider.swift in Sources */,
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
+				F350E2562C90867D00CA5C88 /* SearchView.swift in Sources */,
 				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F3B4DD472C32F758001176F8 /* VideoPlayerView.swift in Sources */,
 				F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */,
@@ -848,6 +855,7 @@
 				F36AD4FE2C613BFB00774C49 /* SettingsView.swift in Sources */,
 				F3F13B072C552684008D6841 /* MockUser.json in Sources */,
 				F36AD4F62C613AA000774C49 /* SettingsComponent.swift in Sources */,
+				F350E24E2C90855900CA5C88 /* SearchProvider.swift in Sources */,
 				F306A41A2C3A64CA00246390 /* AuthenticationManager.swift in Sources */,
 				F36AD4EA2C6137CE00774C49 /* LibraryComponent.swift in Sources */,
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
@@ -864,6 +872,7 @@
 				F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */,
 				F392CCB02C610D2C00843540 /* RootView.swift in Sources */,
 				F3DB67922C28A64100F53642 /* TabViewContainerDataModel.swift in Sources */,
+				F350E24C2C90845F00CA5C88 /* SearchComponent.swift in Sources */,
 				F3DB67B32C294F9600F53642 /* PexelCodableModel.swift in Sources */,
 				F36AD4E02C61335300774C49 /* SubscribedFeature.swift in Sources */,
 				F32D3F2D2C317A230084CC79 /* PlexGateway.swift in Sources */,
@@ -873,6 +882,7 @@
 				F38471282C6FE9C100FF80C9 /* FirestoreUserFactory.swift in Sources */,
 				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
+				F350E2492C8F408A00CA5C88 /* CarouselTemplate.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
@@ -881,6 +891,7 @@
 				F32045B42C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift in Sources */,
 				F3B4DD452C32F758001176F8 /* PexelRepository.swift in Sources */,
 				F3DB67992C28A80300F53642 /* VideoPlayerComponent.swift in Sources */,
+				F350E2522C90861B00CA5C88 /* SearchDependency.swift in Sources */,
 				F3F13AF42C537CD1008D6841 /* OnboardingComponent.swift in Sources */,
 				F3342D3A2C660EE200C052BB /* ContentCodableModel.swift in Sources */,
 				F3DB67712C28A32F00F53642 /* ProjectRubberDuckyApp.swift in Sources */,
@@ -893,6 +904,7 @@
 				F36AD5052C615FC700774C49 /* AppMetaData.swift in Sources */,
 				F33B7E112C5D6DC100F1F49F /* HomeDataModel.swift in Sources */,
 				F36AD4F42C613A6A00774C49 /* SettingsDependency.swift in Sources */,
+				F350E2502C9085E800CA5C88 /* SearchDataModel.swift in Sources */,
 				F32045A62C616DD400A2DFA7 /* RDButton.swift in Sources */,
 				F3F13AF62C537CDC008D6841 /* OnboardingFeature.swift in Sources */,
 				F38471232C6E82E800FF80C9 /* SettingsContentProvider.swift in Sources */,
@@ -1050,6 +1062,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
@@ -1058,11 +1071,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProjectRubberDucky/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Film Factory";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1084,6 +1099,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
@@ -1092,11 +1108,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProjectRubberDucky/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Film Factory";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

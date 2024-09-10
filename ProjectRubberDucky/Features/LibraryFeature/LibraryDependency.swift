@@ -10,3 +10,15 @@ import NeedleFoundation
 protocol LibraryDependency: Dependency {
     var libraryFeatureProvider: any FeatureProvider { get }
 }
+
+extension RootComponent {
+    public var libraryComponent: LibraryComponent {
+        LibraryComponent(parent: self)
+    }
+
+    public var libraryFeatureProvider: any FeatureProvider {
+        shared {
+            LibraryProvider()
+        }
+    }
+}

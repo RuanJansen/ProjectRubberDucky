@@ -1,16 +1,6 @@
 import Foundation
 import NeedleFoundation
 
-extension RootComponent {
-    public var tabViewContainerComponent: TabViewContainerComponent {
-        TabViewContainerComponent(parent: self)
-    }
-
-    public var tabFeatureFlagProvider: TabFeatureFlagProvidable {
-        featureFlagProvider as! TabFeatureFlagProvidable
-    }
-}
-
 class TabViewContainerComponent: Component<TabViewContainerDependency> {
     public var feature: Feature {
         TabViewContainerFeature(featureProvider: featureProvider)
@@ -27,8 +17,8 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
             tabs.append(homeTab)
         }
 
-        if subscribedTabFeatreFlag {
-            tabs.append(subscribedTab)
+        if searchTabFeatreFlag {
+            tabs.append(searchTab)
         }
 
         if libraryTabFeatreFlag {
@@ -50,8 +40,8 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
         tabFeatureFlagProvider.fetchHomeTabFeatreFlag()
     }
 
-    public var subscribedTabFeatreFlag: Bool {
-        tabFeatureFlagProvider.fetcSubscribedTabFeatreFlag()
+    public var searchTabFeatreFlag: Bool {
+        tabFeatureFlagProvider.fetcSearchTabFeatreFlag()
     }
 
     public var libraryTabFeatreFlag: Bool {
@@ -62,29 +52,22 @@ class TabViewContainerComponent: Component<TabViewContainerDependency> {
         tabFeatureFlagProvider.fetchSettingsTabFeatreFlag()
     }
 
-
-    private var videoPlayerTab: any Tabable {
-        TabViewContainerDataModel(name: "Video Player",
-                                  systemImage: "video.fill",
-                                  feature: dependency.videoPlayerComponent.feature)
-    }
-
     private var homeTab: any Tabable {
         TabViewContainerDataModel(name: "Home",
                                   systemImage: "house.fill",
                                   feature: dependency.homeComponent.feature)
     }
 
-    private var subscribedTab: any Tabable {
-        TabViewContainerDataModel(name: "Subscribed",
-                                  systemImage: "tv.badge.wifi",
-                                  feature: dependency.subscribedComponent.feature)
-    }
-
     private var libraryTab: any Tabable {
         TabViewContainerDataModel(name: "Library",
                                   systemImage: "books.vertical.fill",
                                   feature: dependency.libraryComponent.feature)
+    }
+
+    private var searchTab: any Tabable {
+        TabViewContainerDataModel(name: "Search",
+                                  systemImage: "magnifyingglass",
+                                  feature: dependency.searchComponent.feature)
     }
 
     private var settingsTab: any Tabable {

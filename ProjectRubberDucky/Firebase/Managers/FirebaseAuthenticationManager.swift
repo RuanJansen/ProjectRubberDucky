@@ -126,9 +126,6 @@ class FirebaseAuthenticationManager {
                 print("User Deleted: ", String(describing: self.currentUser?.email))
             }
         })
-        AuthErrors
-
-
     }
 
     public func deleteUser(completion: @escaping (UserDataModel) -> ()) async throws {

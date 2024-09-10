@@ -11,3 +11,15 @@ protocol OnboardingDependency: Dependency {
     var onboardingProvider: any FeatureProvider { get }
     var userDefaultsManager: UserDefaultsManager { get }
 }
+
+extension RootComponent {
+    public var onboardingComponent: OnboardingComponent {
+        OnboardingComponent(parent: self)
+    }
+
+    var onboardingProvider: any FeatureProvider {
+        shared {
+            OnboardingProvider(userDefaultsManager: userDefaultsManager)
+        }
+    }
+}

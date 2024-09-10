@@ -17,7 +17,9 @@ class PexelRepository {
                                title: String(describing: $0.user.name),
                                category: prompt,
                                url: URL(string: $0.videoFiles.first!.link)!,
-                               thumbnail: URL(string: $0.image)!,
+                               thumbnailImageUrl: URL(string: $0.image)!,
+                               posterImageUrl: URL(string: $0.image)!,
+                               squareImageUrl: URL(string: $0.image)!,
                                quality: $0.videoFiles.first!.quality.rawValue)
             }
 

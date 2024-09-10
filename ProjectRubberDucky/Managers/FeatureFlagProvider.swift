@@ -9,7 +9,7 @@ import Foundation
 
 protocol TabFeatureFlagProvidable {
     func fetchHomeTabFeatreFlag() -> Bool
-    func fetcSubscribedTabFeatreFlag() -> Bool
+    func fetcSearchTabFeatreFlag() -> Bool
     func fetchLibraryTabFeatreFlag() -> Bool
     func fetchSettingsTabFeatreFlag() -> Bool 
 }
@@ -28,8 +28,8 @@ extension FeatureFlagProvider: TabFeatureFlagProvidable {
         return flag
     }
 
-    public func fetcSubscribedTabFeatreFlag() -> Bool {
-        guard let flag = featureFlagFetcher.fetch(flag: "subscribedTabFeatureFlag") else { return false }
+    public func fetcSearchTabFeatreFlag() -> Bool {
+        guard let flag = featureFlagFetcher.fetch(flag: "searchTabFeatureFlag") else { return false }
         return flag
     }
 

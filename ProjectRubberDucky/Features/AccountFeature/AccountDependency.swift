@@ -10,3 +10,19 @@ import NeedleFoundation
 protocol AccountDependency: Dependency {
     var accountProvider: any FeatureProvider { get }
 }
+
+extension RootComponent {
+    public var accountComponent: AccountComponent {
+        AccountComponent(parent: self)
+    }
+
+    public var accountProvider: any FeatureProvider {
+        shared {
+            AccountProvider(contentProvider: accountContentProvider, authenticationManager: authenticationManager, firebaseProvider: firebaseComponent.firebaseAuthenticationManager)
+        }
+    }
+
+    public var accountContentProvider: AccountContentProvidable {
+        AccountContentProvider(contentFetcher: contentFetcher)
+    }
+}

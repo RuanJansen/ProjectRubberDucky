@@ -7,18 +7,6 @@
 
 import NeedleFoundation
 
-extension RootComponent {
-    public var libraryComponent: LibraryComponent {
-        LibraryComponent(parent: self)
-    }
-    
-    public var libraryFeatureProvider: any FeatureProvider {
-        shared {
-            LibraryProvider()
-        }
-    }
-}
-
 class LibraryComponent: Component<LibraryDependency> {
 
     public var feature: any Feature {

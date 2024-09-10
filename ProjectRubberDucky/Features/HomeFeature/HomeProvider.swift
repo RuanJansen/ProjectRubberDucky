@@ -64,7 +64,7 @@ class HomeProvider: FeatureProvider {
 
                     await videos.append(contentsOf: self.fetchVideos(using: prompt))
 
-                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title < $1.title }))
+                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title < $1.title }), style: .thumbnail)
                     await carouselManager.addCarousel(carousel)
                 }
             }
