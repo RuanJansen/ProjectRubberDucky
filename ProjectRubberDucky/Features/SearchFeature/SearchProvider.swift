@@ -23,7 +23,7 @@ class SearchProvider: FeatureProvider {
     }
 
     private func setupSearchDataModel() async {
-        let dataModel = SearchDataModel()
+        let dataModel = SearchDataModel(pageTitle: "Search")
 
         await MainActor.run {
             self.viewState = .presentContent(using: dataModel)

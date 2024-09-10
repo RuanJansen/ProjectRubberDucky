@@ -7,6 +7,12 @@
 
 import Foundation
 
-struct SearchDataModel {
+struct SearchDataModel: Identifiable {
+    let id: UUID
+    let pageTitle: String
 
+    init(pageTitle: String) {
+        self.id = UUID()
+        self.pageTitle = pageTitle
+    }
 }

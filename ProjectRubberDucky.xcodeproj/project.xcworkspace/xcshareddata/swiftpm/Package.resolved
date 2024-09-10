@@ -1,5 +1,5 @@
 {
-  "originHash" : "55f280946c85f6c9abbf9148e530a5bb65fc018d3e66c106d92ecf9b26a72636",
+  "originHash" : "bf5b82b6054c9c2ef072c4c985c71bf260626651537d8ee3068aecece09f6c64",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,15 +116,6 @@
       "state" : {
         "branch" : "master",
         "revision" : "8828a6509818e992b8c0cad2af2dfab234ea6f34"
-      }
-    },
-    {
-      "identity" : "plexkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lcharlick/PlexKit.git",
-      "state" : {
-        "revision" : "f35120b87643fca2646383629701c736df104508",
-        "version" : "1.7.1"
       }
     },
     {

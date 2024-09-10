@@ -91,14 +91,17 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
                                                    endPoint: .bottom)
                                 }
                                 .overlay(alignment: .bottom) {
-                                    HStack(alignment: .bottom) {
-                                        VStack(alignment: .center) {
-                                            Text(video.title.capitalized)
-                                                .font(.system(size: 24, weight: .bold))
-                                            if let genre = video.genre {
-                                                Text("\(genre.capitalized) • \(video.rated)")
-                                                    .font(.system(size: 17, weight: .medium))
+                                    VStack(alignment: .center) {
+                                        Text(video.title.capitalized)
+                                            .font(.system(size: 24, weight: .bold))
+                                        if let genre = video.genre {
+                                            HStack(alignment: .bottom) {
+                                                Text(genre.capitalized)
+                                                if let rated = video.rated {
+                                                    Text(" • \(rated)")
+                                                }
                                             }
+                                            .font(.system(size: 17, weight: .medium))
                                         }
                                     }
                                     .foregroundStyle(.white)
@@ -111,7 +114,7 @@ struct HomeView<Provider: FeatureProvider>: FeatureView where Provider.DataModel
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
         }
-        .frame(height: 250)
+        .frame(height: 275)
     }
 
     @ViewBuilder
@@ -258,7 +261,7 @@ struct VideoDetailView: View {
             .onDisappear {
                 player.teardownPlayer()
             }
-        .ignoresSafeArea()
+            .ignoresSafeArea()
     }
 }
 
@@ -267,7 +270,6 @@ struct GridContainerView: View {
     var videos: [VideoDataModel]
 
     let columns: [GridItem] = [
-        GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
@@ -286,7 +288,7 @@ struct GridContainerView: View {
                                 }
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 115, height: 200)
+                                .frame(width: 175, height: 250)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .overlay(alignment: .bottomTrailing) {
                                     if let quality = video.quality {

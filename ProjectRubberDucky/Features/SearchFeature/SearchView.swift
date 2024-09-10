@@ -28,6 +28,7 @@ struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataMod
             case .presentContent(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
+                        .navigationTitle(dataModel.pageTitle)
                         .searchPresentationToolbarBehavior(.avoidHidingContent)
                         .searchable(text: $searchUsecase.searchText, placement: .automatic, prompt: "")
                         .onSubmit(of: .search) {
@@ -57,7 +58,7 @@ struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataMod
     @ViewBuilder
     private func createContentView(using dataModel: SearchDataModel) -> some View {
         VStack {
-            Label("Search", systemImage: "magnifyingglass")
+            EmptyView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay {
