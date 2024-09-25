@@ -17,19 +17,19 @@ class SettingsProvider: FeatureProvider {
 
     private let contentProvider: SettingsContentProvidable
     private var appMetaData: AppMetaData
-    private var authenticationManager: AuthenticationManager
+    private var logoutUserManager: LogOutUserManager
     private let firebaseProvider: FirebaseProvider?
     private let accountView: any FeatureView
     private var currentUser: UserDataModel?
 
     init(contentProvider: SettingsContentProvidable,
          appMetaData: AppMetaData,
-         authenticationManager: AuthenticationManager,
+         logoutUserManager: LogOutUserManager,
          firebaseProvider: FirebaseProvider?,
          accountView: any FeatureView) {
         self.contentProvider = contentProvider
         self.appMetaData = appMetaData
-        self.authenticationManager = authenticationManager
+        self.logoutUserManager = logoutUserManager
         self.firebaseProvider = firebaseProvider
         self.accountView = accountView
         self.viewState = .loading
@@ -107,6 +107,6 @@ class SettingsProvider: FeatureProvider {
 
 extension SettingsProvider: LogoutProvidable {
     func logOut() async {
-        await authenticationManager.logOut()
+        await logoutUserManager.logOut()
     }
 }

@@ -18,7 +18,10 @@ extension RootComponent {
 
     public var accountProvider: any FeatureProvider {
         shared {
-            AccountProvider(contentProvider: accountContentProvider, authenticationManager: authenticationManager, firebaseProvider: firebaseComponent.firebaseAuthenticationManager)
+            AccountProvider(contentProvider: accountContentProvider,
+                            deleteUserManager: deleteUserManager,
+                            logoutUserManager: logoutUserManager,
+                            firebaseProvider: firebaseComponent.firebaseAuthenticationManager)
         }
     }
 

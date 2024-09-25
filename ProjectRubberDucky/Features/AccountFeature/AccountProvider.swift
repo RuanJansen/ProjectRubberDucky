@@ -16,7 +16,8 @@ class AccountProvider: FeatureProvider {
     var viewState: ViewState<AccountDataModel>
 
     private let contentProvider: AccountContentProvidable
-    private var authenticationManager: AuthenticationManager
+    private var deleteUserManager: DeleteUserManager
+    private var logoutUserManager: LogOutUserManager
     private var firebaseProvider: FirebaseProvider?
     private var photosPickerManager: PhotosPickerManager
     private var shouldReauthenticate: Bool
@@ -25,11 +26,13 @@ class AccountProvider: FeatureProvider {
     private var cancellables = Set<AnyCancellable>()
 
     init(contentProvider: AccountContentProvidable,
-         authenticationManager: AuthenticationManager,
+         deleteUserManager: DeleteUserManager,
+         logoutUserManager: LogOutUserManager,
          firebaseProvider: FirebaseProvider?) {
         self.viewState = .loading
         self.contentProvider = contentProvider
-        self.authenticationManager = authenticationManager
+        self.deleteUserManager = deleteUserManager
+        self.logoutUserManager = logoutUserManager
         self.firebaseProvider = firebaseProvider
         self.photosPickerManager = PhotosPickerManager()
         self.shouldReauthenticate = false
@@ -131,14 +134,14 @@ class AccountProvider: FeatureProvider {
     }
 
     private func deleteAccount() async {
-        authenticationManager.deleteAccount {
+        deleteUserManager.deleteAccount {
             self.shouldReauthenticate = true
         }
     }
 
     private func deleteUser() async {
         do {
-            try await authenticationManager.deleteUser()
+            try await deleteUserManager.deleteUser()
         } catch {
             shouldReauthenticate = true
         }
@@ -169,7 +172,7 @@ class AccountProvider: FeatureProvider {
     }
 
     func logOut() async {
-        await authenticationManager.logOut()
+        await logoutUserManager.logOut()
         shouldReauthenticate = false
     }
 }

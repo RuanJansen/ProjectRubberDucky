@@ -20,7 +20,7 @@ class NavigationManager {
     private let mainFeature: any Feature
     private let onboardingFeature: any Feature
     private let authenticationFeature: any Feature
-    private let authenticationManager: AuthenticationManager
+    private let authenticationMediator: AuthenticationMediator
 
     public let userDefaultsManager: UserDefaultsManager
     public var navigationState: NavigationState
@@ -31,12 +31,12 @@ class NavigationManager {
     init(mainFeature: any Feature, 
          onboardingFeature: any Feature,
          authenticationFeature: any Feature,
-         authenticationManager: AuthenticationManager,
+         authenticationMediator: AuthenticationMediator,
          userDefaultsManager: UserDefaultsManager) {
         self.mainFeature = mainFeature
         self.onboardingFeature = onboardingFeature
         self.authenticationFeature = authenticationFeature
-        self.authenticationManager = authenticationManager
+        self.authenticationMediator = authenticationMediator
         self.userDefaultsManager = userDefaultsManager
         self.showOnboardingSheet = false
         self.navigationState = .splashScreen
@@ -53,7 +53,7 @@ class NavigationManager {
     }
 
     private func addListeners() {
-        authenticationManager.$isAuthenticated.sink { [self] result in
+        authenticationMediator.$isAuthenticated.sink { [self] result in
             if result {
                 self.navigationState = .main(AnyView(self.mainFeature.featureView), onboardingFeature: AnyView(self.onboardingFeature.featureView))
                 if userDefaultsManager.shouldShowOnboarding {
@@ -69,7 +69,7 @@ class NavigationManager {
     }
 
     private func startAppFlow()  {
-        if authenticationManager.isAuthenticated {
+        if authenticationMediator.isAuthenticated {
             self.navigationState = .main(AnyView(mainFeature.featureView), onboardingFeature: AnyView(onboardingFeature.featureView))
         } else {
             self.navigationState = .authentication(AnyView(authenticationFeature.featureView))

@@ -7,19 +7,19 @@
 
 import Foundation
 
-protocol TabFeatureFlagProvidable {
-    func fetchHomeTabFeatreFlag() -> Bool
-    func fetcSearchTabFeatreFlag() -> Bool
-    func fetchLibraryTabFeatreFlag() -> Bool
-    func fetchSettingsTabFeatreFlag() -> Bool 
-}
-
 class FeatureFlagProvider {
     let featureFlagFetcher: FeatureFlagFetcher
 
     init(featureFlagFetcher: FeatureFlagFetcher) {
         self.featureFlagFetcher = featureFlagFetcher
     }
+}
+
+protocol TabFeatureFlagProvidable {
+    func fetchHomeTabFeatreFlag() -> Bool
+    func fetcSearchTabFeatreFlag() -> Bool
+    func fetchLibraryTabFeatreFlag() -> Bool
+    func fetchSettingsTabFeatreFlag() -> Bool 
 }
 
 extension FeatureFlagProvider: TabFeatureFlagProvidable {

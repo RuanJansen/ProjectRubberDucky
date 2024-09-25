@@ -1,10 +1,3 @@
-//
-//  SearchUsecase.swift
-//  ProjectRubberDucky
-//
-//  Created by Ruan Jansen on 2024/07/12.
-//
-
 import Foundation
 import SwiftUI
 import Observation

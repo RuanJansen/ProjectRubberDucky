@@ -23,7 +23,7 @@ class RootComponent: BootstrapComponent {
             NavigationManager(mainFeature: tabViewContainerComponent.feature,
                               onboardingFeature: onboardingComponent.feature,
                               authenticationFeature: authenticationComponent.feature,
-                              authenticationManager: self.authenticationManager,
+                              authenticationMediator: authenticationMediator,
                               userDefaultsManager: userDefaultsManager)
         }
     }

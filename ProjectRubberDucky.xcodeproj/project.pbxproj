@@ -81,6 +81,9 @@
 		F38471282C6FE9C100FF80C9 /* FirestoreUserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */; };
 		F392CCB02C610D2C00843540 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392CCAF2C610D2C00843540 /* RootView.swift */; };
 		F3A1158A2C2ED9D7000EF645 /* FocusButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */; };
+		F3AB73F82CA4344E001187D1 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AB73F72CA4344E001187D1 /* AppleSignInManager.swift */; };
+		F3AB73FA2CA4346B001187D1 /* EmailSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AB73F92CA4346B001187D1 /* EmailSignInManager.swift */; };
+		F3AB73FC2CA4347C001187D1 /* EmailRegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AB73FB2CA4347C001187D1 /* EmailRegistrationManager.swift */; };
 		F3B4DCDF2C31BC6A001176F8 /* PlexRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */; };
 		F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE02C32D223001176F8 /* PlexComponent.swift */; };
 		F3B4DCE32C32D24E001176F8 /* PlexDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */; };
@@ -195,6 +198,9 @@
 		F392CCAD2C5FA72B00843540 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F392CCAF2C610D2C00843540 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F3A115892C2ED9D7000EF645 /* FocusButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusButtonStyle.swift; sourceTree = "<group>"; };
+		F3AB73F72CA4344E001187D1 /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
+		F3AB73F92CA4346B001187D1 /* EmailSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInManager.swift; sourceTree = "<group>"; };
+		F3AB73FB2CA4347C001187D1 /* EmailRegistrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRegistrationManager.swift; sourceTree = "<group>"; };
 		F3B4DCDE2C31BC6A001176F8 /* PlexRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexRepository.swift; sourceTree = "<group>"; };
 		F3B4DCE02C32D223001176F8 /* PlexComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexComponent.swift; sourceTree = "<group>"; };
 		F3B4DCE22C32D24E001176F8 /* PlexDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlexDependency.swift; sourceTree = "<group>"; };
@@ -304,8 +310,10 @@
 		F32045B22C6276D400A2DFA7 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				F3342D562C69179900C052BB /* FirebaseRemoteConfigManager.swift */,
+				F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */,
+				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
 				F34DF8912C762677008D158A /* FirebaseComponent.swift */,
-				F34DF8902C762633008D158A /* Managers */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -369,7 +377,6 @@
 		F3342D512C67ED2F00C052BB /* Usecases */ = {
 			isa = PBXGroup;
 			children = (
-				F3342D4E2C67A1AA00C052BB /* PhotosPickerManager.swift */,
 				F306A4202C416EB100246390 /* SearchUsecase.swift */,
 				F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */,
 			);
@@ -402,24 +409,15 @@
 			path = Templates;
 			sourceTree = "<group>";
 		};
-		F34DF8612C70C37B008D158A /* Managers */ = {
+		F34DF8612C70C37B008D158A /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				F306A4192C3A64CA00246390 /* AuthenticationManager.swift */,
-				F3342D2D2C63936300C052BB /* NavigationManager.swift */,
-				F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */,
+				F3AB73F72CA4344E001187D1 /* AppleSignInManager.swift */,
+				F3AB73F92CA4346B001187D1 /* EmailSignInManager.swift */,
+				F3AB73FB2CA4347C001187D1 /* EmailRegistrationManager.swift */,
 			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		F34DF8902C762633008D158A /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				F3342D562C69179900C052BB /* FirebaseRemoteConfigManager.swift */,
-				F38471272C6FE9C100FF80C9 /* FirestoreUserFactory.swift */,
-				F32045B32C6276E700A2DFA7 /* FirebaseAuthenticationManager.swift */,
-			);
-			path = Managers;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		F350E24A2C90844600CA5C88 /* SearchFeature */ = {
@@ -475,6 +473,7 @@
 			children = (
 				F3DB67862C28A44500F53642 /* RootComponent.swift */,
 				F392CCAF2C610D2C00843540 /* RootView.swift */,
+				F3342D2D2C63936300C052BB /* NavigationManager.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -503,6 +502,14 @@
 			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
+		F3AB73FF2CA434BF001187D1 /* FeatureFlags */ = {
+			isa = PBXGroup;
+			children = (
+				F3342D5A2C69398200C052BB /* FeatureFlagProvider.swift */,
+			);
+			path = FeatureFlags;
+			sourceTree = "<group>";
+		};
 		F3DB67642C28A32F00F53642 = {
 			isa = PBXGroup;
 			children = (
@@ -523,9 +530,6 @@
 		F3DB676F2C28A32F00F53642 /* ProjectRubberDucky */ = {
 			isa = PBXGroup;
 			children = (
-				F350E2572C90888A00CA5C88 /* DataModels */,
-				F34DF8612C70C37B008D158A /* Managers */,
-				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F32045B12C6275D100A2DFA7 /* ProjectRubberDucky.entitlements */,
 				F38471242C6E8D7200FF80C9 /* RemoteConfigDefaults.plist */,
 				F32045AA2C62702900A2DFA7 /* GoogleService-Info.plist */,
@@ -535,8 +539,13 @@
 				F392CCAE2C610CF500843540 /* Root */,
 				F3DB678A2C28A5C900F53642 /* TabViewContainer */,
 				F3DB67832C28A38100F53642 /* Features */,
+				F3342D512C67ED2F00C052BB /* Usecases */,
 				F3DB67842C28A38500F53642 /* Utilities */,
+				F3AB73FF2CA434BF001187D1 /* FeatureFlags */,
+				F34DF8612C70C37B008D158A /* Authentication */,
+				F350E2572C90888A00CA5C88 /* DataModels */,
 				F3DB67B12C294F5F00F53642 /* Services */,
+				F32045B22C6276D400A2DFA7 /* Firebase */,
 				F3DB67AB2C28B6DC00F53642 /* MockContent */,
 				F3DB67762C28A33100F53642 /* Preview Content */,
 				F3DB67BE2C2E0ABF00F53642 /* Info.plist */,
@@ -571,7 +580,6 @@
 		F3DB67842C28A38500F53642 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F3342D512C67ED2F00C052BB /* Usecases */,
 				F3DB67882C28A4F200F53642 /* Architecture.swift */,
 				F36AD4D62C6117F600774C49 /* AppStyling.swift */,
 				F36AD5042C615FC700774C49 /* AppMetaData.swift */,
@@ -580,6 +588,7 @@
 				F32D3F272C31747F0084CC79 /* UI */,
 				F3A115862C2EB19C000EF645 /* Tools */,
 				F3DB67A62C28B68700F53642 /* Services */,
+				F3342D4E2C67A1AA00C052BB /* PhotosPickerManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -770,6 +779,7 @@
 				F3B4DCE12C32D223001176F8 /* PlexComponent.swift in Sources */,
 				F3DB67A82C28B6A200F53642 /* APIFetcher.swift in Sources */,
 				F36AD4EC2C61385500774C49 /* LibraryFeature.swift in Sources */,
+				F3AB73FC2CA4347C001187D1 /* EmailRegistrationManager.swift in Sources */,
 				F3342D4F2C67A1AA00C052BB /* PhotosPickerManager.swift in Sources */,
 				F3342D592C6936FF00C052BB /* FeatureFlagFetcher.swift in Sources */,
 				F38471212C6E828E00FF80C9 /* AccountContentProvider.swift in Sources */,
@@ -797,6 +807,7 @@
 				F3DB678C2C28A5F000F53642 /* TabViewContainerDependency.swift in Sources */,
 				F3F13AF82C537CE7008D6841 /* OnboardingProvider.swift in Sources */,
 				F306A4142C3A5FE500246390 /* AuthenticationDependency.swift in Sources */,
+				F3AB73F82CA4344E001187D1 /* AppleSignInManager.swift in Sources */,
 				F3342D492C66505B00C052BB /* AccountView.swift in Sources */,
 				F306A4182C3A60D000246390 /* AuthenticationDataModel.swift in Sources */,
 				F32D3F2A2C3175060084CC79 /* CarouselButtonModifier.swift in Sources */,
@@ -852,6 +863,7 @@
 				F36AD4F02C6138F100774C49 /* LibraryDataModel.swift in Sources */,
 				F36AD4E82C61379900774C49 /* LibraryDependency.swift in Sources */,
 				F33B7E0F2C5D6D5100F1F49F /* HomeComponent.swift in Sources */,
+				F3AB73FA2CA4346B001187D1 /* EmailSignInManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +1008,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1033,7 +1045,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;

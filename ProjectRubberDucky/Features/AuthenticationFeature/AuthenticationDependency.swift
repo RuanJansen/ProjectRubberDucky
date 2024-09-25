@@ -20,10 +20,32 @@ extension RootComponent {
         AuthenticationContentProvider(contentFetcher: contentFetcher)
     }
 
-    public var authenticationManager: AuthenticationManager {
+    public var authenticationMediator: AuthenticationMediator {
         shared {
-            AuthenticationManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+            AuthenticationMediator(authenticateUserManager: authenticateUserManager,
+                                   logoutUserManager: logoutUserManager,
+                                   deleteUserManager: deleteUserManager)
+        }
+    }
+
+    public var authenticateUserManager: AuthenticateUserManager {
+        shared {
+            AuthenticateUserManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
                                   firestoreUserFactory: firebaseComponent.firestoreUserFactory)
+        }
+    }
+
+    public var logoutUserManager: LogOutUserManager {
+        shared {
+            LogOutUserManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                              firestoreUserFactory: firebaseComponent.firestoreUserFactory)
+        }
+    }
+
+    public var deleteUserManager: DeleteUserManager {
+        shared {
+            DeleteUserManager(firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                              firestoreUserFactory: firebaseComponent.firestoreUserFactory)
         }
     }
 
@@ -36,20 +58,21 @@ extension RootComponent {
     }
 
     public var appleSignInManager: AppleSignInManager {
-        ConcreteAppleSignInManager(authenticationManager: authenticationManager,
+        ConcreteAppleSignInManager(authenticateUserManager: authenticateUserManager,
                            firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager)
     }
 
     public var emailSignInManager: EmailSignInManager {
-        ConcreteEmailSignInManager(authenticationManager: authenticationManager,
+        ConcreteEmailSignInManager(authenticateUserManager: authenticateUserManager,
                            firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
                            firestoreUserFactory: firebaseComponent.firestoreUserFactory)
     }
 
     public var emailRegistrationManager: EmailRegistrationManager {
-        ConcreteEmailRegistrationManager(authenticationManager: authenticationManager,
-                                 firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
-                                 firestoreUserFactory: firebaseComponent.firestoreUserFactory)
+        ConcreteEmailRegistrationManager(authenticateUserManager: authenticateUserManager,
+                                         deleteUserManager: deleteUserManager,
+                                         firebaseAuthenticationManager: firebaseComponent.firebaseAuthenticationManager,
+                                         firestoreUserFactory: firebaseComponent.firestoreUserFactory)
     }
 
 }

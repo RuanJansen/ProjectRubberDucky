@@ -7,12 +7,9 @@ class AuthenticationProvider: FeatureProvider {
     public var viewState: ViewState<DataModel>
 
     private let contentProvider: AuthenticationContentProvidable
-    private let authenticationManager: AuthenticationManager?
 
-    init(contentProvider: AuthenticationContentProvidable,
-         authenticationManager: AuthenticationManager? = nil) {
+    init(contentProvider: AuthenticationContentProvidable) {
         self.contentProvider = contentProvider
-        self.authenticationManager = authenticationManager
         self.viewState = .loading
     }
 
