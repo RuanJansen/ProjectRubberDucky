@@ -7,19 +7,16 @@ class AuthenticationProvider: FeatureProvider {
     public var viewState: ViewState<DataModel>
 
     private let contentProvider: AuthenticationContentProvidable
-    private let authenticationManager: AuthenticationManager?
 
-    init(contentProvider: AuthenticationContentProvidable,
-         authenticationManager: AuthenticationManager? = nil) {
+    init(contentProvider: AuthenticationContentProvidable) {
         self.contentProvider = contentProvider
-        self.authenticationManager = authenticationManager
         self.viewState = .loading
     }
 
     func fetchContent() async {
         if let authenticationDataModel = await setupAuthenticationDataModel() {
             await MainActor.run {
-                self.viewState = .presentContent(using: authenticationDataModel)
+                self.viewState = .presenting(using: authenticationDataModel)
             }
         } else {
             await MainActor.run {

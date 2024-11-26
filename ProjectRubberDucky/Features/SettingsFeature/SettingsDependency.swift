@@ -18,7 +18,7 @@ extension RootComponent {
 
     public var settingsFeatureProvider: any FeatureProvider {
         shared {
-            SettingsProvider(contentProvider: settingsContentProvider, appMetaData: appMetaData, authenticationManager: authenticationManager, firebaseProvider: firebaseComponent.firebaseAuthenticationManager, accountView: accountComponent.feature.featureView)
+            SettingsProvider(contentProvider: settingsContentProvider, appMetaData: appMetaData, logoutManager: userLogoutManager, firebaseProvider: firebaseComponent.firebaseAuthenticationManager, accountView: accountComponent.feature.featureView)
         }
     }
 

@@ -23,13 +23,13 @@ class FirebaseComponent: Component<FirebaseDependency> {
         }
     }
 
-    public var firestoreUserFactory: FirestoreUserFactory {
-        FirestoreUserFactory()
+    public var userDatabaseManager: FireStoreUserDatabaseManager {
+        FireStoreUserDatabaseManager()
     }
 
-    public var firebaseAuthenticationManager: FirebaseAuthenticationManager {
+    public var firebaseAuthenticationManager: FirebaseUserAuthenticationManager {
         shared {
-            FirebaseAuthenticationManager()
+            FirebaseUserAuthenticationManager()
         }
     }
 }

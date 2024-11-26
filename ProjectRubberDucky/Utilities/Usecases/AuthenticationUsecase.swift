@@ -5,9 +5,9 @@ import CryptoKit
 
 @Observable
 class AuthenticationUsecase {
-    private let appleSignInManager: AppleSignInManager
-    private let emailSignInManager: EmailSignInManager
-    private let emailRegistrationManager: EmailRegistrationManager
+    private let appleSignInManager: any AppleSignInManageable
+    private let emailSignInManager: any EmailSignInManageable
+    private let emailRegistrationManager: any EmailRegistrationManageable
 
     var email: String
     var password: String
@@ -20,9 +20,9 @@ class AuthenticationUsecase {
 
     var showingIsLoadingToast: Bool
 
-    init(appleSignInManager: AppleSignInManager,
-         emailSignInManager: EmailSignInManager,
-         emailRegistrationManager: EmailRegistrationManager) {
+    init(appleSignInManager: any AppleSignInManageable,
+         emailSignInManager: any EmailSignInManageable,
+         emailRegistrationManager: any EmailRegistrationManageable) {
         self.appleSignInManager = appleSignInManager
         self.emailSignInManager = emailSignInManager
         self.emailRegistrationManager = emailRegistrationManager

@@ -25,7 +25,7 @@ struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataMod
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let dataModel):
+            case .presenting(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
                         .navigationTitle(dataModel.pageTitle)

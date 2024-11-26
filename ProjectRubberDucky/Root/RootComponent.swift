@@ -5,7 +5,9 @@ import Combine
 class RootComponent: BootstrapComponent {
     @State public var appStyling: AppStyling
     @State public var appMetaData: AppMetaData
-
+    
+    @Environment(Coordinator<MainCoordinatorViews>.self) var navigationCoordinator
+    
     override init() {
         self.appStyling = AppStyling()
         self.appMetaData = AppMetaData()
@@ -13,17 +15,17 @@ class RootComponent: BootstrapComponent {
     }
 
     public var view: some View {
-        RootView(navigationManager: navigationManager)
+        RootView(mainFeature: tabViewContainerComponent.feature)
             .environment(appStyling)
             .environment(self.appMetaData)
     }
 
     public var navigationManager: NavigationManager {
         return shared {
-            NavigationManager(mainFeature: tabViewContainerComponent.feature,
+            NavigationManager(navigationCoordinator: navigationCoordinator,
                               onboardingFeature: onboardingComponent.feature,
                               authenticationFeature: authenticationComponent.feature,
-                              authenticationManager: self.authenticationManager,
+                              userAuthenticationManager: userAuthenticationManager,
                               userDefaultsManager: userDefaultsManager)
         }
     }
@@ -37,11 +39,11 @@ class RootComponent: BootstrapComponent {
             ContentFetcher(firebaseContentFetcher: firebaseComponent.firebaseRemoteConfig)
         }
     }
-
+    
     public var featureFlagFetcher: FeatureFlagFetcher {
         FeatureFlagFetcher(firebaseFeatureFlagFetcher: firebaseComponent.firebaseRemoteConfig)
     }
-
+    
     public var userDefaultsManager: UserDefaultsManager {
         shared {
             UserDefaultsManager()

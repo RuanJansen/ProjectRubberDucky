@@ -9,11 +9,11 @@ import Foundation
 
 struct AccountDataModel {
     let pageTitle: String
-    let user: UserDataModel?
+    let user: UserServiceDataModel?
     let profileImageButtonAction: RDButtonAction?
     let sections: [SectionDataModel]
 
-    init(pageTitle: String, user: UserDataModel? = nil, profileImageButtonAction: RDButtonAction? = nil, sections: [SectionDataModel]) {
+    init(pageTitle: String, user: UserServiceDataModel? = nil, profileImageButtonAction: RDButtonAction? = nil, sections: [SectionDataModel]) {
         self.pageTitle = pageTitle
         self.user = user
         self.profileImageButtonAction = profileImageButtonAction

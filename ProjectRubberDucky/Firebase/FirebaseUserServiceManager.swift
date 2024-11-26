@@ -1,5 +1,5 @@
 //
-//  FirebaseAuthenticationManager.swift
+//  UserServiceManager.swift
 //  ProjectRubberDucky
 //
 //  Created by Ruan Jansen on 2024/08/06.
@@ -7,7 +7,7 @@
 
 import FirebaseAuth
 
-struct UserDataModel {
+struct UserServiceDataModel {
     let uid: String
     let email: String?
     var displayName: String?
@@ -21,31 +21,57 @@ struct UserDataModel {
     }
 }
 
-protocol FirebaseProvider {
-    func fetchUser() async -> UserDataModel?
-    func updateUser(with user: UserDataModel) async throws 
+protocol UserAuthenticationAuthenticatable {
+    func getAuthenticatedUser() throws -> UserServiceDataModel
+    func signInWithApple(idToken idTokenString: String, rawNonce nonce: String, completion: @escaping () -> Void)
+    func signIn(email: String, password: String) async -> UserServiceDataModel?
+    func checkUserIsAuthenticated(completion: @escaping (UserServiceDataModel) -> ()) -> Bool
 }
 
-class FirebaseAuthenticationManager {
-    init(currentUser: UserDataModel? = nil) {
+protocol UserAuthenticationLogoutable {
+    func logOut() async throws
+}
+
+protocol UserAuthenticationProvideable {
+    func fetchUser() async -> UserServiceDataModel?
+}
+
+protocol UserAuthenticationUpdateable {
+    func updateUser(with user: UserServiceDataModel) async throws
+}
+
+protocol UserAuthenticationCreateable {
+    func createUser(email: String, password: String, displayName: String?) async -> UserServiceDataModel?
+}
+
+protocol UserAuthenticationDeleteable {
+    func deleteUser(completion: @escaping (UserServiceDataModel) -> ()) async throws
+    func deleteAccount(completion: @escaping (UserServiceDataModel?) -> ())
+}
+
+typealias FirebaseUserAuthenticationManageable = UserAuthenticationAuthenticatable & UserAuthenticationLogoutable & UserAuthenticationProvideable & UserAuthenticationUpdateable & UserAuthenticationCreateable & UserAuthenticationDeleteable
+
+class FirebaseUserAuthenticationManager: FirebaseUserAuthenticationManageable {
+    
+    init(currentUser: UserServiceDataModel? = nil) {
         self.currentUser = currentUser
         self.setupCurrentUser()
     }
 
-    public var currentUser: UserDataModel?
+    public var currentUser: UserServiceDataModel?
 
-    private func setupCurrentUser(_ user : UserDataModel? = nil) {
+    private func setupCurrentUser(_ user : UserServiceDataModel? = nil) {
         if let user {
             currentUser = user
         } else if let safeCurrent = Auth.auth().currentUser {
-            currentUser = UserDataModel(user: safeCurrent)
+            currentUser = UserServiceDataModel(user: safeCurrent)
         }
     }
 
-    func createUser(email: String, password: String, displayName: String? = nil) async -> UserDataModel? {
+    func createUser(email: String, password: String, displayName: String? = nil) async -> UserServiceDataModel? {
         do {
             let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            var user = UserDataModel(user: authDataResult.user)
+            var user = UserServiceDataModel(user: authDataResult.user)
 
             if let displayName {
                 user.displayName = displayName
@@ -58,22 +84,22 @@ class FirebaseAuthenticationManager {
         }
     }
 
-    func getAuthenticatedUser() throws -> UserDataModel {
+    func getAuthenticatedUser() throws -> UserServiceDataModel {
         guard let user = Auth.auth().currentUser else {
             // handle error
             throw URLError(.unknown)
         }
 
-        let currentUser = UserDataModel(user: user)
+        let currentUser = UserServiceDataModel(user: user)
 
         setupCurrentUser(currentUser)
         return currentUser
     }
-
-    func checkUserIsAuthenticated(completion: @escaping (UserDataModel) -> ()) -> Bool {
+    
+    func checkUserIsAuthenticated(completion: @escaping (UserServiceDataModel) -> ()) -> Bool {
         if (Auth.auth().currentUser?.reload()) != nil {
             if let currentUser = Auth.auth().currentUser {
-                completion(UserDataModel(user: currentUser))
+                completion(UserServiceDataModel(user: currentUser))
             }
             return true
         } else {
@@ -81,10 +107,10 @@ class FirebaseAuthenticationManager {
         }
     }
 
-    func signIn(email: String, password: String) async -> UserDataModel? {
+    func signIn(email: String, password: String) async -> UserServiceDataModel? {
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            let user = UserDataModel(user: authDataResult.user)
+            let user = UserServiceDataModel(user: authDataResult.user)
 
             setupCurrentUser(user)
             return user
@@ -112,10 +138,10 @@ class FirebaseAuthenticationManager {
         try Auth.auth().signOut()
     }
 
-    public func deleteAccount(completion: @escaping (UserDataModel?) -> ()) {
+    public func deleteAccount(completion: @escaping (UserServiceDataModel?) -> ()) {
         #warning("When session expires, reauthenticate the user by invoking reauthenticateWithCredential:completion:")
         guard let currentUser = Auth.auth().currentUser else { return }
-        let user = UserDataModel(user: currentUser)
+        let user = UserServiceDataModel(user: currentUser)
         Auth.auth().currentUser?.delete(completion: { error in
             Auth.auth().currentUser?.reload()
             if let error {
@@ -128,39 +154,22 @@ class FirebaseAuthenticationManager {
         })
     }
 
-    public func deleteUser(completion: @escaping (UserDataModel) -> ()) async throws {
+    public func deleteUser(completion: @escaping (UserServiceDataModel) -> ()) async throws {
         guard let currentUser = Auth.auth().currentUser else { return }
         try await currentUser.delete()
-        let user = UserDataModel(user: currentUser)
+        let user = UserServiceDataModel(user: currentUser)
         completion(user)
     }
 
-    public func reAuthenticate() {
-//        let user = Auth.auth().currentUser
-//        var credential: AuthCredential
-//
-//        // Prompt the user to re-provide their sign-in credentials
-//
-//        user?.reauthenticate(with: credential, completion: { authDataResult, error in
-//            if let error = error {
-//                // An error happened.
-//              } else {
-//                // User re-authenticated.
-//              }
-//        })
-    }
-}
-
-extension FirebaseAuthenticationManager: FirebaseProvider {
-    func fetchUser() -> UserDataModel? {
+    public func fetchUser() -> UserServiceDataModel? {
         if let currentUser = Auth.auth().currentUser {
-            return UserDataModel(user: currentUser)
+            return UserServiceDataModel(user: currentUser)
         } else {
             return nil
         }
     }
 
-    func updateUser(with user: UserDataModel) async throws {
+    public func updateUser(with user: UserServiceDataModel) async throws {
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = user.displayName
         changeRequest?.photoURL = user.photoURL

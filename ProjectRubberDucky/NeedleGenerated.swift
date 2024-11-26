@@ -169,50 +169,50 @@ private func factory76e860a0d75736e01a13b3a8f24c1d289f2c0f2e(_ component: Needle
 }
 
 #else
-extension OnboardingComponent: Registration {
+extension OnboardingComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\OnboardingDependency.onboardingProvider] = "onboardingProvider-any FeatureProvider"
         keyPathToName[\OnboardingDependency.userDefaultsManager] = "userDefaultsManager-UserDefaultsManager"
     }
 }
-extension AccountComponent: Registration {
+extension AccountComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\AccountDependency.accountProvider] = "accountProvider-any FeatureProvider"
     }
 }
-extension HomeComponent: Registration {
+extension HomeComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.homeFeatureProvider] = "homeFeatureProvider-any FeatureProvider"
     }
 }
-extension SearchComponent: Registration {
+extension SearchComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\SearchDependency.searchFeatureProvider] = "searchFeatureProvider-any FeatureProvider"
         keyPathToName[\SearchDependency.searchUsecase] = "searchUsecase-SearchUsecase"
     }
 }
-extension SettingsComponent: Registration {
+extension SettingsComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\SettingsDependency.settingsFeatureProvider] = "settingsFeatureProvider-any FeatureProvider"
     }
 }
-extension AuthenticationComponent: Registration {
+extension AuthenticationComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\AuthenticationDependency.authenticationFeatureProvider] = "authenticationFeatureProvider-any FeatureProvider"
         keyPathToName[\AuthenticationDependency.authenticationUsecase] = "authenticationUsecase-AuthenticationUsecase"
     }
 }
-extension LibraryComponent: Registration {
+extension LibraryComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\LibraryDependency.libraryFeatureProvider] = "libraryFeatureProvider-any FeatureProvider"
     }
 }
-extension FirebaseComponent: Registration {
+extension FirebaseComponent: NeedleFoundation.Registration {
     public func registerItems() {
 
     }
 }
-extension TabViewContainerComponent: Registration {
+extension TabViewContainerComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\TabViewContainerDependency.homeComponent] = "homeComponent-HomeComponent"
         keyPathToName[\TabViewContainerDependency.libraryComponent] = "libraryComponent-LibraryComponent"
@@ -221,7 +221,7 @@ extension TabViewContainerComponent: Registration {
         keyPathToName[\TabViewContainerDependency.tabFeatureFlagProvider] = "tabFeatureFlagProvider-TabFeatureFlagProvidable"
     }
 }
-extension RootComponent: Registration {
+extension RootComponent: NeedleFoundation.Registration {
     public func registerItems() {
 
         localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
@@ -247,11 +247,13 @@ extension RootComponent: Registration {
         localTable["authenticationComponent-AuthenticationComponent"] = { [unowned self] in self.authenticationComponent as Any }
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
-        localTable["authenticationManager-AuthenticationManager"] = { [unowned self] in self.authenticationManager as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
-        localTable["appleSignInManager-AppleSignInManager"] = { [unowned self] in self.appleSignInManager as Any }
+        localTable["userAuthenticationManager-UserAuthenticationManageable"] = { [unowned self] in self.userAuthenticationManager as Any }
+        localTable["appleSignInManager-any AppleSignInManager"] = { [unowned self] in self.appleSignInManager as Any }
         localTable["emailSignInManager-EmailSignInManager"] = { [unowned self] in self.emailSignInManager as Any }
         localTable["emailRegistrationManager-EmailRegistrationManager"] = { [unowned self] in self.emailRegistrationManager as Any }
+        localTable["userDeleteManager-ConcreteUserDeleteManager"] = { [unowned self] in self.userDeleteManager as Any }
+        localTable["userLogoutManager-ConcreteLogoutManager"] = { [unowned self] in self.userLogoutManager as Any }
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
         localTable["firebaseComponent-FirebaseComponent"] = { [unowned self] in self.firebaseComponent as Any }
@@ -261,7 +263,7 @@ extension RootComponent: Registration {
         localTable["plexGateway-PlexGateway"] = { [unowned self] in self.plexGateway as Any }
     }
 }
-extension PlexComponent: Registration {
+extension PlexComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\PlexDependency.plexGateway] = "plexGateway-PlexGateway"
     }

@@ -19,7 +19,7 @@ struct LibraryView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let using):
+            case .presenting(let using):
                 EmptyView()
             case .error:
                 EmptyView()

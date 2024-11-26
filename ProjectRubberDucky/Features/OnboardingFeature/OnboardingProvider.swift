@@ -28,7 +28,7 @@ class OnboardingProvider: FeatureProvider {
             let dataModel: DataModel = await createDataModel()
 
             await MainActor.run {
-                viewState = .presentContent(using: dataModel)
+                viewState = .presenting(using: dataModel)
             }
         } else {
             await MainActor.run {

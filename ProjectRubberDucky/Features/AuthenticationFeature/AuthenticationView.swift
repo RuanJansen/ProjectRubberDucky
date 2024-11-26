@@ -44,7 +44,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let dataModel):
+            case .presenting(let dataModel):
                 NavigationStack {
                     createContentView(using: dataModel)
                         .alert(authenticationUsecase.fetchInvalidEmailRDAlertModel().title,

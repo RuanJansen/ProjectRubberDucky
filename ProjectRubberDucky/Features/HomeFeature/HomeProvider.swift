@@ -48,7 +48,7 @@ class HomeProvider: FeatureProvider {
         let dataModel = await HomeDataModel(pageTitle: pageTitle, topCarousel: featuredVideos, carousels: carousels)
 
         await MainActor.run {
-            self.viewState = .presentContent(using:dataModel )
+            self.viewState = .presenting(using: dataModel)
         }
     }
 

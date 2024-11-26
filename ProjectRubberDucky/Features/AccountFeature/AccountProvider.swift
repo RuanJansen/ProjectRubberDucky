@@ -9,6 +9,9 @@ import Observation
 import SwiftUI
 import Combine
 
+typealias UserAuthenticationProvideableUpdateableDeleteable = UserAuthenticationProvideable & UserAuthenticationUpdateable & UserAuthenticationDeleteable
+
+
 @Observable
 class AccountProvider: FeatureProvider {
     typealias DataModel = AccountDataModel
@@ -16,21 +19,25 @@ class AccountProvider: FeatureProvider {
     var viewState: ViewState<AccountDataModel>
 
     private let contentProvider: AccountContentProvidable
-    private var authenticationManager: AuthenticationManager
-    private var firebaseProvider: FirebaseProvider?
+    private let userDeleteManager: UserDeleteManageable
+    private let userLogoutManager: LogoutManageable
+    private let firebaseUserAuthenticationManager: UserAuthenticationProvideableUpdateableDeleteable
+    
     private var photosPickerManager: PhotosPickerManager
     private var shouldReauthenticate: Bool
-    private var currentUser: UserDataModel?
+    private var currentUser: UserServiceDataModel?
 
     private var cancellables = Set<AnyCancellable>()
 
     init(contentProvider: AccountContentProvidable,
-         authenticationManager: AuthenticationManager,
-         firebaseProvider: FirebaseProvider?) {
+         userDeleteManager: UserDeleteManageable,
+         userLogoutManager: LogoutManageable,
+         firebaseUserAuthenticationManager: UserAuthenticationProvideableUpdateableDeleteable) {
         self.viewState = .loading
         self.contentProvider = contentProvider
-        self.authenticationManager = authenticationManager
-        self.firebaseProvider = firebaseProvider
+        self.userDeleteManager = userDeleteManager
+        self.userLogoutManager = userLogoutManager
+        self.firebaseUserAuthenticationManager = firebaseUserAuthenticationManager
         self.photosPickerManager = PhotosPickerManager()
         self.shouldReauthenticate = false
         self.startObserving()
@@ -100,7 +107,7 @@ class AccountProvider: FeatureProvider {
         ]
 
         await MainActor.run {
-            self.viewState = .presentContent(using: AccountDataModel(pageTitle: pageTitle,
+            self.viewState = .presenting(using: AccountDataModel(pageTitle: pageTitle,
                                                                      user: currentUser,
                                                                      profileImageButtonAction: profileImageButtonAction,
                                                                      sections: sections))
@@ -131,21 +138,21 @@ class AccountProvider: FeatureProvider {
     }
 
     private func deleteAccount() async {
-        authenticationManager.deleteAccount {
+        firebaseUserAuthenticationManager.deleteAccount { _ in
             self.shouldReauthenticate = true
         }
     }
 
     private func deleteUser() async {
         do {
-            try await authenticationManager.deleteUser()
+            try await userDeleteManager.deleteUser()
         } catch {
             shouldReauthenticate = true
         }
     }
 
     private func fetchUser() async {
-        currentUser = await firebaseProvider?.fetchUser()
+        currentUser = await firebaseUserAuthenticationManager.fetchUser()
     }
 
     private func updateUser(displayName: String) async {
@@ -161,7 +168,7 @@ class AccountProvider: FeatureProvider {
     private func updateUser() async {
         if let currentUser {
             do {
-                try await firebaseProvider?.updateUser(with: currentUser)
+                try await firebaseUserAuthenticationManager.updateUser(with: currentUser)
             } catch {
                 //
             }
@@ -169,7 +176,7 @@ class AccountProvider: FeatureProvider {
     }
 
     func logOut() async {
-        await authenticationManager.logOut()
+        await userLogoutManager.logOut()
         shouldReauthenticate = false
     }
 }

@@ -26,7 +26,7 @@ class SearchProvider: FeatureProvider {
         let dataModel = SearchDataModel(pageTitle: "Search")
 
         await MainActor.run {
-            self.viewState = .presentContent(using: dataModel)
+            self.viewState = .presenting(using: dataModel)
         }
     }
 }

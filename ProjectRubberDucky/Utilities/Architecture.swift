@@ -40,7 +40,7 @@ public enum ViewState<DataModel>: Identifiable {
     }
 
     case loading
-    case presentContent(using: DataModel)
+    case presenting(using: DataModel)
     case error
     case none
 }

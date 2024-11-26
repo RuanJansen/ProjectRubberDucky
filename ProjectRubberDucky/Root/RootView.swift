@@ -8,32 +8,17 @@
 import SwiftUI
 
 struct RootView: View {
-    @Bindable var navigationManager: NavigationManager
-
+    private let mainFeature: any Feature
+    
     @Environment(AppStyling.self) var appStyling
 
-    init(navigationManager: NavigationManager) {
-        self._navigationManager = Bindable(wrappedValue: navigationManager)
+    init(mainFeature: any Feature) {
+        self.mainFeature = mainFeature
     }
 
     var body: some View {
         Group {
-            switch navigationManager.navigationState {
-            case .main(let mainView, let onboardingView):
-                mainView
-                    .sheet(isPresented: $navigationManager.showOnboardingSheet) {
-                        onboardingView
-                            .environment(self.appStyling)
-                    }
-
-            case .authentication(let authenticationView):
-                authenticationView
-            case .splashScreen:
-                SplashScreenView()
-            }
-        }
-        .task {
-            await navigationManager.fetchContent()
+            AnyView(mainFeature.featureView)
         }
         .tint(appStyling.tintColor)
     }

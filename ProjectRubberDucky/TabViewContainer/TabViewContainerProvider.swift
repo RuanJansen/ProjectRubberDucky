@@ -16,7 +16,7 @@ class TabViewContainerProvider: FeatureProvider {
 
     public func fetchContent() {
         if let tabs {
-            self.viewState = .presentContent(using: tabs)
+            self.viewState = .presenting(using: tabs)
         } else {
             self.viewState = .error
         }

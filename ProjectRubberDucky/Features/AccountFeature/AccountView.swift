@@ -20,7 +20,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let dataModel):
+            case .presenting(let dataModel):
                 createContentView(using: dataModel)
             case .error:
                 EmptyView()
@@ -34,7 +34,7 @@ struct AccountView<Provider: FeatureProvider>: FeatureView where Provider.DataMo
     }
 
     @ViewBuilder
-    private func createProfilePhotoView(user: UserDataModel) -> some View {
+    private func createProfilePhotoView(user: UserServiceDataModel) -> some View {
         VStack(spacing: 20) {
             if let photoURL = user.photoURL {
                 KFImage(photoURL)

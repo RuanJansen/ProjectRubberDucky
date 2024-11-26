@@ -28,7 +28,7 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
             switch provider.viewState {
             case .loading:
                 ProgressView()
-            case .presentContent(let dataModel):
+            case .presenting(let dataModel):
                 createContentView(using: dataModel)
             case .error:
                 EmptyView()
