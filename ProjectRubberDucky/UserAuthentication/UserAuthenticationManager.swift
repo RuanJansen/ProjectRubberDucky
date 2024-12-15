@@ -14,10 +14,10 @@ protocol UserAuthenticationManageable {
     func setAuthenticationStatus(to isAuthenticated: Bool)
 }
 
-class UserAuthenticationManager: UserAuthenticationManageable {
-    public var isAuthenticated: Bool = false {
+class UserAuthenticationManager: ObservableObject, UserAuthenticationManageable {
+    @Published public var isAuthenticated: Bool {
         didSet {
-            print(self.isAuthenticated)
+            print("UserAuthenticationManager.isAuthenticated: \(self.isAuthenticated)")
         }
     }
     
@@ -26,6 +26,7 @@ class UserAuthenticationManager: UserAuthenticationManageable {
 
     init(serviceAuthenticationManager: UserAuthenticationAuthenticatable,
          userDatabaseManager: DatabaseUserCreateUpdateable) {
+        self.isAuthenticated = false
         self.serviceAuthenticationManager = serviceAuthenticationManager
         self.userDatabaseManager = userDatabaseManager
         self.updateAuthenticatedUserData()

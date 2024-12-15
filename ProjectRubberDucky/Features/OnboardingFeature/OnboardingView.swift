@@ -82,7 +82,7 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
 
             Button {
                 if isLastPage {
-                    userDefaultsManager.shouldShowOnboarding.toggle()
+                    userDefaultsManager.hasSeenboarding.toggle()
                     dismiss()
                 } else {
                     pageIndex += 1

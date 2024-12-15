@@ -16,8 +16,7 @@ struct ProjectRubberDuckyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CoordinatorStack(root: MainCoordinatorViews.authentication)
-                .environment(AppStyling())
+            rootComponent.coordinatorStack
         }
     }
 }

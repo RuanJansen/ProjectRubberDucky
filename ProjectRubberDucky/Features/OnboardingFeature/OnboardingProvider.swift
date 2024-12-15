@@ -24,7 +24,7 @@ class OnboardingProvider: FeatureProvider {
     }
 
     func fetchContent() async {
-        if userDefaultsManager.shouldShowOnboarding {
+        if userDefaultsManager.hasSeenboarding {
             let dataModel: DataModel = await createDataModel()
 
             await MainActor.run {

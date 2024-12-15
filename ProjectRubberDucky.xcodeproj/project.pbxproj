@@ -18,6 +18,7 @@
 		F306A4182C3A60D000246390 /* AuthenticationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4172C3A60D000246390 /* AuthenticationDataModel.swift */; };
 		F306A41D2C3A713E00246390 /* AuthenticationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */; };
 		F306A4212C416EB100246390 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4202C416EB100246390 /* SearchUsecase.swift */; };
+		F309372E2D0F36C80035DC21 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309372D2D0F36C80035DC21 /* Coordinator.swift */; };
 		F32015662CF0FDB6000F540D /* AppleSignInManagear.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32015652CF0FDB6000F540D /* AppleSignInManagear.swift */; };
 		F32015682CF101FB000F540D /* EmailSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32015672CF101FB000F540D /* EmailSignInManager.swift */; };
 		F320156A2CF1021F000F540D /* EmailRegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32015692CF1021F000F540D /* EmailRegistrationManager.swift */; };
@@ -141,6 +142,7 @@
 		F306A4172C3A60D000246390 /* AuthenticationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataModel.swift; sourceTree = "<group>"; };
 		F306A41C2C3A713E00246390 /* AuthenticationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUsecase.swift; sourceTree = "<group>"; };
 		F306A4202C416EB100246390 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
+		F309372D2D0F36C80035DC21 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F32015652CF0FDB6000F540D /* AppleSignInManagear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManagear.swift; sourceTree = "<group>"; };
 		F32015672CF101FB000F540D /* EmailSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInManager.swift; sourceTree = "<group>"; };
 		F32015692CF1021F000F540D /* EmailRegistrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRegistrationManager.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				F3342D2D2C63936300C052BB /* NavigationManager.swift */,
+				F309372D2D0F36C80035DC21 /* Coordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				F3342D472C66501B00C052BB /* AccountFeature.swift in Sources */,
 				F36AD5022C613E1400774C49 /* ConstructionView.swift in Sources */,
 				F3DB67DC2C2EAB7400F53642 /* AVPlayerController.swift in Sources */,
+				F309372E2D0F36C80035DC21 /* Coordinator.swift in Sources */,
 				F36AD4D72C6117F600774C49 /* AppStyling.swift in Sources */,
 				F3DB67872C28A44500F53642 /* RootComponent.swift in Sources */,
 				F3342D402C66209400C052BB /* AuthenticationContentProvider.swift in Sources */,
