@@ -4,10 +4,13 @@ struct TabViewContainerView<Provider: FeatureProvider>: FeatureView where Provid
     @State var provider: Provider
     @State private var showErrorAlert: Bool
     @State private var tabSelection: Int
-    
-    init(provider: Provider) {
+    @State private var navigationCoordinator: Coordinator<MainCoordinatorDestination>
+
+    init(provider: Provider,
+         navigationCoordinator: Coordinator<MainCoordinatorDestination>) {
         self.provider = provider
         self.showErrorAlert = false
+        self.navigationCoordinator = navigationCoordinator
         self.tabSelection = 0
     }
 
@@ -17,7 +20,7 @@ struct TabViewContainerView<Provider: FeatureProvider>: FeatureView where Provid
             case .loading:
                 ProgressView()
             case .presenting(using: let tabs):
-                TabView(selection: $tabSelection) {
+                TabView(selection: $navigationCoordinator.selectedTabIndex) {
                     ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
                         AnyView(tab.feature.featureView)
                             .tabItem {

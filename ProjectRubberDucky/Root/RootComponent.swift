@@ -5,9 +5,7 @@ import Combine
 class RootComponent: BootstrapComponent {
     @State public var appStyling: AppStyling
     @State public var appMetaData: AppMetaData
-    
-//    @Environment(Coordinator<MainCoordinatorViews>.self) private var navigationCoordinator
-        
+            
     override init() {
         self.appStyling = AppStyling()
         self.appMetaData = AppMetaData()
@@ -18,14 +16,18 @@ class RootComponent: BootstrapComponent {
         RootView(mainFeature: tabViewContainerComponent.feature)
     }
     
+    public var splashScreen: some View {
+        SplashScreenView()
+    }
+    
     public var coordinatorStack: some View {
         shared {
-            CoordinatorStack(root: MainCoordinatorDestination.root,
+            CoordinatorStack(root: MainCoordinatorDestination.rootDestination,
                              coordinator: navigationCoordinator)
                 .environment(AppStyling())
                 .environment(self.appMetaData)
                 .onAppear() {
-                    self.navigationManager.addListeners()
+                    self.navigationManager.displaySplashScreen()
                 }
         }
     }

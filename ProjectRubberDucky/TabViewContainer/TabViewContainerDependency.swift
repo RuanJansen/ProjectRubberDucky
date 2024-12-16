@@ -6,6 +6,7 @@ protocol TabViewContainerDependency: Dependency {
     var settingsComponent: SettingsComponent { get }
     var searchComponent: SearchComponent { get }
     var tabFeatureFlagProvider: TabFeatureFlagProvidable { get }
+    var navigationCoordinator: Coordinator<MainCoordinatorDestination> { get }
 }
 
 extension RootComponent {

@@ -145,6 +145,9 @@ private class TabViewContainerDependencyaf64c5e4f995451e1558Provider: TabViewCon
     var tabFeatureFlagProvider: TabFeatureFlagProvidable {
         return rootComponent.tabFeatureFlagProvider
     }
+    var navigationCoordinator: Coordinator<MainCoordinatorDestination> {
+        return rootComponent.navigationCoordinator
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -219,6 +222,7 @@ extension TabViewContainerComponent: NeedleFoundation.Registration {
         keyPathToName[\TabViewContainerDependency.settingsComponent] = "settingsComponent-SettingsComponent"
         keyPathToName[\TabViewContainerDependency.searchComponent] = "searchComponent-SearchComponent"
         keyPathToName[\TabViewContainerDependency.tabFeatureFlagProvider] = "tabFeatureFlagProvider-TabFeatureFlagProvidable"
+        keyPathToName[\TabViewContainerDependency.navigationCoordinator] = "navigationCoordinator-Coordinator<MainCoordinatorDestination>"
     }
 }
 extension RootComponent: NeedleFoundation.Registration {
@@ -227,6 +231,9 @@ extension RootComponent: NeedleFoundation.Registration {
         localTable["appStyling-AppStyling"] = { [unowned self] in self.appStyling as Any }
         localTable["appMetaData-AppMetaData"] = { [unowned self] in self.appMetaData as Any }
         localTable["view-some View"] = { [unowned self] in self.view as Any }
+        localTable["splashScreen-some View"] = { [unowned self] in self.splashScreen as Any }
+        localTable["coordinatorStack-some View"] = { [unowned self] in self.coordinatorStack as Any }
+        localTable["navigationCoordinator-Coordinator<MainCoordinatorDestination>"] = { [unowned self] in self.navigationCoordinator as Any }
         localTable["navigationManager-NavigationManager"] = { [unowned self] in self.navigationManager as Any }
         localTable["featureFlagProvider-FeatureFlagProvider"] = { [unowned self] in self.featureFlagProvider as Any }
         localTable["contentFetcher-ContentFetcher"] = { [unowned self] in self.contentFetcher as Any }
@@ -248,12 +255,12 @@ extension RootComponent: NeedleFoundation.Registration {
         localTable["authenticationFeatureProvider-any FeatureProvider"] = { [unowned self] in self.authenticationFeatureProvider as Any }
         localTable["authenticationContentProvider-AuthenticationContentProvidable"] = { [unowned self] in self.authenticationContentProvider as Any }
         localTable["authenticationUsecase-AuthenticationUsecase"] = { [unowned self] in self.authenticationUsecase as Any }
-        localTable["userAuthenticationManager-UserAuthenticationManageable"] = { [unowned self] in self.userAuthenticationManager as Any }
-        localTable["appleSignInManager-any AppleSignInManager"] = { [unowned self] in self.appleSignInManager as Any }
-        localTable["emailSignInManager-EmailSignInManager"] = { [unowned self] in self.emailSignInManager as Any }
-        localTable["emailRegistrationManager-EmailRegistrationManager"] = { [unowned self] in self.emailRegistrationManager as Any }
-        localTable["userDeleteManager-ConcreteUserDeleteManager"] = { [unowned self] in self.userDeleteManager as Any }
-        localTable["userLogoutManager-ConcreteLogoutManager"] = { [unowned self] in self.userLogoutManager as Any }
+        localTable["userAuthenticationManager-UserAuthenticationManager"] = { [unowned self] in self.userAuthenticationManager as Any }
+        localTable["appleSignInManager-any AppleSignInManageable"] = { [unowned self] in self.appleSignInManager as Any }
+        localTable["emailSignInManager-EmailSignInManageable"] = { [unowned self] in self.emailSignInManager as Any }
+        localTable["emailRegistrationManager-EmailRegistrationManageable"] = { [unowned self] in self.emailRegistrationManager as Any }
+        localTable["userDeleteManager-UserDeleteManageable"] = { [unowned self] in self.userDeleteManager as Any }
+        localTable["userLogoutManager-LogoutManageable"] = { [unowned self] in self.userLogoutManager as Any }
         localTable["libraryComponent-LibraryComponent"] = { [unowned self] in self.libraryComponent as Any }
         localTable["libraryFeatureProvider-any FeatureProvider"] = { [unowned self] in self.libraryFeatureProvider as Any }
         localTable["firebaseComponent-FirebaseComponent"] = { [unowned self] in self.firebaseComponent as Any }

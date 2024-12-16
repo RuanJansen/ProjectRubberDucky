@@ -9,12 +9,6 @@ import Observation
 import SwiftUI
 import Combine
 
-enum NavigationState {
-    case main(AnyView, onboardingFeature: AnyView?)
-    case authentication(AnyView)
-    case splashScreen
-}
-
 @Observable
 class NavigationManager {
     private var navigationCoordinator: Coordinator<MainCoordinatorDestination>
@@ -37,44 +31,51 @@ class NavigationManager {
         self.userDefaultsManager = userDefaultsManager
     }
     
+    public func displaySplashScreen() {
+        navigationCoordinator.splash(.splashDestination)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.navigationCoordinator.splash = nil
+            self.dismissSheet()
+            self.addListeners()
+        }
+    }
+    
     public func addListeners() {
         userAuthenticationManager.$isAuthenticated.sink { [self] isAuthenticated in
             pushAuthenticationIfUnauthorised(isAuthenticated: isAuthenticated)
-            if isAuthenticated {
-                pushOnboardingForFirstTime(hasSeenboarding: userDefaultsManager.hasSeenboarding)
-            }
         }
         .store(in: &cancellables)
     }
     
-    public func pushOnboardingForFirstTime(hasSeenboarding: Bool) {
-        if !hasSeenboarding {
+    public func pushAuthenticationIfUnauthorised(isAuthenticated: Bool) {
+        if isAuthenticated {
+            navigateToHomeTab()
+            dismissFullscreenCover()
+            pushOnboardingForFirstTime()
+        } else {
+            navigateToAuthentication()
+        }
+    }
+    
+    public func pushOnboardingForFirstTime() {
+        if !userDefaultsManager.hasSeenboarding {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 ) {
                 self.navigateToOnboarding()
                 self.userDefaultsManager.hasSeenboarding = true
             }
         }
     }
-    
-    public func pushAuthenticationIfUnauthorised(isAuthenticated: Bool) {
-        navigateToHome()
-        if isAuthenticated {
-            dismissFullscreenCover()
-        } else {
-            navigateToAuthentication()
-        }
-    }
         
     public func navigateToOnboarding() {
-        navigationCoordinator.push(.onboarding, type: .sheet)
+        navigationCoordinator.push(.onboardingDestination, type: .sheet)
     }
     
-    public func navigateToHome() {
+    public func navigateToRoot() {
         navigationCoordinator.popToRoot()
     }
     
     public func navigateToAuthentication() {
-        navigationCoordinator.push(.authentication, type: .fullscreenCover)
+        navigationCoordinator.push(.authenticationDestination, type: .fullscreenCover)
     }
     
     public func dismissLink() {
@@ -91,5 +92,13 @@ class NavigationManager {
     
     public func dismissSheet() {
         navigationCoordinator.pop(type: .sheet)
+    }
+    
+    public func navigateToHomeTab() {
+        navigateToTab(index: 0)
+    }
+    
+    private func navigateToTab(index: Int) {
+        navigationCoordinator.switchTab(to: index)
     }
 }

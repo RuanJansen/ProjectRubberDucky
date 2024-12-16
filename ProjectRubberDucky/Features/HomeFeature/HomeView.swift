@@ -231,15 +231,15 @@ struct VideoDetailView: View {
                 }
                 .padding(.horizontal)
 
-                HStack {
-                    RDButton(.fullScreenCover(swipeDismissable: true) {
-                        AnyView(createVideoPlayerView(with: video))
-                    }) {
-                        Label("Watch Trailer", systemImage: "popcorn.fill")
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal)
+//                HStack {
+//                    RDButton(.fullScreenCover(swipeDismissable: true) {
+//                        AnyView(createVideoPlayerView(with: video))
+//                    }) {
+//                        Label("Watch Trailer", systemImage: "popcorn.fill")
+//                    }
+//                    Spacer()
+//                }
+//                .padding(.horizontal)
 
                 VStack {
                     if let description = video.description {

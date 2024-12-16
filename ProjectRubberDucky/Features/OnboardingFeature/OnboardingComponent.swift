@@ -9,14 +9,10 @@ import NeedleFoundation
 
 class OnboardingComponent: Component<OnboardingDependency> {
     public var feature: Feature {
-        OnboardingFeature(featureProvider: featureProvider, userDefaultsManager: userDefaultsManager)
+        OnboardingFeature(featureProvider: featureProvider)
     }
 
     public var featureProvider: any FeatureProvider {
         dependency.onboardingProvider
-    }
-
-    public var userDefaultsManager: UserDefaultsManager {
-        dependency.userDefaultsManager
     }
 }

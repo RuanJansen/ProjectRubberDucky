@@ -15,6 +15,7 @@ class SearchUsecase {
 
     var searchText: String
     var searchVideos: [VideoDataModel]?
+    var resultsFetched: Bool = false
 
     init(repository: PexelRepository? = nil) {
         self.repository = repository
@@ -27,16 +28,20 @@ class SearchUsecase {
 
     public func clearSearch() async {
         if searchText.isEmpty {
+            self.resultsFetched = false
             self.searchVideos = nil
         }
     }
 
     private func fetchVideos(using prompt: String) async -> [VideoDataModel]? {
+        resultsFetched = false
         if let repository = self.repository {
             if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
+                resultsFetched = true
                 return fetchedContent
             }
         }
+        resultsFetched = true
         return nil
     }
 }

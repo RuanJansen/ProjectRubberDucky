@@ -3,7 +3,7 @@ import NeedleFoundation
 
 class TabViewContainerComponent: Component<TabViewContainerDependency> {
     public var feature: Feature {
-        TabViewContainerFeature(featureProvider: featureProvider)
+        TabViewContainerFeature(featureProvider: featureProvider, navigationCoordinator: dependency.navigationCoordinator)
     }
 
     public var featureProvider: any FeatureProvider {

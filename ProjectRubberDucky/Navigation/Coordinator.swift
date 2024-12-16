@@ -8,7 +8,9 @@ class Coordinator<CoordinatorPage: Coordinatable> {
     var path: NavigationPath = NavigationPath()
     var sheet: CoordinatorPage?
     var fullscreenCover: CoordinatorPage?
-    
+    var splash: CoordinatorPage?
+    var selectedTabIndex: Int = 0
+
     enum PushType {
         case link
         case sheet
@@ -46,6 +48,14 @@ class Coordinator<CoordinatorPage: Coordinatable> {
     func popToRoot() {
         path.removeLast(path.count)
     }
+    
+    func splash(_ page: CoordinatorPage) {
+        splash = page
+    }
+    
+    func switchTab(to index: Int) {
+            selectedTabIndex = index
+        }
 }
 
 struct CoordinatorStack<CoordinatorPage: Coordinatable>: View {
@@ -61,10 +71,14 @@ struct CoordinatorStack<CoordinatorPage: Coordinatable>: View {
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            root
-                .navigationDestination(for: CoordinatorPage.self) { $0 }
-                .sheet(item: $coordinator.sheet) { $0 }
-                .fullScreenCover(item: $coordinator.fullscreenCover) { $0 }
+            if let splash = coordinator.splash {
+                splash
+            } else {
+                root
+                    .navigationDestination(for: CoordinatorPage.self) { $0 }
+                    .sheet(item: $coordinator.sheet) { $0 }
+                    .fullScreenCover(item: $coordinator.fullscreenCover) { $0 }
+            }
         }
     }
 }

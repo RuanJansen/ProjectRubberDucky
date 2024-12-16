@@ -9,18 +9,14 @@ import SwiftUI
 
 struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == [OnboardingDataModel]{
     @State var provider: Provider
-    @State private var userDefaultsManager: UserDefaultsManager
 
     @Environment(\.dismiss) private var dismiss
     @Environment(AppStyling.self) var appStyling
 
     @State var pageIndex: Int = 0
 
-    init(provider: Provider,
-         userDefaultsManager: UserDefaultsManager) {
+    init(provider: Provider) {
         self.provider =  provider
-        self.userDefaultsManager = userDefaultsManager
-
     }
 
     var body: some View {
@@ -47,7 +43,6 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
             ForEach(dataModel, id: \.id) { page in
                 createOnboardingPage(using: dataModel, page: page, isLastPage: page.id == dataModel.last?.id)
                     .tag(page.tag)
-
             }
         }
     }
@@ -72,7 +67,6 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
                     .font(.largeTitle)
                     .foregroundStyle(appStyling.tintColor)
                     .padding()
-
             }
 
             Text(page.description)
@@ -82,7 +76,6 @@ struct OnboardingView<Provider: FeatureProvider>: FeatureView where Provider.Dat
 
             Button {
                 if isLastPage {
-                    userDefaultsManager.hasSeenboarding.toggle()
                     dismiss()
                 } else {
                     pageIndex += 1

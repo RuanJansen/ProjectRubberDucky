@@ -10,23 +10,21 @@ import SwiftUI
 struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataModel == SearchDataModel {
     @State var provider: Provider
     @Bindable var searchUsecase: SearchUsecase
-
-    @Environment(AppStyling.self) var appStyling
-
+    
     init(provider: Provider,
          searchUsecase: SearchUsecase) {
         self.provider = provider
         self.searchUsecase = searchUsecase
-
+        
     }
-
+    
     var body: some View {
         Group {
             switch provider.viewState {
             case .loading:
                 ProgressView()
             case .presenting(let dataModel):
-                NavigationStack {
+                NavigationView {
                     createContentView(using: dataModel)
                         .navigationTitle(dataModel.pageTitle)
                         .searchPresentationToolbarBehavior(.avoidHidingContent)
@@ -52,8 +50,8 @@ struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataMod
             await provider.fetchContent()
         }
     }
-
-
+    
+    
 #if os(iOS)
     @ViewBuilder
     private func createContentView(using dataModel: SearchDataModel) -> some View {
@@ -62,17 +60,20 @@ struct SearchView<Provider: FeatureProvider>: FeatureView where Provider.DataMod
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay {
-            if let searchResults = searchUsecase.searchVideos {
-                List(searchResults, id: \.id) { video in
-                    RDButton(.navigate({
-                        AnyView(VideoDetailView(video: video))
-                    })) {
-                        Text(video.title)
+            if searchUsecase.resultsFetched && searchUsecase.searchVideos == nil {
+                Text("no results")
+            } else if let searchResults = searchUsecase.searchVideos {
+                    List(searchResults, id: \.id) { video in
+                        RDButton(.navigate({
+                            AnyView(VideoDetailView(video: video))
+                        })) {
+                            Text(video.title)
+                        }
+                        .foregroundStyle(.primary)
                     }
-                    .foregroundStyle(.primary)
+                    .listStyle(.inset)
                 }
-                .listStyle(.inset)
-            }
+            
         }
     }
 #endif
