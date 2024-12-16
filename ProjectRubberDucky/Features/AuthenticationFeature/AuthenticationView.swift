@@ -116,7 +116,7 @@ struct AuthenticationView<Provider: FeatureProvider>: FeatureView where Provider
         VStack {
             appStyling.appIconImage
                 .resizable()
-                .clipShape(Circle())
+                .clipShape(RoundedRectangle(cornerRadius: 22))
                 .frame(width: 100, height: 100)
 
             Form {

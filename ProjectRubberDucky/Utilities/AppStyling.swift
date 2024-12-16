@@ -10,7 +10,7 @@ import SwiftUI
 @Observable
 class AppStyling {
     let appName = "Film Factory"
-    let appIconImage = Image("AppIcon")
     let tintColor = Color("AppTint")
+    let appIconImage = Image("AppIconImage")
     let appBackgroundColor = Color("AppBackground")
 }

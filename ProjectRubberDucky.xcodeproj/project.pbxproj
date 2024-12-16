@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F30559242C3952E900B2C9F6 /* Empire2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559232C3952E900B2C9F6 /* Empire2.swift */; };
 		F30559412C399DF500B2C9F6 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559402C399DF500B2C9F6 /* VideoPlayer.swift */; };
-		F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30559432C39B04800B2C9F6 /* Image+Extension.swift */; };
 		F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A4092C3A5BAA00246390 /* AuthenticationView.swift */; };
 		F306A40D2C3A5FC300246390 /* AuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A40C2C3A5FC300246390 /* AuthenticationProvider.swift */; };
 		F306A40F2C3A5FCE00246390 /* AuthenticationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306A40E2C3A5FCE00246390 /* AuthenticationFeature.swift */; };
@@ -134,7 +133,6 @@
 /* Begin PBXFileReference section */
 		F30559232C3952E900B2C9F6 /* Empire2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empire2.swift; sourceTree = "<group>"; };
 		F30559402C399DF500B2C9F6 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
-		F30559432C39B04800B2C9F6 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		F306A4092C3A5BAA00246390 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		F306A40C2C3A5FC300246390 /* AuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProvider.swift; sourceTree = "<group>"; };
 		F306A40E2C3A5FCE00246390 /* AuthenticationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFeature.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		F30559422C39B03700B2C9F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F30559432C39B04800B2C9F6 /* Image+Extension.swift */,
 				F3F13B042C53844E008D6841 /* View+Extension.swift */,
 				F3342D2F2C63CD4D00C052BB /* Bundle+Extention.swift */,
 			);
@@ -805,7 +802,6 @@
 				F3F13B032C537F45008D6841 /* UserDefaultsManager.swift in Sources */,
 				F34B7D8F2C3834F000587031 /* DependencyManager.swift in Sources */,
 				F350E2562C90867D00CA5C88 /* SearchView.swift in Sources */,
-				F30559442C39B04800B2C9F6 /* Image+Extension.swift in Sources */,
 				F306A40A2C3A5BAA00246390 /* AuthenticationView.swift in Sources */,
 				F3342D4B2C66509B00C052BB /* AccountDataModel.swift in Sources */,
 				F3342D572C69179900C052BB /* FirebaseRemoteConfigManager.swift in Sources */,
@@ -1028,10 +1024,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
@@ -1065,10 +1061,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectRubberDucky/ProjectRubberDucky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRubberDucky/Preview Content\"";
 				DEVELOPMENT_TEAM = MEKPW4F5YF;
 				ENABLE_PREVIEWS = YES;
