@@ -5,6 +5,8 @@ import Combine
 class RootComponent: BootstrapComponent {
     @State public var appStyling: AppStyling
     @State public var appMetaData: AppMetaData
+    
+//    @Environment(Coordinator<MainCoordinatorViews>.self) private var navigationCoordinator
         
     override init() {
         self.appStyling = AppStyling()
@@ -18,7 +20,7 @@ class RootComponent: BootstrapComponent {
     
     public var coordinatorStack: some View {
         shared {
-            CoordinatorStack(root: MainCoordinatorViews.home,
+            CoordinatorStack(root: MainCoordinatorDestination.root,
                              coordinator: navigationCoordinator)
                 .environment(AppStyling())
                 .environment(self.appMetaData)
@@ -28,9 +30,9 @@ class RootComponent: BootstrapComponent {
         }
     }
     
-    public var navigationCoordinator: Coordinator<MainCoordinatorViews> {
+    public var navigationCoordinator: Coordinator<MainCoordinatorDestination> {
         shared {
-            Coordinator<MainCoordinatorViews>()
+            Coordinator<MainCoordinatorDestination>()
         }
     }
 

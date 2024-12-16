@@ -2,8 +2,9 @@ import SwiftUI
 
 typealias Coordinatable = View & Identifiable & Hashable
 
-//@Observable
-class Coordinator<CoordinatorPage: Coordinatable>: ObservableObject {
+@Observable
+class Coordinator<CoordinatorPage: Coordinatable> {
+    let id: UUID = UUID()
     var path: NavigationPath = NavigationPath()
     var sheet: CoordinatorPage?
     var fullscreenCover: CoordinatorPage?
@@ -64,27 +65,6 @@ struct CoordinatorStack<CoordinatorPage: Coordinatable>: View {
                 .navigationDestination(for: CoordinatorPage.self) { $0 }
                 .sheet(item: $coordinator.sheet) { $0 }
                 .fullScreenCover(item: $coordinator.fullscreenCover) { $0 }
-        }
-    }
-}
-
-enum MainCoordinatorViews: Coordinatable {
-    var id: UUID { .init() }
-    case home
-    case authentication
-    case splash
-    case onboarding
-    
-    var body: some View {
-        switch self {
-        case .home:
-            AnyView(DependencyManager.shared.rootComponent.view)
-        case .authentication:
-            AnyView(DependencyManager.shared.rootComponent.authenticationComponent.feature.featureView)
-        case .splash:
-            SplashScreenView()
-        case .onboarding:
-            AnyView(DependencyManager.shared.rootComponent.onboardingComponent.feature.featureView)
         }
     }
 }

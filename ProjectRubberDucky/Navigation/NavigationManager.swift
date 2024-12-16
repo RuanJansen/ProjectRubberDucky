@@ -17,7 +17,7 @@ enum NavigationState {
 
 @Observable
 class NavigationManager {
-    private var navigationCoordinator: Coordinator<MainCoordinatorViews>
+    private var navigationCoordinator: Coordinator<MainCoordinatorDestination>
     private let onboardingFeature: any Feature
     private let authenticationFeature: any Feature
     private let userAuthenticationManager: UserAuthenticationManager
@@ -25,7 +25,7 @@ class NavigationManager {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(navigationCoordinator: Coordinator<MainCoordinatorViews>,
+    init(navigationCoordinator: Coordinator<MainCoordinatorDestination>,
          onboardingFeature: any Feature,
          authenticationFeature: any Feature,
          userAuthenticationManager: UserAuthenticationManager,
@@ -57,8 +57,9 @@ class NavigationManager {
     }
     
     public func pushAuthenticationIfUnauthorised(isAuthenticated: Bool) {
+        navigateToHome()
         if isAuthenticated {
-            navigateToHome()
+            dismissFullscreenCover()
         } else {
             navigateToAuthentication()
         }
@@ -73,10 +74,22 @@ class NavigationManager {
     }
     
     public func navigateToAuthentication() {
-        navigationCoordinator.push(.authentication, type: .sheet)
+        navigationCoordinator.push(.authentication, type: .fullscreenCover)
     }
     
-    public func dismiss() {
+    public func dismissLink() {
         navigationCoordinator.pop()
+    }
+    
+    public func dismissAll() {
+        navigationCoordinator.popToRoot()
+    }
+    
+    public func dismissFullscreenCover() {
+        navigationCoordinator.pop(type: .fullscreenCover)
+    }
+    
+    public func dismissSheet() {
+        navigationCoordinator.pop(type: .sheet)
     }
 }
