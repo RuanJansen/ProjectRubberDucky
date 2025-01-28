@@ -14,9 +14,12 @@ class HomeProvider: FeatureProvider {
 
     var viewState: ViewState<HomeDataModel>
 
+    private let contentProvider: HomeContentProvidable
     private let repository: PexelRepository?
 
-    init(repository: PexelRepository? = nil) {
+    init(contentProvider: HomeContentProvidable,
+         repository: PexelRepository? = nil) {
+        self.contentProvider = contentProvider
         self.repository = repository
         self.viewState = .loading
     }
@@ -38,7 +41,20 @@ class HomeProvider: FeatureProvider {
     }
 
     private func setupHomeDataModel() async {
-        let prompts: [String] = ["Ocean", "Galaxy", "Mountains", "Nature", "Africa wild life", "Ocean wild life", "Insect wild life"]
+        async let pageTitle = contentProvider.fetchPageTitle()
+        async let carousels = fetchDefaultVideoCarousels()
+        async let featuredVideos = setupFeaturedVideos()
+
+        let dataModel = await HomeDataModel(pageTitle: pageTitle, topCarousel: featuredVideos, carousels: carousels)
+
+        await MainActor.run {
+            self.viewState = .presenting(using: dataModel)
+        }
+    }
+
+    private func fetchDefaultVideoCarousels() async -> [CarouselDataModel] {
+        let prompts: [String] = await contentProvider.fetchVideoTitles()
+
         let carouselManager = CarouselManager()
 
         await withTaskGroup(of: Void.self) { taskGroup in
@@ -46,56 +62,38 @@ class HomeProvider: FeatureProvider {
                 taskGroup.addTask {
                     var videos: [VideoDataModel] = []
 
-                    if let repository = self.repository {
-                        if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-                            videos.append(contentsOf: fetchedContent)
-                        }
-                    }
+                    await videos.append(contentsOf: self.fetchVideos(using: prompt))
 
-                    let carousel = CarouselDataModel(title: prompt, videos: videos)
+                    let carousel = CarouselDataModel(title: prompt, videos: videos.sorted(by: { $0.title < $1.title }), style: .thumbnail)
                     await carouselManager.addCarousel(carousel)
                 }
             }
         }
 
-        let carousels = await carouselManager.getCarousels()
+        let carousels = await carouselManager.getCarousels().sorted(by: {$0.title < $1.title})
 
-        await MainActor.run {
-            self.viewState = .presentContent(using: HomeDataModel(carousels: carousels))
-        }
+        return carousels
     }
-}
 
-extension HomeProvider: SearchableProvider {
-    func searchContent(prompt: String) async {
-        let videoManager = VideoManager()
-
+    private func fetchVideos(using prompt: String) async -> [VideoDataModel] {
         if let repository = self.repository {
             if let fetchedContent = await repository.fetchRemoteData(prompt: prompt) {
-                await videoManager.addVideos(fetchedContent)
+                return fetchedContent
             }
         }
-
-        let videos = await videoManager.getVideos()
-
-//        await MainActor.run {
-//            self.viewState = .presentContent(using: HomeDataModel(searchResults: videos, carousels: [CarouselDataModel(title: prompt, videos: videos)]))
-//        }
-
-        await MainActor.run {
-            self.viewState = .loading
-        }
+        return []
     }
 
-    actor VideoManager {
+    private func setupFeaturedVideos() async -> [VideoDataModel] {
         var videos: [VideoDataModel] = []
 
-        func addVideos(_ newVideos: [VideoDataModel]) {
-            videos.append(contentsOf: newVideos)
-        }
+        let prompts: [String] = await contentProvider.fetchVideoTitles()
 
-        func getVideos() -> [VideoDataModel] {
-            return videos
+        for prompt in prompts {
+            if let randomVideo = await self.fetchVideos(using: prompt).randomElement() {
+                videos.append(randomVideo)
+            }
         }
+        return videos
     }
 }

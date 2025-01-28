@@ -12,12 +12,13 @@ class PexelRepository {
         do {
             guard let pexelVideos = try await PexelGateway().fetchCodableDataModel(prompt: prompt) else { return nil }
 
-            let pexelDataModel = pexelVideos.map { 
+            let pexelDataModel = pexelVideos.map {
                 VideoDataModel(id: UUID(),
-                                     title: String(describing: $0.user.name),
-                                     url: URL(string: $0.videoFiles.first!.link)!,
-                                     thumbnail: URL(string: $0.image)!,
-                                     quality: $0.videoFiles.first!.quality.rawValue)
+                               title: String(describing: $0.user.name),
+                               genre: prompt,
+                               quality: $0.videoFiles.first!.quality.rawValue,
+                               videoFileUrl: URL(string: $0.videoFiles.first!.link)!,
+                               thumbnailImageUrl: URL(string: $0.image)!)
             }
 
             return pexelDataModel

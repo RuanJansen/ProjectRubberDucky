@@ -9,18 +9,13 @@ import Foundation
 
 class OnboardingFeature<Provider>: Feature where Provider: OnboardingProvider {
     var featureProvider: any FeatureProvider
-    var onboardingUsecase: OnboardingUsecase
 
-    init(featureProvider: any FeatureProvider, 
-         onboardingUsecase: OnboardingUsecase) {
+    init(featureProvider: any FeatureProvider) {
         self.featureProvider = featureProvider
-        self.onboardingUsecase = onboardingUsecase
     }
 
     var featureView: any FeatureView {
-        OnboardingView(provider: featureProvider as! Provider,
-                       onboardingUsecase: onboardingUsecase)
+        OnboardingView(provider: featureProvider as! Provider)
     }
 
-    
 }

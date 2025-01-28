@@ -1,5 +1,5 @@
 import Foundation
-import PlexKit
+//import PlexKit
 import Combine
 
 protocol PlexAuthenticatable {
@@ -9,11 +9,23 @@ protocol PlexAuthenticatable {
 }
 
 protocol PlexContentFetchable {
-    func fetchLibraries(completion: @escaping ([PlexLibrary]?)->())
-    func fetch(_ mediaType: PlexMediaType, for key: String) -> Plex.Request.Collections.Response?
+//    func fetchLibraries(completion: @escaping ([PlexLibrary]?)->())
+//    func fetch(_ mediaType: PlexMediaType, for key: String) -> Plex.Request.Collections.Response?
+    func fetchLibraries()->()
+
+    func fetch()
+
 }
 
 class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
+    func fetchLibraries() {
+        //
+    }
+    
+    func fetch() {
+        //
+    }
+    
 
     private var serverEndpoint: String
 
@@ -71,205 +83,205 @@ class PlexGateway: PlexAuthenticatable, PlexContentFetchable {
         completion(true, user.authToken)
     }
 
-    func fetchLibraries(completion: @escaping ([PlexKit.PlexLibrary]?) -> ()) {
-        completion(nil)
-    }
-    
-    func fetch(_ mediaType: PlexKit.PlexMediaType, for key: String) -> PlexKit.Plex.Request.Collections.Response? {
-        nil
-    }
+//    func fetchLibraries(completion: @escaping ([PlexKit.PlexLibrary]?) -> ()) {
+//        completion(nil)
+//    }
+//    
+//    func fetch(_ mediaType: PlexKit.PlexMediaType, for key: String) -> PlexKit.Plex.Request.Collections.Response? {
+//        nil
+//    }
 }
 
-class PlexKitGateway: PlexAuthenticatable, PlexContentFetchable {
-    private let client = Plex(sessionConfiguration: .default,
-                              clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
+//class PlexKitGateway: PlexAuthenticatable, PlexContentFetchable {
+//    private let client = Plex(sessionConfiguration: .default,
+//                              clientInfo: Plex.ClientInfo(clientIdentifier: UUID().uuidString))
+//
+//    @Published private var user: PlexUser?
+//    @Published private var servers: [PlexResource]?
+//
+//    private var url: URL?
+//
+//    var cancelables: Set<AnyCancellable>
+//
+//    init() {
+//        self.cancelables = Set<AnyCancellable>()
+//        addSubscribers()
+//    }
+//
+//    private func addSubscribers() {
+//        $user.sink { user in
+//            self.populateServers()
+//        }
+//        .store(in: &cancelables)
+//
+//        $servers.sink { fetchedServers in
+//            if let fetchedServers {
+//                self.setUrl(with: fetchedServers)
+//            }
+//        }
+//        .store(in: &cancelables)
+//    }
+//
+//    func authenticateUser(with username: String,
+//                          and password: String,
+//                          completion: @escaping (_ isAuthenticated: Bool, _ token: String) -> ()) {
+//        client.request(
+//            Plex.ServiceRequest.SimpleAuthentication(
+//                username: username,
+//                password: password
+//            )
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                self.user = response.user
+//                guard let token = self.user?.authToken else { return }
+//                completion(true, token)
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//    }
+//
+//    private func populateServers() {
+//        client.request(
+//            Plex.ServiceRequest.Resources(),
+//            token: PlexAuthentication.primaryTokenEmpire2
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                let servers = response.filter { $0.capabilities.contains(.server)}
+//                self.servers = servers
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//
+//    }
+//
+//    private func setUrl(with fetchedServers: [PlexResource]) {
+//        guard let uri = fetchedServers.first(where: { resource in
+//            resource.name == "RubberDucky"
+//        })?.connections.first(where: { connection in
+//            connection.port == 32400
+//        })?.uri else { return }
+//
+//        self.url = URL(string: uri)
+//    }
+//
+//    func fetchLibraries(completion: @escaping ([PlexLibrary]?)->()) {
+//        var libraries: [PlexLibrary]?
+//        guard let url else { return }
+//        client.request(
+//            Plex.Request.Libraries(),
+//            from: url,
+//            token: PlexAuthentication.primaryTokenRuanMacbookAir
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                libraries = response.mediaContainer.directory
+//                completion(libraries)
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//    }
+//
+//    func fetch(_ mediaType: PlexMediaType, for key: String) -> Plex.Request.Collections.Response? {
+//        var collectionsResponse: Plex.Request.Collections.Response?
+//        guard let url else { return nil }
+//        client.request(Plex.Request.Collections(libraryKey: key, mediaType: mediaType),
+//                       from: url,
+//                       token: PlexAuthentication.primaryTokenRuanMacbookAir) { result in
+//            switch result {
+//            case .success(let response):
+//                collectionsResponse = response
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//        return collectionsResponse
+//    }
+//}
 
-    @Published private var user: PlexUser?
-    @Published private var servers: [PlexResource]?
-
-    private var url: URL?
-
-    var cancelables: Set<AnyCancellable>
-
-    init() {
-        self.cancelables = Set<AnyCancellable>()
-        addSubscribers()
-    }
-
-    private func addSubscribers() {
-        $user.sink { user in
-            self.populateServers()
-        }
-        .store(in: &cancelables)
-
-        $servers.sink { fetchedServers in
-            if let fetchedServers {
-                self.setUrl(with: fetchedServers)
-            }
-        }
-        .store(in: &cancelables)
-    }
-
-    func authenticateUser(with username: String,
-                          and password: String,
-                          completion: @escaping (_ isAuthenticated: Bool, _ token: String) -> ()) {
-        client.request(
-            Plex.ServiceRequest.SimpleAuthentication(
-                username: username,
-                password: password
-            )
-        ) { result in
-            switch result {
-            case .success(let response):
-                self.user = response.user
-                guard let token = self.user?.authToken else { return }
-                completion(true, token)
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-
-    private func populateServers() {
-        client.request(
-            Plex.ServiceRequest.Resources(),
-            token: PlexAuthentication.primaryTokenEmpire2
-        ) { result in
-            switch result {
-            case .success(let response):
-                let servers = response.filter { $0.capabilities.contains(.server)}
-                self.servers = servers
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-
-    }
-
-    private func setUrl(with fetchedServers: [PlexResource]) {
-        guard let uri = fetchedServers.first(where: { resource in
-            resource.name == "RubberDucky"
-        })?.connections.first(where: { connection in
-            connection.port == 32400
-        })?.uri else { return }
-
-        self.url = URL(string: uri)
-    }
-
-    func fetchLibraries(completion: @escaping ([PlexLibrary]?)->()) {
-        var libraries: [PlexLibrary]?
-        guard let url else { return }
-        client.request(
-            Plex.Request.Libraries(),
-            from: url,
-            token: PlexAuthentication.primaryTokenRuanMacbookAir
-        ) { result in
-            switch result {
-            case .success(let response):
-                libraries = response.mediaContainer.directory
-                completion(libraries)
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-
-    func fetch(_ mediaType: PlexMediaType, for key: String) -> Plex.Request.Collections.Response? {
-        var collectionsResponse: Plex.Request.Collections.Response?
-        guard let url else { return nil }
-        client.request(Plex.Request.Collections(libraryKey: key, mediaType: mediaType),
-                       from: url,
-                       token: PlexAuthentication.primaryTokenRuanMacbookAir) { result in
-            switch result {
-            case .success(let response):
-                collectionsResponse = response
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-        return collectionsResponse
-    }
-}
-
-extension PlexKitGateway {
-    private func fetchAuthenticatedUserDetails(username: String, password: String, completion: @escaping (Plex.ServiceRequest.SimpleAuthentication.Response?)->()) {
-        client.request(
-            Plex.ServiceRequest.SimpleAuthentication(
-                username: username,
-                password: password
-            )
-        ) { result in
-            switch result {
-            case .success(let response):
-                completion(response)
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-
-    private func findPlexResources(with token: String, completion: @escaping ([PlexResource]?)->()) {
-        client.request(
-            Plex.ServiceRequest.Resources(),
-            token: token
-        ) { result in
-            switch result {
-            case .success(let response):
-                let servers = response.filter { $0.capabilities.contains(.server)}
-                completion(response)
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-
-    private func fetchLibraries(with token: String, from serverUri: String, completion: @escaping (Plex.Request.Libraries.Response?)->()) {
-        guard let url = URL(string: serverUri) else { return }
-        client.request(
-            Plex.Request.Libraries(),
-            from: url,
-            token: PlexAuthentication.primaryTokenEmpire2
-        ) { result in
-            switch result {
-            case .success(let response):
-                completion(response)
-            case .failure(let error):
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-
-    public func fetchMovies(for username: String,
-                            and password: String) {
-        self.fetchAuthenticatedUserDetails(username: username,
-                                           password: password) { userDetails in
-            guard let token = userDetails?.user.authenticationToken else { return }
-            self.findPlexResources(with: token) { plexResources in
-                guard let uri = plexResources?.first?.connections.first?.uri else { return }
-                self.fetchLibraries(with: PlexAuthentication.primaryTokenEmpire2,
-                                    from: uri) { [self] libraries in
-                    let mediaContainer = libraries?.mediaContainer
-                    let movieLibraries = mediaContainer?.directory.filter { $0.type == .movie }
-
-                    let moviesOld = movieLibraries?.filter({ movies in
-                        movies.title == Empire2.moviesNew.rawValue
-                    })
-
-
-
-//                    client.request(Plex.Request.ItemMetadata(ratingKey: "27186"), token: PlexAuthentication.primaryToken) { response in
-//                        switch response {
-//                        case .success(let success):
-//                            success.mediaContainer.metadata.first?.media.first.
-//                        case .failure(let failure):
-//                            <#code#>
-//                        }
-//                    }
-                }
-            }
-        }
-    }
-}
+//extension PlexKitGateway {
+//    private func fetchAuthenticatedUserDetails(username: String, password: String, completion: @escaping (Plex.ServiceRequest.SimpleAuthentication.Response?)->()) {
+//        client.request(
+//            Plex.ServiceRequest.SimpleAuthentication(
+//                username: username,
+//                password: password
+//            )
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                completion(response)
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//    }
+//
+//    private func findPlexResources(with token: String, completion: @escaping ([PlexResource]?)->()) {
+//        client.request(
+//            Plex.ServiceRequest.Resources(),
+//            token: token
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                let servers = response.filter { $0.capabilities.contains(.server)}
+//                completion(response)
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//    }
+//
+//    private func fetchLibraries(with token: String, from serverUri: String, completion: @escaping (Plex.Request.Libraries.Response?)->()) {
+//        guard let url = URL(string: serverUri) else { return }
+//        client.request(
+//            Plex.Request.Libraries(),
+//            from: url,
+//            token: PlexAuthentication.primaryTokenEmpire2
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                completion(response)
+//            case .failure(let error):
+//                print("An error occurred: \(error)")
+//            }
+//        }
+//    }
+//
+//    public func fetchMovies(for username: String,
+//                            and password: String) {
+//        self.fetchAuthenticatedUserDetails(username: username,
+//                                           password: password) { userDetails in
+//            guard let token = userDetails?.user.authenticationToken else { return }
+//            self.findPlexResources(with: token) { plexResources in
+//                guard let uri = plexResources?.first?.connections.first?.uri else { return }
+//                self.fetchLibraries(with: PlexAuthentication.primaryTokenEmpire2,
+//                                    from: uri) { [self] libraries in
+//                    let mediaContainer = libraries?.mediaContainer
+//                    let movieLibraries = mediaContainer?.directory.filter { $0.type == .movie }
+//
+//                    let moviesOld = movieLibraries?.filter({ movies in
+//                        movies.title == Empire2.moviesNew.rawValue
+//                    })
+//
+//
+//
+////                    client.request(Plex.Request.ItemMetadata(ratingKey: "27186"), token: PlexAuthentication.primaryToken) { response in
+////                        switch response {
+////                        case .success(let success):
+////                            success.mediaContainer.metadata.first?.media.first.
+////                        case .failure(let failure):
+////                            <#code#>
+////                        }
+////                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 //▿ 7 elements
 //  ▿ PlexKit.PlexLibrary

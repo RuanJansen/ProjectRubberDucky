@@ -8,34 +8,12 @@
 import Foundation
 import NeedleFoundation
 
-extension RootComponent {
-    public var homeComponent: HomeComponent {
-        HomeComponent(parent: self)
-    }
-
-    var homeFeatureProvider: any FeatureProvider {
-        HomeProvider(repository: videoRepository)
-    }
-
-    public var searchUsecase: SearchUsecase {
-        SearchUsecase(provider: homeFeatureProvider as! SearchableProvider)
-    }
-
-    public var videoRepository: PexelRepository {
-        PexelRepository()
-    }
-}
-
 class HomeComponent: Component<HomeDependency> {
     var feature: any Feature {
-        HomeFeature(featureProvider: featureProvider, searchUsecase: searchUsecase)
+        HomeFeature(featureProvider: featureProvider)
     }
 
     var featureProvider: any FeatureProvider {
         dependency.homeFeatureProvider
-    }
-
-    var searchUsecase: SearchUsecase {
-        dependency.searchUsecase
     }
 }

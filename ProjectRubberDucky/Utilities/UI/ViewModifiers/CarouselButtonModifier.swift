@@ -12,7 +12,7 @@ struct CarouselButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.primary)
-            .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            .frame(width: 350, height: 175)
+            .clipShape(RoundedRectangle(cornerRadius: 15.0))
+            .frame(width: 300, height: 175)
     }
 }

@@ -27,7 +27,7 @@ struct Video: Codable {
     let id, width, height, duration: Int
     let url: String
     let image: String
-    let user: User
+    let user: Creator
     let videoFiles: [VideoFile]
     let videoPictures: [VideoPicture]
 
@@ -41,7 +41,7 @@ struct Video: Codable {
 }
 
 // MARK: - User
-struct User: Codable {
+struct Creator: Codable {
     let id: Int
     let name: String
     let url: String
